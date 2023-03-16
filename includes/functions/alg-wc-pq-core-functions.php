@@ -61,3 +61,51 @@ if ( ! function_exists( 'alg_wc_pq_do_disable' ) ) {
 		return false;
 	}
 }
+
+if ( ! function_exists( 'alg_wc_pq_wc_get_attribute_taxonomies' ) ) {
+	/**
+	 * alg_wc_pq_wc_get_attribute_taxonomies
+	 *
+	 * @version 1.6.3
+	 * @since   1.6.3
+	 */
+	function alg_wc_pq_wc_get_attribute_taxonomies() {
+		global $wpdb;
+
+		$raw_attribute_taxonomies = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}woocommerce_attribute_taxonomies WHERE attribute_name != '' ORDER BY attribute_name ASC;" );
+		
+		// Index by ID for easer lookups.
+		$attribute_taxonomies = array();
+
+		foreach ( $raw_attribute_taxonomies as $result ) {
+			$attribute_taxonomies[ $result->attribute_id ] = $result;
+		}
+		
+		return $attribute_taxonomies;
+	}
+}
+
+if ( ! function_exists( 'alg_pq_wc_attribute_taxonomy_name' ) ) {
+	/**
+	 * Get a product attribute name.
+	 *
+	 * @param string $attribute_name Attribute name.
+	 * @return string
+	 */
+	function alg_pq_wc_attribute_taxonomy_name( $attribute_name ) {
+		return $attribute_name ? 'pa_' . alg_pq_wc_sanitize_taxonomy_name( $attribute_name ) : '';
+	}
+}
+
+if ( ! function_exists( 'alg_pq_wc_sanitize_taxonomy_name' ) ) {
+	/**
+	 * Sanitize taxonomy names. Slug format (no spaces, lowercase).
+	 * Urldecode is used to reverse munging of UTF8 characters.
+	 *
+	 * @param string $taxonomy Taxonomy name.
+	 * @return string
+	 */
+	function alg_pq_wc_sanitize_taxonomy_name( $taxonomy ) {
+		return apply_filters( 'sanitize_taxonomy_name', urldecode( sanitize_title( urldecode( $taxonomy ) ) ), $taxonomy );
+	}
+}

@@ -37,6 +37,9 @@ class Alg_WC_PQ_Messenger {
 				return;
 			}
 		}
+		if(!is_numeric($required_quantity) && !in_array($message_type, array('exact_qty_allowed', 'exact_qty_disallowed'))){
+			$required_quantity = floatval($required_quantity);
+		}
 		switch ( $message_type ) {
 			case 'step_cart_total_quantity':
 				$replaced_values = array(
@@ -84,10 +87,14 @@ class Alg_WC_PQ_Messenger {
 				break;
 			case 'step_quantity':
 				$_product = wc_get_product( $_product_id );
+				$remaining_to_next = ($required_quantity*2 - $total_quantity);
+				$next = ($required_quantity*2);
 				$replaced_values = array(
 					'%quantity_step%'         => $required_quantity,
 					'%quantity%'              => $total_quantity,
 					'%product_title%'         => $_product->get_title(),
+					'%remaining_to_next%'     => $remaining_to_next,
+					'%next%'     			  => $next,
 				);
 				$message_template = get_option( 'alg_wc_pq_step_message',
 					__( 'Quantity step for %product_title% is %quantity_step%. Your current quantity is %quantity%.', 'product-quantity-for-woocommerce' ) );
@@ -113,7 +120,16 @@ class Alg_WC_PQ_Messenger {
 					__( 'Disallowed quantity for %product_title% is %disallowed_quantity%. Your current quantity is %quantity%.', 'product-quantity-for-woocommerce' ) );
 				break;
 		}
-		$_notice = str_replace( array_keys( $replaced_values ), array_values( $replaced_values ), $message_template );
+		
+		if(function_exists('pll__')) {
+			$message_template = __( pll__( $message_template ) , 'product-quantity-for-woocommerce' );
+		} else {
+			$message_template = __( apply_filters('widget_title', $message_template) , 'product-quantity-for-woocommerce' );
+		}
+		
+		$message_template = do_shortcode( $message_template );
+
+		$_notice = html_entity_decode(str_replace( array_keys( $replaced_values ), array_values( $replaced_values ), $message_template ));
 		if ( $_is_cart ) {
 			wc_print_notice( $_notice, get_option( 'alg_wc_pq_cart_notice_type', 'notice' ) );
 		} else {

@@ -46,7 +46,7 @@ class Alg_WC_PQ_Settings_Styling extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_input_style',
 				'default'  => '',
 				'type'     => 'textarea',
-				'css'      => 'width:100%;min-height:100px;',
+				'css'      => 'width:70%;min-height:100px;',
 				'alg_wc_pq_raw' => true,
 			),
 			array(

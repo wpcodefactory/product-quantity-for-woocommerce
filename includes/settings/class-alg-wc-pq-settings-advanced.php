@@ -24,6 +24,45 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 		$this->desc = __( 'Advanced', 'product-quantity-for-woocommerce' );
 		parent::__construct();
 	}
+	
+	/**
+	 * get_product_categories
+	 *
+	 * @version 1.8.0
+	 * @since   1.6.0
+	 */
+	function get_product_categories() {
+		$return_fields = array();
+		$orderby = 'name';
+		$order = 'asc';
+		$hide_empty = false ;
+		$cat_args = array(
+			'orderby'    => $orderby,
+			'order'      => $order,
+			'hide_empty' => $hide_empty,
+		);
+		 
+		$product_categories = get_terms( 'product_cat', $cat_args );
+		if ( $product_categories ) {
+			foreach ( $product_categories as $key => $category ) {
+				$return_fields[$category->term_id] =  __( $category->name, 'product-quantity-for-woocommerce' );
+			}
+		}
+		return $return_fields;
+	}
+
+	/**
+	 * get_user_roles.
+	 *
+	 * @version 1.3.9
+	 * @since   1.3.9
+	 */
+	function get_user_roles() {
+		global $wp_roles;
+		$user_roles = array_merge( array( 'guest' => array( 'name' => __( 'Guest', 'msrp-for-woocommerce' ), 'capabilities' => array() ) ),
+			apply_filters( 'editable_roles', ( ( isset( $wp_roles ) && is_object( $wp_roles ) ) ? $wp_roles->roles : array() ) ) );
+		return wp_list_pluck( $user_roles, 'name' );
+	}
 
 	/**
 	 * get_settings.
@@ -164,7 +203,56 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'default'  => '',
 				'type'     => 'textarea',
 				'css'      => 'width:100%',
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
+			array(
+				'title'    => __( 'Disable plugin by category', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Only effect to selected category.', 'product-quantity-for-woocommerce' ) . ' ' .
+					__( 'Leave blank for disable', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_disable_by_category',
+				'default'  => array(),
+				'type'     => 'multiselect',
+				'class'    => 'chosen_select',
+				'options'  => $this->get_product_categories(),
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'    => __( 'Enable Exclude Role Specific', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'On Enable "Exclude Role Specific" will work and "Role Specific" will be disabled', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_enable_exclude_role_specofic',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			
+			array(
+				'title'    => __( 'Role specific', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Only effect to selected user roles.', 'product-quantity-for-woocommerce' ) . ' ' .
+					__( 'Leave blank all user roles.', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_required_user_roles',
+				'default'  => array(),
+				'type'     => 'multiselect',
+				'class'    => 'chosen_select',
+				'options'  => $this->get_user_roles(),
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+				'desc' => apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use Disable plugin by URL, category, role.',
+						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
+			),
+			
+			array(
+				'title'    => __( 'Exclude Role specific', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Will not effect to selected user roles.', 'product-quantity-for-woocommerce' ) . ' ' .
+					__( 'Leave blank all user roles.', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_non_required_user_roles',
+				'default'  => array(),
+				'type'     => 'multiselect',
+				'class'    => 'chosen_select',
+				'options'  => $this->get_user_roles(),
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+				'desc' => apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use Disable plugin by URL, category, role.',
+						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
+			),
+			
 			array(
 				'title'    => __( 'Validate on checkout', 'product-quantity-for-woocommerce' ),
 				'desc_tip' => __( 'Validate quantities on the checkout page.', 'product-quantity-for-woocommerce' ),
@@ -172,6 +260,25 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_validate_on_checkout',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'False ajax async', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Make async=false in ajax price by quantity javascript', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_false_ajax_async',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Product meta save hook', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_save_hook',
+				'default'  => 'save_post_product',
+				'type'     => 'select',
+				'class'    => 'chosen_select',
+				'options'  => array(
+					'save_post_product'    => __( 'save_post_product', 'product-quantity-for-woocommerce' ),
+					'save_post' => __( 'save_post', 'product-quantity-for-woocommerce' ),
+				),
 			),
 			array(
 				'type'     => 'sectionend',
