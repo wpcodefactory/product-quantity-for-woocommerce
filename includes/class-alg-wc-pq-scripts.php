@@ -198,6 +198,36 @@ class Alg_WC_PQ_Scripts {
 			});
 			');
 		}
+		
+		// update html5 message
+		if( ( $_product = wc_get_product( get_the_ID() ) ) && ($_product->is_type( 'simple' ) || $_product->is_type( 'variable' )) && is_product() ){
+			
+
+			$replaced_values_overflow = array(
+				'%product_title%'         => $_product->get_title(),
+			);
+			$message_template_overflow = get_option( 'alg_wc_pq_max_per_item_message',
+				__( 'Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%.', 'product-quantity-for-woocommerce' ) );
+			$message_template_overflow = do_shortcode( $message_template_overflow );
+
+			$_notice_overflow = html_entity_decode(str_replace( array_keys( $replaced_values_overflow ), array_values( $replaced_values_overflow ), $message_template_overflow ));
+			
+			$replaced_values_underflow = array(
+				'%product_title%'         => $_product->get_title(),
+			);
+			$message_template_underflow = get_option( 'alg_wc_pq_min_per_item_message',
+					__( 'Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%.', 'product-quantity-for-woocommerce' ) );
+			$message_template_underflow = do_shortcode( $message_template_underflow );
+
+			$_notice_underflow = html_entity_decode(str_replace( array_keys( $replaced_values_underflow ), array_values( $replaced_values_underflow ), $message_template_underflow ));
+		
+		wp_enqueue_script(  'alg-wc-pq-invalid-html5-browser-msg',
+					trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-invalid-html5-browser-msg.js', array( 'jquery' ), alg_wc_pq()->version, true );
+		wp_localize_script( 'alg-wc-pq-invalid-html5-browser-msg', 'invalid_html_five_message', array(
+				'rangeOverflow' => $_notice_overflow,
+				'rangeUnderflow' => $_notice_underflow,
+			) );
+		}
 	}
 	
 	/**

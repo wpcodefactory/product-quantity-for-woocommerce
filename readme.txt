@@ -3,7 +3,7 @@ Contributors: omardabbas
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
 Tested up to: 6.1
-Stable tag: 4.5.5
+Stable tag: 4.5.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -127,6 +127,10 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.6 - 26/03/2023 =
+* Verified compatibility with WooCommerce 7.5
+* Enhanced HTML5 template messages
 
 = 4.5.5 - 10/03/2023 =
 * Introduced a new shortcode show separator in quantity info [thousand_sep='yes']

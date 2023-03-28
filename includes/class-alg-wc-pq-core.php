@@ -175,7 +175,10 @@ class Alg_WC_PQ_Core {
 			// Dropdown
 			if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown', 'no' ) ) {
 				add_filter( 'wc_get_template',                                                 array( $this, 'replace_quantity_input_template' ), PHP_INT_MAX, 5 );
+			}else{
+				add_filter( 'wc_get_template',                                                 array( $this, 'replace_quantity_input_template_html_five' ), PHP_INT_MAX, 5 );
 			}
+			
 			// Shortcodes
 			require_once( 'class-alg-wc-pq-shortcodes.php' );
 			// Quantity info
@@ -864,6 +867,19 @@ class Alg_WC_PQ_Core {
 		$args['quantity'] = ( 'min' === $this->force_on_loop ?
 			$this->set_quantity_input_min( $args['quantity'], $product ) : $this->set_quantity_input_max( $args['quantity'], $product ) );
 		return $args;
+	}
+	
+	/**
+	 * replace_quantity_input_template_html_five.
+	 *
+	 * @version 1.6.0
+	 * @since   1.6.0
+	 */
+	function replace_quantity_input_template_html_five( $located, $template_name, $args, $template_path, $default_path ){
+		if ( 'global/quantity-input.php' === $template_name ) {
+			return alg_wc_pq()->plugin_path() . '/includes/templates/global/quantity-html5-input.php';
+		}
+		return $located;
 	}
 
 	/**
