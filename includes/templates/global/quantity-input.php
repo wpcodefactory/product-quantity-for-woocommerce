@@ -1,6 +1,6 @@
 <?php
 /**
- * Product quantity inputs // Drop down by WPWhale
+ * Product quantity inputs // Drop down by WPFactory
  *
  * @version 7.4.0
  * @since   1.6.0

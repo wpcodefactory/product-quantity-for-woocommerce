@@ -128,9 +128,10 @@ Finally, you can start using it directly at "WooCommerce > Settings > Product Qu
 
 == Changelog ==
 
-= 4.5.6 - 26/03/2023 =
+= 4.5.6 - 30/03/2023 =
 * Verified compatibility with WooCommerce 7.5
 * Enhanced HTML5 template messages
+* Move to WPFactory.
 
 = 4.5.5 - 10/03/2023 =
 * Introduced a new shortcode show separator in quantity info [thousand_sep='yes']

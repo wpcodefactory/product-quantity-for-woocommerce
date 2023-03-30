@@ -2281,9 +2281,9 @@ msgstr ""
 "una cantidad mínima/máxima/de pasos y más en los productos de WooCommerce."
 
 #. Author of the plugin/theme
-msgid "WPWhale"
+msgid "WPFactory"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.wpwhale.com"
+msgid "http://www.WPFactory.com"
 msgstr ""
