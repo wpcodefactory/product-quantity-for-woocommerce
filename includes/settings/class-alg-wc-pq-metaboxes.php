@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 1.8.0
+ * @version 4.5.7
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -274,7 +274,7 @@ class Alg_WC_PQ_Metaboxes {
 	/**
 	 * save_pq_meta_box.
 	 *
-	 * @version 1.0.0
+	 * @version 4.5.7
 	 * @since   1.0.0
 	 */
 	function save_pq_meta_box( $post_id, $post, $update ) {
@@ -287,7 +287,7 @@ class Alg_WC_PQ_Metaboxes {
 		}
 		
 		if('save_post_product' === get_option( 'alg_wc_pq_save_hook', 'save_post_product' )){
-			if ($post->post_type != 'product'){
+			if ($post && property_exists($post, 'post_type') && $post->post_type != 'product'){
 				return;
 			}
 		}

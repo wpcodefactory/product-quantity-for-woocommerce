@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Advanced Section Settings
  *
- * @version 1.8.1
+ * @version 4.5.7
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -67,7 +67,7 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.1
+	 * @version 4.5.7
 	 * @since   1.7.0
 	 * @todo    [dev] (maybe) add "Enable section" option
 	 */
@@ -279,6 +279,14 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 					'save_post_product'    => __( 'save_post_product', 'product-quantity-for-woocommerce' ),
 					'save_post' => __( 'save_post', 'product-quantity-for-woocommerce' ),
 				),
+			),
+			array(
+				'title'    => __( 'Replace woocommerce quantity field template', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'This will work for use HTML 5 validation message as per plugin setting in replace of default browser message.', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_replace_woocommerce_quantity_field',
+				'default'  => 'no',
+				'type'     => 'checkbox',
 			),
 			array(
 				'type'     => 'sectionend',

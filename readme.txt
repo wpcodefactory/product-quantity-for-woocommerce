@@ -2,8 +2,8 @@
 Contributors: omardabbas
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
-Tested up to: 6.1
-Stable tag: 4.5.6
+Tested up to: 6.2
+Stable tag: 4.5.7
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -127,6 +127,11 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.7 - 12/04/2023 =
+* Issue fix with warning at the time of duplicate product.
+* added new setting ( Advance >> Replace woocommerce quantity field template ) for HTML 5 woocommerce quantity template as it not overwrite some theme quantity template. 
+* Compatibility with WordPress 6.2 verified
 
 = 4.5.6 - 30/03/2023 =
 * Verified compatibility with WooCommerce 7.5

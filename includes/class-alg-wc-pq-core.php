@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 1.8.1
+ * @version 4.5.7
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -51,7 +51,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.8.1
+	 * @version 4.5.7
 	 * @since   1.0.0
 	 * @todo    [fix] mini-cart number of items for decimal qty
 	 * @todo    [dev] implement `is_any_section_enabled()`
@@ -176,7 +176,9 @@ class Alg_WC_PQ_Core {
 			if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown', 'no' ) ) {
 				add_filter( 'wc_get_template',                                                 array( $this, 'replace_quantity_input_template' ), PHP_INT_MAX, 5 );
 			}else{
-				add_filter( 'wc_get_template',                                                 array( $this, 'replace_quantity_input_template_html_five' ), PHP_INT_MAX, 5 );
+				if ( 'yes' === get_option( 'alg_wc_pq_replace_woocommerce_quantity_field', 'no' ) ) {
+					add_filter( 'wc_get_template',                                                 array( $this, 'replace_quantity_input_template_html_five' ), PHP_INT_MAX, 5 );
+				}
 			}
 			
 			// Shortcodes
