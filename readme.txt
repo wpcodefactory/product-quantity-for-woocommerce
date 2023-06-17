@@ -1,9 +1,9 @@
 === Min Max Default Quantity for WooCommerce ===
-Contributors: omardabbas
+Contributors: omardabbas, kousikmukherjeeli
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
 Tested up to: 6.2
-Stable tag: 4.5.7
+Stable tag: 4.5.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -127,6 +127,9 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.8 - 18/06/2023 =
+* WC tested up to: 7.8.
 
 = 4.5.7 - 12/04/2023 =
 * Issue fix with warning at the time of duplicate product.
