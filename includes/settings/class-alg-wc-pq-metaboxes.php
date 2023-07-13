@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 4.5.7
+ * @version 1.8.0
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -274,7 +274,7 @@ class Alg_WC_PQ_Metaboxes {
 	/**
 	 * save_pq_meta_box.
 	 *
-	 * @version 4.5.7
+	 * @version 1.0.0
 	 * @since   1.0.0
 	 */
 	function save_pq_meta_box( $post_id, $post, $update ) {

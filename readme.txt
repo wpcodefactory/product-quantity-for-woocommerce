@@ -1,9 +1,9 @@
 === Min Max Default Quantity for WooCommerce ===
-Contributors: omardabbas, kousikmukherjeeli
+Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
 Tested up to: 6.2
-Stable tag: 4.5.8
+Stable tag: 4.5.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -128,10 +128,13 @@ Finally, you can start using it directly at "WooCommerce > Settings > Product Qu
 
 == Changelog ==
 
+= 4.5.9 - 13/07/2023 =
+* valiation added for zero quantity add to cart and remove validation of zero quantity add to cart in grouped product. 
+
 = 4.5.8 - 18/06/2023 =
 * WC tested up to: 7.8.
 
-= 4.5.7 - 12/04/2023 =
+= 4.5.7 - 11/04/2023 =
 * Issue fix with warning at the time of duplicate product.
 * added new setting ( Advance >> Replace woocommerce quantity field template ) for HTML 5 woocommerce quantity template as it not overwrite some theme quantity template. 
 * Compatibility with WordPress 6.2 verified

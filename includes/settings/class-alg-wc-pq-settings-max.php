@@ -82,7 +82,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Per Item Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This section allows you to specify a maximum quantity for all products in your store at once (not combined), tick “Per Product”  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
+				'desc'	   => __('This section allows you to specify a maximum quantity for all products in your store at once (not combined), tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_per_item_quantity_options',
 			),
 			array(

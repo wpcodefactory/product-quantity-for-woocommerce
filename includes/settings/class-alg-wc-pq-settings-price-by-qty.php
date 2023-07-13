@@ -35,7 +35,7 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 		return array(
 			array(
 				'title'    => __( 'Total Price by Quantity Options', 'product-quantity-for-woocommerce' ),
-				'desc'     => __( 'With this section you can display product price for different quantities in real time (i.e. price is automatically updated when customer changes product’s quantity).', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'With this section you can display product price for different quantities in real time (i.e. price is automatically updated when customer changes product\'s quantity).', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_pq_qty_price_by_qty_options',
 			),
@@ -128,7 +128,7 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Position', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_qty_price_by_qty_position',
-				'desc_tip' => __('Select where you want this will appear, if you select “Instead of the price”, then the settings defined under “Price Unit” will not work since it will be overwritten by this feature.','product-quantity-for-woocommerce'),
+				'desc_tip' => __('Select where you want this will appear, if you select "Instead of the price", then the settings defined under "Price Unit" will not work since it will be overwritten by this feature.','product-quantity-for-woocommerce'),
 				'default'  => 'instead',
 				'type'     => 'select',
 				'class'    => 'chosen_select',

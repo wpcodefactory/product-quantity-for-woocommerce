@@ -96,8 +96,8 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 			),
 			array(
 				'title'    => __( '"Add to cart" validation', 'product-quantity-for-woocommerce' ),
-				'desc_tip' => __( 'Configure if you want to validate correct amounts on “Add to Cart”, you can block reaching cart, or correct quantities automatically (see next option for rounding).
-				For most stores, the “Validate and add notices” is recommended.', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Configure if you want to validate correct amounts on "Add to Cart", you can block reaching cart, or correct quantities automatically (see next option for rounding).
+				For most stores, the "Validate and add notices" is recommended.', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_add_to_cart_validation',
 				'default'  => 'disable',
 				'type'     => 'select',
@@ -230,7 +230,7 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Load all variations', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
-				'desc_tip' => __( 'Please leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues with loading variations customized with this plugin, if it didn’t fix the issue, please revert it back unticked and send us a support request.', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Please leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues with loading variations customized with this plugin, if it didn\'t fix the issue, please revert it back unticked and send us a support request.', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_variation_do_load_all',
 				'default'  => 'no',
 				'type'     => 'checkbox',

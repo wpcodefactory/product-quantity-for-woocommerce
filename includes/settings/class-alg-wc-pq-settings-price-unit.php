@@ -35,7 +35,7 @@ class Alg_WC_PQ_Settings_Price_Unit extends Alg_WC_PQ_Settings_Section {
 		return array(
 			array(
 				'title'    => __( 'Price Unit Options', 'product-quantity-for-woocommerce' ),
-				'desc'     => __( 'Price Unit will be shown beside product price in archive, product and cart pages. Use a global text to apply all products, or specify it per category, or define it on product by product.<br> Note: This section will not work if you have enabled “Total Price by quantity” <strong>AND</strong> selected the total price to appear “Instead of the price”', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Price Unit will be shown beside product price in archive, product and cart pages. Use a global text to apply all products, or specify it per category, or define it on product by product.<br> Note: This section will not work if you have enabled "Total Price by quantity" <strong>AND</strong> selected the total price to appear "Instead of the price"', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_pq_qty_price_unit_options',
 			),

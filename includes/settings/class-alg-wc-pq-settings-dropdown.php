@@ -98,7 +98,7 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'title'    => __( 'Dropdown Labels', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
 				'desc'     => __( 'Use the below two fields to show a text (like unit) next to values appearing in dropdown (i.e. 1 KG, 10 KGs, 20 pieces, 30 liters), you can define singular & plural texts.
-				You can also define this label on product level by enabling “Labels per product”', 'product-quantity-for-woocommerce' ),
+				You can also define this label on product level by enabling "Labels per product"', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_qty_dropdown_label_options',
 			),
 			array(

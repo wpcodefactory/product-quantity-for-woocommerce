@@ -167,6 +167,8 @@ class Alg_WC_PQ_Core {
 				add_filter( 'woocommerce_add_to_cart_validation',                              array( $this, 'validate_on_add_to_cart' ), PHP_INT_MAX, 4 );
 			} elseif ( 'correct' === get_option( 'alg_wc_pq_add_to_cart_validation', 'disable' ) ) {
 				add_filter( 'woocommerce_add_to_cart_quantity',                                array( $this, 'correct_on_add_to_cart' ), PHP_INT_MAX, 2 );
+			} else {
+				add_filter( 'woocommerce_add_to_cart_validation',                              array( $this, 'not_validate_on_add_to_cart' ), PHP_INT_MAX, 4 );
 			}
 			// Qty rounding
 			if ( 'no' != ( $this->round_on_add_to_cart = get_option( 'alg_wc_pq_round_on_add_to_cart', 'no' ) ) ) {
@@ -1296,15 +1298,39 @@ class Alg_WC_PQ_Core {
 		}
 	}
 	
-	
+	/**
+	 * not_validate_on_add_to_cart.
+	 *
+	 * @version 4.5.9
+	 * @since   4.5.9
+	 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
+	 */
+	function not_validate_on_add_to_cart( $passed, $product_id, $quantity, $variation_id = 0 ) {
+		if( $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantity']) && $_POST['quantity'] <= 0 ){
+			$_notice = __( 'Please choose the quantity of item add to cart. It should be more than zero', 'product-quantity-for-woocommerce' );
+			wc_add_notice( $_notice, 'error' );
+			return false;
+		}
+		
+		// Passed
+		return $passed;
+	}
+
 	/**
 	 * validate_on_add_to_cart.
 	 *
-	 * @version 1.7.0
+	 * @version 4.5.9
 	 * @since   1.4.0
 	 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 	 */
 	function validate_on_add_to_cart( $passed, $product_id, $quantity, $variation_id = 0 ) {
+
+		if( $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantity']) && $_POST['quantity'] <= 0 ){
+			$_notice = __( 'Please choose the quantity of item add to cart. It should be more than zero', 'product-quantity-for-woocommerce' );
+			wc_add_notice( $_notice, 'error' );
+			return false;
+		}
+
 		// disable if url excluded
 		if( $this->disable_product_id_by_url_option( $product_id ) ) {
 			return $passed;
@@ -3320,6 +3346,7 @@ class Alg_WC_PQ_Core {
 			if( $_product_qty_step > 1 ) {
 				$_reminder = $_quantity % $_product_qty_step;
 			}else{
+				$_product_qty_step = floatval($_product_qty_step);
 				$_reminder = fmod($_quantity, $_product_qty_step);
 			}
 			$is_valid  = ( 0 == $_reminder );
@@ -3371,6 +3398,7 @@ class Alg_WC_PQ_Core {
 			if($_step_cart_total_quantity > 0){
 				$_reminder = $_cart_total_quantity % $_step_cart_total_quantity;
 			}else{
+				$_step_cart_total_quantity = floatval($_step_cart_total_quantity);
 				$_reminder = fmod($_cart_total_quantity, $_step_cart_total_quantity);
 			}
 			

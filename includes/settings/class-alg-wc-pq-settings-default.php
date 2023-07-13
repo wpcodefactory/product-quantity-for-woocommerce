@@ -36,7 +36,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Default Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Define a value that’s different from the default ‘1’ that appears on any product when the page loads, you can have it different from the minimum quantity defined.
+				'desc'	   => __('Define a value that\'s different from the default \'1\' that appears on any product when the page loads, you can have it different from the minimum quantity defined.
 				Note that to make default quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Default quantity.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_default_options',
 			),
@@ -55,7 +55,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Per Item Default Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This section allows you to specify a default quantity for all products in your store at once, tick “Per Product”  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
+				'desc'	   => __('This section allows you to specify a default quantity for all products in your store at once, tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_default_per_item_quantity_options',
 			),
 			array(
