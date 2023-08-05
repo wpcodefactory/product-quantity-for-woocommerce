@@ -1,51 +1,51 @@
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:470
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:524
 #, php-format
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:475
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:529
 #, php-format
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:476
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:530
 msgid "View cart"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1310
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1329
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1364
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1383
 msgid ""
 "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1371
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2808
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1425
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2952
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2107
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2194
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2301
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2223
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2310
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2417
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2819
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2963
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2885
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2915
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3029
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3059
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3220
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3364
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3293
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3437
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -485,10 +485,10 @@ msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-admin.php:44
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:125
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:222
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:259
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:267
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:286
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:229
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:266
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:274
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:293
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:71
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:102
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-dropdown.php:52
@@ -518,6 +518,7 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:140
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:162
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:193
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:223
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-by-qty.php:51
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-by-qty.php:58
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-by-qty.php:69
@@ -660,90 +661,100 @@ msgid "Advanced Options"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:199
-msgid "Disable plugin by URL"
+msgid "Disable plugin after first order per user"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:200
+msgid ""
+"Disable plugin after first order per user. Minimum one order status must be "
+"completed."
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:206
+msgid "Disable plugin by URL"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:207
 #, php-format
 msgid "Relative URLs. E.g.: %s. One per line."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:209
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:216
 msgid "Disable plugin by category"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:210
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:217
 msgid "Only effect to selected category."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:211
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:218
 msgid "Leave blank for disable"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:220
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:227
 msgid "Enable Exclude Role Specific"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:221
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:228
 msgid ""
 "On Enable \"Exclude Role Specific\" will work and \"Role Specific\" will be "
 "disabled"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:229
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:236
 msgid "Role specific"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:230
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:237
 msgid "Only effect to selected user roles."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:231
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:245
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:238
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:252
 msgid "Leave blank all user roles."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:243
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:250
 msgid "Exclude Role specific"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:244
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:251
 msgid "Will not effect to selected user roles."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:257
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:264
 msgid "Validate on checkout"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:258
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:265
 msgid "Validate quantities on the checkout page."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:265
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:272
 msgid "False ajax async"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:266
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:273
 msgid "Make async=false in ajax price by quantity javascript"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:273
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:280
 msgid "Product meta save hook"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:279
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:286
 msgid "save_post_product"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:280
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:287
 msgid "save_post"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:284
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:291
 msgid "Replace woocommerce quantity field template"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:285
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:292
 msgid ""
 "This will work for use HTML 5 validation message as per plugin setting in "
 "replace of default browser message."
@@ -1683,6 +1694,14 @@ msgid ""
 "Minimum allowed quantity for attribute %attribute_title% is "
 "%min_per_item_quantity%.  Your current quantity for this attribute is "
 "%item_quantity%."
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:222
+msgid "Hide \"Add To Cart\" button when stock < min quantity"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:224
+msgid "Hide \"Add To Cart\" when stock less than min quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-by-qty.php:24

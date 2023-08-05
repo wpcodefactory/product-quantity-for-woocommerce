@@ -51,7 +51,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 4.5.7
+	 * @version 4.5.10
 	 * @since   1.0.0
 	 * @todo    [fix] mini-cart number of items for decimal qty
 	 * @todo    [dev] implement `is_any_section_enabled()`
@@ -66,6 +66,14 @@ class Alg_WC_PQ_Core {
 	 */
 	function __construct() {
 		if ( 'yes' === get_option( 'alg_wc_pq_enabled', 'yes' ) ) {
+
+			// Disbale plugin by user who after purchase first order.
+			if ( 'yes' === get_option( 'alg_wc_pq_disable_by_order_per_user', 'yes' ) ) {
+				if($this->has_purchased_first()){
+					return;
+				}
+			}
+
 			if ( ! $this->check_user_role() ) {
 				return;
 			}
@@ -117,6 +125,7 @@ class Alg_WC_PQ_Core {
 				if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_quantity_input_min',                              array( $this, 'set_quantity_input_min' ), PHP_INT_MAX, 2 );
 					add_filter('woocommerce_store_api_product_quantity_minimum', 			   array( $this, 'store_api_product_min_quantity'), PHP_INT_MAX, 3);
+					add_filter( 'woocommerce_is_purchasable', 								   array( $this, 'disable_purchased_products'), PHP_INT_MAX, 2 );
 				}
 				if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_quantity_input_max',                              array( $this, 'set_quantity_input_max' ), PHP_INT_MAX, 2 );
@@ -149,6 +158,8 @@ class Alg_WC_PQ_Core {
 			// Decimal qty
 			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
 				add_action( 'init',                                                            array( $this, 'float_stock_amount' ), PHP_INT_MAX );
+				add_action( 'save_post', 					  								   array( $this, 'save_stock_status_overwrite_thresold' ), PHP_INT_MAX, 1 );
+				add_action( 'woocommerce_product_set_stock', 								   array( $this, 'alg_wc_woocommerce_product_set_stock_action' ), PHP_INT_MAX, 1 );
 			}
 			// Sold individually
 			if ( 'yes' === get_option( 'alg_wc_pq_all_sold_individually_enabled', 'no' ) ) {
@@ -262,6 +273,49 @@ class Alg_WC_PQ_Core {
 			add_action( 'wp_ajax_'        . 'alg_wc_pq_update_get_input_options',               array( $this, 'alg_wc_pq_update_get_input_options' ) );
 			add_action( 'wp_ajax_nopriv_' . 'alg_wc_pq_update_get_input_options',               array( $this, 'alg_wc_pq_update_get_input_options' ) );
 		}
+	}
+
+	/**
+	 * has_purchased_first.
+	 *
+	 * @version 4.5.10
+	 * @since   4.5.10
+	 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
+	 * @todo    [dev] customizable position (instead of the price; after the price, before the price etc.) (NB: maybe do not display for qty=1)
+	 * @todo    [dev] add option to disable "price by qty" on initial screen (i.e. before qty input was changed)
+	 * @todo    [dev] (maybe) add sale price
+	 * @todo    [dev] (maybe) add optional "in progress" message (for slow servers)
+	 */
+	 
+	 function has_purchased_first() {
+		wp_cookie_constants();
+		require_once ABSPATH . WPINC . '/pluggable.php';
+		
+		  if(!is_user_logged_in()) return false;
+
+		  $transient = 'has_bought_'.get_current_user_id();
+		  $has_bought = get_transient($transient);
+
+		  if(!$has_bought) {
+
+		  // Get all customer orders
+		  $customer_orders = get_posts( array(
+			'numberposts' => 1, // one order is enough
+			'meta_key'    => '_customer_user',
+			'meta_value'  => get_current_user_id(),
+			'post_type'   => 'shop_order', // WC orders post type
+			'post_status' => 'wc-completed', // Only orders with "completed" status
+			'fields'      => 'ids', // Return Ids "completed"
+		  ) );
+
+			$has_bought = count($customer_orders) > 0 ? true : false;
+
+			set_transient($transient, $has_bought, WEEK_IN_SECONDS);
+
+		  }
+
+		  // return "true" when customer has already at least one order (false if not)
+		  return $has_bought; 
 	}
 	
 	/**
@@ -1506,6 +1560,68 @@ class Alg_WC_PQ_Core {
 		remove_filter( 'woocommerce_stock_amount', 'intval' );
 		add_filter(    'woocommerce_stock_amount', 'floatval' );
 	}
+	
+	/**
+	 * alg_wc_woocommerce_product_set_stock_action.
+	 *
+	 * @version 4.5.10
+	 * @since   4.5.10
+	 */
+	 function alg_wc_woocommerce_product_set_stock_action( $product ){
+		 if(!$product){
+			 return;
+		 }
+		 if ( $product->get_manage_stock() ) {
+				
+			$stock_is_above_notification_threshold = ( (float) $product->get_stock_quantity() > absint( get_option( 'woocommerce_notify_no_stock_amount', 0 ) ) );
+			
+			$backorders_are_allowed  = ( 'no' !== $product->get_backorders() );
+
+			if ( $stock_is_above_notification_threshold ) {
+				$new_stock_status = 'instock';
+			} elseif ( $backorders_are_allowed ) {
+				$new_stock_status = 'onbackorder';
+			} else {
+				$new_stock_status = 'outofstock';
+			}
+			
+			update_post_meta( $product->get_id(), '_stock_status', $new_stock_status );
+			
+		}
+	 }
+	 
+	 /**
+	 * save_stock_status_overwrite_thresold.
+	 *
+	 * @version 4.5.10
+	 * @since   4.5.10
+	 */
+	function save_stock_status_overwrite_thresold( $product_id ){
+		
+		global $typenow;
+		
+		if ( 'product' === $typenow ) {
+			$product = new WC_Product( $product_id );
+			if ( $product->get_manage_stock() ) {
+				
+				$stock_is_above_notification_threshold = ( (float) $product->get_stock_quantity() > absint( get_option( 'woocommerce_notify_no_stock_amount', 0 ) ) );
+				
+				$backorders_are_allowed   = ( 'no' !== $product->get_backorders() );
+
+				if ( $stock_is_above_notification_threshold ) {
+					$new_stock_status = 'instock';
+				} elseif ( $backorders_are_allowed ) {
+					$new_stock_status = 'onbackorder';
+				} else {
+					$new_stock_status = 'outofstock';
+				}
+				
+				update_post_meta( $product_id, '_stock_status', $new_stock_status );
+				
+			}
+			
+		}
+	}
 
 	/**
 	 * set_quantity_input_args.
@@ -2524,6 +2640,34 @@ class Alg_WC_PQ_Core {
 			$args['max_qty'] = '';
 		}
 		return $args;
+	}
+
+	/**
+	 * disable_purchased_products.
+	 *
+	 * @version 4.5.10
+	 * @since   4.5.10
+	 * @todo    [dev] (important) rename this (and probably some other `set_...()` functions)
+	 */
+
+	 function disable_purchased_products( $is_purchasable, $_product ){
+	
+		$value = $this->get_product_qty_min_max( $this->get_product_id( $_product ), 0, 'min' );
+		$hide_add_to_cart = get_option( 'alg_wc_pq_min_hide_add_to_cart_less_stock', 'no' );
+		if($hide_add_to_cart == 'yes') {
+			if ( $_product->get_manage_stock() ) {
+				
+				$is_stock_less_than_min = ( (float) $_product->get_stock_quantity() < (float) $value );
+				if($is_stock_less_than_min) {
+					return false;
+				}
+				
+			}
+		}
+		
+
+		
+		return $is_purchasable;
 	}
 
 	/**

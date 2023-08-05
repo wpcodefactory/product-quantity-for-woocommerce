@@ -67,7 +67,7 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.5.7
+	 * @version 4.5.10
 	 * @since   1.7.0
 	 * @todo    [dev] (maybe) add "Enable section" option
 	 */
@@ -194,6 +194,13 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'title'    => __( 'Advanced Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_pq_cart_advanced_options',
+			),
+			array(
+				'title'    => __( 'Disable plugin after first order per user', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Disable plugin after first order per user. Minimum one order status must be completed.', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_disable_by_order_per_user',
+				'default'  => 'no',
+				'type'     => 'checkbox',
 			),
 			array(
 				'title'    => __( 'Disable plugin by URL', 'product-quantity-for-woocommerce' ),
