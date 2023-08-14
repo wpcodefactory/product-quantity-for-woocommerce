@@ -3,7 +3,7 @@
 Plugin Name: Min Max Default Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 4.5.10
+Version: 4.5.11
 Author: WPFactory
 Author URI: http://www.WPFactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -57,7 +57,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '4.5.9';
+	public $version = '4.5.11';
 
 	/**
 	 * @var   Alg_WC_PQ The single instance of the class
@@ -760,6 +760,6 @@ if ( ! function_exists( 'pq_custom_admin_js_add_order' ) ) {
 
 add_action( 'before_woocommerce_init', function() {
 	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', dirname(__FILE__), true );
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 	}
 } );

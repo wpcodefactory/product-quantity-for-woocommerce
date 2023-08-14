@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
 Tested up to: 6.2
-Stable tag: 4.5.10
+Stable tag: 4.5.11
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -127,6 +127,9 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.11 - 15/08/2023 =
+* Fix "alg_wc_pq_disable_by_order_per_user" default condition.
 
 = 4.5.10 - 06/08/2023 =
 * Fix "out of stock issue" for decimal quantity less than 1.

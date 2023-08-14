@@ -68,7 +68,7 @@ class Alg_WC_PQ_Core {
 		if ( 'yes' === get_option( 'alg_wc_pq_enabled', 'yes' ) ) {
 
 			// Disbale plugin by user who after purchase first order.
-			if ( 'yes' === get_option( 'alg_wc_pq_disable_by_order_per_user', 'yes' ) ) {
+			if ( 'yes' === get_option( 'alg_wc_pq_disable_by_order_per_user', 'no' ) ) {
 				if($this->has_purchased_first()){
 					return;
 				}
