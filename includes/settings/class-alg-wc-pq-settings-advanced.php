@@ -296,6 +296,14 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 			),
 			array(
+				'title'    => __( 'Woocommerce block compatibility', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'This will cast all float value to integer values from the woocommerce_store_api hooks for minimum, maximum, and step.', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_advance_wc_block_api',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_cart_advanced_options',
 			),

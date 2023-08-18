@@ -2,7 +2,7 @@
 /**
  * Product quantity inputs // Drop down by WPFactory
  *
- * @version 7.4.0
+ * @version 7.8.0
  * @since   1.6.0
  * @todo    [dev] (important) re-check new template in WC 3.6
  * @todo    [dev] (important) dropdown: variable products (check "validate on add to cart") (i.e. without fallbacks)
@@ -11,7 +11,7 @@
  * @todo    [dev] (important) dropdown: "exact (i.e. fixed)" quantity: add zero in cart?
  * @todo    [dev] (maybe) dropdown: labels: per variation
  *
- * wc_version 7.4.0
+ * wc_version 7.8.0
  */
 
 defined( 'ABSPATH' ) || exit;
