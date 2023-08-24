@@ -22,30 +22,30 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1442
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3140
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3137
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2357
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2444
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2551
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2354
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2441
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2548
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3151
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3148
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3217
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3247
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3214
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3244
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3552
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3597
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3625
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3670
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -101,7 +101,7 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-messenger.php:120
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:178
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:188
 msgid ""
 "Disallowed quantity for %product_title% is %disallowed_quantity%. Your "
 "current quantity is %quantity%."
@@ -275,7 +275,8 @@ msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:90
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:98
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:195
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:140
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:205
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:91
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:98
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:118
@@ -415,7 +416,7 @@ msgid "Exact quantity disallowed"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:553
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:155
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:165
 #, php-format
 msgid "Disallowed quantities as comma separated list, e.g.: %s."
 msgstr ""
@@ -500,8 +501,9 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:62
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:83
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:105
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:164
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:194
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:139
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:174
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:204
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:66
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:74
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:81
@@ -792,7 +794,7 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:45
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-dropdown.php:44
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:46
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:148
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:158
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:44
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:53
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-by-qty.php:44
@@ -814,7 +816,7 @@ msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:62
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:52
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:154
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:164
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:89
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:98
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-step.php:88
@@ -829,7 +831,7 @@ msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:70
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:61
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:163
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:173
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:97
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:106
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-step.php:96
@@ -838,7 +840,7 @@ msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:72
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:63
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:165
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:175
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:99
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:108
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-step.php:98
@@ -849,8 +851,8 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:72
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:93
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:127
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:174
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:210
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:184
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:220
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:69
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:106
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:136
@@ -1050,7 +1052,7 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-dropdown.php:177
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-dropdown.php:188
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:54
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:156
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:166
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-styling.php:44
 msgid "Ignored if empty."
 msgstr ""
@@ -1160,44 +1162,48 @@ msgid ""
 "%.  Your current quantity for this attribute item is %quantity%."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:142
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:138
+msgid "Permit the calculation of subset sums from the allowed quantities"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:152
 msgid "Disallowed Quantity Options"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:147
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:157
 msgid "Disallowed quantity"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:176
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:186
 msgid "Message to be displayed to customer on wrong disallowed quantities."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:188
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:198
 msgid "Cart Total Fixed Quantity Options"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:193
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:203
 msgid "Cart fixed quantity"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:202
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:212
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:61
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:70
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-step.php:60
 msgid "Cart total quantity"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:203
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:213
 msgid "This will set fixed total cart quantity. Set to zero to disable."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:211
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:221
 msgid ""
 "Message to be displayed to customer when fixed cart total quantity is not "
 "reached."
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:214
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:224
 msgid ""
 "Allowed order quantity is %min_cart_total_quantity%. Your current cart "
 "quantity is %cart_total_quantity%."
@@ -2098,7 +2104,7 @@ msgid "Your settings have been reset."
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-html5-input.php:20
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:245
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:251
 #, php-format
 msgid "%s quantity"
 msgstr ""
@@ -2106,14 +2112,14 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-html5-input.php:20
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:89
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:173
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:245
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:251
 msgid "Quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-html5-input.php:40
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:94
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:178
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:258
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\templates\global\quantity-input.php:264
 msgctxt "Product quantity input tooltip"
 msgid "Qty"
 msgstr ""

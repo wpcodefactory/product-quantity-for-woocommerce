@@ -181,9 +181,11 @@ if ( $max_value && $min_value === $max_value ) {
 			$fixed_qty = alg_wc_pq()->core->process_exact_qty_option( $fixed_qty );
 			$values = $fixed_qty;
 			
+			/*
 			if ( ! empty( $input_value ) && ! in_array( $input_value, $values ) && $input_value > $min_value && is_cart()) {
 				$values[] = $input_value;
 			}
+			*/
 			
 			asort( $values );
 			// Fixed qty
@@ -199,6 +201,10 @@ if ( $max_value && $min_value === $max_value ) {
 						}
 					}
 				}
+			}
+
+			if ( ! empty( $input_value ) && ! in_array( $input_value, $values ) && $input_value > $min_value && is_cart()) {
+				$values[] = $input_value;
 			}
 			
 			asort( $values );

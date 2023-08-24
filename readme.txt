@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
 Tested up to: 6.3
-Stable tag: 4.5.12
+Stable tag: 4.5.13
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -127,6 +127,10 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.13 - 25/08/2023 =
+* Added - Fixed quantity > Permit the calculation of subset sums from the allowed quantities.
+* Fix   - "save_stock_status_overwrite_thresold" function to overwrite instock when save product.
 
 = 4.5.12 - 19/08/2023 =
 * Added - Advance Setting > Woocommerce block compatibility.

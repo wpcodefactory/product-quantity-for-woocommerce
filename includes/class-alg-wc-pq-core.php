@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.5.12
+ * @version 4.5.13
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -1645,14 +1645,12 @@ class Alg_WC_PQ_Core {
 	 /**
 	 * save_stock_status_overwrite_thresold.
 	 *
-	 * @version 4.5.12
+	 * @version 4.5.13
 	 * @since   4.5.10
 	 */
 	function save_stock_status_overwrite_thresold( $product_id, $post, $update ) {
 		
 		global $typenow;
-		
-		if ( 'product' === $typenow ) {
 
 			if ( 'product' === $post->post_type ) {
 				$product = new WC_Product( $product_id );
@@ -1705,7 +1703,6 @@ class Alg_WC_PQ_Core {
 				
 			}
 			
-		}
 	}
 
 	/**
@@ -3384,7 +3381,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * check_product_exact_qty.
 	 *
-	 * @version 1.7.0
+	 * @version 4.5.13
 	 * @since   1.5.0
 	 * @todo    [dev] (important) rethink qty correction on `disallowed`
 	 * @todo    [dev] (important) check if all `$product_exact_qty` elements are `is_numeric()`
@@ -3403,9 +3400,16 @@ class Alg_WC_PQ_Core {
 			$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $product_exact_qty ) : ! in_array( $cart_item_quantity, $product_exact_qty ) );
 			if ( ! $do_fix ) {
 				
-				if( ! $is_valid ){
+				if( 'yes' === get_option( 'alg_wc_pq_exact_subset_sum_allowed_enabled', 'no' )) {
+					/*
 					$all_subset_sums = $this->subset_sums($product_exact_qty, $cart_item_quantity);
 					$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $all_subset_sums ) : ! in_array( $cart_item_quantity, $all_subset_sums ) );
+					*/
+					if( 'allowed' === $allowed_or_disallowed ) {
+						$is_valid = $this->is_subset_sum($product_exact_qty, count($product_exact_qty), $cart_item_quantity);
+					} else {
+						$is_valid = ! $this->is_subset_sum($product_exact_qty, count($product_exact_qty), $cart_item_quantity);
+					}
 				}
 				
 				return $is_valid;
@@ -3436,7 +3440,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * check_product_exact_qty.
 	 *
-	 * @version 1.7.0
+	 * @version 4.5.13
 	 * @since   1.5.0
 	 * @todo    [dev] (important) rethink qty correction on `disallowed`
 	 * @todo    [dev] (important) check if all `$product_exact_qty` elements are `is_numeric()`
@@ -3454,9 +3458,19 @@ class Alg_WC_PQ_Core {
 			$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $product_exact_qty ) : ! in_array( $cart_item_quantity, $product_exact_qty ) );
 			if ( ! $do_fix ) {
 				
-				if( ! $is_valid ){
-					$all_subset_sums = $this->subset_sums($product_exact_qty, $cart_item_quantity);
-					$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $all_subset_sums ) : ! in_array( $cart_item_quantity, $all_subset_sums ) );
+				if ( ! $is_valid ) {
+					
+					if( 'yes' === get_option( 'alg_wc_pq_exact_subset_sum_allowed_enabled', 'no' ) ) {
+						/*
+						$all_subset_sums = $this->subset_sums($product_exact_qty, $cart_item_quantity);
+						$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $all_subset_sums ) : ! in_array( $cart_item_quantity, $all_subset_sums ) );
+						*/
+						if ( 'allowed' === $allowed_or_disallowed ) {
+							$is_valid = $this->is_subset_sum( $product_exact_qty, count( $product_exact_qty ), $cart_item_quantity);
+						} else {
+							$is_valid = ! $this->is_subset_sum( $product_exact_qty, count( $product_exact_qty ), $cart_item_quantity);
+						}
+					}
 				}
 				
 				return $is_valid;
@@ -3482,9 +3496,40 @@ class Alg_WC_PQ_Core {
 		}
 		return ( ! $do_fix ? true : $quantity );
 	}
-	
-	function subset_sums($arr, $incart_qty = 0)
-	{
+
+	/**
+	 * is_subset_sum.
+	 *
+	 * @version 4.5.13
+	 * @since   4.5.13
+	 */
+
+	function is_subset_sum($set, $n, $sum) {
+		// Base Cases
+		if ($sum == 0)
+			return true;
+		if ($n == 0 && $sum != 0)
+			return false;
+		  
+		// If last element is greater
+		// than sum, then ignore it
+		if ($set[$n - 1] > $sum)
+			return $this->is_subset_sum($set, $n - 1, $sum);
+		  
+		/* else, check if sum can be 
+		   obtained by any of the following
+			(a) including the last element
+			(b) excluding the last element */
+		return $this->is_subset_sum($set, $n - 1, $sum) || $this->is_subset_sum($set, $n - 1, $sum - $set[$n - 1]);
+	}
+
+	/**
+	 * subset_sums.
+	 *
+	 * @version 4.5.13
+	 * @since   4.5.13
+	 */
+	function subset_sums($arr, $incart_qty = 0) {
 		$return = array();
 		$n = sizeof($arr);
 		// There are totoal 2^n subsets

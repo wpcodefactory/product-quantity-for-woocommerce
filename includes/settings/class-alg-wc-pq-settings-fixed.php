@@ -133,6 +133,16 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 				'css'      => 'width:100%;',
 				'alg_wc_pq_raw' => true,
 			),
+
+			array(
+				'title'    => __( 'Permit the calculation of subset sums from the allowed quantities', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( '', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_exact_subset_sum_allowed_enabled',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+			),
 			
 			array(
 				'type'     => 'sectionend',
