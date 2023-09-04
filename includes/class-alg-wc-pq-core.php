@@ -1645,12 +1645,12 @@ class Alg_WC_PQ_Core {
 	 /**
 	 * save_stock_status_overwrite_thresold.
 	 *
-	 * @version 4.5.13
+	 * @version 4.5.14
 	 * @since   4.5.10
 	 */
 	function save_stock_status_overwrite_thresold( $product_id, $post, $update ) {
 		
-		global $typenow;
+		global $typenow, $wpdb;
 
 			if ( 'product' === $post->post_type ) {
 				$product = new WC_Product( $product_id );
@@ -1672,6 +1672,35 @@ class Alg_WC_PQ_Core {
 							}
 							
 							update_post_meta( $product_id, '_stock_status', $new_stock_status );
+
+							if ( absint( $product->get_stock_quantity() ) < 1 && $new_stock_status == 'instock' ) {
+								$visibility_terms = wc_get_product_visibility_term_ids();
+								update_post_meta( $product_id, '_visibility', true);
+								wp_remove_object_terms( $product_id, 'outofstock', 'product_visibility' );
+								wp_remove_object_terms( $product_id, 'exclude-from-catalog', 'product_visibility' );
+								wp_remove_object_terms( $product_id, 'exclude-from-search', 'product_visibility' );
+								
+								$product_ids = array();
+								$product_ids[] = $product_id;
+								$terms_id = array();
+								
+								if ( isset( $visibility_terms['outofstock'] ) ) {
+									$terms_id[] = $visibility_terms['outofstock'];
+								}
+								if ( isset( $visibility_terms['exclude-from-catalog'] ) ) {
+									$terms_id[] = $visibility_terms['exclude-from-catalog'];
+								}
+								if ( isset( $visibility_terms['exclude-from-search'] ) ) {
+									$terms_id[] = $visibility_terms['exclude-from-search'];
+								}
+								
+								if ( count( $terms_id ) > 0 ) {
+									$wpdb->query( "DELETE FROM " . $wpdb->prefix . "term_relationships WHERE object_id IN (".implode( ", ", $product_ids ).") AND term_taxonomy_id  IN (".implode( ", ", $terms_id ).")" );
+								}
+								// delete_transient( 'wc_term_counts' );
+								_wc_recount_terms_by_product( $product_id );
+								
+							}
 							
 						}
 					} 
@@ -1849,7 +1878,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * get_product_qty_step.
 	 *
-	 * @version 1.8.0
+	 * @version 4.5.14
 	 * @since   1.1.0
 	 */
 	function get_product_qty_step( $product_id, $default_step = 0, $variation_id = 0 ) {
@@ -1870,7 +1899,7 @@ class Alg_WC_PQ_Core {
 			}
 			
 		} else {
-			return $default_step;
+			return apply_filters( 'alg_wc_pq_get_product_qty_step', $default_step, $per_product_id );
 		}
 	}
 
@@ -1892,7 +1921,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * store_api_product_step_quantity.
 	 *
-	 * @version 4.5.12
+	 * @version 4.5.14
 	 * @since   1.1.0
 	 */
 	function store_api_product_step_quantity( $step, $_product, $cart_item ) {
@@ -1901,7 +1930,7 @@ class Alg_WC_PQ_Core {
 				$variation_id = $_product->get_id();
 				$product_id = wp_get_post_parent_id( $_product->get_id() );
 				$return_step_var = $this->get_product_qty_step( $product_id, $step, $variation_id );
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && !empty( $return_step_var ) ) {
 					if ( fmod( $return_step_var, 1 ) !== 0.00 ){
 						// return decimal
 						return $return_step_var;
@@ -1923,7 +1952,7 @@ class Alg_WC_PQ_Core {
 			}
 			
 			$return_step = $this->get_product_qty_step( $this->get_product_id( $_product ), $step );
-			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ){
+			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && !empty($return_step) ){
 				if ( fmod( $return_step, 1 ) !== 0.00 ) {
 					// return decimal
 					return $return_step;
@@ -2626,7 +2655,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * get_product_qty_default.
 	 *
-	 * @version 1.8.0
+	 * @version 4.5.14
 	 * @since   1.0.0
 	 */
 	function get_product_qty_default( $product_id, $default = 1 ) {
@@ -2634,7 +2663,7 @@ class Alg_WC_PQ_Core {
 			// Check if "Sold individually" is enabled for the product
 			$product = wc_get_product( $product_id );
 			if ( $product && $product->is_sold_individually() ) {
-				return $default;
+				return apply_filters( 'alg_wc_pq_get_product_qty_default', $default, $product_id );
 			}
 			// Per product
 			if ( 'yes' === apply_filters( 'alg_wc_pq_per_item_default_quantity_per_product', 'no' ) ) {
@@ -2658,26 +2687,26 @@ class Alg_WC_PQ_Core {
 		}
 		
 		
-		return $default;
+		return apply_filters( 'alg_wc_pq_get_product_qty_default', $default, $product_id );
 	}
 	
 	/**
 	 * get_product_qty_min_max.
 	 *
-	 * @version 1.8.0
+	 * @version 4.5.14
 	 * @since   1.0.0
 	 */
 	function get_product_qty_min_max( $product_id, $default, $min_or_max, $variation_id = 0 ) {
 		
 		if( $this->disable_product_id_by_url_option( $product_id ) ) {
-			return $default;
+			return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $default, $product_id );
 		}
 		
 		if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) ) {
 			// Check if "Sold individually" is enabled for the product
 			$product = wc_get_product( $product_id );
 			if ( $product && $product->is_sold_individually() ) {
-				return $default;
+				return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $default, $product_id );
 			}
 			$pid_per_product = $product_id;
 			if( $variation_id > 0 ) {
@@ -2709,13 +2738,13 @@ class Alg_WC_PQ_Core {
 				return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $value, $product_id );
 			}
 		}
-		return $default;
+		return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $default, $product_id );
 	}
 	
 		/**
 	 * get_product_qty_min_max_allvar.
 	 *
-	 * @version 1.8.0
+	 * @version 4.5.14
 	 * @since   1.0.0
 	 */
 	function get_product_qty_min_max_allvar( $product_id, $default, $min_or_max ) {
@@ -2723,7 +2752,7 @@ class Alg_WC_PQ_Core {
 			// Check if "Sold individually" is enabled for the product
 			$product = wc_get_product( $product_id );
 			if ( $product && $product->is_sold_individually() ) {
-				return $default;
+				return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $default, $product_id );
 			}
 			// Per product
 			if ( 'yes' === apply_filters( 'alg_wc_pq_per_item_quantity_per_product', 'no', $min_or_max ) ) {
@@ -2736,7 +2765,7 @@ class Alg_WC_PQ_Core {
 				return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $value, $product_id );
 			}
 		}
-		return $default;
+		return apply_filters( 'alg_wc_pq_get_product_qty_' . $min_or_max, $default,  $product_id );
 	}
 
 	/**

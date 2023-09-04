@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 4.4
 Tested up to: 6.3
-Stable tag: 4.5.13
+Stable tag: 4.5.14
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,7 @@ Define a minimum / maximum / step / default quantity for products, show a dropdo
 
 == Description ==
 
-**Control your WooComemrce product quantities the way you want**
+**Control your WooCommerce product quantities the way you want**
 
 When you first install WooCommerce, there won't be any restrictions of quantities your customers can purchase, and if you need to control this, i.e. defining a min max quantity for example or change the step (interval) customers can buy, this plugin will be your ultimate solution.
 
@@ -127,6 +127,11 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.14 - 04/09/2023 =
+* Fix - update code "save_stock_status_overwrite_thresold" function.
+* Fix - update fomd condition.
+* Fix - apply filter to those values where missing for min, max, default, steps. 
 
 = 4.5.13 - 25/08/2023 =
 * Added - Fixed quantity > Permit the calculation of subset sums from the allowed quantities.
