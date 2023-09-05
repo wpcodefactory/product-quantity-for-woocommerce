@@ -2857,7 +2857,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * store_api_product_min_quantity.
 	 *
-	 * @version 4.5.12
+	 * @version 4.5.15
 	 * @since   1.0.0
 	 */
 	function store_api_product_min_quantity( $qty, $_product, $cart_item ) {
@@ -2866,7 +2866,7 @@ class Alg_WC_PQ_Core {
 
 			$return_min = $this->set_quantity_input_min_or_max( $qty, $_product, 'min' );
 			$return = $return_min;
-			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && !empty( $return_min ) ) {
 				if ( fmod($return_min, 1) !== 0.00 ) {
 					// return decimal
 					return $return_min;
@@ -2904,7 +2904,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * store_api_product_max_quantity.
 	 *
-	 * @version 4.5.12
+	 * @version 4.5.15
 	 * @since   1.0.0
 	 */
 	function store_api_product_max_quantity( $qty, $_product, $cart_item ) {
@@ -2913,7 +2913,7 @@ class Alg_WC_PQ_Core {
 			$return = $this->set_quantity_input_min_or_max( $qty, $_product, 'max' );
 		
 			$return_max = $return;
-			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && !empty( $return_max ) ) {
 				if ( fmod( $return_max, 1 ) !== 0.00) {
 					// return decimal
 					return $return_max;
