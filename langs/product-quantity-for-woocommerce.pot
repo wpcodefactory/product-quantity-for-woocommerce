@@ -184,6 +184,7 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-attribute-item-metaboxes.php:145
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:210
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:210
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:641
 msgid "Unit label template: Singular"
@@ -196,6 +197,7 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-attribute-item-metaboxes.php:152
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:217
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:217
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:652
 msgid "Unit label template: Plural"
@@ -207,11 +209,17 @@ msgid ""
 "Product Quantity plugin"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:62
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:130
-msgid "Minimum quantity (grouped for this category)"
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:62
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:130
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:453
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:52
+msgid "Minimum quantity"
 msgstr ""
 
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:62
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:68
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:75
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:81
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:62
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:68
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:75
@@ -225,12 +233,184 @@ msgstr ""
 msgid "Set 0 to use global settings. Set -1 to disable."
 msgstr ""
 
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:64
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:70
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:133
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:64
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:70
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:133
 msgid ""
 "Specify a number of minimum allowed quantity for this category, this is "
 "controlled by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:68
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:138
+msgid "Minimum quantity for all product"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:75
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:147
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:478
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:43
+msgid "Maximum quantity"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:77
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:83
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:150
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:77
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:83
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:150
+msgid ""
+"Specify a number of maximum allowed quantity for this category, this is "
+"controlled by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:81
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:155
+msgid "Maximum quantity for all product"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:88
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:164
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:88
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:164
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:501
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:89
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:102
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-step.php:43
+msgid "Quantity step"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:88
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:96
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:88
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:96
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:507
+msgid "Set 0 to use global settings."
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:90
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:98
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:90
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:98
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:140
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:205
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:91
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:98
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:118
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-settings-pq.php:49
+msgid ""
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:96
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:174
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:96
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:174
+msgid "Quantity default"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:103
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:183
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:524
+msgid "Exact quantity allowed"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:103
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:109
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:103
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:109
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:529
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:53
+#, php-format
+msgid "Allowed quantities as comma separated list, e.g.: %s."
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:105
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:111
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:186
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:105
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:111
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:186
+msgid ""
+"Specify numbers of exact allowed quantity for this category, this is "
+"controlled by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:109
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:191
+msgid "Exact quantity allowed for all product"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:141
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:141
+msgid ""
+"Specify a number of minimum allowed quantity for all product in this "
+"category, this is controlled by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:158
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:158
+msgid ""
+"Specify a number of maximum allowed quantity for all product in this "
+"category, this is controlled by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:167
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:167
+msgid ""
+"Specify a number of step quantity for this category, this is controlled by "
+"Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:177
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:177
+msgid ""
+"Specify a number of default quantity for this category, this is controlled "
+"by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:194
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:194
+msgid ""
+"Specify numbers of exact allowed quantity for all product in this category, "
+"this is controlled by Product Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:213
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:213
+msgid ""
+"Specify a singular string for this category, this is controlled by Product "
+"Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:220
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:220
+msgid ""
+"Specify a plural string for this category, this is controlled by Product "
+"Quantity plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:227
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:227
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:590
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:24
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:43
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:81
+msgid "Price Unit"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-bulk-materials-metaboxes.php:230
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:230
+msgid ""
+"Specify a string for this category, this is controlled by Product Quantity "
+"plugin"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:62
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:130
+msgid "Minimum quantity (grouped for this category)"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:68
@@ -244,49 +424,10 @@ msgstr ""
 msgid "Maximum quantity (grouped for this category)"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:77
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:83
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:150
-msgid ""
-"Specify a number of maximum allowed quantity for this category, this is "
-"controlled by Product Quantity plugin"
-msgstr ""
-
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:81
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:155
 msgid ""
 "Maximum quantity for all product (apply to all products in this category)"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:88
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:164
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:501
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:89
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:102
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-step.php:43
-msgid "Quantity step"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:88
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:96
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:507
-msgid "Set 0 to use global settings."
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:90
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:98
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:140
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:205
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:91
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:98
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:118
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-settings-pq.php:49
-msgid ""
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:96
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:174
-msgid "Quantity default"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:103
@@ -294,83 +435,11 @@ msgstr ""
 msgid "Exact quantity allowed (grouped for this category)"
 msgstr ""
 
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:103
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:109
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:529
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-fixed.php:53
-#, php-format
-msgid "Allowed quantities as comma separated list, e.g.: %s."
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:105
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:111
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:186
-msgid ""
-"Specify numbers of exact allowed quantity for this category, this is "
-"controlled by Product Quantity plugin"
-msgstr ""
-
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:109
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:191
 msgid ""
 "Exact quantity allowed for all product (apply to all products in this "
 "category)"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:141
-msgid ""
-"Specify a number of minimum allowed quantity for all product in this "
-"category, this is controlled by Product Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:158
-msgid ""
-"Specify a number of maximum allowed quantity for all product in this "
-"category, this is controlled by Product Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:167
-msgid ""
-"Specify a number of step quantity for this category, this is controlled by "
-"Product Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:177
-msgid ""
-"Specify a number of default quantity for this category, this is controlled "
-"by Product Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:194
-msgid ""
-"Specify numbers of exact allowed quantity for all product in this category, "
-"this is controlled by Product Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:213
-msgid ""
-"Specify a singular string for this category, this is controlled by Product "
-"Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:220
-msgid ""
-"Specify a plural string for this category, this is controlled by Product "
-"Quantity plugin"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:227
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:590
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:24
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:43
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:81
-msgid "Price Unit"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-category-metaboxes.php:230
-msgid ""
-"Specify a string for this category, this is controlled by Product Quantity "
-"plugin"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:77
@@ -386,20 +455,6 @@ msgstr ""
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:442
 msgid ""
 "Allow selling below this number if no stock is available to meet this number"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:453
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-min.php:52
-msgid "Minimum quantity"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:478
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-max.php:43
-msgid "Maximum quantity"
-msgstr ""
-
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:524
-msgid "Exact quantity allowed"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:530
@@ -1268,12 +1323,12 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:88
-msgid "Force minimum quantity"
+msgid "Change minimum quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:90
 #, php-format
-msgid "Will force all minimum quantities to %s."
+msgid "Will change all minimum quantities to %s."
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:91
@@ -1387,7 +1442,7 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:187
-msgid "Force Quantity Options"
+msgid "Change Quantity Options"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:188
@@ -1397,36 +1452,39 @@ msgid ""
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:193
-msgid "Force initial quantity on single product page"
+msgid "Change initial quantity on single product page"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:199
-#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:213
-msgid "Do not force"
+msgid "Do not Change"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:200
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:214
-msgid "Force to min quantity"
+msgid "Change to min quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:201
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:215
-msgid "Force to max quantity"
+msgid "Change to max quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:202
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:216
-msgid "Force to default quantity"
+msgid "Change to default quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:203
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:217
-msgid "Force to lowest fixed quantity"
+msgid "Change to lowest fixed quantity"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:207
-msgid "Force initial quantity on archives"
+msgid "Change initial quantity on archives"
+msgstr ""
+
+#: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:213
+msgid "Do not change"
 msgstr ""
 
 #: E:\xampp\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-general.php:226

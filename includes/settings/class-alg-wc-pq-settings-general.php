@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - General Section Settings
  *
- * @version 1.8.0
+ * @version 4.5.18
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -16,7 +16,7 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.0.0
+	 * @version 4.5.18
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -85,9 +85,9 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 			),
 			array(
-				'title'    => __( 'Force minimum quantity', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Change minimum quantity', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
-				'desc_tip' => sprintf( __( 'Will force all minimum quantities to %s.', 'product-quantity-for-woocommerce' ), '<code>1</code>' ) . ' ' .
+				'desc_tip' => sprintf( __( 'Will change all minimum quantities to %s.', 'product-quantity-for-woocommerce' ), '<code>1</code>' ) . ' ' .
 					__( 'This includes cart items, grouped products etc.', 'product-quantity-for-woocommerce' ) . ' ' .
 					__( 'Ignored if "Minimum quantity" section is enabled.', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_force_cart_min_enabled',
@@ -184,37 +184,37 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_language_guide',
 			),
 			array(
-				'title'    => __( 'Force Quantity Options', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Change Quantity Options', 'product-quantity-for-woocommerce' ),
 				'desc'    => __( 'This section will allow you to set what value (quantity) you want to show on page load, whether on product pages, or archives (shop/category) pages.', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_pq_qty_forcing_qty_options',
 			),
 			array(
-				'title'    => __( 'Force initial quantity on single product page', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Change initial quantity on single product page', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_force_on_single',
 				'default'  => 'disabled',
 				'type'     => 'select',
 				'class'    => 'wc-enhanced-select',
 				'options'  => array(
-					'disabled' => __( 'Do not force', 'product-quantity-for-woocommerce' ),
-					'min'      => __( 'Force to min quantity', 'product-quantity-for-woocommerce' ),
-					'max'      => __( 'Force to max quantity', 'product-quantity-for-woocommerce' ),
-					'default'  => __( 'Force to default quantity', 'product-quantity-for-woocommerce' ),
-					'exact_allowed'  => __( 'Force to lowest fixed quantity', 'product-quantity-for-woocommerce' ),
+					'disabled' => __( 'Do not Change', 'product-quantity-for-woocommerce' ),
+					'min'      => __( 'Change to min quantity', 'product-quantity-for-woocommerce' ),
+					'max'      => __( 'Change to max quantity', 'product-quantity-for-woocommerce' ),
+					'default'  => __( 'Change to default quantity', 'product-quantity-for-woocommerce' ),
+					'exact_allowed'  => __( 'Change to lowest fixed quantity', 'product-quantity-for-woocommerce' ),
 				),
 			),
 			array(
-				'title'    => __( 'Force initial quantity on archives', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Change initial quantity on archives', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_force_on_loop',
 				'default'  => 'disabled',
 				'type'     => 'select',
 				'class'    => 'wc-enhanced-select',
 				'options'  => array(
-					'disabled' => __( 'Do not force', 'product-quantity-for-woocommerce' ),
-					'min'      => __( 'Force to min quantity', 'product-quantity-for-woocommerce' ),
-					'max'      => __( 'Force to max quantity', 'product-quantity-for-woocommerce' ),
-					'default'  => __( 'Force to default quantity', 'product-quantity-for-woocommerce' ),
-					'exact_allowed'  => __( 'Force to lowest fixed quantity', 'product-quantity-for-woocommerce' ),
+					'disabled' => __( 'Do not change', 'product-quantity-for-woocommerce' ),
+					'min'      => __( 'Change to min quantity', 'product-quantity-for-woocommerce' ),
+					'max'      => __( 'Change to max quantity', 'product-quantity-for-woocommerce' ),
+					'default'  => __( 'Change to default quantity', 'product-quantity-for-woocommerce' ),
+					'exact_allowed'  => __( 'Change to lowest fixed quantity', 'product-quantity-for-woocommerce' ),
 				),
 			),
 			

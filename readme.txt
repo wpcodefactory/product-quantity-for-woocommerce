@@ -1,9 +1,9 @@
 === Min Max Default Quantity for WooCommerce ===
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
-Requires at least: 4.4
+Requires at least: 6.1 or higher
 Tested up to: 6.3
-Stable tag: 4.5.17
+Stable tag: 4.5.18
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,96 +11,400 @@ Define a minimum / maximum / step / default quantity for products, show a dropdo
 
 == Description ==
 
-**Control your WooCommerce product quantities the way you want**
+> “The best plugin for product quantity: Without doubt, it´s the best plugin for products quantity I´ve used with woocommerce. And another thing very important: behind the plugin there are people helping and giving support in an extraordinary way. Thank you very much to all of them.” – ⭐⭐⭐⭐⭐  [pozoalcon](https://wordpress.org/support/topic/the-best-plugin-for-product-quantity/)
 
-When you first install WooCommerce, there won't be any restrictions of quantities your customers can purchase, and if you need to control this, i.e. defining a min max quantity for example or change the step (interval) customers can buy, this plugin will be your ultimate solution.
+Every WooCommerce store owner knows the importance of quantity controls, but the platform's default settings often leave much to be desired. 
 
-Use this user-friendly (matter of clicks), all 5-star reviews, and all-in-one plugin to control minimum and maximum quantities, adjust quantity steps, enable decimal quantities, define units, and the list goes on!
+With a growing demand for detailed customization like defining minimum, maximum, and step quantities, there’s a need for an advanced solution. 
 
-**Set Minimum, Maximum, Interval and even Random Quantities**
-    
-You want to set a minimum of 10, maximum of 100 with a step of 10? What about selling random quantities like 1, 3, 5, 10? 
-You name it, we have it.
+Our plugin provides just that, offering unparalleled control over min/max/step quantities for your WooCommerce store, all within a user-friendly interface. 
 
-**Assign Decimal values and use Dropdown Options**
-    
-Advanced quantity rules can be applied, if you sell stuff like spices, fruits, and vegetables, this plugin will allow you to sell decimal values. 
-Similarly, you can use this plugin for showing all the allowed quantities in drop-down form instead of the quantity input field.
+All plugin features work for simple & variable products, meaning that you will have the option to select the desired quantity rule regardless if the product is simple, variable, or variation itself.
 
-**Show Units next to quantities in product & category pages**
-    
-You want to show KG next to a meat product, piece next to cup, and liter or bottle next to a liquid product?
-This plugin lets you show a Unit next to any product, you can also show total price based on quantity selected!
+Whether you're looking to set specific thresholds, intervals, or even provide  predefined allowed quantities for your customers, our tool has been meticulously designed to meet those requirements, all while enhancing the overall shopping experience.
 
+In a nutshell:
 
-**Plugin Features Overview**
+* **Flexible Min/Max Quantity Control:** Tailor minimum and maximum quantities on product levels, cart levels, or even categories & tags (pro). Perfect for wholesale stores or to manage inventory effectively.
 
-1.**Minimum/Maximum Quantity Control:**
-    
-Enforce a minimum quantity on any product you want (simple or variable), very useful in wholesale stores, using this feature you can change the minimum quantity other than the default 1 that comes as standard with WooCommerce.
+* **Step/Increment Control:** Define quantity steps or increments, beneficial for products that need to be sold in multiples, such as printing services (cards, brochures, flyers).
 
-You sell bottles and need to sell in steps of 6 for better use of packaging? This can be done by using minimum & step features of the plugin.
+* **Default Quantity Setting:** Change the default '1' quantity that loads on product & shop pages, giving customers a pre-set quantity option.
 
-The same goes for maximum quantity, some stores want to limit the quantity a customer can buy so they better manage their inventory.
+* **Fixed Quantity Options:** Ideal for specific products like textiles, allowing sales in exact quantities such as 1, 3, 5 meters.
 
-These values can be applied on:
+* **Quantity Dropdown Feature:** Replace the traditional +/- quantity fields with a clear dropdown menu, streamlining user experience.
 
-1.  Product level (works on simple & variable products)
-2.  Category / attribute level ([Pro version](https://wpfactory.com/item/product-quantity-for-woocommerce/))
-3.  Global (applies to all products at once)
-4.  Cart level
+* **Total Price by Quantity:** Display dynamic pricing based on selected quantity, enhancing transparency for customers.
 
-2.**Step/Increment Quantity Control**
-    
-Some call it step, others say increment, and many use the term interval, regardless of what you name it, our plugin offers this!
+* **Pricing Unit Display:** Showcase custom text alongside the price, clearly indicating units like 'per KG' or 'per bottle', eliminating any ambiguity.
 
-If you need to sell your goods in multiples of 4 based on your shipping packaging & cost, you can use this plugin to define quantity steps in which your customers can purchase products (like 5, 10, 15, 20 and so on...)
+* **Assign Decimal Values:** Sell in decimal quantities, perfect for products like spices or fruits.
 
-A great use case of this feature is printing services, like cards, brochures, flyers, where customers shouldn't be allowed to buy 2140 cards for instance! 
-You can define a minimum of 100, and an interval of 100 for example, so orders won’t come in random quantities.
+* **Show Units Next to Quantities:** Intuitively display units like 'KG', 'piece', or 'liter' next to products, making shopping clearer for customers.
 
-Similar to min max quantities, increment quantities can also be defined on the basis of product, category, and cart levels.
+* **Compatibility with Dynamic Pricing Plugins:** Seamlessly integrate with most dynamic pricing plugins, ensuring price calculations are accurate regardless of quantity changes.
 
-3.**Default Quantity Control**
-    
-Change the default quantity of 1 that appears on page load when your customers open your product or category page.
+---
 
-This is where you will need a default quantity feature allowing customers to choose a specific default quantity like 5 or 10 without forcing this quantity as a minimum.
+#### Useful Links ####
+* [**Plugin Main Page**](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Plugin Main Page**")
+* [**Plugin Support Forum**](https://wpfactory.com/support/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Plugin Support Forum**")
+* [**Documentation & How to**](https://wpfactory.com/docs/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Documentation & How to**")
 
-You will be able to define the default quantities for all products at once, per product, or category ([Pro feature](https://wpfactory.com/item/product-quantity-for-woocommerce/)). It’s a pretty simple and convenient feature!
+___
+## 🤝 Recommended By##
+* [AOVUP: Best WooCommerce Minimum Order Quantity Plugins](https://aovup.com/wholesale/woocommerce-minimum-order/#All_in_One_Product_Quantity_for_WooCommerce "AOVUP: Best WooCommerce Minimum Order Quantity Plugins")
 
-4.**Fixed Quantity Control**
+* [LearnWoo: Best WooCommerce Plugins to Set Minimum and Maximum Quantity](https://learnwoo.com/best-woocommerce-plugins-set-minimum-maximum-quantity-checkout/#Product_Quantity_for_WooCommerce "LearnWoo: Best WooCommerce Plugins to Set Minimum and Maximum Quantity")
 
-Think of textile products, sometimes you want to sell in 1, 3, 5, 10 meters, this can’t be forced with the mix of minimum & step features, this feature will allow you to exactly specify what quantities your customers can buy (or can’t, since it also offers disallowed quantities section).
+* [Studio Wombat: Best WooCommerce min & max quantity plugins](https://www.studiowombat.com/blog/woocommerce-min-max-quantity-plugins/ "Studio Wombat: Best WooCommerce min & max quantity plugins")
 
-5.**Quantity Dropdown**
-    
-You can replace the +/- fields with a nice & neat dropdown menu.
+* [WPGlob: Best WooCommerce Quantity Plugin](https://wpglob.com/all-in-one-product-quantity-for-woocommerce-plugin-review/ "WPGlob: Best WooCommerce Quantity Plugin")
 
-Forcing min & step, or even allowed quantities might make it unclear for users what quantities they can buy (although you can show that), a dropdown menu here comes handy!
+* [Galusso Themes: Must-have Woocommerce Quantity Plugins](https://galussothemes.com/woocommerce-quantity-plugins/ "Galusso Themes: Must-have Woocommerce Quantity Plugins")
 
-7.**Total Price by Quantity**
-
-By default, the price appearing on your store is for a quantity of 1, but isn't showing a total price based on quantity selected is cooler? Specially when you have dynamic pricing (which this features is compatible with most dynamic pricing plugins).
-
-8.**Pricing Unit**
-    
-The Price Unit feature will let you exhibit customized text next to the price to reflect the unit you’re selling the product for, for instance, $10 for 1 KG or $10 for a water bottle in the same store, making it very clear for customers what they are paying for.
-
-You can define the value globally (all products at once), per category, or for every product to make sure all the products are showing the correct units.
-
-**Premium Version: Do More**
-
-The [Pro version](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=desc&utm_campaign=freeversion) of the plugin extends the capabilities of this plugin to unmatched levels, you can control everything by category & attribute, define settings by user role, exclude products from plugin settings, and much more.
-We encourage you to read what our customers think of our plugin on the [reviews section](https://wpfactory.com/item/product-quantity-for-woocommerce/#tab-reviews) to know why people LOVE this plugin.
+*WPGLob: YouTube Video
+[youtube https://www.youtube.com/watch?v=2Z_n2DTWdyU]
 
 
-= Demo Store =
+## 🚀 Main Features: FREE Version##
 
-If you want to try the plugin features, play around with its settings before installing it on your live website, feel free to do so on this demo store:
-URL: https://wpwhale.com/demo/wp-admin/
-User: demo
-Password: G6_32e!r@
+
+### 🚀 Specify Min (Minimum) Quantity for Products ###
+
+* Define a minimum quantity to be applied on cart level (site-global), meaning customers can mix quantities of any products without minimum quantities by product, just to meet a defined min quantity for all products combined in cart
+
+* Customize message that appear for users with wrong minimum quantities rules on cart
+
+* Apply minimum quantity on all products at once across the whole store, all products must be purchased at least with defined min quantity
+
+* Customize message appearing on product pages when product quantity is below minimum defined
+
+### 🚀 Specify Max (Maximum) Quantity for Products ###
+
+Similar to Minimum Quantity feautres, the Maximum Quantity controls allow you to:
+
+* Set a cart-level maximum quantity (site-wide), allowing customers to combine product quantities without individual product caps, provided the total doesn't surpass the defined cart maximum
+
+* Adjust the notification that appears when cart items exceeding the preset maximum quantity rules
+
+* Implement a universal maximum quantity for every product in the store, ensuring purchases don't exceed this specified amount for any particular product
+
+* Tailor the message on product pages that alerts users when the selected quantity surpasses the defined  maximum quantity allowed
+
+#### Min/Max Quantities Usecases ####
+There are too many cases where you can utilize the minimum & maximum quantities restriction on your store, like:
+
+* **Limited Stock Items:** Set a maximum quantity to prevent bulk buying and stock depletion, ensuring more customers have access to high-demand products
+
+* **Exclusive or Luxury Goods:** Limit the number of premium or limited-edition items a single customer can purchase, preserving exclusivity
+
+* **Wholesale Stores:** Mandate a minimum purchase quantity to ensure wholesale prices are leveraged for bulk buying only
+
+* **Promotional or Sale Items:** Implement a max limit on discounted products to prevent stockouts and maintain profitability
+
+* **Sample Products:** Allow customers to order a minimum quantity (e.g., 1 or 2) of sample items to test before buying in bulk
+
+* **Subscription Services:** Ensure customers commit to a minimum subscription duration (e.g., 3 months) to stabilize revenue streams
+
+* **Group or Bundle Deals:** Require customers to purchase products in minimum bundles or sets, like a minimum of 3 items for a special discount
+
+* **Custom-made or Personalized Items:** Set a minimum order quantity to ensure profitability given the time and effort invested
+
+* **Event or Workshop Tickets:** Implement a max limit per customer to ensure wider access and prevent reselling at higher prices.
+
+
+### 🚀 Change Default Quantity for Products ###
+
+* Adjust the default quantity value, typically set at 1, that displays when shoppers visit your product or category page
+
+* Utilize the default quantity feature to present shoppers with a suggested quantity, such as 5 or 10, without without restricting them from adjusting higher or lower values
+
+* Set default quantity for all products at once, individually per product, or by category (Pro)
+
+#### Usecases ####
+Changing default quantity comes handy in different cases, like these:
+
+* **Pre-configured Packs:** For items typically bought in specific quantities, like a 6-pack of socks or a set of 4 mugs, present the default as the common set size
+
+* **Bulk Buying Incentives:** Encourage wholesale or bulk purchases by setting the default quantity to a higher value, nudging customers towards bigger orders
+
+* **Sample or Trial Products:** For trial versions or sample-sized products, set a default of 1 or 2 to allow customers to easily test before committing to larger quantities
+
+* **Subscription Box Services:** If offering monthly subscription boxes, set the default quantity to match the typical subscription duration, such as a 3-month default for quarterly boxes
+
+* **Event or Seasonal Sales:** During specific sale events or seasons, adjust default quantities to align with promotional strategies, like Valentine's Day bundles of 2 or back-to-school packs of 5.
+
+
+### 🚀 Change Step/Interval Quantity for Products ###
+
+* Whether you refer to it as a "step," "increment," or "interval" quantity, our plugin has got you covered
+
+* Tailor the plugin to sell products in specific multiples, such as in sets of 4, accommodating shipping and packaging needs
+
+* Define quantities in steps like 5, 10, 15, 20, etc., to streamline the buying process
+
+#### Usecases ####
+Step/Interval quantity can be immensely useful across a variety of industries and scenarios. Here are some use cases for the step quantity feature:
+
+* **Wholesale or Bulk Purchases:** Ensure items like office supplies are sold in bulk, such as pens in batches of 50 or paper in reams of 500
+
+* **Packaging Constraints:** Align with typical packaging sizes, for instance, selling eggs in multiples of 6 or 12
+
+* **Printing Services:** Direct customers to order materials like business cards or brochures in increments of 100 or 250
+
+* **Clothing and Textile:** Sell fabrics in yard or meter increments for efficient cutting and reduced wastage
+
+* **Hardware and Construction:** Offer items like nails or screws in batches of 100s or 1000s
+
+* **Agricultural Products:** Market seeds in packets determined by square footage or expected yield
+
+* **Bakery or Confectionery:**Promote cookies or pastries in batches, such as half a dozen or a full dozen
+
+* **Beverage Industry:**Encourage sales in case increments for products like wine, e.g., 6 or 12 bottles
+
+* **Subscription Boxes:** Set step quantities for subscription box add-ons or product levels
+
+* **Gift Shops:** Boost sales of gift items, like postcards, by setting quantities in sets of 5 or 10
+
+
+### 🚀 Specify Allowed/Disallowed Fixed Quantities for Products ###
+
+* Apply random predefined allowed quantities (like 1,3,5,10,18) at all products
+
+* Define preset quantities at the cart level, letting customers choose from set quantities for all products without regular intervals
+
+* Personalize user notifications in the cart when selected quantities fall outside the specified allowed range
+
+* Enforce these predefined quantities across the entire store to ensure consistency in every purchase
+
+* Adjust the on-page alerts to guide users when their chosen quantity on product pages deviates from the allowed values
+
+* Specify distinct allowed and disallowed quantities at granular levels, including individual products, categories, or attributes for enhanced customization (Pro features)
+
+#### Usecases ####
+* **Custom Gift Sets:** Retailers can offer gift sets where customers can choose to buy sets containing 1, 5, 10, or 20 items, allowing for varied gift sizes based on occasion and budget
+
+* **Collector's Items:** Stores selling collectibles, like stamps or coins, might have package deals for 1, 10, or 50 items, catering to both beginner and seasoned collectors
+
+* **Baking Ingredients:** For specialty baking ingredients sold in unique quantities, such as a pack of 1 vanilla bean, 5 cocoa nib sachets, or 20 spice pods
+
+* **Fitness Packages:** Gyms or fitness centers can offer session packages, such as 1 trial class, 5 regular sessions, or 20 advanced classes
+
+* **Digital Downloads:** Artists or creators selling digital assets like photos, music, or designs might have packages for 1, 5, 10, or 50 downloads, catering to both individual and commercial needs
+
+* **Crafting Kits:** For DIY enthusiasts, crafting kits might be available in sizes suitable for 1 project, 5 projects, or 20 projects
+
+* **Custom Printing:** Printing shops offering custom prints on items like mugs or shirts may offer package deals for individuals (1 item), small groups (5 items), or large events (50 items)
+
+### 🚀 Quantity Dropdown: Convert Quantity Field Into a Dropdown ###
+* Seamlessly transform the standard quantity field into a more user-friendly dropdown, enhancing product quantity selection
+
+* Equip the dropdown with a built-in search function, allowing customers to quickly pinpoint their desired quantities
+
+* Dynamically determine the dropdown's highest number based on either the Maximum quantity, the highest allowed quantity, or a predefined fallback value
+
+* Display quantities with clarity by integrating thousand separators, and provide the flexibility to opt between a comma or dot (or anything else you prefer) as the chosen separator
+
+* Enhance quantity representation in the dropdown with unit indicators like "10 KG" or "20 Litre", with options to toggle between singular and plural units, and retain the ability to disable this feature in the cart when needed
+
+
+#### Usecases ####
+* **Pre-packaged Sets:** For products that are sold in specific sets or bundles (e.g., a set of 6, 12, or 24 wine glasses), a dropdown can ensure customers only select these predefined quantities
+
+* **Bulk or Wholesale Orders:** For products primarily sold in bulk, a dropdown can list specific bulk quantities, simplifying the purchasing process.
+
+* **User Experience and Mobile Optimization:** Dropdowns can be more user-friendly on mobile devices, preventing the need for the mobile keyboard to pop up, which can be cumbersome
+
+* **Digital Products or Services with Licensing Restrictions:** If selling software licenses or digital goods that have specific licensing tiers based on quantity, a dropdown can assist in clarifying these options
+
+* **Event Tickets:** When selling tickets for events, especially if there's a limit on the number of tickets one person can buy, a dropdown helps ensure this limit
+
+### 🚀 Show Dynamic Prices based on Quantity ###
+
+* Instantly showcase the "Total Price by Quantity," making prices clear based on the chosen quantity
+
+* Choose to show the dynamic price instead/after/before the default standard price
+
+* Add units to the price display, like "$100 for 5 pcs", ensuring customers understand exactly what they're getting
+
+* To activate, just head to your product dashboard and select the "Total Price by Quantity" option, and input units like "pcs" or "kg" for an added touch of clarity
+
+### 🚀 Price Unit: Show Quantity Unit Next to Price ###
+
+* Easily enhance product pricing by integrating a unit display, allowing prices to read as "$10 per KG" or "$5 per bottle," providing immediate context and clarity within your store's layout
+
+**Why you need to a price unit?**
+
+Displaying a unit next to the price is vital for several reasons. 
+
+Firstly, it provides clear context to customers, ensuring they understand exactly what they're paying for, whether it's a weight, volume, length, or count. 
+
+This is particularly crucial for products that might be sold in various sizes or quantities, such as food items, fabrics, or bulk goods. 
+
+Secondly, units help in comparing prices, allowing customers to discern if they're getting good value for money, especially when comparing similar products with different quantities or sizes.
+
+Lastly, it reinforces transparency and trust between the retailer and the consumer, ensuring there are no hidden surprises when customers make a purchase.
+
+### 🚀 Keep Customers Informed: Show Quantity Info on Product Page ###
+
+* Display quantity information, like minimum, maximum, and step values, to provide customers with a clear guideline on purchase limits and increments, eliminating any uncertainties and ensuring a smoother shopping experience
+
+* By visibly presenting unit details alongside product prices, customers can easily understand the exact measure or count they're paying for, facilitating informed decisions and reducing potential post-purchase regrets
+
+* When customers can instantly see quantity details, it streamlines their ability to compare products based on size, volume, or count, ensuring they get the best value for their money without having to dig deep into product specifications
+
+### 🚀 More Features: Still in FREE Version ###
+
+#### Use Decimal Quantity ####
+
+**Why You Need Decimal:**
+
+Products aren't always sold in whole numbers. For more precision and to cater to diverse product requirements, decimals in quantity can make a significant difference in how you sell and how customers shop.
+
+**How It Works:**
+Our plugin allows you to easily incorporate decimals into your product quantities. You can set decimal values for minimum, maximum, step increments, or even specific allowed quantities, offering a level of detail that matches your product's nature.
+
+**Use Cases for Decimals:**
+
+1. Fruits & Vegetables Stores: Customers might wish to purchase, for instance, 1.5 KGs of apples or 0.75 KGs of cherries
+
+2. Textile Shops: Buyers could need specific fabric lengths, like 2.5 meters or 3.75 meters for tailored outfits
+
+3. Bulk Grain or Spice Sellers: Selling by weight often means customers choosing quantities like 0.5 KGs of rice or 0.25 KGs of a specialty spice
+
+4. Paint Stores: For projects that need precision, customers might require 1.5 liters or 2.25 liters of a particular paint shade
+
+#### Validate Quantities on Add to Cart & Cart Page ####
+
+The plugin allows you to validate quantities when added to cart as defined in plugin settings, making sure that customers are informed about wrong quantities, or even prevent them from reaching cart on wrong quantities.
+
+The plugin allows 3 action options on wrong quantities:
+
+1. Do not validate (can show error messages on cart)
+2. Validate & show error messages
+3. Validate & auto-correct quantities (round up or down)
+
+You can also block users from reaching checkout on wrong quantities (if notification is selected in Cart Notices).
+
+#### Change/Force Quantities on Page Load ####
+
+* Select what values appear on page load, select from Minimum Quantity, Maximum Quantity, Default Quantity, and even lowest Allowed Quantity 
+* Applicable on product page, as well as shop/archive pages to have a streamlined experience
+
+___
+
+> “Many functions & great support.: I really love this plugin as it allows me to adjust the quantity exactly the way I want. Support is very responsive, helpful and fast.” – ⭐⭐⭐⭐⭐ [maskinluxembourg](https://wordpress.org/support/topic/many-functions-great-support/)
+
+> “Awesome Plugin and A1 Support: Fantastic plugin what’s worth every penny. And the support from Omar is second to none. Probably the best i’ve ever had for a WP Plugin.” – ⭐⭐⭐⭐⭐ [mdj101](https://wordpress.org/support/topic/awesome-plugin-and-a1-support/)
+
+
+___
+## 🏆 Do More: PRO Version ##
+
+All what's mentioned above (and more) is available in the free version, but for those who would like to go further and beyond, we have a premium version of [Min Max Default Quantity for WooCommerce Pro](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme) plugin.
+
+🏆 The Pro version unlocks more advanced features like:
+
+* **Quantity Field on Shop Pages:** Add quantity field on shop/category/archive pages to allow customers to change quantities on the fly & add to cart from shop pages
+
+* **Handling Low Stock & Minimum Quantity:** If your stock is running low (below min quantity), you can set to allow selling below minimum quantity in that case. Can be defined by product or all at once.
+
+### 🏆 Limit Quantityes by Category & Attributes  ###
+
+* **Define Minimum/Maximum/Allowed Quantities by Category:** You can define a minimum/maximum/allowed quantities by category, and yes, it works in 2 ways:
+1. You can define minimum/maximum/allowed quantity for all product by applying the specified value to all products in a category (instead of applying product by product)
+2. You can even apply a minimum/maximum/allowed quantity value that will be applied as combined for a category, meaning that total quantities from products of this category must match the  defined min/max/allowed quantity
+
+* **Define Minimum/Maximum/Allowed Quantities by Attribute:** You can define a minimum/maximum/allowed quantities by attribute, similar to "by category", it works in both needs:
+1. You can define minimum/maximum/allowed quantity for all product by applying the specified value to all products in an attribute (instead of applying product by product)
+2. You can even apply a minimum/maximum/allowed quantity value that will be applied as combined for an attribute, meaning that total quantities from products of this attribute must match the  defined min/max/allowed quantity
+
+* **Define Default & Step Quantities by Category**
+
+* **Define Default & Step Quantities by Attribute**
+
+### 🏆 Quantity Dropdown Pro Features  ###
+
+* **Exclude Quantity Dropdown by Category:** By default, quantity dropdown is enabled across the whole site, you can select to exclude it by category
+
+* **Define Dropdown Labels by Product:** Labels (units) are global in dropdown, utilize this feature to create custom labels by product
+
+* **Enable Quantity Dropdown on Shop Pages:** Replace the standard quantity input on archive/category/shop pages with an easy-to-use dropdown, based on defined allowed quantities
+
+### 🏆 Total Price by Quantity Pro Features  ###
+
+* **Exclude Total Price on Specific Categories:** If you want to exlude categories from showing total price by quantity, this option allows you to do so
+
+* **Define Units by Product, Category & Attribute:** Units appearing in Total Price by Quantity (like $100 for 10 KGs) are global in dropdown, you can change this "KGs" by product, category, or even attribute
+
+* **Show Total Price by Quantity on Shop Pages:** Replace the regular price on archive/category/shop pages with a total price based on quantity
+
+### 🏆 Price Unit Pro Features  ###
+
+* **Define Price Unit by Product:** Use this to make sure every single product reflects the correct unit
+
+* **Define Price Unit by Category:** Save time by defining price unit on category level using this option
+
+* **Show Price Unit on Shop Pages:** Make price unit part of the price field on shop/archive/category pages of your store
+
+### 🏆 Disable Plugin for Specific Products  ###
+
+You can exclude/disable the plugin for a specific product/set of products, or by a whole category.
+
+This comes handy when you're selling samples, or giftcards 
+
+### 🏆 Enable/Disable by User Role  ###
+
+### 🏆 Premium Support  ###
+
+
+And much more.
+
+___
+## 💯 Why WPFactory?##
+
+* **Experience You Can Trust:** Over a decade in the business
+* **Wide Plugin Selection:** Offering 65+ unique and powerful plugins
+* **Highly-Rated Support:** Backed by hundreds of 5-star reviews
+* **Expert Team:** Dedicated developers and technical support at your service
+
+___
+
+## What's Next? Check More Plugins by WPFactory##
+
+If you're enjoying our plugin, we'd love for you to explore our other offerings. WPFactory has a diverse range of plugins tailored to enhance your experience. 
+
+Dive in and discover more tools to empower your WooCommerce Store!
+
+
+* [**Cost of Goods for WooCommerce**](https://wpfactory.com/item/cost-of-goods-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Cost of Goods WooCommerce**"): Make informed decisions to maximize profits, correctly calculate Cost of Goods Sold (COGS) for your WooCommerce store and enhance your financial management capabilities (**[Try our Free version](https://wordpress.org/plugins/cost-of-goods-for-woocommerce/ "Try our Free version")**)
+
+* [**Maximum Products per User**](https://wpfactory.com/item/maximum-products-per-user-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Maximum Products per User**"): Set personalized purchase limits for your customers, define maximum product quantities, catered to specific user roles & selected date range (**[Try our Free version](https://wordpress.org/plugins/maximum-products-per-user-for-woocommerce/ "Try our Free version")**)
+
+* [**Order Minimum/Maximum Amount**](https://wpfactory.com/item/order-minimum-maximum-amount-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Order Minimum/Maximum Amount**"): Set tailored minimum and maximum order thresholds, by sum, quantity, weight, or volume, customize limits by user role, specific user, product category, shipping method, payment gateway, or even by currency (**[Try our Free version](https://wordpress.org/plugins/order-minimum-amount-for-woocommerce/ "Try our Free version")**)
+
+* [**EU/UK VAT Manager for WooCommerce**](https://wpfactory.com/item/eu-vat-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**EU/UK VAT Manager for WooCommerce**"): Streamline your WooCommerce store’s EU/UK VAT compliance effortlessly, automate VAT settings, validation (VIES), and how to apply taxes, ensuring a seamless and compliant customer experience (**[Try our Free version](https://wordpress.org/plugins/eu-vat-for-woocommerce/ "Try our Free version")**)
+
+* [**Email Verification for WooCommerce**](https://wpfactory.com/item/email-verification-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Email Verification for WooCommerce**"): Enhance WooCommerce security and credibility with Email Verification best plugin. Ensure genuine customer interactions, eliminate spam, and elevate email marketing efficiency (**[Try our Free version](https://wordpress.org/plugins/maximum-products-per-user-for-woocommerce/ "Try our Free version")**)
+
+* [**Free Shipping Over Amount for WooCommerce**](https://wpfactory.com/item/amount-left-free-shipping-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Free Shipping Over Amount for WooCommerce**"): WooCommerce Advanced Free Shipping plugin, use our plugin to quality customers for free shipping when they spend specific amount, by showing a bar on remaining amounts they need to spend to qualify for free shipping (**[Try our Free version](https://wordpress.org/plugins/amount-left-free-shipping-woocommerce/ "Try our Free version")**)
+
+* [**Dynamic Pricing & Bulk Quantity Discounts**](https://wpfactory.com/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Dynamic Pricing & Bulk Quantity Discounts**"): Create and manage advanced dynamic pricing and bulk discount rules for WooCommerce, encouraging bulk purchases and driving your sales to new heights (**[Try our Free version](https://wordpress.org/plugins/wholesale-pricing-woocommerce/ "Try our Free version")**)
+
+___
+## ❤️ User Testimonials: See What Others Are Saying!##
+
+> “For me, it is one of the best plugins for maximum and minimum amounts. Excellent work and support from the developer.” – ⭐⭐⭐⭐⭐ [Ángel](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme)
+
+> “Great Plugin, Works exactly as required. Needed support and was provided with more than I was expected. 100% would recommend.” – ⭐⭐⭐⭐⭐ [Tristan](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme)
+
+> “This plugin was a huge help! It does what others can't, and the support is excellent. It's great to be able to specify exact quantities that are not "stepped" easily!” – ⭐⭐⭐⭐⭐ [zach jones](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme)
+
+> “Best Quanity Plugin for Sure | Awsome Support!!: Best Quantity Plugin Ever. For sure. It solves problems all other Plugins aren´t able to think about. This is worth every penny. And the best on this Plugin is the awsome support. These guys know WordPress / Woocommerce like no one else and help you with every problem occuring on your very own shop including this plugin. They are super fast and super friendly. I would reccomend them to you! Stop Searching. Buy this Plugin in Pro Version!!!” – ⭐⭐⭐⭐⭐ [Toby Kronwitter](https://wordpress.org/support/topic/best-quanity-plugin-for-sure-awsome-support/)
+
+
 
 == Screenshots ==
 
@@ -127,6 +431,9 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.18 - 09/10/2023 =
+* Update readme file.
 
 = 4.5.17 - 30/09/2023 =
 * Update function quantity_step_per_product_cat_value() code to support older functionality. 
@@ -700,7 +1007,7 @@ Yes, our plugin is compatible with multi-language sites, it provides strings to 
 = Will this plugin work with variable products? =
 Definitely, every single setting in the plugin works on variable products exactly as it works on simple products.
 
-= Can I apply different values (min max step etc…) for different variations of the same variable product? =
+= Can I apply different values (min max step etcâ€¦) for different variations of the same variable product? =
 Indeed, you will have a field for each corresponding feature per variations, allowing you to control everything on variation level
 
 

@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Advanced Section Settings
  *
- * @version 4.5.7
+ * @version 4.5.18
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -67,7 +67,7 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.5.10
+	 * @version 4.5.18
 	 * @since   1.7.0
 	 * @todo    [dev] (maybe) add "Enable section" option
 	 */
@@ -242,7 +242,7 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'class'    => 'chosen_select',
 				'options'  => $this->get_user_roles(),
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
-				'desc' => apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use Disable plugin by URL, category, role.',
+				'desc' => apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use this feature.',
 						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 			),
 			
@@ -256,7 +256,7 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'class'    => 'chosen_select',
 				'options'  => $this->get_user_roles(),
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
-				'desc' => apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use Disable plugin by URL, category, role.',
+				'desc' => apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use this feature.',
 						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 			),
 			
