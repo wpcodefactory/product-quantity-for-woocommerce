@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.5.13
+ * @version 4.5.20
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -52,7 +52,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 4.5.10
+	 * @version 4.5.20
 	 * @since   1.0.0
 	 * @todo    [fix] mini-cart number of items for decimal qty
 	 * @todo    [dev] implement `is_any_section_enabled()`
@@ -249,6 +249,7 @@ class Alg_WC_PQ_Core {
 				
 				
 				add_filter( 'woocommerce_cart_item_price', array( $this, 'pq_change_cart_product_price_unit'), 99, 3 );
+				add_filter( 'woocommerce_email_order_item_quantity', array( $this, 'pq_filter_woocommerce_email_order_item_quantity'), 99, 2 );
 			}
 			
 			
@@ -715,6 +716,12 @@ class Alg_WC_PQ_Core {
 	}
 	
 	
+	/**
+	 * set_quantity_input_price_unit.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function set_quantity_input_price_unit($default, $product) {
 		$unit = '';
 		if($this->alg_wc_pq_qty_price_unit_enabled === 'yes'){
@@ -734,7 +741,44 @@ class Alg_WC_PQ_Core {
 		return do_shortcode($unit);
 	}
 	
+	/**
+	 * pq_filter_woocommerce_email_order_item_quantity.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
+	function pq_filter_woocommerce_email_order_item_quantity( $qty_display, $item ) {
+		
+		$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
+		$product = $item->get_product();
+		if ( is_object( $product ) ) {
+			$product_id = $product->get_id();
+			if($product_id > 0){
+				
+				
+				if( $this->is_show_unit() ) {
+					
+					if( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes') {
+						$product_unit = $this->get_term_price_unit( $product_id );
+						$unit = (!empty($product_unit) ? $product_unit : $unit );
+					}
+				}
+				
+				if( !empty( $unit ) ) {
+					return $qty_display . __( ' ( Price unit: ', 'product-quantity-for-woocommerce' ) . $unit . ' )';
+				}
+			}
+		}
+		
+		return $qty_display;
+	}
 	
+	/**
+	 * pq_change_product_price_unit.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function pq_change_product_price_unit( $price, $product ) {
 
 		if( $this->disable_product_id_by_url_option( $product->get_id() ) ) {
@@ -820,6 +864,12 @@ class Alg_WC_PQ_Core {
 		return $price;
 	}
 	
+	/**
+	 * pq_change_cart_product_price_unit.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function pq_change_cart_product_price_unit( $price, $cart_item, $cart_item_key ) {
 		
 		$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
@@ -837,7 +887,13 @@ class Alg_WC_PQ_Core {
 		}
 		return $price;
 	}
-
+	
+	/**
+	 * is_show_unit.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function is_show_unit() {
 		if( is_product() ) {
 			return true;
@@ -850,6 +906,12 @@ class Alg_WC_PQ_Core {
 		return false;
 	}
 	
+	/**
+	 * get_term_price_unit.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function get_term_price_unit ( $product_id  ) {
 		$terms = get_the_terms( $product_id, 'product_cat' );
 		$product_meta = get_post_meta($product_id, '_alg_wc_pq_price_unit', true);
@@ -897,6 +959,12 @@ class Alg_WC_PQ_Core {
 		return false;
 	}
 	
+	/**
+	 * change_paypal_line_item_quantity_type.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function change_paypal_line_item_quantity_type( $item, $item_name, $quantity, $amount, $item_number ) {
 		if (strpos($quantity, '.')) {
 			$quantity = (float) $quantity;
@@ -1167,7 +1235,14 @@ class Alg_WC_PQ_Core {
 		}
 		return $quantity;
 	}
-
+	
+	/**
+	 * get_cartitem_by_category.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
+	 
 	function get_cartitem_by_category()
 	{
 		$category = array();
@@ -1209,6 +1284,13 @@ class Alg_WC_PQ_Core {
 		}
 	}
 	
+	/**
+	 * get_cartitem_by_product_attribute.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
+	 
 	function get_cartitem_by_product_attribute()
 	{
 		$quantities = array();
@@ -1331,6 +1413,12 @@ class Alg_WC_PQ_Core {
 		}
 	}
 	
+	/**
+	 * get_cartitem_groupby_parent_id.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function get_cartitem_groupby_parent_id()
 	{
 		$main_products = array();
@@ -2111,6 +2199,12 @@ class Alg_WC_PQ_Core {
 		return false;
 	}
 	
+	/**
+	 * get_allowed_attribute_tax.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function get_allowed_attribute_tax(){
 		$allowed_attribute_tax = array();
 		$alg_wc_pq_qty_price_by_attribute_qty_unit_input_selected = get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_selected', array() );
@@ -2126,6 +2220,12 @@ class Alg_WC_PQ_Core {
 		return $allowed_attribute_tax;
 	}
 	
+	/**
+	 * alg_wc_pq_get_product_price_unit.
+	 *
+	 * @version 4.5.20
+	 * @since   4.5.20
+	 */
 	function alg_wc_pq_get_product_price_unit($product, $quantitiy=1, $price_unit = false){
 		
 		$defaultpc = '!na';

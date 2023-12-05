@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
 Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
 Requires at least: 6.1 or higher
-Tested up to: 6.3
-Stable tag: 4.5.19
+Tested up to: 6.4
+Stable tag: 4.5.20
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -431,6 +431,12 @@ Then activate the plugin through the "Plugins" menu in WordPress.
 Finally, you can start using it directly at "WooCommerce > Settings > Product Quantity".
 
 == Changelog ==
+
+= 4.5.20 - 05/12/2023 =
+* WC tested up to: 8.3
+* Compatibility with WordPress 6.4 verified
+* Fix - add price unit in order email item.
+
 
 = 4.5.19 - 14/10/2023 =
 * delete bulk-material code at pro.
