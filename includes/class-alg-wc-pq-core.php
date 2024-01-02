@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.5.20
+ * @version 4.5.21
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -18,34 +18,85 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
 if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 class Alg_WC_PQ_Core {
-
+	
+	/**
+	 * is_wc_version_below_3
+	 *
+	 * @var   string
+	 * @since 4.5.21
+	 */
+	public $is_wc_version_below_3 = null;
+	
+	/**
+	 * attribute_taxonomies
+	 *
+	 * @var   array
+	 * @since 4.5.21
+	 */
 	public $attribute_taxonomies = array();
+	
 	/**
 	 * Excluded product ids.
 	 *
 	 * @var   array
-	 * @since 1.0.0
+	 * @since 4.5.21
 	 */
 	public $excluded_pids = array();
 	
 	/**
-	 * is enabled.
+	 * enabled_priceunit_category
 	 *
 	 * @var   string
-	 * @since 1.0.0
+	 * @since 4.5.21
 	 */
 	public $enabled_priceunit_category = 'no';
 	
+	/**
+	 * attr_taxonomies
+	 *
+	 * @var   array
+	 * @since 4.5.21
+	 */
 	public $attr_taxonomies = array();
 	
+	/**
+	 * force_on_loop_archive
+	 *
+	 * @var   string
+	 * @since 4.5.21
+	 */
 	public $force_on_loop_archive ='disabled';
 	
+	/**
+	 * price_by_qty_qty_archive_enabled
+	 *
+	 * @var   string
+	 * @since 4.5.21
+	 */
 	public $price_by_qty_qty_archive_enabled ='no';
 	
+	/**
+	 * alg_wc_pq_exact_qty_allowed_section_enabled
+	 *
+	 * @var   string
+	 * @since 4.5.21
+	 */
 	public $alg_wc_pq_exact_qty_allowed_section_enabled ='no';
 	
+	/**
+	 * alg_wc_pq_force_on_single
+	 *
+	 * @var   string
+	 * @since 4.5.21
+	 */
 	public $alg_wc_pq_force_on_single ='disabled';
 	
+	/**
+	 * alg_wc_pq_force_on_loop
+	 *
+	 * @var   string
+	 * @since 4.5.21
+	 */
 	public $alg_wc_pq_force_on_loop ='disabled';
 	
 
