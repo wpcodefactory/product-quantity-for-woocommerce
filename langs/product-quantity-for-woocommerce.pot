@@ -19,37 +19,37 @@ msgstr ""
 msgid " ( Price unit: "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1520
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1539
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1522
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1541
 msgid ""
 "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1581
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3317
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1583
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3319
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2534
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2621
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2728
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2536
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2623
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2730
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3328
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3330
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3394
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3424
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3396
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3426
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3777
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3779
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3850
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3852
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -495,6 +495,7 @@ msgstr ""
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:274
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:293
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:301
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:310
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:71
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:102
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-dropdown.php:52
@@ -775,6 +776,14 @@ msgstr ""
 msgid ""
 "This will cast all float value to integer values from the "
 "woocommerce_store_api hooks for minimum, maximum, and step."
+msgstr ""
+
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:308
+msgid "Sumup each product quantity within the bundle product."
+msgstr ""
+
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-advanced.php:309
+msgid "This is applicable to the WPC Product Bundles for WooCommerce plugin."
 msgstr ""
 
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-default.php:24

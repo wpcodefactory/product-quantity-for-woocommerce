@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Advanced Section Settings
  *
- * @version 4.5.18
+ * @version 4.5.22
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -67,7 +67,7 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.5.18
+	 * @version 4.5.22
 	 * @since   1.7.0
 	 * @todo    [dev] (maybe) add "Enable section" option
 	 */
@@ -300,6 +300,15 @@ class Alg_WC_PQ_Settings_Advanced extends Alg_WC_PQ_Settings_Section {
 				'desc_tip' => __( 'This will cast all float value to integer values from the woocommerce_store_api hooks for minimum, maximum, and step.', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_advance_wc_block_api',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			
+			array(
+				'title'    => __( 'Sumup each product quantity within the bundle product.', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'This is applicable to the WPC Product Bundles for WooCommerce plugin.', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_advance_wpc_product_bundle',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),

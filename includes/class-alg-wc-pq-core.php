@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.5.21
+ * @version 4.5.22
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -1133,7 +1133,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * alc_wg_get_cart_item_quantities.
 	 *
-	 * @version 1.7.0
+	 * @version 4.5.22
 	 * @since   1.4.0
 	 */
 	 
@@ -1153,17 +1153,19 @@ class Alg_WC_PQ_Core {
 					continue;
 				}
 				
-				if(isset($values['woosb_ids']) && !empty($values['woosb_ids'])){
-					$total_qty = 0;
-					$ids_qty = $values['woosb_ids'];
-					$ids_qty_arr = explode(',', $ids_qty);
-					if(isset($ids_qty_arr) && !empty($ids_qty_arr)){
-						foreach($ids_qty_arr as $ids_qty_item){
-							$parts = explode('/', $ids_qty_item);
-							$bundle_item_qty = $parts[1] * $values['quantity'];
-							$total_qty = $total_qty + $bundle_item_qty;
+				if ( 'yes' === get_option( 'alg_wc_pq_advance_wpc_product_bundle', 'no' ) ) {
+					if(isset($values['woosb_ids']) && !empty($values['woosb_ids'])){
+						$total_qty = 0;
+						$ids_qty = $values['woosb_ids'];
+						$ids_qty_arr = explode(',', $ids_qty);
+						if(isset($ids_qty_arr) && !empty($ids_qty_arr)){
+							foreach($ids_qty_arr as $ids_qty_item){
+								$parts = explode('/', $ids_qty_item);
+								$bundle_item_qty = $parts[1] * $values['quantity'];
+								$total_qty = $total_qty + $bundle_item_qty;
+							}
+							$values['quantity'] = $total_qty;
 						}
-						$values['quantity'] = $total_qty;
 					}
 				}
 				
