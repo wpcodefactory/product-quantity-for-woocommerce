@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Price by Qty Section Settings
  *
- * @version 1.7.3
+ * @version 4.5.23
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -28,7 +28,7 @@ class Alg_WC_PQ_Settings_Price_Unit extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.7.3
+	 * @version 4.5.23
 	 * @since   1.7.0
 	 */
 	function get_settings() {
@@ -73,6 +73,18 @@ class Alg_WC_PQ_Settings_Price_Unit extends Alg_WC_PQ_Settings_Section {
 					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use unit on category/ shop/ archive pages.',
 						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 				'id'       => 'alg_wc_pq_qty_price_unit_show_archive_enabled',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			
+			array(
+				'title'    => __( 'Allow price unit on email order item', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Enable this option to display the unit for that product in the email order item.', 'product-quantity-for-woocommerce' ) .
+					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to show unit on email order item.',
+						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
+				'id'       => 'alg_wc_pq_qty_price_unit_email_order_item_enabled',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),

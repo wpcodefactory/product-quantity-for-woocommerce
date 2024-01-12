@@ -795,10 +795,16 @@ class Alg_WC_PQ_Core {
 	/**
 	 * pq_filter_woocommerce_email_order_item_quantity.
 	 *
-	 * @version 4.5.20
+	 * @version 4.5.23
 	 * @since   4.5.20
 	 */
 	function pq_filter_woocommerce_email_order_item_quantity( $qty_display, $item ) {
+		
+		if ( 'yes' !== get_option( 'alg_wc_pq_qty_price_unit_email_order_item_enabled', 'no' ) ) {
+			
+			return $qty_display;
+			
+		}
 		
 		$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
 		$product = $item->get_product();

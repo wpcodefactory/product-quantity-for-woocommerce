@@ -15,41 +15,41 @@ msgstr[1] ""
 msgid "View cart"
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:819
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:825
 msgid " ( Price unit: "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1522
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1541
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1528
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1547
 msgid ""
 "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1583
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3319
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:1589
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3325
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2536
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2623
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2730
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2542
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2629
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:2736
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3330
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3336
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3396
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3426
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3402
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3432
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3779
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3785
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3852
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\class-alg-wc-pq-core.php:3858
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -367,7 +367,7 @@ msgstr ""
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-metaboxes.php:590
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:24
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:43
-#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:81
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:93
 msgid "Price Unit"
 msgstr ""
 
@@ -536,6 +536,7 @@ msgstr ""
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:51
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:60
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:71
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:83
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:58
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:73
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-qty-info.php:97
@@ -1920,6 +1921,16 @@ msgid ""
 msgstr ""
 
 #: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:82
+msgid "Allow price unit on email order item"
+msgstr ""
+
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:84
+msgid ""
+"Enable this option to display the unit for that product in the email order "
+"item."
+msgstr ""
+
+#: E:\xampp_php_8\htdocs\wpfactory-local\wp-content\plugins\product-quantity-for-woocommerce-pro\includes\settings\class-alg-wc-pq-settings-price-unit.php:94
 msgid ""
 "Use string value here, you can define the parameter (per, for each, /) with "
 "unit, for example, to show per KG next to price, enter \"per KG\" here in "
