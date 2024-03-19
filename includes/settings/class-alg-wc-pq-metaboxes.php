@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 1.8.0
+ * @version 4.6.0
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -12,7 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PQ_Metaboxes' ) ) :
 
 class Alg_WC_PQ_Metaboxes {
-
+	
+	/**
+	 * is_section_enabled 
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $is_section_enabled  = null;
+	
 	/**
 	 * Constructor.
 	 *

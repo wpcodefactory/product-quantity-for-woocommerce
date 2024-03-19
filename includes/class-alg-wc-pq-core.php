@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.5.22
+ * @version 4.6.0
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -18,6 +18,79 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
 if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 class Alg_WC_PQ_Core {
+	
+	
+	/**
+	 * user_role_check
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $user_role_check  = null;
+	
+	/**
+	 * messenger 
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $messenger   = null;
+	
+	/**
+	 * force_on_loop  
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $force_on_loop    = null;
+	
+	/**
+	 * round_on_add_to_cart  
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $round_on_add_to_cart    = null;
+	
+	/**
+	 * qty_info   
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $qty_info     = null;
+	
+	/**
+	 * alg_wc_pq_qty_price_unit_enabled    
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $alg_wc_pq_qty_price_unit_enabled     = null;
+	
+	/**
+	 * alg_wc_pq_qty_price_by_qty_position    
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $alg_wc_pq_qty_price_by_qty_position     = null;
+	
+	/**
+	 * alg_wc_pq_qty_price_by_qty_enabled     
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $alg_wc_pq_qty_price_by_qty_enabled      = null;
+	
+	/**
+	 * alg_wc_pq_add_quantity_archive_enabled     
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $alg_wc_pq_add_quantity_archive_enabled     = null;
 	
 	/**
 	 * is_wc_version_below_3

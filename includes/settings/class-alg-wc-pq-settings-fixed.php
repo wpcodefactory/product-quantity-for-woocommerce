@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Fixed Section Settings
  *
- * @version 1.8.0
+ * @version 4.6.0
  * @since   1.6.0
  * @author  WPFactory
  */
@@ -13,6 +13,23 @@ if ( ! class_exists( 'Alg_WC_PQ_Settings_Fixed' ) ) :
 
 class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 
+
+	/**
+	 * id 
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $id   = null;
+	
+	/**
+	 * desc  
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $desc    = null;
+	
 
 	/**
 	 * Constructor.

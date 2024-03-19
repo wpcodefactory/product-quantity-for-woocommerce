@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Dropdown Section Settings
  *
- * @version 1.8.1
+ * @version 4.6.0
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -12,7 +12,23 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Dropdown' ) ) :
 
 class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
-
+	
+	/**
+	 * id 
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $id   = null;
+	
+	/**
+	 * desc  
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $desc    = null;
+	
 	/**
 	 * Constructor.
 	 *

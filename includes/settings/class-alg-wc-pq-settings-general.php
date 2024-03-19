@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - General Section Settings
  *
- * @version 4.5.18
+ * @version 4.6.0
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -12,7 +12,23 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PQ_Settings_General' ) ) :
 
 class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
-
+	
+	/**
+	 * id 
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $id   = null;
+	
+	/**
+	 * desc  
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $desc    = null;
+	
 	/**
 	 * Constructor.
 	 *

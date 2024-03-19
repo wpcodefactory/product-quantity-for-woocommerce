@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Quantity Info Class
  *
- * @version 1.7.0
+ * @version 4.6.0
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -12,7 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PQ_Quantity_Info' ) ) :
 
 class Alg_WC_PQ_Quantity_Info {
-
+	
+	/**
+	 * qty_info_default_content
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $qty_info_default_content  = null;
+	
 	/**
 	 * Constructor.
 	 *
