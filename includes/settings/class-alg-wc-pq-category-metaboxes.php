@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 4.6.0
+ * @version 4.6.1
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -63,6 +63,12 @@ class Alg_WC_PQ_Category_Metaboxes {
 		}
 	}
 	
+	/**
+	 * pq_taxonomy_add_custom_meta_field.
+	 *
+	 * @version 4.6.1
+	 * @since   4.6.1
+	 */
 	public function pq_taxonomy_add_custom_meta_field() {
 		?>
 		<?php if ( $this->is_section_enabled['min'] ) { ?>
@@ -129,6 +135,13 @@ class Alg_WC_PQ_Category_Metaboxes {
 	<?php
 	}
 	
+	
+	/**
+	 * pq_taxonomy_edit_custom_meta_field.
+	 *
+	 * @version 4.6.1
+	 * @since   4.6.1
+	 */
 	public function pq_taxonomy_edit_custom_meta_field($term) {
 	    $t_id = $term->term_id;
 	    $term_meta = get_option( "taxonomy_product_cat_$t_id" );
@@ -234,13 +247,24 @@ class Alg_WC_PQ_Category_Metaboxes {
 		<tr class="form-field">
 		<th scope="row" valign="top"><label for="term_meta[alg_wc_pq_category_price_unit]"><?php _e( 'Price Unit', 'product-quantity-for-woocommerce' ); ?> <?php //echo wc_help_tip( __( 'Set 0 to use global settings.', 'product-quantity-for-woocommerce' ), true ); ?></label></th>
 			<td>
-				<input type="text"  name="term_meta[alg_wc_pq_category_price_unit]" id="term_meta[alg_wc_pq_category_price_unit]" value="<?php echo esc_attr( $term_meta['alg_wc_pq_category_price_unit'] ) ? esc_attr( $term_meta['alg_wc_pq_category_price_unit'] ) : ''; ?>">
+				<?php 
+					$catUnit = '';
+					$catUnit = esc_attr( $term_meta['alg_wc_pq_category_price_unit'] ) ? esc_attr( $term_meta['alg_wc_pq_category_price_unit'] ) : '';
+				?>
+				<input type="text"  name="term_meta[alg_wc_pq_category_price_unit]" id="term_meta[alg_wc_pq_category_price_unit]" value="<?php echo $catUnit; ?>">
 				<p class="description"><?php _e( 'Specify a string for this category, this is controlled by Product Quantity plugin','product-quantity-for-woocommerce' ); ?></p>
 			</td>
 		</tr>
 		<?php } ?>
 	<?php
 	}
+	
+	/**
+	 * pq_save_taxonomy_custom_meta_field.
+	 *
+	 * @version 4.6.1
+	 * @since   4.6.1
+	 */
 	public function pq_save_taxonomy_custom_meta_field( $term_id ) {
 		if ( isset( $_POST['term_meta'] ) ) {
 			

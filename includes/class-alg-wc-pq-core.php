@@ -868,7 +868,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * pq_filter_woocommerce_email_order_item_quantity.
 	 *
-	 * @version 4.5.23
+	 * @version 4.6.1
 	 * @since   4.5.20
 	 */
 	function pq_filter_woocommerce_email_order_item_quantity( $qty_display, $item ) {
@@ -895,7 +895,7 @@ class Alg_WC_PQ_Core {
 				}
 				
 				if( !empty( $unit ) ) {
-					return $qty_display . __( ' ( Price unit: ', 'product-quantity-for-woocommerce' ) . $unit . ' )';
+					// return $qty_display . __( ' ( Price unit: ', 'product-quantity-for-woocommerce' ) . $unit . ' )';
 				}
 			}
 		}
@@ -906,7 +906,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * pq_change_product_price_unit.
 	 *
-	 * @version 4.5.20
+	 * @version 4.6.1
 	 * @since   4.5.20
 	 */
 	function pq_change_product_price_unit( $price, $product ) {
@@ -976,7 +976,9 @@ class Alg_WC_PQ_Core {
 						$product_unit = $this->get_term_price_unit( $product_id );
 						$unit = (!empty($product_unit) ? $product_unit : $unit );
 					}
-					$price .= ' <span class="alg_pq_wc_price_unit">'.do_shortcode($unit).'</span>';
+					if( !strpos( $price, $unit ) ) {
+						$price .= ' <span class="alg_pq_wc_price_unit">'.do_shortcode( $unit ).'</span>';
+					}
 				}
 			}
 		}
