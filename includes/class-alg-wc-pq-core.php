@@ -906,7 +906,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * pq_change_product_price_unit.
 	 *
-	 * @version 4.6.1
+	 * @version 4.6.4
 	 * @since   4.5.20
 	 */
 	function pq_change_product_price_unit( $price, $product ) {
@@ -976,8 +976,11 @@ class Alg_WC_PQ_Core {
 						$product_unit = $this->get_term_price_unit( $product_id );
 						$unit = (!empty($product_unit) ? $product_unit : $unit );
 					}
-					if( !strpos( $price, $unit ) ) {
-						$price .= ' <span class="alg_pq_wc_price_unit">'.do_shortcode( $unit ).'</span>';
+					
+					if( !empty($unit) ){
+						if( !strpos( $price, $unit ) ) {
+							$price .= ' <span class="alg_pq_wc_price_unit">'.do_shortcode( $unit ).'</span>';
+						}
 					}
 				}
 			}

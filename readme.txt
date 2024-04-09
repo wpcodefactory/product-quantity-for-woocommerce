@@ -1,13 +1,13 @@
 === Min Max Default Quantity for WooCommerce ===
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
-Tags: woocommerce, woo commerce, product, quantity, dropdown, min, max, default, step, decimal, unit, fixed quantity, allowed quantity, minimum quantity, maximum quantity, step quantity, fixed quantity, default quantity
+Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1 or higher
 Tested up to: 6.5
-Stable tag: 4.6.3
+Stable tag: 4.6.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Define a minimum / maximum / step / default quantity for products, show a dropdown, quantities on archive/categories pages, use decimal quantities, and much more on WooCommerce stores.
+Define a min/max, step, decimal & default quantity for products, show a dropdown and much more on WooCommerce stores.
 
 == Description ==
 
@@ -283,8 +283,6 @@ ___
 
 WPFactory has a diverse range of plugins tailored to enhance your experience, some of our top-selling plugins are:
 
-* [**Min Max Step Quantity**](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Min Max Step Quantity**"): Set minimum, maximum, step, and default product quantities, including dropdowns and decimal options on WooCommerce (**[Free version](https://wordpress.org/plugins/product-quantity-for-woocommerce/ "Free version")**)
-
 * [**Cost of Goods for WooCommerce**](https://wpfactory.com/item/cost-of-goods-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Cost of Goods WooCommerce**"): Enhance profit maximization and financial management by accurately calculating your WooCommerce store's COGS (**[Free version](https://wordpress.org/plugins/cost-of-goods-for-woocommerce/ "Free version")**)
 
 * [**Maximum Products per User**](https://wpfactory.com/item/maximum-products-per-user-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Maximum Products per User**"): Impose personalized purchase limits based on user roles and date ranges to manage customer buying behavior (**[Free version](https://wordpress.org/plugins/maximum-products-per-user-for-woocommerce/ "Free version")**)
@@ -353,6 +351,10 @@ ___
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.6.4 - 04/04/2024 =
+* Update - readme.txt
+* Fix - pq_change_product_price_unit() function.
 
 = 4.6.3 - 04/04/2024 =
 * Update - readme.txt
