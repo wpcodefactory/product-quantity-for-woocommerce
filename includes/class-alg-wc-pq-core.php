@@ -2306,7 +2306,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * get_category_unit_label.
 	 *
-	 * @version 1.6.1
+	 * @version 4.6.5
 	 * @since   1.6.1
 	 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 	 */
@@ -2322,13 +2322,16 @@ class Alg_WC_PQ_Core {
 				{
 					$singular_meta = 'alg_wc_pq_category_unit_singular';
 					$plural_meta = 'alg_wc_pq_category_unit_plural';
-					$singular_unit = $term_meta[$singular_meta];
-					$plural_unit = $term_meta[$plural_meta];
-					if ( !empty($singular_unit) && !empty($plural_unit) )
+					if( isset( $term_meta[$singular_meta] ) && isset( $term_meta[$plural_meta] ) )
 					{
-						$return['singular'] = $singular_unit;
-						$return['plural'] = $plural_unit;
-						return $return;
+						$singular_unit = $term_meta[$singular_meta];
+						$plural_unit = $term_meta[$plural_meta];
+						if ( !empty($singular_unit) && !empty($plural_unit) )
+						{
+							$return['singular'] = $singular_unit;
+							$return['plural'] = $plural_unit;
+							return $return;
+						}
 					}
 				}
 			}
