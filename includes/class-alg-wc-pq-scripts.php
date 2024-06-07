@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 1.7.3
+ * @version 4.6.6
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -26,7 +26,7 @@ class Alg_WC_PQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 1.7.3
+	 * @version 4.6.6
 	 * @since   1.0.0
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
 	 * @todo    [dev] (important) (maybe) `force_js_check_min_max()` should go *before* the `force_js_check_step()`?
@@ -45,7 +45,13 @@ class Alg_WC_PQ_Scripts {
 				'do_load_all_variations' => $do_load_all_variations,
 				'max_value_fallback' => $max_value_fallback = get_option( 'alg_wc_pq_qty_dropdown_max_value_fallback', 100 ),
 				'is_dropdown_enabled' => get_option( 'alg_wc_pq_qty_dropdown', 'no' ),
+				'alg_wc_is_catalog' => 'no',
 			);
+			
+			if( is_product_category() || is_shop() ) {
+				$quantities_options['alg_wc_is_catalog'] = 'yes';
+			}
+			
 			$product_quantities = array();
 			if ( $do_load_all_variations ) {
 				foreach ( wc_get_products( array( 'return' => 'ids', 'limit' => -1, 'type' => 'variable' ) ) as $product_id ) {

@@ -1,25 +1,41 @@
 /**
  * alg-wc-pq-variable.js
  *
- * @version 1.7.0
+ * @version 4.6.6
  * @since   1.0.0
  */
 
 /**
  * check_qty
  *
- * @version 1.7.0
+ * @version 4.6.6
  * @since   1.0.0
  * @todo    [dev] (maybe) `jQuery( '[name=quantity]' ).val( '0' )` on `jQuery.isEmptyObject( product_quantities[ variation_id ] )` (i.e. instead of `return`)
  */
-function check_qty() {
-	var variation_id = jQuery( this ).val();
+function check_qty( var_id = 0, that = false ) {
+	var variation_id = 0;
+	
+	if ( var_id > 0 ) {
+		variation_id = var_id;
+	} else {
+		variation_id = jQuery( this ).val();
+	}
+	 
 
 	if ( 0 == variation_id || jQuery.isEmptyObject( product_quantities[ variation_id ] ) ) {
 		return;
 	}
-	var quantity_input = jQuery( this ).parent().find( '[name=quantity]' );
-	var quantity_dropdown = jQuery( this ).parent().find( 'select[name=quantity_pq_dropdown]' );
+	
+	var quantity_input = null;
+	var quantity_dropdown = null;
+	
+	if( that ){
+		quantity_input = that.parent().find( '[name=quantity]' );
+		quantity_dropdown = that.parent().find( 'select[name=quantity_pq_dropdown]' );
+	} else {
+		quantity_input = jQuery( this ).parent().find( '[name=quantity]' );
+		quantity_dropdown = jQuery( this ).parent().find( 'select[name=quantity_pq_dropdown]' );
+	}
 	
 	// Step
 	var step = parseFloat( product_quantities[ variation_id ][ 'step' ] );
@@ -52,7 +68,9 @@ function check_qty() {
 		*/
 	} else if ( quantities_options[ 'reset_to_min' ] ) {
 		// off for variation product
-		// quantity_input.val( product_quantities[ variation_id ][ 'min_qty' ] );
+		if( quantities_options.alg_wc_is_catalog == 'yes' ) {
+			quantity_input.val( product_quantities[ variation_id ][ 'min_qty' ] );
+		}
 	} else if ( quantities_options[ 'reset_to_max' ] ) {
 		quantity_input.val( product_quantities[ variation_id ][ 'max_qty' ] );
 	} else if ( current_qty < parseFloat( product_quantities[ variation_id ][ 'min_qty' ] ) ) {
@@ -152,11 +170,26 @@ function check_qty_all() {
 	jQuery( '[name=variation_id]' ).each( check_qty );
 }
 
+/**
+ * check_qty_category
+ *
+ * @version 4.6.6
+ * @since   4.6.6
+ */
+function check_qty_category() {
+	var vid = jQuery(this).val();
+	
+	// jQuery('form.variations_form').find('input[name="variation_id"], input.variation_id').each( check_qty );
+	if( parseInt( vid ) > 0 ) {
+		check_qty( vid, jQuery(this) );
+	}
+}
+
 
 /**
  * document ready
  *
- * @version 1.7.0
+ * @version 4.6.6
  * @since   1.0.0
  */
  
@@ -169,6 +202,10 @@ jQuery( document ).ready( function() {
 		jQuery( '[name=variation_id]' ).on( 'change', check_qty );
 	}
 	
+	if( quantities_options.alg_wc_is_catalog == 'yes' ) {
+		jQuery( 'body' ).on( 'change', '[name=variation_id]', check_qty_category );
+	}
+	 
 	jQuery( ".single_variation_wrap" ).on( "show_variation", function ( event, variation ) {
 		var variation_id = variation.variation_id;
 		var quantity_input_var = jQuery( this ).parent().find( '[name=quantity]' );
@@ -214,6 +251,12 @@ jQuery( document ).ready( function() {
 	});
 } );
 
+/**
+ * get_options_input
+ *
+ * @version 4.6.6
+ * @since   4.6.6
+ */
 function get_options_input(variation_id, quantity_input_var){
 	var data = {
 		'action'        : 'alg_wc_pq_update_get_input_options',
@@ -242,6 +285,13 @@ function get_options_input(variation_id, quantity_input_var){
 		},
 	} );
 }
+
+/**
+ * get_dropdown_options
+ *
+ * @version 4.6.6
+ * @since   4.6.6
+ */
 function get_dropdown_options(variation_id, quantity_select_var){
 	var data = {
 		'action'        : 'alg_wc_pq_update_get_dropdown_options',
