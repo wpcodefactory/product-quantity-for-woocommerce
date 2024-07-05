@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Section Settings
  *
- * @version 1.6.0
+ * @version 4.6.8
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -12,7 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Section' ) ) :
 
 class Alg_WC_PQ_Settings_Section {
-
+	
+	/**
+	 * qty_step_settings  
+	 *
+	 * @var   string
+	 * @since 4.6.8
+	 */
+	public $qty_step_settings = 1;
+	
 	/**
 	 * Constructor.
 	 *
@@ -39,14 +47,14 @@ class Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_qty_step_settings.
 	 *
-	 * @version 1.6.0
+	 * @version 4.6.8
 	 * @since   1.6.0
 	 * @todo    [dev] customizable `$qty_step_settings` (i.e. instead of always `0.000001`)
 	 */
 	function get_qty_step_settings() {
-		if ( ! isset( $this->qty_step_settings ) ) {
-			$this->qty_step_settings = ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ? '0.000001' : '1' );
-		}
+		/*if ( ! isset( $this->qty_step_settings ) ) {*/
+			$this->qty_step_settings = ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ? 0.000001 : 1 );
+		/*}*/
 		return $this->qty_step_settings;
 	}
 

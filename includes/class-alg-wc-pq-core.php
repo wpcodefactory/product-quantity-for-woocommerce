@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.6.0
+ * @version 4.6.8
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -2440,7 +2440,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * ajax_price_by_qty.
 	 *
-	 * @version 1.6.1
+	 * @version 4.6.8
 	 * @since   1.6.1
 	 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 	 * @todo    [dev] customizable position (instead of the price; after the price, before the price etc.) (NB: maybe do not display for qty=1)
@@ -2542,6 +2542,8 @@ class Alg_WC_PQ_Core {
 				}
 			}
 			
+			
+			
             if($pro_type == 'variable' && ($selectedval != '' || $selectedval != 0))
             {
             	
@@ -2551,6 +2553,8 @@ class Alg_WC_PQ_Core {
 			$product_id =  $_POST['alg_wc_pq_id'] ;
 			$variation_price = $this->find_matching_product_variation_id($product_id,$arrangedArray);
 			$variation_id = $this->find_matching_product_variation_id($product_id,$arrangedArray, true);
+			
+			$step = $this->get_product_qty_step( $product_id, 1, $variation_id );
 			/*
 			$product = new WC_Product_Variable($product_id);
 			$variations = $product->get_available_variations();
@@ -2611,11 +2615,20 @@ class Alg_WC_PQ_Core {
 			
 			if(!empty($variation_price))
 			{
+				$step_quotient = 1;
+				
+				if(!empty($step) && !empty($quantity_fetch)) {
+					$quotient = ($quantity_fetch / $step);
+					if(!empty($quotient)) {
+						$step_quotient = round($quotient, 2);
+					}
+				}
 				$placeholders = array(
 					/*'%price%'   =>$currency_symbol.''.$variation_price*$quantity_fetch,*/
 					'%price%'   =>wc_price( $variation_price*$quantity_fetch ),
 					'%qty%'     => $quantity_fetch,
 					'%unit%'     => ( $quantity_fetch > 1 ? $units : $unit ),
+					'{{%qty / %quantity_step}}'     => $step_quotient,
 				);
 				
 				if($unit!='!na' && $units!='!na'){
@@ -2630,7 +2643,7 @@ class Alg_WC_PQ_Core {
 			$product = wc_get_product( $_POST['alg_wc_pq_id'] );
 			$product_id = $_POST['alg_wc_pq_id'];
 			$quantity_fetch = $_POST['alg_wc_pq_qty'];
-			
+			$step = $this->get_product_qty_step( $product_id, 1 );
 			
 			if ( function_exists('icl_object_id') ) {
 				global $woocommerce_wpml;
@@ -2698,11 +2711,21 @@ class Alg_WC_PQ_Core {
 				$display_price = wc_price( $price );
 			}
 			
+			$step_quotient = 1;
+				
+			if(!empty($step) && !empty($quantity_fetch)) {
+				$quotient = ($quantity_fetch / $step);
+				if(!empty($quotient)) {
+					$step_quotient = round($quotient, 2);
+				}
+			}
+			
 			
 			$placeholders = array(
 				'%price%'   => $display_price,
 				'%qty%'     => $_POST['alg_wc_pq_qty'],
 				'%unit%'     => ( $_POST['alg_wc_pq_qty'] > 1 ? $units : $unit ),
+				'{{%qty / %quantity_step}}'     => $step_quotient,
 			);
 			
 			if($unit!='!na' && $units!='!na'){
@@ -2717,7 +2740,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * alg_wc_pq_update_price_by_qty_on_load.
 	 *
-	 * @version 1.6.1
+	 * @version 4.6.8
 	 * @since   1.6.1
 	 */
 	function alg_wc_pq_update_price_by_qty_on_load($product, $default, $qty=0, $returnUnit=false){
@@ -2805,11 +2828,23 @@ class Alg_WC_PQ_Core {
 				$display_price = wc_price( $price );
 			}
 			
+			$step = $this->get_product_qty_step( $product->get_id(), 1 );
+			
+			$step_quotient = 1;
+				
+			if(!empty($step) && !empty($selectedval)) {
+				$quotient = ($selectedval / $step);
+				if(!empty($quotient)) {
+					$step_quotient = round($quotient, 2);
+				}
+			}
+			
 			
 			$placeholders = array(
 				'%price%'   => $display_price,
 				'%qty%'     => $selectedval,
 				'%unit%'     => ( $selectedval > 1 ? $units : $unit ),
+				'{{%qty / %quantity_step}}'     => $step_quotient,
 			);
 			
 			if($unit!='!na' && $units!='!na'){

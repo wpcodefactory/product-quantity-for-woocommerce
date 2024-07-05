@@ -103,7 +103,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 	/**
 	 * maybe_reset_settings.
 	 *
-	 * @version 1.3.0
+	 * @version 4.6.8
 	 * @since   1.0.0
 	 */
 	function maybe_reset_settings() {
@@ -176,7 +176,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 				}
 				
 				if( isset( $value['id'] ) && $value['id']== 'alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save' ) {
-					$alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save = $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'];
+					$alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] ) ? $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] : null );
 					if($alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save){
 						$optionval = 'yes';
 					}else{

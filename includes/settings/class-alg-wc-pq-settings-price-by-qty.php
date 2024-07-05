@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Price by Qty Section Settings
  *
- * @version 4.6.0
+ * @version 4.6.8
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -44,7 +44,7 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.7.3
+	 * @version 4.6.8
 	 * @since   1.7.0
 	 */
 	function get_settings() {
@@ -134,7 +134,7 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 				'title'    => __( 'Template', 'product-quantity-for-woocommerce' ),
 				'desc_tip' => __( 'You can use HTML here.', 'product-quantity-for-woocommerce' ),
 				'desc'     => sprintf( __( 'Placeholders: %s. %s', 'product-quantity-for-woocommerce' ),
-					'<code>' . implode( '</code>, <code>', array( '%price%', '%qty%', '%unit%' ) ) . '</code>', __('(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)','product-quantity-for-woocommerce') ),
+					'<code>' . implode( '</code>, <code>', array( '%price%', '%qty%', '%unit%', '{{%qty / %quantity_step}}' ) ) . '</code>', __('(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)','product-quantity-for-woocommerce') ),
 				'id'       => 'alg_wc_pq_qty_price_by_qty_template',
 				'default'  => __( '%price% for %qty% pcs.', 'product-quantity-for-woocommerce' ),
 				'type'     => 'textarea',
