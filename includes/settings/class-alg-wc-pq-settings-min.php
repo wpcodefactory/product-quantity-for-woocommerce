@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Min Section Settings
  *
- * @version 4.6.0
+ * @version 4.6.9
  * @since   1.6.0
  * @author  WPFactory
  */
@@ -44,7 +44,7 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.5.10
+	 * @version 4.6.9
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -158,6 +158,18 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use per item quantity options.',
 						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 				'id'       => 'alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			
+			array(
+				'title'    => __( 'Run save "below stock meta"', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'On enable, this option will run save for all products, and please be conscious of the memory limit. This operation takes memory, and if the site has a lot of products, run it at your own risk.', 'product-quantity-for-woocommerce' ) .
+					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use per item quantity options.',
+						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
+				'id'       => 'alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),

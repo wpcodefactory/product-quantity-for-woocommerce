@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Settings
  *
- * @version 1.7.0
+ * @version 4.6.9
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -103,7 +103,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 	/**
 	 * maybe_reset_settings.
 	 *
-	 * @version 4.6.8
+	 * @version 4.6.9
 	 * @since   1.0.0
 	 */
 	function maybe_reset_settings() {
@@ -175,23 +175,47 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 					}
 				}
 				
+				
+				
 				if( isset( $value['id'] ) && $value['id']== 'alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save' ) {
 					$alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] ) ? $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] : null );
-					if($alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save){
-						$optionval = 'yes';
-					}else{
-						$optionval = 'no';
+					
+					
+					$alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta'] ) ? $_POST['alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta'] : null );
+					
+					
+					if( $alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta == 'yes' ) {
+						
+						if( $alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save ){
+							$optionval = 'yes';
+						}else{
+							$optionval = 'no';
+						}
+						
+						$block_size  =  512;
+						$offset = 0;
+						
+						while ( true ) {
+							$args = array(
+								'post_type' 		=> 'product',
+								'post_status'    	=> 'publish',
+								'posts_per_page' 	=> $block_size,
+								'fields' 			=> 'ids',
+								'offset'         	=> $offset,
+							);
+							$loop = new WP_Query( $args );
+								if ( $loop->have_posts() ): 
+									while ( $loop->have_posts() ): $loop->the_post();
+										$id = get_the_ID();
+										update_post_meta($id, '_alg_wc_pq_min_allow_selling_below_stock', $optionval);
+									endwhile; 
+								endif; 
+							wp_reset_postdata();
+							$offset += $block_size;
+						}
+					
 					}
-						$args = array(
-							'post_type' => 'product',
-							'posts_per_page' => -1,
-							'fields' => 'ids'
-						);
-						$loop = new WP_Query( $args );
-						if ( $loop->have_posts() ): while ( $loop->have_posts() ): $loop->the_post();
-						$id = get_the_ID();
-						update_post_meta($id, '_alg_wc_pq_min_allow_selling_below_stock', $optionval);
-						endwhile; endif; wp_reset_postdata();
+					
 				}
 				
 			}

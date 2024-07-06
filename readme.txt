@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1 or higher
 Tested up to: 6.5
-Stable tag: 4.6.8
+Stable tag: 4.6.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -351,6 +351,9 @@ ___
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.6.9 - 06/07/2024 =
+* Add - Minimum Quantity > Run save "below stock meta".
 
 = 4.6.8 - 05/07/2024 =
 * Add - Total Price by Quantity > {{%qty / %quantity_step}}
