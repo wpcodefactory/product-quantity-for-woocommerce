@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1 or higher
-Tested up to: 6.5
-Stable tag: 4.6.10
+Tested up to: 6.6
+Stable tag: 4.6.11
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -351,6 +351,9 @@ ___
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.6.11 - 30/07/2024 =
+* Verified compatibility with WordPress 6.6
 
 = 4.6.10 - 30/07/2024 =
 * Add - Step Quanity > Allow adding all quantity in stock (skip step restriction)
