@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Step Section Settings
  *
- * @version 4.6.0
+ * @version 4.6.10
  * @since   1.6.0
  * @author  WPFactory
  */
@@ -44,7 +44,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.0
+	 * @version 4.6.10
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -138,6 +138,19 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
+			
+			array(
+				'title'    => __( 'Allow adding all quantity in stock (skip step restriction)', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Allow adding all remaining quantities to the cart after the last multiple of the step value. ( Simple product and non-decimal step values are recommended. )', 'product-quantity-for-woocommerce' ) .
+					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use per category quantity options.',
+						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
+				'id'       => 'alg_wc_pq_step_per_item_quantity_allow_all_remaining',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			
 			array(
 				'type'     => 'sectionend',				
 				'id'       => 'alg_wc_pq_step_cat_cart_total_quantity_options',

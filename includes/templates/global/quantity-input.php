@@ -51,7 +51,8 @@ if( $productType == 'variable' &&  'yes' === get_option( 'alg_wc_pq_variation_do
 		}
 	}
 }else if( $productType == 'variation' ){
-	$variation_id = $product->get_variation_id();
+	// $variation_id = $product->get_variation_id();
+	$variation_id = $product->get_id();
 	$parent_id = $product->get_parent_id();
 	$_product = wc_get_product( $parent_id );
 	$is_dropdown_disable = alg_wc_pq()->core->alg_wc_pq_qty_dropdown_is_disable( $_product );

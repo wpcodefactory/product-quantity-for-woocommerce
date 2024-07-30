@@ -906,7 +906,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * pq_change_product_price_unit.
 	 *
-	 * @version 4.6.4
+	 * @version 4.6.10
 	 * @since   4.5.20
 	 */
 	function pq_change_product_price_unit( $price, $product ) {
@@ -970,7 +970,8 @@ class Alg_WC_PQ_Core {
 				if ( !empty($product) && $product->get_id() > 0 && !empty($price) && ! is_admin() ) {
 					$product_id = $product->get_id();
 					if($productType=='variation'){
-						$product_id = $product->get_variation_id();
+						// $product_id = $product->get_variation_id();
+						$product_id = $product->get_id();
 					}
 					if( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes') {
 						$product_unit = $this->get_term_price_unit( $product_id );

@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 4.6.6
+ * @version 4.6.10
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -26,7 +26,7 @@ class Alg_WC_PQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 4.6.6
+	 * @version 4.6.10
 	 * @since   1.0.0
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
 	 * @todo    [dev] (important) (maybe) `force_js_check_min_max()` should go *before* the `force_js_check_step()`?
@@ -205,6 +205,9 @@ class Alg_WC_PQ_Scripts {
 			');
 		}
 		
+		$alg_wc_pq_step_per_item_quantity_allow_all_remaining = get_option( 'alg_wc_pq_step_per_item_quantity_allow_all_remaining', 'no' );
+		$alg_wc_pq_step_section_enabled = get_option( 'alg_wc_pq_step_section_enabled', 'no' );
+		
 		// update html5 message
 		if( ( $_product = wc_get_product( get_the_ID() ) ) && ($_product->is_type( 'simple' ) || $_product->is_type( 'variable' )) && is_product() ){
 			
@@ -227,13 +230,93 @@ class Alg_WC_PQ_Scripts {
 
 			$_notice_underflow = html_entity_decode(str_replace( array_keys( $replaced_values_underflow ), array_values( $replaced_values_underflow ), $message_template_underflow ));
 		
-		wp_enqueue_script(  'alg-wc-pq-invalid-html5-browser-msg',
-					trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-invalid-html5-browser-msg.js', array( 'jquery' ), alg_wc_pq()->version, true );
-		wp_localize_script( 'alg-wc-pq-invalid-html5-browser-msg', 'invalid_html_five_message', array(
-				'rangeOverflow' => $_notice_overflow,
-				'rangeUnderflow' => $_notice_underflow,
-			) );
+			wp_enqueue_script(  'alg-wc-pq-invalid-html5-browser-msg',
+						trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-invalid-html5-browser-msg.js', array( 'jquery' ), alg_wc_pq()->version, true );
+			wp_localize_script( 'alg-wc-pq-invalid-html5-browser-msg', 'invalid_html_five_message', array(
+					'rangeOverflow' => $_notice_overflow,
+					'rangeUnderflow' => $_notice_underflow,
+				) );
+			
+			
+			if ( $alg_wc_pq_step_section_enabled == 'yes' && $alg_wc_pq_step_per_item_quantity_allow_all_remaining == 'yes' ) {
+				
+				if ($_product->is_type( 'simple' ) ) {
+					$product_id = $_product->get_id();
+					$variation_id = 0;
+					$stock_quantity = $_product->get_stock_quantity();
+					$min_qty = alg_wc_pq()->core->get_product_qty_min_max(  $product_id, 1, 'min', $variation_id );
+					$max_qty = alg_wc_pq()->core->get_product_qty_min_max(  $product_id, 1, 'max', $variation_id );
+					$step   = alg_wc_pq()->core->get_product_qty_step( $product_id, 1, $variation_id );
+					
+					if($stock_quantity > $max_qty) {
+						$max_qty = $stock_quantity;
+					}
+									
+					wp_enqueue_script(  'alg-wc-pq-quantity-steps',
+								trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-quantity-steps.js', array( 'jquery' ), alg_wc_pq()->version, true );
+					wp_localize_script( 'alg-wc-pq-quantity-steps', 'alg_wc_pq_support_runtime_steps', array( 
+							'data' => array(
+									'min_qty' => $min_qty,
+									'max_qty' => $max_qty,
+									'step' => $step,
+							),
+							'page' => 'product'
+					) );
+						
+				}
+				
+			}
+			
+			
 		}
+		
+		
+		if ( $alg_wc_pq_step_section_enabled == 'yes' && $alg_wc_pq_step_per_item_quantity_allow_all_remaining == 'yes' ) {
+			
+			if( is_cart() ) {
+				
+				$localize_arr = array();
+				$localize_arr['page'] = 'cart';
+				
+				foreach ( WC()->cart->get_cart() as $cart_item ) {
+					
+					$key = $cart_item['key'];
+					$product_id = $cart_item['product_id'];
+					$variation_id = $cart_item['variation_id'];
+					$quantity = $cart_item['quantity'];
+					
+					if ( $variation_id == 0 ) {
+						
+						$_product = wc_get_product( $product_id );
+						
+						$stock_quantity = $_product->get_stock_quantity();
+						$min_qty = alg_wc_pq()->core->get_product_qty_min_max(  $product_id, 1, 'min', $variation_id );
+						$max_qty = alg_wc_pq()->core->get_product_qty_min_max(  $product_id, 0, 'max', $variation_id );
+						$step   = (int) alg_wc_pq()->core->get_product_qty_step( $product_id, 1, $variation_id );
+						
+						if($stock_quantity > $max_qty) {
+							$max_qty = $stock_quantity;
+						}
+						
+						if( $max_qty > 0 && is_int($step) ) {
+							
+							$localize_arr['data'][$key]['min_qty'] = $min_qty;
+							$localize_arr['data'][$key]['max_qty'] = $max_qty;
+							$localize_arr['data'][$key]['step'] = $step;
+						
+						}
+					}
+					
+				}
+				
+				wp_enqueue_script(  'alg-wc-pq-quantity-steps',
+								trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-quantity-steps.js', array( 'jquery' ), alg_wc_pq()->version, true );
+				wp_localize_script( 'alg-wc-pq-quantity-steps', 'alg_wc_pq_support_runtime_steps', $localize_arr );
+			}
+		
+		}
+		
+		
 	}
 	
 	/**
