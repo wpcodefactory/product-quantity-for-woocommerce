@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.6.8
+ * @version 4.6.12
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -2132,11 +2132,11 @@ class Alg_WC_PQ_Core {
 	/**
 	 * set_quantity_input_step.
 	 *
-	 * @version 1.1.0
+	 * @version 4.6.12
 	 * @since   1.1.0
 	 */
 	function set_quantity_input_step( $step, $_product ) {
-		if($_product->get_type() == 'variation'){
+		if($_product && $_product->get_type() == 'variation'){
 			$variation_id = $_product->get_id();
 			$product_id = wp_get_post_parent_id($_product->get_id());
 			return $this->get_product_qty_step( $product_id, $step, $variation_id );
