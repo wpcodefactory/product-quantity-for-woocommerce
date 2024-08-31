@@ -2104,16 +2104,16 @@ class Alg_WC_PQ_Core {
 	/**
 	 * get_product_qty_step.
 	 *
-	 * @version 4.5.14
+	 * @version 4.6.13
 	 * @since   1.1.0
 	 */
-	function get_product_qty_step( $product_id, $default_step = 0, $variation_id = 0 ) {
+	function get_product_qty_step( $product_id, $default_step = 0, $variation_id = 0, $from_shortcode = false ) {
 		$per_product_id = $product_id;
 		if( $variation_id > 0 ) {
 			$per_product_id = $variation_id;
 		}
 		if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
-			if ( 'yes' === apply_filters( 'alg_wc_pq_quantity_step_per_product', 'no' ) && 0 != ( $step_per_product = apply_filters( 'alg_wc_pq_quantity_step_per_product_value', 0, $per_product_id ) ) ) {
+			if ( 'yes' === apply_filters( 'alg_wc_pq_quantity_step_per_product', 'no' ) && 0 != ( $step_per_product = apply_filters( 'alg_wc_pq_quantity_step_per_product_value', 0, $per_product_id, $from_shortcode ) ) ) {
 				return apply_filters( 'alg_wc_pq_get_product_qty_step', $step_per_product, $per_product_id );
 			} else if ( 'yes' === apply_filters( 'alg_wc_pq_quantity_step_per_product_cat', 'no' ) && 0 != ( $step_per_product = apply_filters( 'alg_wc_pq_quantity_step_per_product_cat_value', 0, $product_id ) ) ) {
 				return apply_filters( 'alg_wc_pq_get_product_qty_step', $step_per_product, $product_id );
@@ -2135,13 +2135,13 @@ class Alg_WC_PQ_Core {
 	 * @version 4.6.12
 	 * @since   1.1.0
 	 */
-	function set_quantity_input_step( $step, $_product ) {
+	function set_quantity_input_step( $step, $_product, $from_shortcode = false ) {
 		if($_product && $_product->get_type() == 'variation'){
 			$variation_id = $_product->get_id();
 			$product_id = wp_get_post_parent_id($_product->get_id());
 			return $this->get_product_qty_step( $product_id, $step, $variation_id );
 		}
-		return $this->get_product_qty_step( $this->get_product_id( $_product ), $step );
+		return $this->get_product_qty_step( $this->get_product_id( $_product ), $step, 0, $from_shortcode );
 	}
 	
 	/**

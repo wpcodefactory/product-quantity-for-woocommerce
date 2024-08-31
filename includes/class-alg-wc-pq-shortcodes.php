@@ -32,7 +32,7 @@ class Alg_WC_PQ_Shortcodes {
 	/**
 	 * get_min_or_max_or_step_value.
 	 *
-	 * @version 1.6.0
+	 * @version 4.6.12
 	 * @since   1.6.0
 	 * @todo    [dev] maybe rethink default values for `min` and `step`
 	 */
@@ -43,7 +43,7 @@ class Alg_WC_PQ_Shortcodes {
 			case 'max':
 				return alg_wc_pq()->core->set_quantity_input_max( 0, $product );
 			case 'step':
-				return alg_wc_pq()->core->set_quantity_input_step( 1, $product );
+				return alg_wc_pq()->core->set_quantity_input_step( 1, $product, true );
 			case 'price_unit':
 				return alg_wc_pq()->core->set_quantity_input_price_unit( '', $product );
 		}

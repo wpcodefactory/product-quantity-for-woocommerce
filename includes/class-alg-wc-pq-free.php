@@ -25,7 +25,7 @@ class Alg_WC_PQ_Free {
 	function __construct() {
 		
 		add_filter( 'alg_wc_pq_quantity_step_per_product',           		array( $this, 'quantity_step_per_product' ) );
-		add_filter( 'alg_wc_pq_quantity_step_per_product_value',     		array( $this, 'quantity_step_per_product_value' ), 10, 2 );
+		add_filter( 'alg_wc_pq_quantity_step_per_product_value',     		array( $this, 'quantity_step_per_product_value' ), 10, 3 );
 
 		
 		add_filter( 'alg_wc_pq_per_item_quantity_per_product',       		array( $this, 'per_item_quantity_per_product' ), 10, 2 );
@@ -57,10 +57,10 @@ class Alg_WC_PQ_Free {
 	/**
 	 * quantity_step_per_product_value.
 	 *
-	 * @version 1.8.0
+	 * @version 4.6.13
 	 * @since   1.8.0
 	 */
-	function quantity_step_per_product_value( $value, $product_id ) {
+	function quantity_step_per_product_value( $value, $product_id, $from_shortcode = false ) {
 		$product = wc_get_product($product_id);
 		if('yes' == get_post_meta( $product_id, '_' . 'alg_wc_pq_min_allow_selling_below_stock', true )){
 			// $product = wc_get_product($product_id);
@@ -71,7 +71,7 @@ class Alg_WC_PQ_Free {
 			}
 		}
 		$step = get_post_meta( $product_id, '_' . 'alg_wc_pq_step', true );
-		if ( 'yes' === get_option( 'alg_wc_pq_step_per_item_quantity_per_product_less2x', 'no' ) ) {
+		if ( 'yes' === get_option( 'alg_wc_pq_step_per_item_quantity_per_product_less2x', 'no' ) && ! $from_shortcode ) {
 			if($step > 0){
 				$step = floatval($step);
 				$doublestep = $step * 2;
