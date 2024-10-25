@@ -2,33 +2,34 @@
 /**
  * Product Quantity for WooCommerce - Step Section Settings
  *
- * @version 4.6.10
+ * @version 4.7.0
  * @since   1.6.0
+ *
  * @author  WPFactory
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Step' ) ) :
 
 class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
-	
+
 	/**
-	 * id 
+	 * id.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $id   = null;
-	
+	public $id = null;
+
 	/**
-	 * desc  
+	 * desc.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $desc    = null;
-	
+	public $desc = null;
+
 	/**
 	 * Constructor.
 	 *
@@ -44,7 +45,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.6.10
+	 * @version 4.7.0
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -52,7 +53,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Quantity Step Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Define the increment/step of quantity when someone clicks +/- on the quantity field, this works closely with minimum quantity in a lot of cases, for example if you sell bottles in shrinks of 6, <br>you will have to define a step of 6, but also a minimum of 6 (leaving a minimum of 1 will make quantities 1,7,13, etc.).','product-quantity-for-woocommerce'),
+				'desc'     => __('Define the increment/step of quantity when someone clicks +/- on the quantity field, this works closely with minimum quantity in a lot of cases, for example if you sell bottles in shrinks of 6, <br>you will have to define a step of 6, but also a minimum of 6 (leaving a minimum of 1 will make quantities 1,7,13, etc.).','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_step_options',
 			),
 			array(
@@ -69,7 +70,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Cart Total Quantity Step Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Regardless of any product quantities defined, this option will guarantee a step of the defined value here on the cart level, this is very handy for shops that deal with fixed-size packaging <br> (i.e. package that fits quantity of 10, regardless of product).','product-quantity-for-woocommerce'),
+				'desc'     => __('Regardless of any product quantities defined, this option will guarantee a step of the defined value here on the cart level, this is very handy for shops that deal with fixed-size packaging <br> (i.e. package that fits quantity of 10, regardless of product).','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_step_cart_total_quantity_options',
 			),
 			array(
@@ -79,6 +80,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'default'  => 0,
 				'type'     => 'number',
 				'custom_attributes' => array( 'min' => 0, 'step' => $this->get_qty_step_settings() ),
+				'alg_empty_value'   => 0,
 			),
 			array(
 				'title'    => __( 'Message', 'product-quantity-for-woocommerce' ),
@@ -97,7 +99,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Per Item Quantity Step Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This section allows you to specify a step quantity for all products in your store at once, tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
+				'desc'     => __('This section allows you to specify a step quantity for all products in your store at once, tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_step_per_item_options',
 			),
 			array(
@@ -107,6 +109,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'default'  => 0,
 				'type'     => 'number',
 				'custom_attributes' => array( 'min' => 0, 'step' => $this->get_qty_step_settings() ),
+				'alg_empty_value'   => 0,
 			),
 			array(
 				'title'    => __( 'Per product', 'product-quantity-for-woocommerce' ),
@@ -115,7 +118,6 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_step_per_product_enabled',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				/*'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),*/
 			),
 			array(
 				'title'    => __( 'Message', 'product-quantity-for-woocommerce' ),
@@ -138,7 +140,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-			
+
 			array(
 				'title'    => __( 'Allow adding all quantity in stock (skip step restriction)', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
@@ -150,15 +152,15 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-			
+
 			array(
-				'type'     => 'sectionend',				
+				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_step_cat_cart_total_quantity_options',
 			),
 			array(
 				'title'    => __( 'Per Category Step Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Ticking this option will create a new field under your store categories pages where you will be able to set a quantity step that will be applied to all products under that category.','product-quantity-for-woocommerce'),				
+				'desc'     => __('Ticking this option will create a new field under your store categories pages where you will be able to set a quantity step that will be applied to all products under that category.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_step_per_cat_item_quantity_options',
 			),
 			array(
@@ -172,17 +174,15 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-			
-			
-			
+
 			array(
-				'type'     => 'sectionend',				
+				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_step_per_attribute_quantity_options',
 			),
 			array(
 				'title'    => __( 'Per Attribute Step Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This option works the exact same way as category, you also get the option to enable it per attributes that are selected in the field below instead of enabling it to all attributes at once.','product-quantity-for-woocommerce'),				
+				'desc'     => __('This option works the exact same way as category, you also get the option to enable it per attributes that are selected in the field below instead of enabling it to all attributes at once.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_step_per_attribute_item_quantity_options',
 			),
 			array(
@@ -215,18 +215,14 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 				'css'      => 'width:100%;',
 				'alg_wc_pq_raw' => true,
 			),
-			
-			
-			
-			
-			
+
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_step_per_item_options',
 			),
 		);
 	}
-	
+
 	/**
 	 * get_attribute_lists
 	 *

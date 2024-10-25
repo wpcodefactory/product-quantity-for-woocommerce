@@ -3,28 +3,29 @@
 Plugin Name: Min Max Default Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 4.6.13
+Version: 4.7.0
 Author: WPFactory
-Author URI: http://www.WPFactory.com
+Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
 Domain Path: /langs
-Copyright: © 2023 WPFactory
-WC tested up to: 9.1
+WC tested up to: 9.3
 Requires Plugins: woocommerce
-License: GNU General Public License v3.0
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'alg_wc_pq_check_free_active' ) ) :
 function alg_wc_pq_check_free_active() {
-	
+
 	$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
-	
+
 	if ( alg_wc_pq_check_if_active_plugin( 'product-quantity-for-woocommerce', 'product-quantity-for-woocommerce.php', $active_plugins ) ) {
-	deactivate_plugins( plugin_basename( __FILE__ ) );
-    wp_die( sprintf( __( 'You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s', 'product-quantity-for-woocommerce' ), '<a href="' . wp_nonce_url( 'plugins.php?plugin_status=all' ) . '">', '</a>' ) );
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		wp_die( sprintf(
+			__( 'You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s', 'product-quantity-for-woocommerce' ),
+			'<a href="' . wp_nonce_url( 'plugins.php?plugin_status=all' ) . '">',
+			'</a>'
+		) );
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );
 		}
@@ -33,7 +34,7 @@ function alg_wc_pq_check_free_active() {
 }
 endif;
 
-register_activation_hook(__FILE__, 'alg_wc_pq_check_free_active');
+register_activation_hook( __FILE__, 'alg_wc_pq_check_free_active' );
 
 require_once( 'includes/functions/alg-wc-pq-core-functions.php' );
 
@@ -58,23 +59,23 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '4.6.13';
-	
+	public $version = '4.7.0';
+
 	/**
-	 * core      
+	 * core.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $core      = null;
-	
+	public $core = null;
+
 	/**
-	 * settings       
+	 * settings.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $settings       = null;
+	public $settings = null;
 
 	/**
 	 * @var   Alg_WC_PQ The single instance of the class
@@ -167,8 +168,7 @@ final class Alg_WC_PQ {
 		$this->settings['styling']      = require_once( 'includes/settings/class-alg-wc-pq-settings-styling.php' );
 		$this->settings['admin']        = require_once( 'includes/settings/class-alg-wc-pq-settings-admin.php' );
 		$this->settings['advanced']     = require_once( 'includes/settings/class-alg-wc-pq-settings-advanced.php' );
-		
-		
+
 		// Version updated
 		if ( get_option( 'alg_wc_pq_version', '' ) !== $this->version ) {
 			add_action( 'admin_init', array( $this, 'version_updated' ) );
@@ -186,7 +186,7 @@ final class Alg_WC_PQ {
 	function action_links( $links ) {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
-$custom_links[] = '<a style=" font-weight: bold;" target="_blank" href="' . esc_url( 'https://wordpress.org/support/plugin/product-quantity-for-woocommerce/reviews/#new-post"' ) . '">' .
+		$custom_links[] = '<a style=" font-weight: bold;" target="_blank" href="' . esc_url( 'https://wordpress.org/support/plugin/product-quantity-for-woocommerce/reviews/#new-post"' ) . '">' .
 				__( 'Review Us', 'product-quantity-for-woocommerce' ) . '</a>';
 		if ( 'product-quantity-for-woocommerce.php' === basename( __FILE__ ) ) {
 			$custom_links[] = '<a style="color: green; font-weight: bold;" target="_blank" href="' . esc_url( 'https://wpfactory.com/item/product-quantity-for-woocommerce/"' ) . '">' .
@@ -257,8 +257,6 @@ if ( ! function_exists( 'alg_wc_pq' ) ) {
 
 alg_wc_pq();
 
-/* Added By Me - START */
-
 if ( ! function_exists( 'mp_sync_on_product_save' ) ) {
 	add_action('woocommerce_update_product', 'mp_sync_on_product_save', 10, 1);
 	function mp_sync_on_product_save( $post_id ) {
@@ -266,7 +264,7 @@ if ( ! function_exists( 'mp_sync_on_product_save' ) ) {
 		if(function_exists('icl_object_id') && function_exists('icl_get_languages')){
 			$languages = icl_get_languages();
 		}
-		
+
 		$product = wc_get_product( $post_id );
 		if ( $product->is_type( 'variable' ) ) {
 			$main_product_meta = get_post_meta( $post_id );
@@ -275,20 +273,20 @@ if ( ! function_exists( 'mp_sync_on_product_save' ) ) {
 			$main_product_step_quantity_to_all = get_post_meta( $post_id, 'main_product_step_quantity_to_all' , true );
 			$main_product_default_quantity_to_all = get_post_meta( $post_id, 'main_product_default_quantity_to_all' , true );
 			$main_product_exact_qty_allowed_quantity_to_all = get_post_meta( $post_id, 'main_product_exact_qty_allowed_quantity_to_all' , true );
-			
+
 			update_post_meta( $post_id, 'main_product_min_quantity_to_all', 'no' );
 			update_post_meta( $post_id, 'main_product_max_quantity_to_all', 'no' );
 			update_post_meta( $post_id, 'main_product_step_quantity_to_all', 'no' );
 			update_post_meta( $post_id, 'main_product_default_quantity_to_all', 'no' );
 			update_post_meta( $post_id, 'main_product_exact_qty_allowed_quantity_to_all', 'no' );
-			
+
 			$_alg_wc_pq_min = get_post_meta( $post_id, '_alg_wc_pq_min' , true );
 			$_alg_wc_pq_max = get_post_meta( $post_id, '_alg_wc_pq_max' , true );
 			$_alg_wc_pq_step = get_post_meta( $post_id, '_alg_wc_pq_step' , true );
 			$_alg_wc_pq_default = get_post_meta( $post_id, '_alg_wc_pq_default' , true );
 			$_alg_wc_pq_exact_qty_allowed = get_post_meta( $post_id, '_alg_wc_pq_exact_qty_allowed' , true );
 			$available_variations = $product->get_available_variations();
-		
+
 			foreach($available_variations as $res) {
 				$variation_id = $res['variation_id'];
 				$variation_meta = get_post_meta( $variation_id );
@@ -304,12 +302,12 @@ if ( ! function_exists( 'mp_sync_on_product_save' ) ) {
 				if($main_product_default_quantity_to_all == 'yes') {
 					update_post_meta( $variation_id, '_alg_wc_pq_default', $_alg_wc_pq_default );
 				}
-				
+
 				if($main_product_exact_qty_allowed_quantity_to_all == 'yes') {
 					update_post_meta( $variation_id, '_alg_wc_pq_exact_qty_allowed', $_alg_wc_pq_exact_qty_allowed );
 				}
-				
-				
+
+
 				/*for language WPML support*/
 				if(function_exists('icl_object_id') && function_exists('icl_get_languages')){
 					foreach ($languages as $lang) {
@@ -328,15 +326,15 @@ if ( ! function_exists( 'mp_sync_on_product_save' ) ) {
 								if($main_product_default_quantity_to_all == 'yes') {
 									update_post_meta( $lang_vpid, '_alg_wc_pq_default', $_alg_wc_pq_default );
 								}
-								
+
 								if($main_product_exact_qty_allowed_quantity_to_all == 'yes') {
 									update_post_meta( $lang_vpid, '_alg_wc_pq_exact_qty_allowed', $_alg_wc_pq_exact_qty_allowed );
 								}
 							}
 						}
-					}				
+					}
 				}
-				
+
 
 			}
 		}
@@ -346,9 +344,9 @@ if ( ! function_exists( 'mp_sync_on_product_save' ) ) {
 if ( ! function_exists( 'misha_adv_product_options' ) ) {
 	add_action( 'woocommerce_product_options_advanced', 'misha_adv_product_options');
 	function misha_adv_product_options(){
-	 
+
 		echo '<div class="options_group custom_quantity_options_group">';
-	 
+
 		woocommerce_wp_checkbox( array(
 			'id'      => 'main_product_min_quantity_to_all',
 			'value'   => get_post_meta( get_the_ID(), 'main_product_min_quantity_to_all', true ),
@@ -377,7 +375,7 @@ if ( ! function_exists( 'misha_adv_product_options' ) ) {
 			'desc_tip' => true,
 			'description' => 'Add Main product quantity for all variations',
 		) );
-		
+
 		woocommerce_wp_checkbox( array(
 			'id'      => 'main_product_exact_qty_allowed_quantity_to_all',
 			'value'   => get_post_meta( get_the_ID(), 'main_product_exact_qty_allowed_quantity_to_all', true ),
@@ -385,12 +383,11 @@ if ( ! function_exists( 'misha_adv_product_options' ) ) {
 			'desc_tip' => true,
 			'description' => 'Add Main product quantity for all variations',
 		) );
-	 
+
 		echo '</div>';
-	 
+
 	}
 }
- 
 
 if ( ! function_exists( 'misha_save_fields' ) ) {
 	add_action( 'woocommerce_process_product_meta', 'misha_save_fields', 10, 2 );
@@ -398,47 +395,37 @@ if ( ! function_exists( 'misha_save_fields' ) ) {
 		if( !empty( $_POST['main_product_min_quantity_to_all'] ) ) {
 			$alg_wc_pq_min_name = 'alg_wc_pq_min_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_min_quantity_to_all', $_POST['main_product_min_quantity_to_all'] );
-			// update_post_meta( $id, $alg_wc_pq_min_name, $_POST['main_product_min_quantity_to_all'] );
 		}  else {
 			$alg_wc_pq_min_name = 'alg_wc_pq_min_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_min_quantity_to_all', 'no' );
-			// update_post_meta( $id, $alg_wc_pq_min_name, 'no' );
 		}
 		if( !empty( $_POST['main_product_max_quantity_to_all'] ) ) {
 			$alg_wc_pq_max_name = 'alg_wc_pq_max_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_max_quantity_to_all', $_POST['main_product_max_quantity_to_all'] );
-			// update_post_meta( $id, $alg_wc_pq_max_name, $_POST['main_product_max_quantity_to_all'] );
 		} else {
 			$alg_wc_pq_max_name = 'alg_wc_pq_max_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_max_quantity_to_all', 'no' );
-			// update_post_meta( $id, $alg_wc_pq_max_name, 'no' );
 		}
 		if( !empty( $_POST['main_product_step_quantity_to_all'] ) ) {
 			$alg_wc_pq_step_name = 'alg_wc_pq_step_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_step_quantity_to_all', $_POST['main_product_step_quantity_to_all'] );
-			// update_post_meta( $id, $alg_wc_pq_step_name, $_POST['main_product_step_quantity_to_all'] );
 		} else {
 			$alg_wc_pq_step_name = 'alg_wc_pq_step_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_step_quantity_to_all', 'no' );
-			// update_post_meta( $id, $alg_wc_pq_step_name, 'no' );
 		}
 		if( !empty( $_POST['main_product_default_quantity_to_all'] ) ) {
 			$alg_wc_pq_default_name = 'alg_wc_pq_default_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_default_quantity_to_all', $_POST['main_product_default_quantity_to_all'] );
-			// update_post_meta( $id, $alg_wc_pq_default_name, $_POST['main_product_default_quantity_to_all'] );
 		} else {
 			$alg_wc_pq_default_name = 'alg_wc_pq_default_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_default_quantity_to_all', 'no' );
-			// update_post_meta( $id, $alg_wc_pq_default_name, 'no' );
 		}
 		if( !empty( $_POST['main_product_exact_qty_allowed_quantity_to_all'] ) ) {
 			$alg_wc_pq_exact_qty_allowed_name = 'alg_wc_pq_exact_qty_allowed_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_exact_qty_allowed_quantity_to_all', $_POST['main_product_exact_qty_allowed_quantity_to_all'] );
-			// update_post_meta( $id, $alg_wc_pq_exact_qty_allowed_name, $_POST['main_product_exact_qty_allowed_quantity_to_all'] );
 		} else {
 			$alg_wc_pq_exact_qty_allowed_name = 'alg_wc_pq_exact_qty_allowed_'.$id.'_to_all';
 			update_post_meta( $id, 'main_product_exact_qty_allowed_quantity_to_all', 'no' );
-			// update_post_meta( $id, $alg_wc_pq_exact_qty_allowed_name, 'no' );
 		}
 	}
 }
@@ -457,7 +444,7 @@ if ( ! function_exists( 'alg_wc_pq_update_closedate' ) ) {
 		die;
 	}
 }
-	
+
 if ( ! function_exists( 'alg_wc_pg_admin_footer_js' ) ) {
 	add_action('admin_footer', 'alg_wc_pg_admin_footer_js');
 	function alg_wc_pg_admin_footer_js($data) {
@@ -483,7 +470,7 @@ if ( ! function_exists( 'alg_wc_pg_admin_footer_js' ) ) {
 					});
 					is_checkedalg_wc_pqwp_role();
 				});
-				
+
 				jQuery("#alg_wc_pq_enable_exclude_role_specofic").on("click", function(){
 					is_checkedalg_wc_pqwp_role();
 				});
@@ -495,15 +482,15 @@ if ( ! function_exists( 'alg_wc_pg_admin_footer_js' ) ) {
 							 if (jQuery.isFunction(jQuery('#alg_wc_pq_required_user_roles').select2)){
 								jQuery( '#alg_wc_pq_required_user_roles' ).select2();
 							 }
-							 
+
 							 jQuery('#alg_wc_pq_non_required_user_roles').removeAttr('disabled');
 						} else {
-							 
+
 							 jQuery('#alg_wc_pq_non_required_user_roles').attr('disabled','disabled');
 							 if (jQuery.isFunction(jQuery('#alg_wc_pq_non_required_user_roles').select2)){
 								jQuery( '#alg_wc_pq_non_required_user_roles' ).select2();
 							 }
-							 
+
 							 jQuery('#alg_wc_pq_required_user_roles').removeAttr('disabled');
 						}
 					}
@@ -550,7 +537,7 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 			z-index: 99;
 			font-weight: 600;
 			border-radius: 10px;
-			
+
 		}
 		.alg_wc_pq-button-upsell{
 			display:inline-flex;
@@ -606,11 +593,11 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 			var alg_wc_pq_min_name = 'alg_wc_pq_min_'+product_id+'_to_all';
 			var alg_wc_pq_min_to_all = jQuery("input[type='checkbox'][name='main_product_min_quantity_to_all']");
 			var alg_wc_pq_min = jQuery("input[type='checkbox'][name='"+alg_wc_pq_min_name+"']");
-			
+
 			if(alg_wc_pq_min_to_all.prop('checked')){
 				alg_wc_pq_min.prop('checked',true);
 			}
-			
+
 			alg_wc_pq_min.on('change', function(){
 				alg_wc_pq_min_to_all.prop('checked',this.checked);
 				if(this.checked){
@@ -619,15 +606,15 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 					alg_wc_pq_min_to_all.val('no');
 				}
 			});
-			
+
 			var alg_wc_pq_max_name = 'alg_wc_pq_max_'+product_id+'_to_all';
 			var alg_wc_pq_max_to_all = jQuery("input[type='checkbox'][name='main_product_max_quantity_to_all']");
 			var alg_wc_pq_max = jQuery("input[type='checkbox'][name='"+alg_wc_pq_max_name+"']");
-			
+
 			if(alg_wc_pq_max_to_all.prop('checked')){
 				alg_wc_pq_max.prop('checked',true);
 			}
-			
+
 			alg_wc_pq_max.on('change', function(){
 				alg_wc_pq_max_to_all.prop('checked',this.checked);
 				if(this.checked){
@@ -639,11 +626,11 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 			var alg_wc_pq_step_name = 'alg_wc_pq_step_'+product_id+'_to_all';
 			var alg_wc_pq_step_to_all = jQuery("input[type='checkbox'][name='main_product_step_quantity_to_all']");
 			var alg_wc_pq_step = jQuery("input[type='checkbox'][name='"+alg_wc_pq_step_name+"']");
-			
+
 			if(alg_wc_pq_step_to_all.prop('checked')){
 				alg_wc_pq_step.prop('checked',true);
 			}
-			
+
 			alg_wc_pq_step.on('change', function(){
 				alg_wc_pq_step_to_all.prop('checked',this.checked);
 				if(this.checked){
@@ -655,11 +642,11 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 			var alg_wc_pq_default_name = 'alg_wc_pq_default_'+product_id+'_to_all';
 			var alg_wc_pq_default_to_all = jQuery("input[type='checkbox'][name='main_product_default_quantity_to_all']");
 			var alg_wc_pq_default = jQuery("input[type='checkbox'][name='"+alg_wc_pq_default_name+"']");
-			
+
 			if(alg_wc_pq_default_to_all.prop('checked')){
 				alg_wc_pq_default.prop('checked',true);
 			}
-			
+
 			alg_wc_pq_default.on('change', function(){
 				alg_wc_pq_default_to_all.prop('checked',this.checked);
 				if(this.checked){
@@ -668,15 +655,15 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 					alg_wc_pq_default_to_all.val('no');
 				}
 			});
-			
+
 			var alg_wc_pq_exact_qty_allowed_name = 'alg_wc_pq_exact_qty_allowed_'+product_id+'_to_all';
 			var alg_wc_pq_exact_qty_allowed_to_all = jQuery("input[type='checkbox'][name='main_product_exact_qty_allowed_quantity_to_all']");
 			var alg_wc_pq_exact_qty_allowed = jQuery("input[type='checkbox'][name='"+alg_wc_pq_exact_qty_allowed_name+"']");
-			
+
 			if(alg_wc_pq_exact_qty_allowed_to_all.prop('checked')){
 				alg_wc_pq_exact_qty_allowed.prop('checked',true);
 			}
-			
+
 			alg_wc_pq_exact_qty_allowed.on('change', function(){
 				alg_wc_pq_exact_qty_allowed_to_all.prop('checked',this.checked);
 				if(this.checked){
@@ -685,74 +672,67 @@ if ( ! function_exists( 'quantity_to_all' ) ) {
 					alg_wc_pq_exact_qty_allowed_to_all.val('no');
 				}
 			});
-			
-			
+
+
 		});
 		</script>
 		<?php
 	}
 }
 
-/* Added By Me - END */
-
 if ( ! function_exists( 'pq_select_footer_scripts' ) ) :
 add_action( 'wp_footer', 'pq_select_footer_scripts', 99 );
 function pq_select_footer_scripts(){
-  ?>
-  <script>
-  jQuery(document).ready(function() {
-	  var qty_select = jQuery("select.qty");
-	  if(qty_select.length > 0)
-	  {
-		  /*qty_select.on('change', function(){*/
-		  jQuery(document).on('change', 'select.qty:not(.disable_price_by_qty)', function(){
-				var input = jQuery(this).closest('div.quantity').find('input.qty');
-				if(input.length > 0)
-				{
-					  sync_classes( input );
-					// alert(jQuery(this).val());
-					input.val(jQuery(this).val()).change();
+	?>
+	<script>
+	jQuery( document ).ready( function () {
+		var qty_select = jQuery( "select.qty" );
+		if ( qty_select.length > 0 ) {
+			jQuery( document ).on( 'change', 'select.qty:not(.disable_price_by_qty)', function () {
+				var input = jQuery( this ).closest( 'div.quantity' ).find( 'input.qty' );
+				if ( input.length > 0 ) {
+					sync_classes( input );
+					input.val( jQuery( this ).val() ).change();
 				}
-				
-				var add_to_cart = jQuery(this).closest('div.quantity').siblings( ".add-to-cart" );
-				var add_cart = jQuery(this).closest('div.quantity').siblings( ".add_to_cart_button" );
-				if(add_to_cart.length > 0)
-				{
-					add_to_cart.find('a.add_to_cart_button').attr( "data-quantity", jQuery(this).val() );
-				}else if(add_cart.length > 0){
-					add_cart.attr( "data-quantity", jQuery(this).val() );
+
+				var add_to_cart = jQuery( this ).closest( 'div.quantity' ).siblings( ".add-to-cart" );
+				var add_cart = jQuery( this ).closest( 'div.quantity' ).siblings( ".add_to_cart_button" );
+				if ( add_to_cart.length > 0 ) {
+					add_to_cart.find( 'a.add_to_cart_button' ).attr( "data-quantity", jQuery( this ).val() );
+				} else if ( add_cart.length > 0 ) {
+					add_cart.attr( "data-quantity", jQuery( this ).val() );
 				}
-		  });
-		  
-		  qty_select.change();
-		 
-	  }
-	  
-	  
-  });
-  jQuery( '[name="quantity"]' ).not( ".disable_price_by_qty" ).on( 'change', function(e) {
-	var current_val = parseFloat(jQuery(this).val());
-	if ( Number.isInteger( current_val ) === false )
-	{
-		current_val = current_val.toFixed(4);
-		current_val = parseFloat(current_val);
-		jQuery(this).val( current_val );
-	} else {
-		current_val = parseInt( current_val );
-		jQuery(this).val( current_val );
-	}
-  });
-  
-  function sync_classes( input ) {
-	  var classList = input.attr('class').split(/\s+/);
+			} );
+
+			qty_select.change();
+
+		}
+
+	} );
+
+	jQuery( '[name="quantity"]' ).not( ".disable_price_by_qty" ).on( 'change', function(e) {
+		var current_val = parseFloat(jQuery(this).val());
+		if ( Number.isInteger( current_val ) === false )
+		{
+			current_val = current_val.toFixed(4);
+			current_val = parseFloat(current_val);
+			jQuery(this).val( current_val );
+		} else {
+			current_val = parseInt( current_val );
+			jQuery(this).val( current_val );
+		}
+	});
+
+	function sync_classes( input ) {
+		var classList = input.attr('class').split(/\s+/);
 		jQuery(classList).each(function( index, item){
 			if( !jQuery("select.qty").hasClass(item) ) {
 				jQuery("select.qty").addClass(item);
 			}
 		});
-  }
-  </script>
-  <?php
+	}
+	</script>
+	<?php
 }
 endif;
 
@@ -762,22 +742,22 @@ if ( ! function_exists( 'pq_custom_admin_js_add_order' ) ) {
 		?>
 		<script>
 		jQuery( document.body ).on( 'wc_backbone_modal_loaded', function( evt, target ) {
-			if(	target == 'wc-modal-add-products') {
+			if( target == 'wc-modal-add-products') {
 				jQuery('.wc-backbone-modal-content').find('input.quantity').attr('step','0.00001');
 				jQuery('.wc-backbone-modal-content').find('input.quantity').val('1');
 			}
-		});	
+		});
 		jQuery( document.body ).on( 'wc-enhanced-select-init', function( evt ) {
 				jQuery('.wc-backbone-modal-content').find('input.quantity').attr('step','0.00001');
 				jQuery('.wc-backbone-modal-content').find('input.quantity').val('1');
-		});	
+		});
 		</script>
-		<?php } 
+		<?php }
 	}
 	add_action('admin_footer', 'pq_custom_admin_js_add_order');
 }
 
-add_action( 'before_woocommerce_init', function() {
+add_action( 'before_woocommerce_init', function () {
 	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
 		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 	}

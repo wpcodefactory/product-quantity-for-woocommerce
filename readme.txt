@@ -1,9 +1,9 @@
 === Min Max Default Quantity for WooCommerce ===
-Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
+Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli, aegkr
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
-Requires at least: 6.1 or higher
+Requires at least: 6.1
 Tested up to: 6.6
-Stable tag: 4.6.13
+Stable tag: 4.7.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,9 +15,9 @@ Define a min/max, step, decimal & default quantity for products, show a dropdown
 
 [Main Page](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Main Page**") |  [Support Forum](https://wpfactory.com/support/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Support Forum**") | [Documentation & How to](https://wpfactory.com/docs/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Documentation & How to**") | [Demo](https://minmaxquantity.instawp.xyz/)
 
-With a growing demand for detailed customization like defining minimum, maximum, and step quantities, there’s a need for an advanced solution. 
+With a growing demand for detailed customization like defining minimum, maximum, and step quantities, there’s a need for an advanced solution.
 
-Our plugin offers unparalleled control over min/max/step quantities for your WooCommerce store, all within a user-friendly interface. 
+Our plugin offers unparalleled control over min/max/step quantities for your WooCommerce store, all within a user-friendly interface.
 
 All plugin features work for simple & variable products, meaning that you will have the option to select the desired quantity rule regardless if the product is simple, variable, or variation itself.
 
@@ -249,7 +249,7 @@ Those who would like to go further and beyond, we have a premium version of [Min
 
 * **Define Units by Product, Category & Attribute**
 
-* **Show Total Price by Quantity on Shop Pages** 
+* **Show Total Price by Quantity on Shop Pages**
 
 ### 🏆 Price Unit Pro Features  ###
 
@@ -352,6 +352,12 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 
 == Changelog ==
 
+= 4.7.0 - 25/10/2024 =
+* Fix - Fatal error in the cart block.
+* Dev - Added a filter to save empty option values in WooCommerce settings.
+* Dev - Code refactoring and cleanup.
+* WC tested up to: 9.3.
+
 = 4.6.13 - 31/08/2024 =
 * Fix - Quantity info conflict with "Allow changing Step Quantity if stock is less than 2x of Step".
 
@@ -423,7 +429,7 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 * Update readme file.
 
 = 4.5.17 - 30/09/2023 =
-* Update function quantity_step_per_product_cat_value() code to support older functionality. 
+* Update function quantity_step_per_product_cat_value() code to support older functionality.
 
 = 4.5.16 - 26/09/2023 =
 * WC tested up to: 8.1
@@ -436,7 +442,7 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 = 4.5.14 - 04/09/2023 =
 * Fix - update code "save_stock_status_overwrite_thresold" function.
 * Fix - update fomd condition.
-* Fix - apply filter to those values where missing for min, max, default, steps. 
+* Fix - apply filter to those values where missing for min, max, default, steps.
 
 = 4.5.13 - 25/08/2023 =
 * Added - Fixed quantity > Permit the calculation of subset sums from the allowed quantities.
@@ -461,14 +467,14 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 * WC tested up to: 7.9
 
 = 4.5.9 - 13/07/2023 =
-* valiation added for zero quantity add to cart and remove validation of zero quantity add to cart in grouped product. 
+* valiation added for zero quantity add to cart and remove validation of zero quantity add to cart in grouped product.
 
 = 4.5.8 - 18/06/2023 =
 * WC tested up to: 7.8.
 
 = 4.5.7 - 11/04/2023 =
 * Issue fix with warning at the time of duplicate product.
-* added new setting ( Advance >> Replace woocommerce quantity field template ) for HTML 5 woocommerce quantity template as it not overwrite some theme quantity template. 
+* added new setting ( Advance >> Replace woocommerce quantity field template ) for HTML 5 woocommerce quantity template as it not overwrite some theme quantity template.
 * Compatibility with WordPress 6.2 verified
 
 = 4.5.6 - 30/03/2023 =

@@ -2,34 +2,34 @@
 /**
  * Product Quantity for WooCommerce - Fixed Section Settings
  *
- * @version 4.6.0
+ * @version 4.7.0
  * @since   1.6.0
+ *
  * @author  WPFactory
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Fixed' ) ) :
 
 class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 
+	/**
+	 * id.
+	 *
+	 * @var   string
+	 * @since 4.6.0
+	 */
+	public $id = null;
 
 	/**
-	 * id 
+	 * desc.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $id   = null;
-	
-	/**
-	 * desc  
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $desc    = null;
-	
+	public $desc = null;
+
 
 	/**
 	 * Constructor.
@@ -46,7 +46,7 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.0
+	 * @version 4.7.0
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -54,7 +54,7 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Allowed Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Specify fixed (allowed/disallowed) quantities for products in your store, settings here overwrite minimum/maximum/or step quantities (if defined site-wide), <br>only the values here will be accepted for the products that have this field defined.
+				'desc'     => __('Specify fixed (allowed/disallowed) quantities for products in your store, settings here overwrite minimum/maximum/or step quantities (if defined site-wide), <br>only the values here will be accepted for the products that have this field defined.
 				Functions here follow the same logic in minimum/maximum quantities on cart/all products/product level quantities.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_exact_qty_allowed_options',
 			),
@@ -116,7 +116,7 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 				'css'      => 'width:100%;',
 				'alg_wc_pq_raw' => true,
 			),
-			
+
 			array(
 				'title'    => __( 'Per Attribute', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
@@ -138,8 +138,8 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 				'options'  => $this->get_attribute_field_lists(),
 			),
 		);
-		
-		$fields2 = array(	
+
+		$fields2 = array(
 			array(
 				'title'    => __( 'Message', 'product-quantity-for-woocommerce' ),
 				'desc_tip' => __( 'Message to be displayed to customer on wrong allowed quantities in attribute.', 'product-quantity-for-woocommerce' ),
@@ -160,7 +160,7 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-			
+
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_exact_qty_allowed_options',
@@ -232,6 +232,7 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 				'default'  => 0,
 				'type'     => 'text',
 				'custom_attributes' => array( 'min' => 0, 'step' => $this->get_qty_step_settings() ),
+				'alg_empty_value'   => 0,
 			),
 			array(
 				'title'    => __( 'Message', 'product-quantity-for-woocommerce' ),
@@ -248,10 +249,10 @@ class Alg_WC_PQ_Settings_Fixed extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_exact_options',
 			),
 		);
-		
+
 		return array_merge($fields,$fields2);
 	}
-	
+
 	/**
 	 * get_attribute_lists
 	 *

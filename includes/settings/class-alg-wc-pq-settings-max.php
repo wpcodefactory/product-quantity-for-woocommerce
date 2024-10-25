@@ -2,33 +2,34 @@
 /**
  * Product Quantity for WooCommerce - Max Section Settings
  *
- * @version 4.6.0
+ * @version 4.7.0
  * @since   1.6.0
+ *
  * @author  WPFactory
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Max' ) ) :
 
 class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
-	
+
 	/**
-	 * id 
+	 * id.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $id   = null;
-	
+	public $id = null;
+
 	/**
-	 * desc  
+	 * desc.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $desc    = null;
-	
+	public $desc = null;
+
 	/**
 	 * Constructor.
 	 *
@@ -44,7 +45,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.0
+	 * @version 4.7.0
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -52,7 +53,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Specify a maximum quantity based on one of the options below. Note that to make maximum quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Maximum quantity.', 'product-quantity-for-woocommerce'),
+				'desc'     => __('Specify a maximum quantity based on one of the options below. Note that to make maximum quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Maximum quantity.', 'product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_options',
 			),
 			array(
@@ -69,7 +70,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Cart Total Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Specify maximum quantity on the cart level, <strong>regardless</strong> of number of products on it.
+				'desc'     => __('Specify maximum quantity on the cart level, <strong>regardless</strong> of number of products on it.
 				The Message field will allow you to customize the notification message on wrong quantities','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_cart_total_quantity_options',
 			),
@@ -80,6 +81,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 				'default'  => 0,
 				'type'     => 'number',
 				'custom_attributes' => array( 'min' => 0, 'step' => $this->get_qty_step_settings() ),
+				'alg_empty_value'   => 0,
 			),
 			array(
 				'title'    => __( 'Message', 'product-quantity-for-woocommerce' ),
@@ -98,7 +100,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Per Item Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This section allows you to specify a maximum quantity for all products in your store at once (not combined), tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
+				'desc'     => __('This section allows you to specify a maximum quantity for all products in your store at once (not combined), tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_per_item_quantity_options',
 			),
 			array(
@@ -108,6 +110,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 				'default'  => 0,
 				'type'     => 'number',
 				'custom_attributes' => array( 'min' => 0, 'step' => $this->get_qty_step_settings() ),
+				'alg_empty_value'   => 0,
 			),
 			array(
 				'title'    => __( 'Per product', 'product-quantity-for-woocommerce' ),
@@ -116,7 +119,6 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_max_per_item_quantity_per_product',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				/*'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),*/
 			),
 			array(
 				'title'    => __( 'Message', 'product-quantity-for-woocommerce' ),
@@ -135,7 +137,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Per Category Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Enabling this will create two new fields in all categories pages you have, one to set a maximum quantity for all products (instead of filling it one by one), and one for specifying a maximum quantity for all products <strong>combined</strong> in the cart.','product-quantity-for-woocommerce'),
+				'desc'     => __('Enabling this will create two new fields in all categories pages you have, one to set a maximum quantity for all products (instead of filling it one by one), and one for specifying a maximum quantity for all products <strong>combined</strong> in the cart.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_per_cat_item_quantity_options',
 			),
 			array(
@@ -159,13 +161,13 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 				'alg_wc_pq_raw' => true,
 			),
 			array(
-				'type'     => 'sectionend',				
+				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_max_per_attribute_quantity_options',
 			),
 			array(
 				'title'    => __( 'Per Attribute Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This option works the exact same way as category, you also get the option to enable it per attributes that are selected in the field below instead of enabling it to all attributes at once.','product-quantity-for-woocommerce'),				
+				'desc'     => __('This option works the exact same way as category, you also get the option to enable it per attributes that are selected in the field below instead of enabling it to all attributes at once.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_per_attribute_item_quantity_options',
 			),
 			array(
@@ -204,7 +206,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			),
 		);
 	}
-	
+
 	/**
 	 * get_attribute_lists
 	 *

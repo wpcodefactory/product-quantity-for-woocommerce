@@ -2,33 +2,34 @@
 /**
  * Product Quantity for WooCommerce - Max Section Settings
  *
- * @version 4.6.0
+ * @version 4.7.0
  * @since   1.6.0
+ *
  * @author  WPFactory
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Default' ) ) :
 
 class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
-	
+
 	/**
-	 * id 
+	 * id.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $id   = null;
-	
+	public $id = null;
+
 	/**
-	 * desc  
+	 * desc.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
-	public $desc    = null;
-	
+	public $desc = null;
+
 	/**
 	 * Constructor.
 	 *
@@ -44,7 +45,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.0
+	 * @version 4.7.0
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -52,7 +53,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Default Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Define a value that\'s different from the default \'1\' that appears on any product when the page loads, you can have it different from the minimum quantity defined.
+				'desc'     => __('Define a value that\'s different from the default \'1\' that appears on any product when the page loads, you can have it different from the minimum quantity defined.
 				Note that to make default quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Default quantity.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_default_options',
 			),
@@ -63,7 +64,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
-			
+
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_default_cart_total_quantity_options',
@@ -71,7 +72,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Per Item Default Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('This section allows you to specify a default quantity for all products in your store at once, tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
+				'desc'     => __('This section allows you to specify a default quantity for all products in your store at once, tick "Per Product"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_default_per_item_quantity_options',
 			),
 			array(
@@ -81,6 +82,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 				'default'  => 0,
 				'type'     => 'number',
 				'custom_attributes' => array( 'min' => 0, 'step' => $this->get_qty_step_settings() ),
+				'alg_empty_value'   => 0,
 			),
 			array(
 				'title'    => __( 'Per product', 'product-quantity-for-woocommerce' ),
@@ -104,13 +106,13 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 				'alg_wc_pq_raw' => true,
 			),
 			array(
-				'type'     => 'sectionend',				
+				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_default_cat_cart_total_quantity_options',
 			),
 			array(
 				'title'    => __( 'Per Category Default Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => __('Ticking this option will create a new field under your store categories pages where you will be able to set a default quantity that will be applied to all products under that category.','product-quantity-for-woocommerce'),				
+				'desc'     => __('Ticking this option will create a new field under your store categories pages where you will be able to set a default quantity that will be applied to all products under that category.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_default_per_cat_item_quantity_options',
 			),
 			array(

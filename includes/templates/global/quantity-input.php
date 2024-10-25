@@ -2,8 +2,8 @@
 /**
  * Product quantity inputs // Drop down by WPFactory
  *
- * @version 7.8.0
  * @since   1.6.0
+ *
  * @todo    [dev] (important) re-check new template in WC 3.6
  * @todo    [dev] (important) dropdown: variable products (check "validate on add to cart") (i.e. without fallbacks)
  * @todo    [dev] (important) dropdown: maybe fallback min & step?
@@ -51,7 +51,6 @@ if( $productType == 'variable' &&  'yes' === get_option( 'alg_wc_pq_variation_do
 		}
 	}
 }else if( $productType == 'variation' ){
-	// $variation_id = $product->get_variation_id();
 	$variation_id = $product->get_id();
 	$parent_id = $product->get_parent_id();
 	$_product = wc_get_product( $parent_id );
@@ -96,12 +95,11 @@ if ( $max_value && $min_value === $max_value ) {
 			<?php
 			// Values
 			$values = array();
-			/*for ( $i = $min_value; $i <= $max_value; $i = $i + $step ) {*/
 			$range = range($min_value, $max_value, $step);
 			foreach ($range as $i) {
 				$values[] = (float) round($i, 7);
 			}
-			
+
 			$end = end($range);
 			if(!empty($end)){
 				$last = (float) $end + (float) $step;
@@ -109,21 +107,20 @@ if ( $max_value && $min_value === $max_value ) {
 					$values[] = (float) round($last, 7);
 				}
 			}
-			
+
 			if ( ! empty( $input_value ) && ! in_array( $input_value, $values ) && $input_value > $min_value && is_cart()) {
 				$values[] = (float) round($input_value, 7);
 			}
-			
-			
+
 			// Fixed qty
 			foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
-				
+
 				if ( $product && '' != ( $fixed_qty = alg_wc_pq()->core->get_product_exact_qty( $product->get_id(), $allowed_or_disallowed, '', $variation_id ) ) ) {
-					
+
 					$fixed_qty = alg_wc_pq()->core->process_exact_qty_option( $fixed_qty );
 					$values = array_unique(array_merge($values, $fixed_qty));
 					$values = array_values($values);
-					
+
 					foreach ( $values as $i => $value ) {
 						if (
 							( 'allowed'    === $allowed_or_disallowed && ! in_array( $value, $fixed_qty ) ) ||
@@ -135,7 +132,6 @@ if ( $max_value && $min_value === $max_value ) {
 
 				}
 			}
-			
 
 			// Labels
 			$label_template_singular = '';
@@ -151,7 +147,7 @@ if ( $max_value && $min_value === $max_value ) {
 			if ( '' === $label_template_plural ) {
 				$label_template_plural   = do_shortcode(get_option( 'alg_wc_pq_qty_dropdown_label_template_plural',   '%qty%' ));
 			}
-			
+
 			// Select options
 			foreach ( $values as $value ) {
 				if($max_purchase_quantity >= $value || $max_purchase_quantity < 0){
@@ -167,7 +163,7 @@ if ( $max_value && $min_value === $max_value ) {
 		<?php echo do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_template_after', '' ) ); ?>
 	</div>
 	<?php
-}else if( 'yes' === get_option( 'alg_wc_pq_exact_qty_allowed_section_enabled', 'no' ) && '' != ( $fixed_qty = alg_wc_pq()->core->get_product_exact_qty( $product->get_id(), 'allowed' ) ) && !$is_dropdown_disable ){ 
+}else if( 'yes' === get_option( 'alg_wc_pq_exact_qty_allowed_section_enabled', 'no' ) && '' != ( $fixed_qty = alg_wc_pq()->core->get_product_exact_qty( $product->get_id(), 'allowed' ) ) && !$is_dropdown_disable ){
 	?>
 	<div class="quantity dropdown_pq second">
 		<?php echo do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_template_before', '' ) ); ?>
@@ -181,13 +177,7 @@ if ( $max_value && $min_value === $max_value ) {
 			// Values
 			$fixed_qty = alg_wc_pq()->core->process_exact_qty_option( $fixed_qty );
 			$values = $fixed_qty;
-			
-			/*
-			if ( ! empty( $input_value ) && ! in_array( $input_value, $values ) && $input_value > $min_value && is_cart()) {
-				$values[] = $input_value;
-			}
-			*/
-			
+
 			asort( $values );
 			// Fixed qty
 			foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
@@ -207,7 +197,7 @@ if ( $max_value && $min_value === $max_value ) {
 			if ( ! empty( $input_value ) && ! in_array( $input_value, $values ) && $input_value > $min_value && is_cart()) {
 				$values[] = $input_value;
 			}
-			
+
 			asort( $values );
 
 			// Labels
@@ -224,14 +214,14 @@ if ( $max_value && $min_value === $max_value ) {
 			if ( '' === $label_template_plural ) {
 				$label_template_plural   = do_shortcode(get_option( 'alg_wc_pq_qty_dropdown_label_template_plural',   '%qty%' ));
 			}
-			
+
 			if(is_product()){
 				$default_quantity = alg_wc_pq()->core->get_product_qty_default( $product->get_id(), 'no' );
 				if($default_quantity != 'no'){
 					$input_value = $default_quantity;
 				}
 			}
-			
+
 			// Select options
 			foreach ( $values as $value ) {
 				if($max_purchase_quantity >= $value || $max_purchase_quantity < 0){

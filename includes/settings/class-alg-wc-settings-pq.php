@@ -2,12 +2,13 @@
 /**
  * Product Quantity for WooCommerce - Settings
  *
- * @version 4.6.9
+ * @version 4.7.0
  * @since   1.0.0
+ *
  * @author  WPFactory
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Alg_WC_Settings_PQ' ) ) :
 
@@ -16,7 +17,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.0
+	 * @version 4.7.0
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -24,6 +25,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 		$this->label = __( 'Product Quantity', 'product-quantity-for-woocommerce' );
 		parent::__construct();
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'maybe_unsanitize_option' ), PHP_INT_MAX, 3 );
+		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_empty_option_value' ), PHP_INT_MAX, 2 );
 	}
 
 	/**
@@ -34,6 +36,25 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 	 */
 	function maybe_unsanitize_option( $value, $option, $raw_value ) {
 		return ( ! empty( $option['alg_wc_pq_raw'] ) ? $raw_value : $value );
+	}
+
+	/**
+	 * Save an empty option value.
+	 *
+	 * @version 4.7.0
+	 * @since   4.7.0
+	 */
+	function save_empty_option_value( $value, $option ) {
+
+		$sanitized_value = sanitize_text_field( $value );
+
+		// If the sanitized value is not empty, return it
+		if ( '' !== $sanitized_value ) {
+			return $sanitized_value;
+		}
+
+		// Check if the option has a default value when empty (alg_empty_value)
+		return ( isset( $option['alg_empty_value'] ) ? sanitize_text_field( $option['alg_empty_value'] ) : $sanitized_value );
 	}
 
 	/**
@@ -48,7 +69,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 			array(
 				'title'    => __( '', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'	   => apply_filters( 'alg_wc_pq_advertise' , '<div class="alg_wc_pq_right_ad">
+				'desc'     => apply_filters( 'alg_wc_pq_advertise' , '<div class="alg_wc_pq_right_ad">
 				<div class="alg_wc_pq-sidebar__section">
 				<div class="alg_wc_pq_name_heading">
 				<img class="alg_wc_pq_resize" src="https://wpfactory.com/wp-content/uploads/Product-Quantity-for-WooCommerce-300x300.png">
@@ -94,9 +115,9 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 				'id'        => $this->id . '_' . $current_section . '_reset_options',
 			),
 		) );
-		
+
 		$return = array_merge($initialarray, $return);
-		
+
 		return $return;
 	}
 
@@ -145,14 +166,14 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 						update_option('alg_wc_pq_disable_urls_excluded_pids','');
 					}
 				}
-				
-				
+
+
 				if( isset( $value['id'] ) && $value['id']== 'alg_wc_pq_disable_by_category' ) {
 					$c_p_ids = [];
 					$category_ids = $_POST['alg_wc_pq_disable_by_category'];
-					
+
 					$pids = $this->get_product_ids($category_ids);
-					
+
 					if ( $pids && !empty($pids) && count( $pids ) ) {
 						foreach ( $pids as $pid ) {
 							if(!empty($pid)) {
@@ -174,27 +195,27 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 						update_option('alg_wc_pq_disable_category_excluded_pids','');
 					}
 				}
-				
-				
-				
+
+
+
 				if( isset( $value['id'] ) && $value['id']== 'alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save' ) {
 					$alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] ) ? $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] : null );
-					
-					
+
+
 					$alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta'] ) ? $_POST['alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta'] : null );
-					
-					
+
+
 					if( $alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta == 'yes' ) {
-						
+
 						if( $alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save ){
 							$optionval = 'yes';
 						}else{
 							$optionval = 'no';
 						}
-						
+
 						$block_size  =  512;
 						$offset = 0;
-						
+
 						while ( true ) {
 							$args = array(
 								'post_type' 		=> 'product',
@@ -204,20 +225,20 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 								'offset'         	=> $offset,
 							);
 							$loop = new WP_Query( $args );
-								if ( $loop->have_posts() ): 
+								if ( $loop->have_posts() ):
 									while ( $loop->have_posts() ): $loop->the_post();
 										$id = get_the_ID();
 										update_post_meta($id, '_alg_wc_pq_min_allow_selling_below_stock', $optionval);
-									endwhile; 
-								endif; 
+									endwhile;
+								endif;
 							wp_reset_postdata();
 							$offset += $block_size;
 						}
-					
+
 					}
-					
+
 				}
-				
+
 			}
 		}
 	}
@@ -232,7 +253,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 		echo '<div class="notice notice-warning is-dismissible"><p><strong>' .
 			__( 'Your settings have been reset.', 'product-quantity-for-woocommerce' ) . '</strong></p></div>';
 	}
-	
+
 	/**
 	 * get_product_ids.
 	 *
@@ -258,7 +279,7 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 					 )
 				 )
 		);
-		
+
 		$exclude_id_query = new WP_Query($exclude_id_args);
 		wp_reset_postdata();
 		if(!empty($exclude_id_query) && $exclude_id_query->found_posts > 0){
