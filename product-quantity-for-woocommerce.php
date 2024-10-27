@@ -3,7 +3,7 @@
 Plugin Name: Min Max Default Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 4.7.0
+Version: 4.7.1
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -14,6 +14,9 @@ Requires Plugins: woocommerce
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * alg_wc_pq_check_free_active.
+ */
 if ( ! function_exists( 'alg_wc_pq_check_free_active' ) ) :
 function alg_wc_pq_check_free_active() {
 
@@ -34,23 +37,33 @@ function alg_wc_pq_check_free_active() {
 }
 endif;
 
+/**
+ * register_activation_hook.
+ */
 register_activation_hook( __FILE__, 'alg_wc_pq_check_free_active' );
 
+/**
+ * functions.
+ */
 require_once( 'includes/functions/alg-wc-pq-core-functions.php' );
 
+/**
+ * do_disable.
+ */
 if ( alg_wc_pq_do_disable( basename( __FILE__ ) ) ) {
 	return;
 }
 
-if ( ! class_exists( 'Alg_WC_PQ' ) ) :
-
 /**
- * Main Alg_WC_PQ Class
+ * Main Alg_WC_PQ Class.
  *
  * @class   Alg_WC_PQ
+ *
  * @version 4.6.12
  * @since   1.0.0
  */
+if ( ! class_exists( 'Alg_WC_PQ' ) ) :
+
 final class Alg_WC_PQ {
 
 	/**
@@ -59,7 +72,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '4.7.0';
+	public $version = '4.7.1';
 
 	/**
 	 * core.

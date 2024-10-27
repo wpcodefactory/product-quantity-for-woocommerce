@@ -295,7 +295,7 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:107
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:114
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:134
-#: includes/settings/class-alg-wc-settings-pq.php:70
+#: includes/settings/class-alg-wc-settings-pq.php:75
 msgid ""
 msgstr ""
 
@@ -2137,19 +2137,19 @@ msgstr ""
 msgid "E.g.: %s"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-pq.php:102
+#: includes/settings/class-alg-wc-settings-pq.php:108
 msgid "Reset Section"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-pq.php:107
+#: includes/settings/class-alg-wc-settings-pq.php:113
 msgid "Reset section settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-pq.php:108
+#: includes/settings/class-alg-wc-settings-pq.php:114
 msgid "Reset"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-pq.php:254
+#: includes/settings/class-alg-wc-settings-pq.php:255
 msgid "Your settings have been reset."
 msgstr ""
 
@@ -2174,21 +2174,21 @@ msgctxt "Product quantity input tooltip"
 msgid "Qty"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:25
+#: product-quantity-for-woocommerce.php:28
 #, php-format
 msgid ""
 "You need to deactivate Product Quantity Control for WooCommerce. <br/> %s "
 "back to plugins. %s"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:188
+#: product-quantity-for-woocommerce.php:201
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:190
+#: product-quantity-for-woocommerce.php:203
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:193
+#: product-quantity-for-woocommerce.php:206
 msgid "Go Pro"
 msgstr ""
