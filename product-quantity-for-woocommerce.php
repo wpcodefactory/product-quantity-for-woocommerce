@@ -3,7 +3,7 @@
 Plugin Name: Min Max Default Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 4.7.1
+Version: 4.8.0
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -59,7 +59,7 @@ if ( alg_wc_pq_do_disable( basename( __FILE__ ) ) ) {
  *
  * @class   Alg_WC_PQ
  *
- * @version 4.6.12
+ * @version 4.8.0
  * @since   1.0.0
  */
 if ( ! class_exists( 'Alg_WC_PQ' ) ) :
@@ -72,7 +72,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '4.7.1';
+	public $version = '4.8.0';
 
 	/**
 	 * core.
@@ -116,11 +116,17 @@ final class Alg_WC_PQ {
 	/**
 	 * Alg_WC_PQ Constructor.
 	 *
-	 * @version 1.8.0
+	 * @version 4.8.0
 	 * @since   1.0.0
+	 *
 	 * @access  public
 	 */
 	function __construct() {
+
+		// Load libs
+		if ( is_admin() ) {
+			require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+		}
 
 		// Set up localisation
 		load_plugin_textdomain( 'product-quantity-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
@@ -155,12 +161,20 @@ final class Alg_WC_PQ {
 	/**
 	 * admin.
 	 *
-	 * @version 1.7.0
+	 * @version 4.8.0
 	 * @since   1.3.0
 	 */
 	function admin() {
+
 		// Action links
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+
+		// "Recommendations" page
+		$this->add_cross_selling_library();
+
+		// WC Settings tab as WPFactory submenu item
+		$this->move_wc_settings_tab_to_wpfactory_menu();
+
 		// Settings
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 		require_once( 'includes/settings/class-alg-wc-pq-metaboxes.php' );
@@ -176,7 +190,7 @@ final class Alg_WC_PQ {
 		$this->settings['fixed']        = require_once( 'includes/settings/class-alg-wc-pq-settings-fixed.php' );
 		$this->settings['dropdown']     = require_once( 'includes/settings/class-alg-wc-pq-settings-dropdown.php' );
 		$this->settings['price_by_qty'] = require_once( 'includes/settings/class-alg-wc-pq-settings-price-by-qty.php' );
-		$this->settings['price_unit'] 	= require_once( 'includes/settings/class-alg-wc-pq-settings-price-unit.php' );
+		$this->settings['price_unit']   = require_once( 'includes/settings/class-alg-wc-pq-settings-price-unit.php' );
 		$this->settings['qty_info']     = require_once( 'includes/settings/class-alg-wc-pq-settings-qty-info.php' );
 		$this->settings['styling']      = require_once( 'includes/settings/class-alg-wc-pq-settings-styling.php' );
 		$this->settings['admin']        = require_once( 'includes/settings/class-alg-wc-pq-settings-admin.php' );
@@ -186,26 +200,76 @@ final class Alg_WC_PQ {
 		if ( get_option( 'alg_wc_pq_version', '' ) !== $this->version ) {
 			add_action( 'admin_init', array( $this, 'version_updated' ) );
 		}
+
 	}
 
 	/**
 	 * Show action links on the plugin screen.
 	 *
-	 * @version 1.2.0
+	 * @version 4.8.0
 	 * @since   1.0.0
+	 *
 	 * @param   mixed $links
 	 * @return  array
 	 */
 	function action_links( $links ) {
 		$custom_links = array();
-		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
+		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq' ) . '">' .
+			__( 'Settings', 'product-quantity-for-woocommerce' ) .
+		'</a>';
 		$custom_links[] = '<a style=" font-weight: bold;" target="_blank" href="' . esc_url( 'https://wordpress.org/support/plugin/product-quantity-for-woocommerce/reviews/#new-post"' ) . '">' .
-				__( 'Review Us', 'product-quantity-for-woocommerce' ) . '</a>';
+			__( 'Review Us', 'product-quantity-for-woocommerce' ) .
+		'</a>';
 		if ( 'product-quantity-for-woocommerce.php' === basename( __FILE__ ) ) {
 			$custom_links[] = '<a style="color: green; font-weight: bold;" target="_blank" href="' . esc_url( 'https://wpfactory.com/item/product-quantity-for-woocommerce/"' ) . '">' .
-				__( 'Go Pro', 'product-quantity-for-woocommerce' ) . '</a>';
+				__( 'Go Pro', 'product-quantity-for-woocommerce' ) .
+			'</a>';
 		}
 		return array_merge( $custom_links, $links );
+	}
+
+	/**
+	 * add_cross_selling_library.
+	 *
+	 * @version 4.8.0
+	 * @since   4.8.0
+	 */
+	function add_cross_selling_library() {
+
+		if ( ! class_exists( '\WPFactory\WPFactory_Cross_Selling\WPFactory_Cross_Selling' ) ) {
+			return;
+		}
+
+		$cross_selling = new \WPFactory\WPFactory_Cross_Selling\WPFactory_Cross_Selling();
+		$cross_selling->setup( array( 'plugin_file_path' => __FILE__ ) );
+		$cross_selling->init();
+
+	}
+
+	/**
+	 * move_wc_settings_tab_to_wpfactory_menu.
+	 *
+	 * @version 4.8.0
+	 * @since   4.8.0
+	 */
+	function move_wc_settings_tab_to_wpfactory_menu() {
+
+		if ( ! class_exists( '\WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu' ) ) {
+			return;
+		}
+
+		$wpfactory_admin_menu = \WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu::get_instance();
+
+		if ( ! method_exists( $wpfactory_admin_menu, 'move_wc_settings_tab_to_wpfactory_menu' ) ) {
+			return;
+		}
+
+		$wpfactory_admin_menu->move_wc_settings_tab_to_wpfactory_menu( array(
+			'wc_settings_tab_id' => 'alg_wc_pq',
+			'menu_title'         => __( 'Product Quantity', 'product-quantity-for-woocommerce' ),
+			'page_title'         => __( 'Product Quantity', 'product-quantity-for-woocommerce' ),
+		) );
+
 	}
 
 	/**

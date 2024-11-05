@@ -390,6 +390,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
+#: product-quantity-for-woocommerce.php:269
+#: product-quantity-for-woocommerce.php:270
 msgid "Product Quantity"
 msgstr ""
 
@@ -2181,14 +2183,14 @@ msgid ""
 "back to plugins. %s"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:201
+#: product-quantity-for-woocommerce.php:218
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:203
+#: product-quantity-for-woocommerce.php:221
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:206
+#: product-quantity-for-woocommerce.php:225
 msgid "Go Pro"
 msgstr ""
