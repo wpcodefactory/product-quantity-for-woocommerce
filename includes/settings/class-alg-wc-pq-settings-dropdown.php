@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Dropdown Section Settings
  *
- * @version 4.6.0
+ * @version 4.9.0
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -12,23 +12,23 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Dropdown' ) ) :
 
 class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
-	
+
 	/**
-	 * id 
+	 * id.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
 	public $id   = null;
-	
+
 	/**
-	 * desc  
+	 * desc.
 	 *
 	 * @var   string
 	 * @since 4.6.0
 	 */
 	public $desc    = null;
-	
+
 	/**
 	 * Constructor.
 	 *
@@ -44,11 +44,12 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.1
+	 * @version 4.9.0
 	 * @since   1.7.0
 	 */
 	function get_settings() {
 		return array(
+
 			array(
 				'title'    => __( 'Quantity Dropdown Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
@@ -61,7 +62,7 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_dropdown',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				
+
 			),
 			array(
 				'title'    => __( 'Add filter / search on the top of dropdown', 'product-quantity-for-woocommerce' ),
@@ -69,7 +70,7 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_dropdown_search_filter',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				
+
 			),
 			array(
 				'title'    => __( 'Max value fallback', 'product-quantity-for-woocommerce' ),
@@ -86,9 +87,8 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_dropdown_thousand_separator_enabled',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				/*'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),*/
 			),
-			
+
 			array(
 				'title'    => __( 'Separator', 'product-quantity-for-woocommerce' ),
 				'desc_tip' => __( 'use separator like ( ,)', 'product-quantity-for-woocommerce' ),
@@ -104,12 +104,12 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_dropdown_disable_dropdown_on_cart',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				
 			),
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_qty_dropdown_options',
 			),
+
 			array(
 				'title'    => __( 'Dropdown Labels', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
@@ -119,8 +119,8 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Singular label template', 'product-quantity-for-woocommerce' ),
-				'desc'     => $this->message_replaced_values( array( '%qty%', '%price%' ) ) . ' ' .
-					sprintf( __( 'For example try %s', 'product-quantity-for-woocommerce' ),  '<code>%qty% for %price%</code>' ),
+				'desc'     => $this->message_replaced_values( array( '%qty%', '%price%', '%item_price%' ) ) . ' ' .
+					sprintf( __( 'For example try %s', 'product-quantity-for-woocommerce' ),  '<code>%qty% for %item_price% = %price%</code>' ),
 				'id'       => 'alg_wc_pq_qty_dropdown_label_template_singular',
 				'default'  => '%qty%',
 				'type'     => 'text',
@@ -128,8 +128,8 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Plural label template', 'product-quantity-for-woocommerce' ),
-				'desc'     => $this->message_replaced_values( array( '%qty%', '%price%' ) ) . ' ' .
-					sprintf( __( 'For example try %s', 'product-quantity-for-woocommerce' ),  '<code>%qty% for %price%</code>' ),
+				'desc'     => $this->message_replaced_values( array( '%qty%', '%price%', '%item_price%' ) ) . ' ' .
+					sprintf( __( 'For example try %s', 'product-quantity-for-woocommerce' ),  '<code>%qty% for %item_price% = %price%</code>' ),
 				'id'       => 'alg_wc_pq_qty_dropdown_label_template_plural',
 				'default'  => '%qty%',
 				'type'     => 'text',
@@ -179,7 +179,7 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_qty_dropdown_label_options',
 			),
-			
+
 			array(
 				'title'    => __( 'Template', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Optional quantity dropdown frontend template modifications.', 'product-quantity-for-woocommerce' ),
@@ -212,6 +212,7 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_qty_dropdown_template_options',
 			),
+
 			array(
 				'title'    => __( 'Quantity dropdown on archive pages', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
@@ -228,15 +229,14 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-			
 			array(
 				'type'     => 'sectionend',
-				'id'       => 'alg_wc_pq_qty_dropdown_template_options',
+				'id'       => 'alg_wc_pq_qty_dropdown_qty_archive_options_title',
 			),
-			
+
 		);
 	}
-	
+
 	/**
 	 * get_attribute_lists
 	 *
@@ -253,7 +253,7 @@ class Alg_WC_PQ_Settings_Dropdown extends Alg_WC_PQ_Settings_Section {
 			'order'      => $order,
 			'hide_empty' => $hide_empty,
 		);
-		 
+
 		$product_categories = get_terms( 'product_cat', $cat_args );
 		if ( $product_categories ) {
 			foreach ( $product_categories as $key => $category ) {

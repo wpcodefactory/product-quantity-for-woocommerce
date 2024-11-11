@@ -13,54 +13,54 @@ msgstr ""
 msgid "Qty Step"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:667
+#: includes/class-alg-wc-pq-core.php:1205
 #, php-format
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:672
+#: includes/class-alg-wc-pq-core.php:1210
 #, php-format
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-alg-wc-pq-core.php:673
+#: includes/class-alg-wc-pq-core.php:1211
 msgid "View cart"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1608
-#: includes/class-alg-wc-pq-core.php:1627
+#: includes/class-alg-wc-pq-core.php:2146
+#: includes/class-alg-wc-pq-core.php:2165
 msgid ""
 "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1669
-#: includes/class-alg-wc-pq-core.php:3447
+#: includes/class-alg-wc-pq-core.php:2207
+#: includes/class-alg-wc-pq-core.php:3985
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2638
-#: includes/class-alg-wc-pq-core.php:2735
-#: includes/class-alg-wc-pq-core.php:2854
+#: includes/class-alg-wc-pq-core.php:3176
+#: includes/class-alg-wc-pq-core.php:3273
+#: includes/class-alg-wc-pq-core.php:3392
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3458
+#: includes/class-alg-wc-pq-core.php:3996
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3524
-#: includes/class-alg-wc-pq-core.php:3554
+#: includes/class-alg-wc-pq-core.php:4062
+#: includes/class-alg-wc-pq-core.php:4092
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3907
+#: includes/class-alg-wc-pq-core.php:4445
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3980
+#: includes/class-alg-wc-pq-core.php:4518
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -390,8 +390,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce.php:269
-#: product-quantity-for-woocommerce.php:270
+#: product-quantity-for-woocommerce.php:290
+#: product-quantity-for-woocommerce.php:291
 msgid "Product Quantity"
 msgstr ""
 
@@ -511,11 +511,11 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:326
 #: includes/settings/class-alg-wc-pq-settings-default.php:89
 #: includes/settings/class-alg-wc-pq-settings-default.php:120
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:68
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:84
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:69
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:85
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:140
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:160
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:223
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:224
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:79
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:100
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:122
@@ -809,7 +809,7 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:62
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:60
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:61
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:63
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:175
 #: includes/settings/class-alg-wc-pq-settings-max.php:61
@@ -926,40 +926,40 @@ msgstr ""
 msgid "Quantity Dropdown"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:53
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:54
 msgid "Quantity Dropdown Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:56
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:57
 msgid ""
 "Show a dropdown instead of the default quantity input field in WooCommerce. "
 "To show a dropdown, it has to end somewhere, so it will work only if any of "
 "(Maximum Quantity, Fixed Quantity, Max. Fallback) is present."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:59
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:60
 msgid "Quantity as dropdown"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:67
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:68
 msgid "Add filter / search on the top of dropdown"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:75
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:76
 msgid "Max value fallback"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:76
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:77
 msgid ""
 "Define a value for any product that has no maximum or fixed quantities "
 "defined and you want it to have a dropdown."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:83
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:84
 msgid "Thousand Separator"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:85
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:86
 msgid ""
 "Dealing with large values? Define a thousand separator other than the "
 "default comma ,"
@@ -1082,18 +1082,18 @@ msgstr ""
 msgid "Will be outputted on frontend after the quantity dropdown box."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:216
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:217
 msgid "Quantity dropdown on archive pages"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:218
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:219
 msgid ""
 "Enable showing a quantity dropdown instead of the quantity field on archive/"
 "category/shop pages for simple products only (you need to enable quantity on "
 "archive pages from General tab)."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-dropdown.php:222
+#: includes/settings/class-alg-wc-pq-settings-dropdown.php:223
 msgid "Enable dropdown on archive pages"
 msgstr ""
 
@@ -2156,22 +2156,22 @@ msgid "Your settings have been reset."
 msgstr ""
 
 #: includes/templates/global/quantity-html5-input.php:20
-#: includes/templates/global/quantity-input.php:242
+#: includes/templates/global/quantity-input.php:280
 #, php-format
 msgid "%s quantity"
 msgstr ""
 
 #: includes/templates/global/quantity-html5-input.php:20
-#: includes/templates/global/quantity-input.php:89
-#: includes/templates/global/quantity-input.php:170
-#: includes/templates/global/quantity-input.php:242
+#: includes/templates/global/quantity-input.php:93
+#: includes/templates/global/quantity-input.php:191
+#: includes/templates/global/quantity-input.php:280
 msgid "Quantity"
 msgstr ""
 
 #: includes/templates/global/quantity-html5-input.php:40
-#: includes/templates/global/quantity-input.php:94
-#: includes/templates/global/quantity-input.php:175
-#: includes/templates/global/quantity-input.php:255
+#: includes/templates/global/quantity-input.php:98
+#: includes/templates/global/quantity-input.php:196
+#: includes/templates/global/quantity-input.php:294
 msgctxt "Product quantity input tooltip"
 msgid "Qty"
 msgstr ""
@@ -2183,14 +2183,14 @@ msgid ""
 "back to plugins. %s"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:218
+#: product-quantity-for-woocommerce.php:239
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:221
+#: product-quantity-for-woocommerce.php:242
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:225
+#: product-quantity-for-woocommerce.php:246
 msgid "Go Pro"
 msgstr ""

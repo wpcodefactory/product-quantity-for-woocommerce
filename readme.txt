@@ -1,9 +1,9 @@
-=== Min Max Default Quantity for WooCommerce ===
+=== Min Max Step Quantity Limits Manager for WooCommerce ===
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli, aegkr
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.6
-Stable tag: 4.8.0
+Stable tag: 4.9.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -352,6 +352,13 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 
 == Changelog ==
 
+= 4.9.0 - 11/11/2024 =
+* Fix - Blocked access to checkout if cart quantity is incorrect.
+* Add - Placeholder for product item price `%item_price%`.
+* Dev - Initializing the plugin on the `plugins_loaded` action.
+* Dev - Code refactoring and cleanup.
+* Plugin name updated.
+
 = 4.8.0 - 05/11/2024 =
 * Dev - Plugin settings moved to the "WPFactory" menu.
 * Dev - "Recommendations" added.
@@ -471,13 +478,13 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 
 = 4.5.10 - 06/08/2023 =
 * Fix "out of stock issue" for decimal quantity less than 1.
-* Added - Minimum Setting > Hide "Add To Cart" button when stock < min quantity
-* Added - Advance Setting > Disable plugin after first order per user
-* Made HPOS compatiblity
-* WC tested up to: 7.9
+* Added - Minimum Setting > Hide "Add To Cart" button when stock < min quantity.
+* Added - Advance Setting > Disable plugin after first order per user.
+* HPOS compatibility.
+* WC tested up to: 7.9.
 
 = 4.5.9 - 13/07/2023 =
-* valiation added for zero quantity add to cart and remove validation of zero quantity add to cart in grouped product.
+* Validation added for zero quantity add to cart and remove validation of zero quantity add to cart in grouped product.
 
 = 4.5.8 - 18/06/2023 =
 * WC tested up to: 7.8.
