@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.9.0
+ * @version 4.9.1
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2256,8 +2256,6 @@ class Alg_WC_PQ_Core {
 			$product_id = $pre_product_id;
 		}
 
-
-
 		// Exact quantities variation
 		if ($variation_id > 0)
 		{
@@ -2304,8 +2302,6 @@ class Alg_WC_PQ_Core {
 
 		}
 
-
-
 		// Passed
 		return $passed;
 	}
@@ -2335,12 +2331,11 @@ class Alg_WC_PQ_Core {
 	/**
 	 * float_stock_amount.
 	 *
-	 * @version 1.3.0
+	 * @version 4.9.1
 	 * @since   1.3.0
 	 */
 	function float_stock_amount() {
 		remove_filter( 'woocommerce_stock_amount', 'intval' );
-		add_filter(    'woocommerce_stock_amount', 'floatval' );
 	}
 
 	/**

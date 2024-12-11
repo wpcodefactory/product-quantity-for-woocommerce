@@ -37,30 +37,30 @@ msgid ""
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2207
-#: includes/class-alg-wc-pq-core.php:3985
+#: includes/class-alg-wc-pq-core.php:3980
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3176
-#: includes/class-alg-wc-pq-core.php:3273
-#: includes/class-alg-wc-pq-core.php:3392
+#: includes/class-alg-wc-pq-core.php:3171
+#: includes/class-alg-wc-pq-core.php:3268
+#: includes/class-alg-wc-pq-core.php:3387
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3996
+#: includes/class-alg-wc-pq-core.php:3991
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4062
-#: includes/class-alg-wc-pq-core.php:4092
+#: includes/class-alg-wc-pq-core.php:4057
+#: includes/class-alg-wc-pq-core.php:4087
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4445
+#: includes/class-alg-wc-pq-core.php:4440
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4518
+#: includes/class-alg-wc-pq-core.php:4513
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -390,8 +390,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce.php:290
-#: product-quantity-for-woocommerce.php:291
+#: product-quantity-for-woocommerce.php:304
+#: product-quantity-for-woocommerce.php:305
 msgid "Product Quantity"
 msgstr ""
 
@@ -2183,14 +2183,14 @@ msgid ""
 "back to plugins. %s"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:239
+#: product-quantity-for-woocommerce.php:253
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:242
+#: product-quantity-for-woocommerce.php:256
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce.php:246
+#: product-quantity-for-woocommerce.php:260
 msgid "Go Pro"
 msgstr ""

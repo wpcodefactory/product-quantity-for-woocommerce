@@ -3,12 +3,12 @@
 Plugin Name: Min Max Step Quantity Limits Manager for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 4.9.0
+Version: 4.9.1
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
 Domain Path: /langs
-WC tested up to: 9.3
+WC tested up to: 9.4
 Requires Plugins: woocommerce
 */
 
@@ -59,7 +59,7 @@ if ( alg_wc_pq_do_disable( basename( __FILE__ ) ) ) {
  *
  * @class   Alg_WC_PQ
  *
- * @version 4.9.0
+ * @version 4.9.1
  * @since   1.0.0
  */
 if ( ! class_exists( 'Alg_WC_PQ' ) ) :
@@ -72,7 +72,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '4.9.0';
+	public $version = '4.9.1';
 
 	/**
 	 * core.
@@ -116,7 +116,7 @@ final class Alg_WC_PQ {
 	/**
 	 * Alg_WC_PQ Constructor.
 	 *
-	 * @version 4.9.0
+	 * @version 4.9.1
 	 * @since   1.0.0
 	 *
 	 * @access  public
@@ -129,7 +129,7 @@ final class Alg_WC_PQ {
 		}
 
 		// Set up localisation
-		load_plugin_textdomain( 'product-quantity-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+		add_action( 'init', array( $this, 'localize' ) );
 
 		// Declare compatibility with custom order tables for WooCommerce
 		add_action( 'before_woocommerce_init', array( $this, 'wc_declare_compatibility' ) );
@@ -148,6 +148,20 @@ final class Alg_WC_PQ {
 		if ( is_admin() ) {
 			$this->admin();
 		}
+	}
+
+	/**
+	 * localize.
+	 *
+	 * @version 4.9.1
+	 * @since   4.9.1
+	 */
+	function localize() {
+		load_plugin_textdomain(
+			'product-quantity-for-woocommerce',
+			false,
+			dirname( plugin_basename( __FILE__ ) ) . '/langs/'
+		);
 	}
 
 	/**
