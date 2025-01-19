@@ -198,8 +198,8 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:309
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:317
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:326
-#: includes/settings/class-alg-wc-pq-settings-default.php:89
-#: includes/settings/class-alg-wc-pq-settings-default.php:120
+#: includes/settings/class-alg-wc-pq-settings-default.php:99
+#: includes/settings/class-alg-wc-pq-settings-default.php:130
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:69
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:85
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:140
@@ -218,8 +218,8 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-general.php:143
 #: includes/settings/class-alg-wc-pq-settings-general.php:162
 #: includes/settings/class-alg-wc-pq-settings-general.php:179
-#: includes/settings/class-alg-wc-pq-settings-general.php:248
-#: includes/settings/class-alg-wc-pq-settings-general.php:271
+#: includes/settings/class-alg-wc-pq-settings-general.php:250
+#: includes/settings/class-alg-wc-pq-settings-general.php:273
 #: includes/settings/class-alg-wc-pq-settings-max.php:117
 #: includes/settings/class-alg-wc-pq-settings-max.php:145
 #: includes/settings/class-alg-wc-pq-settings-max.php:175
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Quantity as dropdown"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:62
+#: includes/settings/class-alg-wc-pq-settings-default.php:73
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:61
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:63
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:175
@@ -479,7 +479,7 @@ msgstr ""
 msgid "Allowed quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:79
+#: includes/settings/class-alg-wc-pq-settings-default.php:89
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:69
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:181
 #: includes/settings/class-alg-wc-pq-settings-max.php:107
@@ -488,7 +488,7 @@ msgstr ""
 msgid "All products"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:88
+#: includes/settings/class-alg-wc-pq-settings-default.php:98
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:78
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:190
 #: includes/settings/class-alg-wc-pq-settings-max.php:116
@@ -497,7 +497,7 @@ msgstr ""
 msgid "Per product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:90
+#: includes/settings/class-alg-wc-pq-settings-default.php:100
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:80
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:192
 #: includes/settings/class-alg-wc-pq-settings-max.php:118
@@ -506,7 +506,7 @@ msgstr ""
 msgid "This will add meta box to each product's edit page."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:99
+#: includes/settings/class-alg-wc-pq-settings-default.php:109
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:89
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:110
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:144
@@ -631,31 +631,31 @@ msgstr ""
 msgid "Ignored if \"Minimum quantity\" section is enabled."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:242
+#: includes/settings/class-alg-wc-pq-settings-general.php:244
 msgid "Variable Products Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:247
+#: includes/settings/class-alg-wc-pq-settings-general.php:249
 msgid "Load all variations"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:255
+#: includes/settings/class-alg-wc-pq-settings-general.php:257
 msgid "On variation change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:262
+#: includes/settings/class-alg-wc-pq-settings-general.php:264
 msgid "Do nothing"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:263
+#: includes/settings/class-alg-wc-pq-settings-general.php:265
 msgid "Reset to min quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:264
+#: includes/settings/class-alg-wc-pq-settings-general.php:266
 msgid "Reset to max quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:270
+#: includes/settings/class-alg-wc-pq-settings-general.php:272
 msgid "Sum variations"
 msgstr ""
 
@@ -770,6 +770,7 @@ msgstr ""
 msgid "Quantity Info Options"
 msgstr ""
 
+#: includes/settings/class-alg-wc-pq-settings-general.php:209
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:73
 msgid "Single product page"
 msgstr ""
@@ -1088,7 +1089,10 @@ msgid "Allow selling below this number if no stock is available to meet this num
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:574
-#: includes/settings/class-alg-wc-pq-settings-default.php:61
+#: includes/settings/class-alg-wc-pq-settings-default.php:64
+#: includes/settings/class-alg-wc-pq-settings-default.php:72
+#: includes/settings/class-alg-wc-pq-settings-general.php:219
+#: includes/settings/class-alg-wc-pq-settings-general.php:234
 msgid "Default quantity"
 msgstr ""
 
@@ -1206,49 +1210,43 @@ msgstr ""
 msgid "This is applicable to the WPC Product Bundles for WooCommerce plugin."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:41
+#: includes/settings/class-alg-wc-pq-settings-default.php:42
 msgid "Default Quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:54
+#: includes/settings/class-alg-wc-pq-settings-default.php:55
 msgid "Default Quantity Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:56
-msgid ""
-"Define a value that's different from the default '1' that appears on any product when the page loads, you can have it different from the minimum quantity defined.\r\n"
-"\t\t\t\tNote that to make default quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Default quantity."
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-default.php:73
+#: includes/settings/class-alg-wc-pq-settings-default.php:83
 msgid "Per Item Default Quantity Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:75
+#: includes/settings/class-alg-wc-pq-settings-default.php:85
 msgid "This section allows you to specify a default quantity for all products in your store at once, tick \"Per Product\"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:80
+#: includes/settings/class-alg-wc-pq-settings-default.php:90
 msgid "This will set default per item quantity (for all products). Set to zero to disable."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:100
+#: includes/settings/class-alg-wc-pq-settings-default.php:110
 msgid "Message to be displayed to customer when default per item quantity is exceeded."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:103
+#: includes/settings/class-alg-wc-pq-settings-default.php:113
 msgid "Default quantity for %product_title% is %default_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:113
+#: includes/settings/class-alg-wc-pq-settings-default.php:123
 msgid "Per Category Default Quantity Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:115
+#: includes/settings/class-alg-wc-pq-settings-default.php:125
 msgid "Ticking this option will create a new field under your store categories pages where you will be able to set a default quantity that will be applied to all products under that category."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:119
+#: includes/settings/class-alg-wc-pq-settings-default.php:129
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:99
 #: includes/settings/class-alg-wc-pq-settings-max.php:144
 #: includes/settings/class-alg-wc-pq-settings-min.php:189
@@ -1256,7 +1254,7 @@ msgstr ""
 msgid "Per Category"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-default.php:121
+#: includes/settings/class-alg-wc-pq-settings-default.php:131
 #: includes/settings/class-alg-wc-pq-settings-max.php:146
 #: includes/settings/class-alg-wc-pq-settings-min.php:191
 #: includes/settings/class-alg-wc-pq-settings-step.php:169
@@ -1478,63 +1476,32 @@ msgstr ""
 msgid "If you are using multi-language store with WPML or Polylang, you can use shortcodes to show different languages, example: [alg_wc_pq_translate lang=\"EN\"] Allowed quantity for %product_title% is %allowed_quantity%. Your current quantity is %quantity%.[/alg_wc_pq_translate] can be used to show English messages, similar to other languages you have, use [alg_wc_pq_translate not_lang=\" \"] as fallback for non-defined languages."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:203
-msgid "Change Quantity Options"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:204
-msgid "This section will allow you to set what value (quantity) you want to show on page load, whether on product pages, or archives (shop/category) pages."
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:209
-msgid "Change initial quantity on single product page"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:215
+#: includes/settings/class-alg-wc-pq-settings-general.php:216
 msgid "Do not Change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:216
-#: includes/settings/class-alg-wc-pq-settings-general.php:230
-msgid "Change to min quantity"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:217
-#: includes/settings/class-alg-wc-pq-settings-general.php:231
-msgid "Change to max quantity"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:218
-#: includes/settings/class-alg-wc-pq-settings-general.php:232
-msgid "Change to default quantity"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:219
-#: includes/settings/class-alg-wc-pq-settings-general.php:233
+#: includes/settings/class-alg-wc-pq-settings-general.php:220
+#: includes/settings/class-alg-wc-pq-settings-general.php:235
 msgid "Change to lowest fixed quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:223
-msgid "Change initial quantity on archives"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:229
+#: includes/settings/class-alg-wc-pq-settings-general.php:231
 msgid "Do not change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:249
+#: includes/settings/class-alg-wc-pq-settings-general.php:251
 msgid "Please leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues with loading variations customized with this plugin, if it didn't fix the issue, please revert it back unticked and send us a support request."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:257
+#: includes/settings/class-alg-wc-pq-settings-general.php:259
 msgid "Select what you want to happen to quantity field when you change a variation, you can leave the quantity as is, reset to min, max, or default for the new selected variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:265
+#: includes/settings/class-alg-wc-pq-settings-general.php:267
 msgid "Reset to default quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:266
+#: includes/settings/class-alg-wc-pq-settings-general.php:268
 msgid "Reset to lowest fixed quantity"
 msgstr ""
 
@@ -1899,4 +1866,54 @@ msgstr ""
 
 #: product-quantity-for-woocommerce-pro.php:253
 msgid "Settings"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-default.php:57
+msgid "Define a quantity that's different from the default %s that appears on any product when the page loads."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-default.php:58
+msgid "Notes:"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-default.php:62
+msgid "To make the default quantity appears on page load, you will have to set the option %s to %s."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-default.php:63
+msgid "General > Initial Quantity Options > Single Product Page"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-default.php:66
+msgid "You can have a default quantity different from the minimum quantity."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:203
+msgid "Initial Quantity Options"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:204
+msgid "Set the initial quantity you want to show on page load, whether on product pages, or archive (shop/category) pages."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:213
+msgid "Set initial quantity on single product page."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:217
+#: includes/settings/class-alg-wc-pq-settings-general.php:232
+msgid "Min quantity"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:218
+#: includes/settings/class-alg-wc-pq-settings-general.php:233
+msgid "Max quantity"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:224
+msgid "Archive pages"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:225
+msgid "Set initial quantity on archives."
 msgstr ""

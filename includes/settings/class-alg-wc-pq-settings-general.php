@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - General Section Settings
  *
- * @version 4.6.0
+ * @version 4.9.3
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -44,7 +44,7 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.8.0
+	 * @version 4.9.3
 	 * @since   1.0.0
 	 * @todo    [feature] Force initial quantity on single product page - add "Custom value" option
 	 * @todo    [feature] Force initial quantity on single product page - per product
@@ -200,36 +200,38 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_qty_language_guide',
 			),
 			array(
-				'title'    => __( 'Change Quantity Options', 'product-quantity-for-woocommerce' ),
-				'desc'    => __( 'This section will allow you to set what value (quantity) you want to show on page load, whether on product pages, or archives (shop/category) pages.', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Initial Quantity Options', 'product-quantity-for-woocommerce' ),
+				'desc'    => __( 'Set the initial quantity you want to show on page load, whether on product pages, or archive (shop/category) pages.', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_pq_qty_forcing_qty_options',
 			),
 			array(
-				'title'    => __( 'Change initial quantity on single product page', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Single product page', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_force_on_single',
 				'default'  => 'disabled',
 				'type'     => 'select',
+				'desc'     => __('Set initial quantity on single product page.','product-quantity-for-woocommerce'),
 				'class'    => 'wc-enhanced-select',
 				'options'  => array(
 					'disabled' => __( 'Do not Change', 'product-quantity-for-woocommerce' ),
-					'min'      => __( 'Change to min quantity', 'product-quantity-for-woocommerce' ),
-					'max'      => __( 'Change to max quantity', 'product-quantity-for-woocommerce' ),
-					'default'  => __( 'Change to default quantity', 'product-quantity-for-woocommerce' ),
+					'min'      => __( 'Min quantity', 'product-quantity-for-woocommerce' ),
+					'max'      => __( 'Max quantity', 'product-quantity-for-woocommerce' ),
+					'default'  => __( 'Default quantity', 'product-quantity-for-woocommerce' ),
 					'exact_allowed'  => __( 'Change to lowest fixed quantity', 'product-quantity-for-woocommerce' ),
 				),
 			),
 			array(
-				'title'    => __( 'Change initial quantity on archives', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Archive pages', 'product-quantity-for-woocommerce' ),
+				'desc'     => __('Set initial quantity on archives.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_force_on_loop',
 				'default'  => 'disabled',
 				'type'     => 'select',
 				'class'    => 'wc-enhanced-select',
 				'options'  => array(
 					'disabled' => __( 'Do not change', 'product-quantity-for-woocommerce' ),
-					'min'      => __( 'Change to min quantity', 'product-quantity-for-woocommerce' ),
-					'max'      => __( 'Change to max quantity', 'product-quantity-for-woocommerce' ),
-					'default'  => __( 'Change to default quantity', 'product-quantity-for-woocommerce' ),
+					'min'      => __( 'Min quantity', 'product-quantity-for-woocommerce' ),
+					'max'      => __( 'Max quantity', 'product-quantity-for-woocommerce' ),
+					'default'  => __( 'Default quantity', 'product-quantity-for-woocommerce' ),
 					'exact_allowed'  => __( 'Change to lowest fixed quantity', 'product-quantity-for-woocommerce' ),
 				),
 			),

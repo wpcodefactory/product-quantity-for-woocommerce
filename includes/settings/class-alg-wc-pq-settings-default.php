@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Max Section Settings
  *
- * @version 4.7.0
+ * @version 4.9.3
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -37,6 +37,7 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 	 * @since   1.6.0
 	 */
 	function __construct() {
+
 		$this->id   = 'default';
 		$this->desc = __( 'Default Quantity', 'product-quantity-for-woocommerce' );
 		parent::__construct();
@@ -45,17 +46,27 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.7.0
+	 * @version 4.9.3
 	 * @since   1.6.0
 	 */
 	function get_settings() {
 		return array(
 			array(
-				'title'    => __( 'Default Quantity Options', 'product-quantity-for-woocommerce' ),
-				'type'     => 'title',
-				'desc'     => __('Define a value that\'s different from the default \'1\' that appears on any product when the page loads, you can have it different from the minimum quantity defined.
-				Note that to make default quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Default quantity.','product-quantity-for-woocommerce'),
-				'id'       => 'alg_wc_pq_default_options',
+				'title' => __( 'Default Quantity Options', 'product-quantity-for-woocommerce' ),
+				'type'  => 'title',
+				'desc'  => sprintf( __( 'Define a quantity that\'s different from the default %s that appears on any product when the page loads.', 'product-quantity-for-woocommerce' ), '<code>1</code>' ) . '<br /><br />' .
+				           '<strong>' . __( 'Notes:', 'product-quantity-for-woocommerce' ) . '</strong> ' . '<br />' .
+				           $this->array_to_html_list_items(
+					           array(
+						           sprintf(
+							           __( 'To make the default quantity appears on page load, you will have to set the option %s to %s.', 'product-quantity-for-woocommerce' ),
+							           '<strong>' . '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq#alg_wc_pq_qty_forcing_qty_options-description' ) . '">' . __( 'General > Initial Quantity Options > Single Product Page', 'product-quantity-for-woocommerce' ) . '</a>' . '</strong>',
+							           '<code>' . __( 'Default quantity', 'product-quantity-for-woocommerce' ) . '</code>'
+						           ),
+						           __( 'You can have a default quantity different from the minimum quantity.', 'product-quantity-for-woocommerce' ),
+					           )
+				           ),
+				'id'    => 'alg_wc_pq_default_options',
 			),
 			array(
 				'title'    => __( 'Default quantity', 'product-quantity-for-woocommerce' ),
@@ -64,7 +75,6 @@ class Alg_WC_PQ_Settings_Default extends Alg_WC_PQ_Settings_Section {
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
-
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_default_cart_total_quantity_options',

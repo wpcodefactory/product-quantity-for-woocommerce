@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.7
-Stable tag: 4.9.2
+Stable tag: 4.9.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -351,6 +351,10 @@ ___
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.9.3 - 19/01/2025 =
+* Fix - Improved Default Quantity section description.
+* Fix - Improved General > Initial Quantity Options description.
 
 = 4.9.2 - 14/01/2025 =
 * Fix - Fixed the fractional stock quantities below 1 on dashboard product inventory".

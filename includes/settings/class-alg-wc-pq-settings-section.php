@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Section Settings
  *
- * @version 4.6.8
+ * @version 4.9.3
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -67,6 +67,25 @@ class Alg_WC_PQ_Settings_Section {
 	function settings_section( $sections ) {
 		$sections[ $this->id ] = $this->desc;
 		return $sections;
+	}
+
+	/**
+	 * array_to_html_list_items.
+	 *
+	 * @version 4.9.3
+	 * @since   4.9.3
+	 *
+	 * @param $items
+	 *
+	 * @return string
+	 */
+	function array_to_html_list_items( $items ) {
+		// Ensure the input is an array
+		if ( is_array( $items ) ) {
+			return '<li>' . implode( '</li><li>', array_map( 'wp_kses_post', $items ) ) . '</li>';
+		}
+
+		return '';
 	}
 
 }
