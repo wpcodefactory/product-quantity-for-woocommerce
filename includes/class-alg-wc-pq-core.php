@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.9.4
+ * @version 4.9.5
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2354,8 +2354,8 @@ class Alg_WC_PQ_Core {
 	function float_stock_amount() {
 		remove_filter( 'woocommerce_stock_amount', 'intval' );
 		add_filter( 'woocommerce_stock_amount', function ( $qty ) {
-			return ( $qty < 1 ? rtrim( number_format( (float) $qty , 6, '.', '' ), '0' ) : $qty );
-		});
+			return ( $qty < 1 ? rtrim( number_format( (float) $qty, 6, '.', '' ), '0' ) : $qty );
+		} );
 	}
 
 	/**
@@ -2517,7 +2517,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * set_quantity_input_args.
 	 *
-	 * @version 4.9.4
+	 * @version 4.9.5
 	 * @since   1.2.0
 	 * @todo    [dev] re-check do we really need to set `step` here?
 	 */
@@ -2529,15 +2529,14 @@ class Alg_WC_PQ_Core {
 			$category_name = $wp_query->query_vars['product_cat'];
 		}
 
-		if (
-			empty( $product ) ||
-			'disabled' === $this->alg_wc_pq_force_on_single
-		) {
+		if ( empty( $product ) ) {
 			return $args;
 		}
 
 		if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
-			$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
+			if ( 'disabled' !== $this->alg_wc_pq_force_on_single ) {
+				$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
+			}
 		} elseif ( 'yes' === get_option( 'alg_wc_pq_force_cart_min_enabled', 'no' ) ) {
 			$args['min_value'] = 1;
 		}

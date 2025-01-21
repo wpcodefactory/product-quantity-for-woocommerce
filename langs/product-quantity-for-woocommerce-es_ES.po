@@ -43,9 +43,9 @@ msgstr[1] "%s se han añadido al carrito."
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-alg-wc-pq-core.php:3190
-#: includes/class-alg-wc-pq-core.php:3287
-#: includes/class-alg-wc-pq-core.php:3406
+#: includes/class-alg-wc-pq-core.php:3189
+#: includes/class-alg-wc-pq-core.php:3286
+#: includes/class-alg-wc-pq-core.php:3405
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
 
@@ -1609,24 +1609,24 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2224
-#: includes/class-alg-wc-pq-core.php:3999
+#: includes/class-alg-wc-pq-core.php:3998
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4010
+#: includes/class-alg-wc-pq-core.php:4009
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4076
-#: includes/class-alg-wc-pq-core.php:4106
+#: includes/class-alg-wc-pq-core.php:4075
+#: includes/class-alg-wc-pq-core.php:4105
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4459
+#: includes/class-alg-wc-pq-core.php:4458
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4532
+#: includes/class-alg-wc-pq-core.php:4531
 msgid "Allowed quantity for attribute "
 msgstr ""
 
