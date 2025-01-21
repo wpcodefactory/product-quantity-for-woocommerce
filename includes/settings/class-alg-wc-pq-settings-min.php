@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Min Section Settings
  *
- * @version 4.7.0
+ * @version 4.9.4
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -45,7 +45,7 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.7.0
+	 * @version 4.9.4
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -62,7 +62,8 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Minimum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'     => __('Specify a minimum quantity based on one of the options below. Note that to make Minimum quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Minimum quantity.','product-quantity-for-woocommerce'),
+				'desc'     => __('Specify a minimum quantity based on one of the options below.','product-quantity-for-woocommerce'),
+
 				'id'       => 'alg_wc_pq_min_options',
 			),
 			array(
@@ -260,6 +261,24 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_min_per_item_quantity_options',
+			),
+			array(
+				'title' => __( 'Useful information', 'product-quantity-for-woocommerce' ),
+				'type'  => 'title',
+				'desc'  => $this->section_notes(
+					array(
+						sprintf(
+							__( 'To make the minimum quantity appear on page load, set an option from the %s section to %s.', 'product-quantity-for-woocommerce' ),
+							'<strong>' . '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq#alg_wc_pq_qty_forcing_qty_options-description' ) . '">' . __( 'General > Initial Quantity Options', 'product-quantity-for-woocommerce' ) . '</a>' . '</strong>',
+							'<code>' . __( 'Min quantity', 'product-quantity-for-woocommerce' ) . '</code>'
+						),
+					)
+				),
+				'id'    => 'alg_wc_pq_min_useful_options',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_wc_pq_min_useful_options',
 			),
 		);
 	}

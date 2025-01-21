@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Max Section Settings
  *
- * @version 4.7.0
+ * @version 4.9.4
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -53,7 +53,7 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Maximum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'     => __('Specify a maximum quantity based on one of the options below. Note that to make maximum quantity appears on page load, you will have to configure this on General >> Force Quantity Options >> Force to Maximum quantity.', 'product-quantity-for-woocommerce'),
+				'desc'     => __('Specify a maximum quantity based on one of the options below.', 'product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_max_options',
 			),
 			array(
@@ -203,6 +203,25 @@ class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_max_per_item_quantity_options',
+			),
+			array(
+				'title' => __( 'Useful information', 'product-quantity-for-woocommerce' ),
+				'type'  => 'title',
+				'desc'  => $this->section_notes(
+					array(
+						sprintf(
+							__( 'To make the maximum quantity appear on page load, set an option from the %s section to %s.', 'product-quantity-for-woocommerce' ),
+							'<strong>' . '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq#alg_wc_pq_qty_forcing_qty_options-description' ) . '">' . __( 'General > Initial Quantity Options', 'product-quantity-for-woocommerce' ) . '</a>' . '</strong>',
+							'<code>' . __( 'Max quantity', 'product-quantity-for-woocommerce' ) . '</code>'
+						),
+						__( 'If the default quantity is higher than maximum quantity, the initial quantity will be set to maximum.', 'product-quantity-for-woocommerce' ),
+					)
+				),
+				'id'    => 'alg_wc_pq_max_useful_options',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_wc_pq_max_useful_options',
 			),
 		);
 	}

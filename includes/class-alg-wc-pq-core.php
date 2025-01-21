@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.9.2
+ * @version 4.9.4
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -193,7 +193,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 4.9.0
+	 * @version 4.9.4
 	 * @since   1.0.0
 	 *
 	 * @todo    [fix] mini-cart number of items for decimal qty
@@ -268,7 +268,6 @@ class Alg_WC_PQ_Core {
 			if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) || 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
 				add_filter( 'woocommerce_available_variation', array( $this, 'set_quantity_input_min_max_variation' ), PHP_INT_MAX, 3 );
 				if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
-					add_filter( 'woocommerce_quantity_input_min', array( $this, 'set_quantity_input_min' ), PHP_INT_MAX, 2 );
 					add_filter('woocommerce_store_api_product_quantity_minimum', array( $this, 'store_api_product_min_quantity'), PHP_INT_MAX, 3);
 					add_filter( 'woocommerce_is_purchasable', array( $this, 'disable_purchased_products'), PHP_INT_MAX, 2 );
 				}
@@ -2518,7 +2517,7 @@ class Alg_WC_PQ_Core {
 	/**
 	 * set_quantity_input_args.
 	 *
-	 * @version 1.7.0
+	 * @version 4.9.4
 	 * @since   1.2.0
 	 * @todo    [dev] re-check do we really need to set `step` here?
 	 */
@@ -2526,103 +2525,101 @@ class Alg_WC_PQ_Core {
 		global $wp_query;
 
 		$category_name = '';
-		if(isset($wp_query->query_vars['product_cat'])){
+		if ( isset( $wp_query->query_vars['product_cat'] ) ) {
 			$category_name = $wp_query->query_vars['product_cat'];
 		}
 
-		if(empty($product)){
+		if (
+			empty( $product ) ||
+			'disabled' === $this->alg_wc_pq_force_on_single
+		) {
 			return $args;
 		}
+
 		if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
-			$args['min_value']   = $this->set_quantity_input_min(  $args['min_value'], $product );
+			$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
 		} elseif ( 'yes' === get_option( 'alg_wc_pq_force_cart_min_enabled', 'no' ) ) {
-			$args['min_value']   = 1;
+			$args['min_value'] = 1;
 		}
 		if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
-			$args['max_value']   = $this->set_quantity_input_max(  $args['max_value'], $product );
+			$args['max_value'] = $this->set_quantity_input_max( $args['max_value'], $product );
 		}
 		if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
-			$args['step']        = $this->set_quantity_input_step( $args['step'],      $product );
+			$args['step'] = $this->set_quantity_input_step( $args['step'], $product );
 		}
 
-
-		if($this->alg_wc_pq_exact_qty_allowed_section_enabled == 'yes'){
-			if($this->alg_wc_pq_force_on_single == 'exact_allowed' && is_product()){
+		if ( $this->alg_wc_pq_exact_qty_allowed_section_enabled == 'yes' ) {
+			if ( $this->alg_wc_pq_force_on_single == 'exact_allowed' && is_product() ) {
 				$fixed_qty = $this->get_product_exact_qty( $product->get_id(), 'allowed', '', 0 );
 
-				if(!empty($fixed_qty)){
+				if ( ! empty( $fixed_qty ) ) {
 					$fixed_qty_arr = $this->process_exact_qty_option( $fixed_qty );
-					sort($fixed_qty_arr);
+					sort( $fixed_qty_arr );
 					$args['input_value'] = $fixed_qty_arr[0];
 				}
 			}
 
-			if($this->alg_wc_pq_force_on_loop == 'exact_allowed' && (is_shop() || is_product_tag() || is_product_category() || (defined('DOING_AJAX') && DOING_AJAX))){
+			if ( $this->alg_wc_pq_force_on_loop == 'exact_allowed' && ( is_shop() || is_product_tag() || is_product_category() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) ) {
 				$fixed_qty = $this->get_product_exact_qty( $product->get_id(), 'allowed', '', 0 );
 
-				if(!empty($fixed_qty)){
+				if ( ! empty( $fixed_qty ) ) {
 					$fixed_qty_arr = $this->process_exact_qty_option( $fixed_qty );
-					sort($fixed_qty_arr);
+					sort( $fixed_qty_arr );
 					$args['input_value'] = $fixed_qty_arr[0];
 				}
 			}
 		}
 
-
-		if( (is_shop() || is_product_tag() || is_product_category() || (isset($category_name) && !empty($category_name)) || (defined('DOING_AJAX') && DOING_AJAX)) ) {
-			if($this->force_on_loop_archive=='min'){
-				$data_quantity = $this->get_product_qty_min_max( $product->get_id(), 1, 'min' );
+		if ( ( is_shop() || is_product_tag() || is_product_category() || ( isset( $category_name ) && ! empty( $category_name ) ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) ) {
+			if ( $this->force_on_loop_archive == 'min' ) {
+				$data_quantity       = $this->get_product_qty_min_max( $product->get_id(), 1, 'min' );
 				$args['input_value'] = $data_quantity;
-			}else if($this->force_on_loop_archive=='max'){
-				$data_quantity = $this->get_product_qty_min_max( $product->get_id(), 1, 'max' );
+			} else if ( $this->force_on_loop_archive == 'max' ) {
+				$data_quantity       = $this->get_product_qty_min_max( $product->get_id(), 1, 'max' );
 				$args['input_value'] = $data_quantity;
-			}else if($this->force_on_loop_archive=='default'){
-				$data_quantity = $this->get_product_qty_default( $product->get_id(), 1 );
+			} else if ( $this->force_on_loop_archive == 'default' ) {
+				$data_quantity       = $this->get_product_qty_default( $product->get_id(), 1 );
 				$args['input_value'] = $data_quantity;
 			}
 		}
 
-		if(!(is_shop() || is_product_tag() || is_product_category() || is_cart() || is_checkout()) && !is_product()){
-			if ((defined('DOING_AJAX') && DOING_AJAX)) {
-				$args['input_value'] = (!empty($args['input_value']) ? $args['input_value'] : $this->get_product_qty_default( $product->get_id(), 1 ) );
-			}else{
-				if((isset($args['input_value']) && (empty($args['input_value']) || $args['input_value']==1)) || !isset($args['input_value'])){
+		if ( ! ( is_shop() || is_product_tag() || is_product_category() || is_cart() || is_checkout() ) && ! is_product() ) {
+			if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+				$args['input_value'] = ( ! empty( $args['input_value'] ) ? $args['input_value'] : $this->get_product_qty_default( $product->get_id(), 1 ) );
+			} else {
+				if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
 					$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $args['input_value'] );
 				}
 			}
-
 		}
 
 		if ( 'disabled' != ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() ) {
-
-			if('default' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ))) {
-				if((isset($args['input_value']) && (empty($args['input_value']) || $args['input_value']==1)) || !isset($args['input_value'])){
+			if ( 'default' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) ) {
+				if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
 					$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $args['input_value'] );
 				}
-			} else if ($this->alg_wc_pq_force_on_single !== 'exact_allowed'){
+			} else if ( $this->alg_wc_pq_force_on_single !== 'exact_allowed' ) {
 				$args['input_value'] = ( 'min' === $force_on_single ?
-				$this->set_quantity_input_min( $args['min_value'], $product ) : $this->set_quantity_input_max( $args['max_value'], $product ) );
+					$this->set_quantity_input_min( $args['min_value'], $product ) : $this->set_quantity_input_max( $args['max_value'], $product ) );
 			}
 		}
 
-
 		if ( 'disabled' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() && 'no' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
-			$args['min_value']   = $this->set_quantity_input_min(  1, $product );
+			$args['min_value'] = $this->set_quantity_input_min( 1, $product );
 			// $args['min_value']   = 1;
 		}
 
-		if( (is_shop() || is_product_tag() || is_product_category() ) ) {
-
-			if ('yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' )) {
-				if ( !isset($args['min_value']) ||
-				$args['min_value']<= 0  ||
-				('disabled' == ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) && !isset($args['min_value']))) {
+		if ( ( is_shop() || is_product_tag() || is_product_category() ) ) {
+			if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+				if ( ! isset( $args['min_value'] ) ||
+					 $args['min_value'] <= 0 ||
+					 ( 'disabled' == ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) && ! isset( $args['min_value'] ) ) ) {
 					$args['min_value'] = 1;
 				}
 			}
 
-			if ('yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' )) {
-				if ( !isset($args['max_value']) || $args['max_value'] <= 0) {
+			if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
+				if ( ! isset( $args['max_value'] ) || $args['max_value'] <= 0 ) {
 					$stock = $product->get_stock_quantity();
 					if ( $stock > 0 ) {
 						$args['max_value'] = $stock;
@@ -2631,25 +2628,26 @@ class Alg_WC_PQ_Core {
 			}
 
 			if ( 'disabled' != ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) ) {
-				if('default' === ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ))) {
-					if((isset($args['input_value']) && (empty($args['input_value']) || $args['input_value']==1)) || !isset($args['input_value'])){
+				if ( 'default' === ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) ) {
+					if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
 						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $args['input_value'] );
 					}
-				} else if ($this->alg_wc_pq_force_on_loop !== 'exact_allowed'){
+				} else if ( $this->alg_wc_pq_force_on_loop !== 'exact_allowed' ) {
 					$args['input_value'] = ( 'min' === $force_on_loop ?
 						$this->set_quantity_input_min( $args['min_value'], $product ) : $this->set_quantity_input_max( $args['max_value'], $product ) );
 				}
 			}
 		}
+
 		$args['product_id'] = ( $product ? $product->get_id() : 0 );
 
-		if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
-			if(isset($args['input_value']) && empty($args['input_value'])){
+		if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] != 'POST' ) {
+			if ( isset( $args['input_value'] ) && empty( $args['input_value'] ) ) {
 				$args['input_value'] = 1;
 			}
 		}
 
-		if(isset($args['step']) && empty($args['step'])){
+		if ( isset( $args['step'] ) && empty( $args['step'] ) ) {
 			$args['step'] = 1;
 		}
 
