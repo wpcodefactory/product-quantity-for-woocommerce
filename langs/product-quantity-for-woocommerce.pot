@@ -1,39 +1,3 @@
-# Copyright (C) 2025 WPFactory
-# This file is distributed under the same license as the Min Max Step Quantity Limits Manager for WooCommerce Pro plugin.
-msgid ""
-msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 4.9.5\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-21T21:00:58+01:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
-"X-Domain: product-quantity-for-woocommerce\n"
-
-#. Plugin Name of the plugin
-msgid "Min Max Step Quantity Limits Manager for WooCommerce Pro"
-msgstr ""
-
-#. Plugin URI of the plugin
-msgid "https://wpfactory.com/item/product-quantity-for-woocommerce/"
-msgstr ""
-
-#. Description of the plugin
-msgid "Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products."
-msgstr ""
-
-#. Author of the plugin
-msgid "WPFactory"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://wpfactory.com"
-msgstr ""
-
 #: includes/class-alg-wc-pq-admin.php:39
 #: includes/settings/class-alg-wc-pq-settings-admin.php:74
 msgid "Min Qty"
@@ -50,11 +14,13 @@ msgid "Qty Step"
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:1222
+#, php-format
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:1227
+#, php-format
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
@@ -66,7 +32,8 @@ msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2163
 #: includes/class-alg-wc-pq-core.php:2182
-msgid "Please choose the quantity of item add to cart. It should be more than zero"
+msgid ""
+"Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2224
@@ -99,44 +66,60 @@ msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:50
 #: includes/settings/class-alg-wc-pq-settings-step.php:90
-msgid "Quantity total cart step is %step_cart_total_quantity%. Your current order quantity is %cart_total_quantity%."
+msgid ""
+"Quantity total cart step is %step_cart_total_quantity%. Your current order "
+"quantity is %cart_total_quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:58
 #: includes/settings/class-alg-wc-pq-settings-max.php:91
-msgid "Maximum allowed order quantity is %max_cart_total_quantity%. Your current order quantity is %cart_total_quantity%."
+msgid ""
+"Maximum allowed order quantity is %max_cart_total_quantity%. Your current "
+"order quantity is %cart_total_quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:66
 #: includes/settings/class-alg-wc-pq-settings-min.php:101
-msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current order quantity is %cart_total_quantity%."
+msgid ""
+"Minimum allowed order quantity is %min_cart_total_quantity%. Your current "
+"order quantity is %cart_total_quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:76
 #: includes/class-alg-wc-pq-scripts.php:196
 #: includes/settings/class-alg-wc-pq-settings-max.php:128
-msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
+msgid ""
+"Maximum allowed quantity for %product_title% is %max_per_item_quantity%. "
+"Your current item quantity is %item_quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:86
 #: includes/class-alg-wc-pq-scripts.php:205
 #: includes/settings/class-alg-wc-pq-settings-min.php:138
-msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
+msgid ""
+"Minimum allowed quantity for %product_title% is %min_per_item_quantity%. "
+"Your current item quantity is %item_quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:100
 #: includes/settings/class-alg-wc-pq-settings-step.php:127
-msgid "Quantity step for %product_title% is %quantity_step%. Your current quantity is %quantity%."
+msgid ""
+"Quantity step for %product_title% is %quantity_step%. Your current quantity "
+"is %quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:110
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:93
-msgid "Allowed quantity for %product_title% is %allowed_quantity%. Your current quantity is %quantity%."
+msgid ""
+"Allowed quantity for %product_title% is %allowed_quantity%. Your current "
+"quantity is %quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:120
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:205
-msgid "Disallowed quantity for %product_title% is %disallowed_quantity%. Your current quantity is %quantity%."
+msgid ""
+"Disallowed quantity for %product_title% is %disallowed_quantity%. Your "
+"current quantity is %quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:89
@@ -144,15 +127,21 @@ msgid "Minimum quantity (grouped for this attribute item)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:92
-msgid "Specify a number of minimum allowed quantity for this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of minimum allowed quantity for this attribute item, this "
+"is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:96
-msgid "Minimum quantity for all product (apply to all products in this attribute item)"
+msgid ""
+"Minimum quantity for all product (apply to all products in this attribute "
+"item)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:99
-msgid "Specify a number of minimum allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of minimum allowed quantity for all product in this "
+"attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:105
@@ -160,15 +149,21 @@ msgid "Maximum quantity (grouped for this attribute item)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:108
-msgid "Specify a number of maximum allowed quantity for this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of maximum allowed quantity for this attribute item, this "
+"is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:112
-msgid "Maximum quantity for all product (apply to all products in this attribute item)"
+msgid ""
+"Maximum quantity for all product (apply to all products in this attribute "
+"item)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:115
-msgid "Specify a number of maximum allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of maximum allowed quantity for all product in this "
+"attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:122
@@ -176,7 +171,9 @@ msgid "Step quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:125
-msgid "Specify a number of step quantity for this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of step quantity for this attribute item, this is "
+"controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:141
@@ -184,15 +181,21 @@ msgid "Exact quantity allowed (grouped for this attribute item)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:144
-msgid "Specify numbers of exact allowed quantity for this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify numbers of exact allowed quantity for this attribute item, this is "
+"controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:149
-msgid "Exact quantity allowed for all product (apply to all products in this attribute item)"
+msgid ""
+"Exact quantity allowed for all product (apply to all products in this "
+"attribute item)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:152
-msgid "Specify numbers of exact allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify numbers of exact allowed quantity for all product in this attribute "
+"item, this is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:159
@@ -202,7 +205,9 @@ msgid "Unit label template: Singular"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:162
-msgid "Specify a singular string for this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a singular string for this attribute item, this is controlled by "
+"Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:166
@@ -212,7 +217,9 @@ msgid "Unit label template: Plural"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:169
-msgid "Specify a plural string for this attribute item, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a plural string for this attribute item, this is controlled by "
+"Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:76
@@ -236,12 +243,15 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:78
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:84
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:154
-msgid "Specify a number of minimum allowed quantity for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of minimum allowed quantity for this category, this is "
+"controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:82
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:159
-msgid "Minimum quantity for all product (apply to all products in this category)"
+msgid ""
+"Minimum quantity for all product (apply to all products in this category)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:89
@@ -252,12 +262,15 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:91
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:97
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:171
-msgid "Specify a number of maximum allowed quantity for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of maximum allowed quantity for this category, this is "
+"controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:95
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:176
-msgid "Maximum quantity for all product (apply to all products in this category)"
+msgid ""
+"Maximum quantity for all product (apply to all products in this category)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:102
@@ -275,6 +288,17 @@ msgstr ""
 msgid "Set 0 to use global settings."
 msgstr ""
 
+#: includes/settings/class-alg-wc-pq-category-metaboxes.php:104
+#: includes/settings/class-alg-wc-pq-category-metaboxes.php:112
+#: includes/settings/class-alg-wc-pq-settings-fixed.php:157
+#: includes/settings/class-alg-wc-pq-settings-fixed.php:222
+#: includes/settings/class-alg-wc-pq-settings-qty-info.php:107
+#: includes/settings/class-alg-wc-pq-settings-qty-info.php:114
+#: includes/settings/class-alg-wc-pq-settings-qty-info.php:134
+#: includes/settings/class-alg-wc-settings-pq.php:75
+msgid ""
+msgstr ""
+
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:110
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:195
 msgid "Quantity default"
@@ -289,46 +313,65 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:123
 #: includes/settings/class-alg-wc-pq-metaboxes.php:537
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:70
+#, php-format
 msgid "Allowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:119
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:125
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:207
-msgid "Specify numbers of exact allowed quantity for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify numbers of exact allowed quantity for this category, this is "
+"controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:123
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:212
-msgid "Exact quantity allowed for all product (apply to all products in this category)"
+msgid ""
+"Exact quantity allowed for all product (apply to all products in this "
+"category)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:162
-msgid "Specify a number of minimum allowed quantity for all product in this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of minimum allowed quantity for all product in this "
+"category, this is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:179
-msgid "Specify a number of maximum allowed quantity for all product in this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of maximum allowed quantity for all product in this "
+"category, this is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:188
-msgid "Specify a number of step quantity for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of step quantity for this category, this is controlled by "
+"Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:198
-msgid "Specify a number of default quantity for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a number of default quantity for this category, this is controlled "
+"by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:215
-msgid "Specify numbers of exact allowed quantity for all product in this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify numbers of exact allowed quantity for all product in this category, "
+"this is controlled by Product Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:234
-msgid "Specify a singular string for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a singular string for this category, this is controlled by Product "
+"Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:241
-msgid "Specify a plural string for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a plural string for this category, this is controlled by Product "
+"Quantity plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:248
@@ -340,13 +383,15 @@ msgid "Price Unit"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:255
-msgid "Specify a string for this category, this is controlled by Product Quantity plugin"
+msgid ""
+"Specify a string for this category, this is controlled by Product Quantity "
+"plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:304
-#: product-quantity-for-woocommerce-pro.php:305
+#: product-quantity-for-woocommerce.php:304
+#: product-quantity-for-woocommerce.php:305
 msgid "Product Quantity"
 msgstr ""
 
@@ -356,7 +401,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:445
 #: includes/settings/class-alg-wc-pq-metaboxes.php:450
-msgid "Allow selling below this number if no stock is available to meet this number"
+msgid ""
+"Allow selling below this number if no stock is available to meet this number"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:461
@@ -388,6 +434,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:561
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:182
+#, php-format
 msgid "Disallowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
@@ -419,6 +466,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:625
 #: includes/settings/class-alg-wc-pq-metaboxes.php:636
+#, php-format
 msgid "Dropdown label template, e.g.: %s."
 msgstr ""
 
@@ -428,6 +476,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:652
 #: includes/settings/class-alg-wc-pq-metaboxes.php:663
+#, php-format
 msgid "Unit label template, e.g.: %s."
 msgstr ""
 
@@ -534,6 +583,10 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+#: includes/settings/class-alg-wc-pq-settings-advanced.php:78
+msgid "Guest"
+msgstr ""
+
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:93
 msgid "JS Check Options"
 msgstr ""
@@ -627,7 +680,9 @@ msgid "Disable plugin after first order per user"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:216
-msgid "Disable plugin after first order per user. Minimum one order status must be completed."
+msgid ""
+"Disable plugin after first order per user. Minimum one order status must be "
+"completed."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:222
@@ -635,6 +690,7 @@ msgid "Disable plugin by URL"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:223
+#, php-format
 msgid "Relative URLs. E.g.: %s. One per line."
 msgstr ""
 
@@ -655,7 +711,9 @@ msgid "Enable Exclude Role Specific"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:244
-msgid "On Enable \"Exclude Role Specific\" will work and \"Role Specific\" will be disabled"
+msgid ""
+"On Enable \"Exclude Role Specific\" will work and \"Role Specific\" will be "
+"disabled"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:252
@@ -712,7 +770,9 @@ msgid "Replace woocommerce quantity field template"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:308
-msgid "This will work for use HTML 5 validation message as per plugin setting in replace of default browser message."
+msgid ""
+"This will work for use HTML 5 validation message as per plugin setting in "
+"replace of default browser message."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:315
@@ -720,7 +780,9 @@ msgid "Woocommerce block compatibility"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:316
-msgid "This will cast all float value to integer values from the woocommerce_store_api hooks for minimum, maximum, and step."
+msgid ""
+"This will cast all float value to integer values from the "
+"woocommerce_store_api hooks for minimum, maximum, and step."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:324
@@ -740,7 +802,10 @@ msgid "Default Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:57
-msgid "Define a quantity that's different from the default %s that appears on any product when the page loads."
+#, php-format
+msgid ""
+"Define a quantity that's different from the default %s that appears on any "
+"product when the page loads."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:62
@@ -760,7 +825,10 @@ msgid "Per Item Default Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:74
-msgid "This section allows you to specify a default quantity for all products in your store at once, tick \"Per Product\"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this."
+msgid ""
+"This section allows you to specify a default quantity for all products in "
+"your store at once, tick \"Per Product\"  to define a quantity on product "
+"level (Pro Feature), a field will appear on the product page to set this."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:78
@@ -773,7 +841,9 @@ msgid "All products"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:79
-msgid "This will set default per item quantity (for all products). Set to zero to disable."
+msgid ""
+"This will set default per item quantity (for all products). Set to zero to "
+"disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:87
@@ -815,11 +885,15 @@ msgid "Message"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:99
-msgid "Message to be displayed to customer when default per item quantity is exceeded."
+msgid ""
+"Message to be displayed to customer when default per item quantity is "
+"exceeded."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:102
-msgid "Default quantity for %product_title% is %default_per_item_quantity%. Your current item quantity is %item_quantity%."
+msgid ""
+"Default quantity for %product_title% is %default_per_item_quantity%. Your "
+"current item quantity is %item_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:112
@@ -827,7 +901,10 @@ msgid "Per Category Default Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:114
-msgid "Ticking this option will create a new field under your store categories pages where you will be able to set a default quantity that will be applied to all products under that category."
+msgid ""
+"Ticking this option will create a new field under your store categories "
+"pages where you will be able to set a default quantity that will be applied "
+"to all products under that category."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:118
@@ -852,7 +929,10 @@ msgid "Useful information"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:138
-msgid "To make the default quantity appear on page load, set an option from the %s section to %s."
+#, php-format
+msgid ""
+"To make the default quantity appear on page load, set an option from the %s "
+"section to %s."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:139
@@ -866,7 +946,9 @@ msgid "You can have a default quantity different from the minimum quantity."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:143
-msgid "If the default quantity is lower than minimum quantity, the initial quantity will be set to minimum."
+msgid ""
+"If the default quantity is lower than minimum quantity, the initial quantity "
+"will be set to minimum."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:40
@@ -878,7 +960,10 @@ msgid "Quantity Dropdown Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:57
-msgid "Show a dropdown instead of the default quantity input field in WooCommerce. To show a dropdown, it has to end somewhere, so it will work only if any of (Maximum Quantity, Fixed Quantity, Max. Fallback) is present."
+msgid ""
+"Show a dropdown instead of the default quantity input field in WooCommerce. "
+"To show a dropdown, it has to end somewhere, so it will work only if any of "
+"(Maximum Quantity, Fixed Quantity, Max. Fallback) is present."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:60
@@ -894,7 +979,9 @@ msgid "Max value fallback"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:77
-msgid "Define a value for any product that has no maximum or fixed quantities defined and you want it to have a dropdown."
+msgid ""
+"Define a value for any product that has no maximum or fixed quantities "
+"defined and you want it to have a dropdown."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:84
@@ -902,7 +989,9 @@ msgid "Thousand Separator"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:86
-msgid "Dealing with large values? Define a thousand separator other than the default comma ,"
+msgid ""
+"Dealing with large values? Define a thousand separator other than the "
+"default comma ,"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:93
@@ -927,8 +1016,11 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:116
 msgid ""
-"Use the below two fields to show a text (like unit) next to values appearing in dropdown (i.e. 1 KG, 10 KGs, 20 pieces, 30 liters), you can define singular & plural texts.\r\n"
-"\t\t\t\tYou can also define this label on product level by enabling \"Labels per product\""
+"Use the below two fields to show a text (like unit) next to values appearing "
+"in dropdown (i.e. 1 KG, 10 KGs, 20 pieces, 30 liters), you can define "
+"singular & plural texts.\n"
+"\t\t\t\tYou can also define this label on product level by enabling \"Labels "
+"per product\""
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:121
@@ -937,6 +1029,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:123
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:132
+#, php-format
 msgid "For example try %s"
 msgstr ""
 
@@ -949,7 +1042,8 @@ msgid "Labels per product"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:141
-msgid "This will add \"Product Quantity\" meta box to each product's edit page."
+msgid ""
+"This will add \"Product Quantity\" meta box to each product's edit page."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:153
@@ -957,7 +1051,9 @@ msgid "Dropdown per category"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:154
-msgid "If you want to show dropdown on your store but with excluding some categories, you can enter these categories in the below field."
+msgid ""
+"If you want to show dropdown on your store but with excluding some "
+"categories, you can enter these categories in the below field."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:159
@@ -1020,7 +1116,10 @@ msgid "Quantity dropdown on archive pages"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:219
-msgid "Enable showing a quantity dropdown instead of the quantity field on archive/category/shop pages for simple products only (you need to enable quantity on archive pages from General tab)."
+msgid ""
+"Enable showing a quantity dropdown instead of the quantity field on archive/"
+"category/shop pages for simple products only (you need to enable quantity on "
+"archive pages from General tab)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:223
@@ -1037,8 +1136,12 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:57
 msgid ""
-"Specify fixed (allowed/disallowed) quantities for products in your store, settings here overwrite minimum/maximum/or step quantities (if defined site-wide), <br>only the values here will be accepted for the products that have this field defined.\r\n"
-"\t\t\t\tFunctions here follow the same logic in minimum/maximum quantities on cart/all products/product level quantities."
+"Specify fixed (allowed/disallowed) quantities for products in your store, "
+"settings here overwrite minimum/maximum/or step quantities (if defined site-"
+"wide), <br>only the values here will be accepted for the products that have "
+"this field defined.\n"
+"\t\t\t\tFunctions here follow the same logic in minimum/maximum quantities "
+"on cart/all products/product level quantities."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:62
@@ -1051,11 +1154,17 @@ msgid "Message to be displayed to customer on wrong allowed quantities."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:101
-msgid "Enabling this will create two new fields in all categories pages you have, one to set a fixed quantity for all products (instead of filling it one by one), and one for specifying a fixed quantity for all products <strong>combined</strong> in the cart."
+msgid ""
+"Enabling this will create two new fields in all categories pages you have, "
+"one to set a fixed quantity for all products (instead of filling it one by "
+"one), and one for specifying a fixed quantity for all products "
+"<strong>combined</strong> in the cart."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:114
-msgid "Allowed quantity for category %category_title% is %allowed_quantity%.  Your current quantity for this category is %quantity%."
+msgid ""
+"Allowed quantity for category %category_title% is %allowed_quantity%.  Your "
+"current quantity for this category is %quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:121
@@ -1066,7 +1175,10 @@ msgid "Per Attribute"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:123
-msgid "Enabling this option will create a field for fixed quantities per attributes that are selected in the field below instead of enabling it to all attributes at once."
+msgid ""
+"Enabling this option will create a field for fixed quantities per attributes "
+"that are selected in the field below instead of enabling it to all "
+"attributes at once."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:132
@@ -1086,11 +1198,14 @@ msgid "Leave blank to use all"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:145
-msgid "Message to be displayed to customer on wrong allowed quantities in attribute."
+msgid ""
+"Message to be displayed to customer on wrong allowed quantities in attribute."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:148
-msgid "Allowed quantity for attribute %attribute_item_title% is %allowed_quantity%.  Your current quantity for this attribute item is %quantity%."
+msgid ""
+"Allowed quantity for attribute %attribute_item_title% is %allowed_quantity"
+"%.  Your current quantity for this attribute item is %quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:155
@@ -1129,11 +1244,15 @@ msgid "This will set fixed total cart quantity. Set to zero to disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:239
-msgid "Message to be displayed to customer when fixed cart total quantity is not reached."
+msgid ""
+"Message to be displayed to customer when fixed cart total quantity is not "
+"reached."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:242
-msgid "Allowed order quantity is %min_cart_total_quantity%. Your current cart quantity is %cart_total_quantity%."
+msgid ""
+"Allowed order quantity is %min_cart_total_quantity%. Your current cart "
+"quantity is %cart_total_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:40
@@ -1158,8 +1277,10 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:75
 msgid ""
-"This section contains settings that will be applied generally to your store, regardless of other settings defined in other tabs.\r\n"
-"\t\t\t\tA description or tooltip is provided on almost every option to explain what it does and how it affects behavior based on your needs."
+"This section contains settings that will be applied generally to your store, "
+"regardless of other settings defined in other tabs.\n"
+"\t\t\t\tA description or tooltip is provided on almost every option to "
+"explain what it does and how it affects behavior based on your needs."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:80
@@ -1167,7 +1288,10 @@ msgid "Decimal quantities"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:81
-msgid "Use decimal values on minimum/maximum/step quantities, <br>so to allow orders to buy in decimal, a decimal value needs to be used in min/max/step (i.e. to sell in 0.5 quantity, it has to be defined on step for example)"
+msgid ""
+"Use decimal values on minimum/maximum/step quantities, <br>so to allow "
+"orders to buy in decimal, a decimal value needs to be used in min/max/step "
+"(i.e. to sell in 0.5 quantity, it has to be defined on step for example)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:88
@@ -1175,7 +1299,8 @@ msgid "Decimal quantities in admin order"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:89
-msgid "Allow store admins to create orders with decimal values from store backend"
+msgid ""
+"Allow store admins to create orders with decimal values from store backend"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:96
@@ -1183,7 +1308,9 @@ msgid "Sold individually"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:98
-msgid "This will enable \"Sold individually\" (no quantities) option for <strong>all products</strong> at once."
+msgid ""
+"This will enable \"Sold individually\" (no quantities) option for "
+"<strong>all products</strong> at once."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:104
@@ -1191,6 +1318,7 @@ msgid "Change minimum quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:106
+#, php-format
 msgid "Will change all minimum quantities to %s."
 msgstr ""
 
@@ -1208,7 +1336,9 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:115
 msgid ""
-"Configure if you want to validate correct amounts on \"Add to Cart\", you can block reaching cart, or correct quantities automatically (see next option for rounding).\r\n"
+"Configure if you want to validate correct amounts on \"Add to Cart\", you "
+"can block reaching cart, or correct quantities automatically (see next "
+"option for rounding).\n"
 "\t\t\t\tFor most stores, the \"Validate and add notices\" is recommended."
 msgstr ""
 
@@ -1229,7 +1359,9 @@ msgid "Step auto-correct"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:129
-msgid "Ignored unless \"Validate and auto-correct quantities\" option is selected above."
+msgid ""
+"Ignored unless \"Validate and auto-correct quantities\" option is selected "
+"above."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:141
@@ -1237,7 +1369,9 @@ msgid "Cart notices"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:142
-msgid "Show error or notification messages on cart if users reached cart with wrong quantities."
+msgid ""
+"Show error or notification messages on cart if users reached cart with wrong "
+"quantities."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:149
@@ -1261,7 +1395,9 @@ msgid "Block checkout page"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:163
-msgid "Block users from reaching checkout on wrong quantities (if notification is selected in Cart Notices)"
+msgid ""
+"Block users from reaching checkout on wrong quantities (if notification is "
+"selected in Cart Notices)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:173
@@ -1273,7 +1409,9 @@ msgid "Enable quantity on archive pages"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:180
-msgid "Allow customers to select quantities and add to cart from shop/archive/categories pages, <strong>this works only on simple products.</strong>"
+msgid ""
+"Allow customers to select quantities and add to cart from shop/archive/"
+"categories pages, <strong>this works only on simple products.</strong>"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:193
@@ -1285,7 +1423,13 @@ msgid "WPML OR Polylang"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:194
-msgid "If you are using multi-language store with WPML or Polylang, you can use shortcodes to show different languages, example: [alg_wc_pq_translate lang=\"EN\"] Allowed quantity for %product_title% is %allowed_quantity%. Your current quantity is %quantity%.[/alg_wc_pq_translate] can be used to show English messages, similar to other languages you have, use [alg_wc_pq_translate not_lang=\" \"] as fallback for non-defined languages."
+msgid ""
+"If you are using multi-language store with WPML or Polylang, you can use "
+"shortcodes to show different languages, example: [alg_wc_pq_translate lang="
+"\"EN\"] Allowed quantity for %product_title% is %allowed_quantity%. Your "
+"current quantity is %quantity%.[/alg_wc_pq_translate] can be used to show "
+"English messages, similar to other languages you have, use "
+"[alg_wc_pq_translate not_lang=\" \"] as fallback for non-defined languages."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:203
@@ -1293,7 +1437,9 @@ msgid "Initial Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:204
-msgid "Set the initial quantity you want to show on page load, whether on product pages, or archive (shop/category) pages."
+msgid ""
+"Set the initial quantity you want to show on page load, whether on product "
+"pages, or archive (shop/category) pages."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:209
@@ -1347,7 +1493,11 @@ msgid "Load all variations"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:251
-msgid "Please leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues with loading variations customized with this plugin, if it didn't fix the issue, please revert it back unticked and send us a support request."
+msgid ""
+"Please leave this option <strong>unticked</strong> unless you have YITH "
+"WooCommerce Quick View plugin AND you are having issues with loading "
+"variations customized with this plugin, if it didn't fix the issue, please "
+"revert it back unticked and send us a support request."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:257
@@ -1355,7 +1505,10 @@ msgid "On variation change"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:259
-msgid "Select what you want to happen to quantity field when you change a variation, you can leave the quantity as is, reset to min, max, or default for the new selected variation"
+msgid ""
+"Select what you want to happen to quantity field when you change a "
+"variation, you can leave the quantity as is, reset to min, max, or default "
+"for the new selected variation"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:264
@@ -1400,8 +1553,10 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:73
 msgid ""
-"Specify maximum quantity on the cart level, <strong>regardless</strong> of number of products on it.\r\n"
-"\t\t\t\tThe Message field will allow you to customize the notification message on wrong quantities"
+"Specify maximum quantity on the cart level, <strong>regardless</strong> of "
+"number of products on it.\n"
+"\t\t\t\tThe Message field will allow you to customize the notification "
+"message on wrong quantities"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:79
@@ -1409,7 +1564,9 @@ msgid "This will set maximum total cart quantity. Set to zero to disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:88
-msgid "Message to be displayed to customer when maximum cart total quantity is exceeded."
+msgid ""
+"Message to be displayed to customer when maximum cart total quantity is "
+"exceeded."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:101
@@ -1417,16 +1574,24 @@ msgid "Per Item Maximum Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:103
-msgid "This section allows you to specify a maximum quantity for all products in your store at once (not combined), tick \"Per Product\"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this."
+msgid ""
+"This section allows you to specify a maximum quantity for all products in "
+"your store at once (not combined), tick \"Per Product\"  to define a "
+"quantity on product level (Pro Feature), a field will appear on the product "
+"page to set this."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:108
-msgid "This will set maximum per item quantity (for all products). Set to zero to disable."
+msgid ""
+"This will set maximum per item quantity (for all products). Set to zero to "
+"disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:125
 #: includes/settings/class-alg-wc-pq-settings-max.php:155
-msgid "Message to be displayed to customer when maximum per item quantity is exceeded."
+msgid ""
+"Message to be displayed to customer when maximum per item quantity is "
+"exceeded."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:138
@@ -1434,11 +1599,18 @@ msgid "Per Category Maximum Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:140
-msgid "Enabling this will create two new fields in all categories pages you have, one to set a maximum quantity for all products (instead of filling it one by one), and one for specifying a maximum quantity for all products <strong>combined</strong> in the cart."
+msgid ""
+"Enabling this will create two new fields in all categories pages you have, "
+"one to set a maximum quantity for all products (instead of filling it one by "
+"one), and one for specifying a maximum quantity for all products "
+"<strong>combined</strong> in the cart."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:158
-msgid "Maximum allowed quantity for category %category_title% is %max_per_item_quantity%.  Your current quantity for this category is %item_quantity%."
+msgid ""
+"Maximum allowed quantity for category %category_title% is "
+"%max_per_item_quantity%.  Your current quantity for this category is "
+"%item_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:168
@@ -1448,7 +1620,10 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-max.php:170
 #: includes/settings/class-alg-wc-pq-settings-min.php:217
 #: includes/settings/class-alg-wc-pq-settings-step.php:185
-msgid "This option works the exact same way as category, you also get the option to enable it per attributes that are selected in the field below instead of enabling it to all attributes at once."
+msgid ""
+"This option works the exact same way as category, you also get the option to "
+"enable it per attributes that are selected in the field below instead of "
+"enabling it to all attributes at once."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:176
@@ -1459,19 +1634,29 @@ msgid "This will add meta box to each attribute edit page."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:195
-msgid "Message to be displayed to customer when maximum per item quantity is not reached."
+msgid ""
+"Message to be displayed to customer when maximum per item quantity is not "
+"reached."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:198
-msgid "Maximum allowed quantity for attribute %attribute_title% is %max_per_item_quantity%.  Your current quantity for this attribute is %item_quantity%."
+msgid ""
+"Maximum allowed quantity for attribute %attribute_title% is "
+"%max_per_item_quantity%.  Your current quantity for this attribute is "
+"%item_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:213
-msgid "To make the maximum quantity appear on page load, set an option from the %s section to %s."
+#, php-format
+msgid ""
+"To make the maximum quantity appear on page load, set an option from the %s "
+"section to %s."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:217
-msgid "If the default quantity is higher than maximum quantity, the initial quantity will be set to maximum."
+msgid ""
+"If the default quantity is higher than maximum quantity, the initial "
+"quantity will be set to maximum."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:41
@@ -1500,8 +1685,10 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:83
 msgid ""
-"Specify minimum quantity on the cart level, <strong>regardless</strong> of number of products on it.\r\n"
-"\t\t\t\tThe Message field will allow you to customize the notification message on wrong quantities"
+"Specify minimum quantity on the cart level, <strong>regardless</strong> of "
+"number of products on it.\n"
+"\t\t\t\tThe Message field will allow you to customize the notification "
+"message on wrong quantities"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:89
@@ -1509,7 +1696,9 @@ msgid "This will set minimum total cart quantity. Set to zero to disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:98
-msgid "Message to be displayed to customer when minimum cart total quantity is not reached."
+msgid ""
+"Message to be displayed to customer when minimum cart total quantity is not "
+"reached."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:111
@@ -1517,17 +1706,25 @@ msgid "Per Item Minimum Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:113
-msgid "This section allows you to specify a minimum quantity for all products in your store at once (not combined), tick \"Per Product\"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this."
+msgid ""
+"This section allows you to specify a minimum quantity for all products in "
+"your store at once (not combined), tick \"Per Product\"  to define a "
+"quantity on product level (Pro Feature), a field will appear on the product "
+"page to set this."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:118
-msgid "This will set minimum per item quantity (for all products). Set to zero to disable."
+msgid ""
+"This will set minimum per item quantity (for all products). Set to zero to "
+"disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:135
 #: includes/settings/class-alg-wc-pq-settings-min.php:202
 #: includes/settings/class-alg-wc-pq-settings-min.php:242
-msgid "Message to be displayed to customer when minimum per item quantity is not reached."
+msgid ""
+"Message to be displayed to customer when minimum per item quantity is not "
+"reached."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:145
@@ -1535,7 +1732,9 @@ msgid "Allow selling below minimum quantity if stock < min."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:147
-msgid "This will add checkbox to product's edit page after min quantity box, useful when you are almost out of stock and want to sell the remaining quantity"
+msgid ""
+"This will add checkbox to product's edit page after min quantity box, useful "
+"when you are almost out of stock and want to sell the remaining quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:156
@@ -1551,7 +1750,10 @@ msgid "Run save \"below stock meta\""
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:170
-msgid "On enable, this option will run save for all products, and please be conscious of the memory limit. This operation takes memory, and if the site has a lot of products, run it at your own risk."
+msgid ""
+"On enable, this option will run save for all products, and please be "
+"conscious of the memory limit. This operation takes memory, and if the site "
+"has a lot of products, run it at your own risk."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:184
@@ -1559,11 +1761,18 @@ msgid "Per Category Minimum Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:186
-msgid "Enabling this will create two new fields in all categories pages you have, one to set a minimum quantity for all products (instead of filling it one by one), and one for specifying a minimum quantity for all products <strong>combined</strong> in the cart."
+msgid ""
+"Enabling this will create two new fields in all categories pages you have, "
+"one to set a minimum quantity for all products (instead of filling it one by "
+"one), and one for specifying a minimum quantity for all products "
+"<strong>combined</strong> in the cart."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:205
-msgid "Minimum allowed quantity for category %category_title% is %min_per_item_quantity%.  Your current quantity for this category is %item_quantity%."
+msgid ""
+"Minimum allowed quantity for category %category_title% is "
+"%min_per_item_quantity%.  Your current quantity for this category is "
+"%item_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:215
@@ -1571,7 +1780,10 @@ msgid "Per Attribute Minimum Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:245
-msgid "Minimum allowed quantity for attribute %attribute_title% is %min_per_item_quantity%.  Your current quantity for this attribute is %item_quantity%."
+msgid ""
+"Minimum allowed quantity for attribute %attribute_title% is "
+"%min_per_item_quantity%.  Your current quantity for this attribute is "
+"%item_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:251
@@ -1583,7 +1795,10 @@ msgid "Hide \"Add To Cart\" when stock less than min quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:271
-msgid "To make the minimum quantity appear on page load, set an option from the %s section to %s."
+#, php-format
+msgid ""
+"To make the minimum quantity appear on page load, set an option from the %s "
+"section to %s."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:40
@@ -1596,7 +1811,10 @@ msgid "Total Price by Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:54
-msgid "With this section you can display product price for different quantities in real time (i.e. price is automatically updated when customer changes product's quantity)."
+msgid ""
+"With this section you can display product price for different quantities in "
+"real time (i.e. price is automatically updated when customer changes "
+"product's quantity)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:66
@@ -1608,7 +1826,9 @@ msgid "Allow defining unit on product level"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:76
-msgid "This will create two new fields on any product edit page, for singular & plural units to be used for that product."
+msgid ""
+"This will create two new fields on any product edit page, for singular & "
+"plural units to be used for that product."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:84
@@ -1616,7 +1836,9 @@ msgid "Allow defining unit on category level"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:87
-msgid "This will create two new fields on any category edit page, for singular & plural units to be used for all products under that category."
+msgid ""
+"This will create two new fields on any category edit page, for singular & "
+"plural units to be used for all products under that category."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:96
@@ -1641,11 +1863,18 @@ msgid "You can use HTML here."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:136
+#, php-format
 msgid "Placeholders: %s. %s"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:137
-msgid "(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)"
+msgid ""
+"(The %unit% placeholder will read from 3 places, with priority-level "
+"defined: First, it will read if a unit is defined on Product Level, if not "
+"defined, then it will check if defined on Category Level, if not defined, it "
+"will read from Global level defined on this page. If your store is using the "
+"same unit for all products, you can use the unit here in the field without "
+"any placeholder)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:139
@@ -1657,7 +1886,10 @@ msgid "Position"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:147
-msgid "Select where you want this will appear, if you select \"Instead of the price\", then the settings defined under \"Price Unit\" will not work since it will be overwritten by this feature."
+msgid ""
+"Select where you want this will appear, if you select \"Instead of the price"
+"\", then the settings defined under \"Price Unit\" will not work since it "
+"will be overwritten by this feature."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:152
@@ -1685,7 +1917,9 @@ msgid "Price by quantity on archive pages"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:167
-msgid "To enable this feature on the whole store but exclude some categories, you can enter these categories in the below field."
+msgid ""
+"To enable this feature on the whole store but exclude some categories, you "
+"can enter these categories in the below field."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:171
@@ -1697,7 +1931,9 @@ msgid "Total Price by Quantity for category"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:186
-msgid "Show Total Price by Quantity on archive/category/shop pages (you need to enable quantity on archive pages from General tab)."
+msgid ""
+"Show Total Price by Quantity on archive/category/shop pages (you need to "
+"enable quantity on archive pages from General tab)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:203
@@ -1709,7 +1945,12 @@ msgid "Price Unit Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:54
-msgid "Price Unit will be shown beside product price in archive, product and cart pages. Use a global text to apply all products, or specify it per category, or define it on product by product.<br> Note: This section will not work if you have enabled \"Total Price by quantity\" <strong>AND</strong> selected the total price to appear \"Instead of the price\""
+msgid ""
+"Price Unit will be shown beside product price in archive, product and cart "
+"pages. Use a global text to apply all products, or specify it per category, "
+"or define it on product by product.<br> Note: This section will not work if "
+"you have enabled \"Total Price by quantity\" <strong>AND</strong> selected "
+"the total price to appear \"Instead of the price\""
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:66
@@ -1717,7 +1958,9 @@ msgid "Allow price unit on category level"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:68
-msgid "Enable this option to create a field on category edit page that will allow specifying this value on all products under that category."
+msgid ""
+"Enable this option to create a field on category edit page that will allow "
+"specifying this value on all products under that category."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:75
@@ -1725,7 +1968,9 @@ msgid "Allow price unit on product level"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:77
-msgid "Enable this option to create a field on the product edit page that will allow specifying this value for that product."
+msgid ""
+"Enable this option to create a field on the product edit page that will "
+"allow specifying this value for that product."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:86
@@ -1733,7 +1978,9 @@ msgid "Show Price unit on category/ shop/ archive pages"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:88
-msgid "Show Price Unit on archive/category/shop pages (you need to enable quantity on archive pages from General tab)."
+msgid ""
+"Show Price Unit on archive/category/shop pages (you need to enable quantity "
+"on archive pages from General tab)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:98
@@ -1741,11 +1988,16 @@ msgid "Allow price unit on email order item"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:100
-msgid "Enable this option to display the unit for that product in the email order item."
+msgid ""
+"Enable this option to display the unit for that product in the email order "
+"item."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:110
-msgid "Use string value here, you can define the parameter (per, for each, /) with unit, for example, to show per KG next to price, enter \"per KG\" here in the box"
+msgid ""
+"Use string value here, you can define the parameter (per, for each, /) with "
+"unit, for example, to show per KG next to price, enter \"per KG\" here in "
+"the box"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:40
@@ -1753,6 +2005,7 @@ msgid "Quantity Info"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:53
+#, php-format
 msgid "Available shortcodes: %s."
 msgstr ""
 
@@ -1777,7 +2030,12 @@ msgid "Single product page custom hook"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:141
-msgid "Please note that using hook needs some programing skills in WordPress, so please don't enable the custom hook options unless you're aware of how this affect the website, as using wrong hooks may cause fatal issues. <a target=\"_blank\" href=\"https://woocommerce.github.io/code-reference/hooks/hooks.html\">Please refer to this official documentation for references.</a>"
+msgid ""
+"Please note that using hook needs some programing skills in WordPress, so "
+"please don't enable the custom hook options unless you're aware of how this "
+"affect the website, as using wrong hooks may cause fatal issues. <a target="
+"\"_blank\" href=\"https://woocommerce.github.io/code-reference/hooks/hooks."
+"html\">Please refer to this official documentation for references.</a>"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:147
@@ -1797,10 +2055,12 @@ msgid "Input custom hook priority as per woocommerce document."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-section.php:85
+#, php-format
 msgid "Replaced value: %s."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-section.php:85
+#, php-format
 msgid "Replaced values: %s."
 msgstr ""
 
@@ -1817,7 +2077,12 @@ msgid "Quantity Step Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:56
-msgid "Define the increment/step of quantity when someone clicks +/- on the quantity field, this works closely with minimum quantity in a lot of cases, for example if you sell bottles in shrinks of 6, <br>you will have to define a step of 6, but also a minimum of 6 (leaving a minimum of 1 will make quantities 1,7,13, etc.)."
+msgid ""
+"Define the increment/step of quantity when someone clicks +/- on the "
+"quantity field, this works closely with minimum quantity in a lot of cases, "
+"for example if you sell bottles in shrinks of 6, <br>you will have to define "
+"a step of 6, but also a minimum of 6 (leaving a minimum of 1 will make "
+"quantities 1,7,13, etc.)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:71
@@ -1825,7 +2090,11 @@ msgid "Cart Total Quantity Step Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:73
-msgid "Regardless of any product quantities defined, this option will guarantee a step of the defined value here on the cart level, this is very handy for shops that deal with fixed-size packaging <br> (i.e. package that fits quantity of 10, regardless of product)."
+msgid ""
+"Regardless of any product quantities defined, this option will guarantee a "
+"step of the defined value here on the cart level, this is very handy for "
+"shops that deal with fixed-size packaging <br> (i.e. package that fits "
+"quantity of 10, regardless of product)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:78
@@ -1833,7 +2102,8 @@ msgid "This will set step for total cart quantity. Set to zero to disable."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:87
-msgid "Message to be displayed to customer when cart total quantity step is wrong."
+msgid ""
+"Message to be displayed to customer when cart total quantity step is wrong."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:100
@@ -1841,7 +2111,10 @@ msgid "Per Item Quantity Step Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:102
-msgid "This section allows you to specify a step quantity for all products in your store at once, tick \"Per Product\"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this."
+msgid ""
+"This section allows you to specify a step quantity for all products in your "
+"store at once, tick \"Per Product\"  to define a quantity on product level "
+"(Pro Feature), a field will appear on the product page to set this."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:107
@@ -1865,7 +2138,10 @@ msgid "Allow adding all quantity in stock (skip step restriction)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:147
-msgid "Allow adding all remaining quantities to the cart after the last multiple of the step value. ( Simple product and non-decimal step values are recommended. )"
+msgid ""
+"Allow adding all remaining quantities to the cart after the last multiple of "
+"the step value. ( Simple product and non-decimal step values are "
+"recommended. )"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:161
@@ -1873,7 +2149,10 @@ msgid "Per Category Step Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:163
-msgid "Ticking this option will create a new field under your store categories pages where you will be able to set a quantity step that will be applied to all products under that category."
+msgid ""
+"Ticking this option will create a new field under your store categories "
+"pages where you will be able to set a quantity step that will be applied to "
+"all products under that category."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:183
@@ -1881,11 +2160,15 @@ msgid "Per Attribute Step Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:210
-msgid "Message to be displayed to customer when step per item quantity is not reached."
+msgid ""
+"Message to be displayed to customer when step per item quantity is not "
+"reached."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:213
-msgid "Step quantity for attribute %attribute_title% is %step_per_item_quantity%.  Your current quantity for this attribute is %item_quantity%."
+msgid ""
+"Step quantity for attribute %attribute_title% is %step_per_item_quantity%.  "
+"Your current quantity for this attribute is %item_quantity%."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-styling.php:40
@@ -1901,6 +2184,7 @@ msgid "Quantity input style"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-styling.php:61
+#, php-format
 msgid "E.g.: %s"
 msgstr ""
 
@@ -1920,18 +2204,42 @@ msgstr ""
 msgid "Your settings have been reset."
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:28
-msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s"
+#: includes/templates/global/quantity-html5-input.php:20
+#: includes/templates/global/quantity-input.php:280
+#, php-format
+msgid "%s quantity"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:253
+#: includes/templates/global/quantity-html5-input.php:20
+#: includes/templates/global/quantity-input.php:93
+#: includes/templates/global/quantity-input.php:191
+#: includes/templates/global/quantity-input.php:280
+msgid "Quantity"
+msgstr ""
+
+#: includes/templates/global/quantity-html5-input.php:40
+#: includes/templates/global/quantity-input.php:98
+#: includes/templates/global/quantity-input.php:196
+#: includes/templates/global/quantity-input.php:294
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: product-quantity-for-woocommerce.php:28
+#, php-format
+msgid ""
+"You need to deactivate Product Quantity Control for WooCommerce. <br/> %s "
+"back to plugins. %s"
+msgstr ""
+
+#: product-quantity-for-woocommerce.php:253
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:256
+#: product-quantity-for-woocommerce.php:256
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:260
+#: product-quantity-for-woocommerce.php:260
 msgid "Go Pro"
 msgstr ""
