@@ -352,6 +352,9 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 
 == Changelog ==
 
+= 4.9.7 - 02/02/2025 =
+* Fix - Decimal quantities - Converting to float.
+
 = 4.9.6 - 24/01/2025 =
 * Fix - Decimal quantities - Converting to float.
 * WC tested up to: 9.6.

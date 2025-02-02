@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.9.6
+ * @version 4.9.7
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2348,14 +2348,12 @@ class Alg_WC_PQ_Core {
 	/**
 	 * float_stock_amount.
 	 *
-	 * @version 4.9.6
+	 * @version 4.9.7
 	 * @since   1.3.0
 	 */
 	function float_stock_amount() {
 		remove_filter( 'woocommerce_stock_amount', 'intval' );
-		add_filter( 'woocommerce_stock_amount', function ( $qty ) {
-			return ( $qty < 1 ? rtrim( number_format( (float) $qty, 6, '.', '' ), '0' ) : (float) $qty );
-		} );
+		add_filter( 'woocommerce_stock_amount', 'floatval' );
 	}
 
 	/**
