@@ -2353,8 +2353,22 @@ class Alg_WC_PQ_Core {
 	 */
 	function float_stock_amount() {
 		remove_filter( 'woocommerce_stock_amount', 'intval' );
-		add_filter( 'woocommerce_stock_amount', 'floatval' );
+		add_filter( 'woocommerce_stock_amount', array( $this, 'alg_wc_pq_floatval' ) );
 	}
+
+	/**
+	 * alg_wc_pq_floatval.
+	 *
+	 * @version 4.9.7
+	 * @since   4.9.7
+	 */
+	 function alg_wc_pq_floatval( $value ) {
+		 return apply_filters(
+			'alg_wc_product_quantity_floatval',
+			round( floatval( $value ), 6 ),
+			$value
+		);
+	 }
 
 	/**
 	 * alg_wc_woocommerce_product_set_stock_action.
@@ -2362,7 +2376,7 @@ class Alg_WC_PQ_Core {
 	 * @version 4.5.10
 	 * @since   4.5.10
 	 */
-	 function alg_wc_woocommerce_product_set_stock_action( $product ){
+	 function alg_wc_woocommerce_product_set_stock_action( $product ) {
 		 if(!$product){
 			 return;
 		 }

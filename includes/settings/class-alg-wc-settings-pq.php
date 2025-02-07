@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Settings
  *
- * @version 4.7.1
+ * @version 4.9.7
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -62,23 +62,19 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 	}
 
 	/**
-	 * get_settings.
+	 * get_advertisement.
 	 *
-	 * @version 1.2.0
-	 * @since   1.0.0
+	 * @version 4.9.7
+	 * @since   4.9.7
 	 */
-	function get_settings() {
-		global $current_section;
-
-		$initialarray = array(
-			array(
-				'title' => __( '', 'product-quantity-for-woocommerce' ),
-				'type'  => 'title',
-				'desc'  => apply_filters( 'alg_wc_pq_advertise', '<div class="alg_wc_pq_right_ad">
-				<div class="alg_wc_pq-sidebar__section">
+	function get_advertisement() {
+		ob_start();
+		?>
+		<div class="alg_wc_pq_right_ad">
+			<div class="alg_wc_pq-sidebar__section">
 				<div class="alg_wc_pq_name_heading">
-				<img class="alg_wc_pq_resize" src="https://wpfactory.com/wp-content/uploads/Product-Quantity-for-WooCommerce-300x300.png">
-				<p class="alg_wc_pq_text">Enjoying the plugin? Unleash its full potential with the premium version, it allows you to: </p>
+					<img class="alg_wc_pq_resize" src="https://wpfactory.com/wp-content/uploads/Product-Quantity-for-WooCommerce-300x300.png">
+					<p class="alg_wc_pq_text">Enjoying the plugin? Unleash its full potential with the premium version, it allows you to: </p>
 				</div>
 				<ul>
 					<li>
@@ -90,39 +86,63 @@ class Alg_WC_Settings_PQ extends WC_Settings_Page {
 					<li>
 						<strong>Customize labels per product on quantity dropdown menu.</strong>
 					</li>
-					<li><strong>Give products a “Green Pass” to bypass all plugin settings!</strong></li>
-					<li><strong>And much more!</strong></li>
+					<li>
+						<strong>Give products a “Green Pass” to bypass all plugin settings!</strong>
+					</li>
+					<li>
+						<strong>And much more!</strong>
+					</li>
 				</ul>
 				<p style="text-align:center">
-				<a id="alg_wc_pq-premium-button" class="alg_wc_pq-button-upsell" href="https://wpfactory.com/item/product-quantity-for-woocommerce" target="_blank">Get All in One Product Quantity for WooCommerce Pro</a>
+					<a id="alg_wc_pq-premium-button" class="alg_wc_pq-button-upsell" href="https://wpfactory.com/item/product-quantity-for-woocommerce" target="_blank">Get All in One Product Quantity for WooCommerce Pro</a>
 				</p>
 				<br>
 			</div>
-			</div>' ),
+		</div>
+		<?php
+		return ob_get_clean();
+	}
+
+	/**
+	 * get_settings.
+	 *
+	 * @version 4.9.7
+	 * @since   1.0.0
+	 */
+	function get_settings() {
+		global $current_section;
+
+		$advertisement = array(
+			array(
+				'type'  => 'title',
+				'desc'  => apply_filters( 'alg_wc_pq_advertise', $this->get_advertisement() ),
 				'id'    => $this->id . '_' . $current_section . '_options_ad_section',
 			)
 		);
 
-		$return = array_merge( apply_filters( 'woocommerce_get_settings_' . $this->id . '_' . $current_section, array() ), array(
+		$return = array_merge(
+			apply_filters( 'woocommerce_get_settings_' . $this->id . '_' . $current_section, array() ),
 			array(
-				'title' => __( 'Reset Section', 'product-quantity-for-woocommerce' ),
-				'type'  => 'title',
-				'id'    => $this->id . '_' . $current_section . '_reset_options',
-			),
-			array(
-				'title'   => __( 'Reset section settings', 'product-quantity-for-woocommerce' ),
-				'desc'    => '<strong>' . __( 'Reset', 'product-quantity-for-woocommerce' ) . '</strong>',
-				'id'      => $this->id . '_' . $current_section . '_reset',
-				'default' => 'no',
-				'type'    => 'checkbox',
-			),
-			array(
-				'type' => 'sectionend',
-				'id'   => $this->id . '_' . $current_section . '_reset_options',
-			),
-		) );
+				array(
+					'title' => __( 'Reset Section', 'product-quantity-for-woocommerce' ),
+					'type'  => 'title',
+					'id'    => $this->id . '_' . $current_section . '_reset_options',
+				),
+				array(
+					'title'   => __( 'Reset section settings', 'product-quantity-for-woocommerce' ),
+					'desc'    => '<strong>' . __( 'Reset', 'product-quantity-for-woocommerce' ) . '</strong>',
+					'id'      => $this->id . '_' . $current_section . '_reset',
+					'default' => 'no',
+					'type'    => 'checkbox',
+				),
+				array(
+					'type' => 'sectionend',
+					'id'   => $this->id . '_' . $current_section . '_reset_options',
+				),
+			)
+		);
 
-		return array_merge( $initialarray, $return );
+		return array_merge( $advertisement, $return );
 	}
 
 	/**
