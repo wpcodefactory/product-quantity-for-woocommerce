@@ -43,9 +43,9 @@ msgstr[1] "%s se han añadido al carrito."
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-alg-wc-pq-core.php:3189
-#: includes/class-alg-wc-pq-core.php:3286
-#: includes/class-alg-wc-pq-core.php:3405
+#: includes/class-alg-wc-pq-core.php:3201
+#: includes/class-alg-wc-pq-core.php:3298
+#: includes/class-alg-wc-pq-core.php:3417
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
 
@@ -297,8 +297,8 @@ msgstr "Especifique una cadena para esta categoría, esto está controlado por e
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:304
-#: product-quantity-for-woocommerce-pro.php:305
+#: product-quantity-for-woocommerce-pro.php:306
+#: product-quantity-for-woocommerce-pro.php:307
 msgid "Product Quantity"
 msgstr "Cantidad de producto"
 
@@ -1563,31 +1563,31 @@ msgstr "Estilo de entrada de cantidad"
 msgid "E.g.: %s"
 msgstr "Por ejemplo: %s"
 
-#: includes/settings/class-alg-wc-settings-pq.php:108
+#: includes/settings/class-alg-wc-settings-pq.php:127
 msgid "Reset Section"
 msgstr "Restablecer sección"
 
-#: includes/settings/class-alg-wc-settings-pq.php:113
+#: includes/settings/class-alg-wc-settings-pq.php:132
 msgid "Reset section settings"
 msgstr "Restablecer la configuración de la sección"
 
-#: includes/settings/class-alg-wc-settings-pq.php:114
+#: includes/settings/class-alg-wc-settings-pq.php:133
 msgid "Reset"
 msgstr "Reiniciar"
 
-#: includes/settings/class-alg-wc-settings-pq.php:255
+#: includes/settings/class-alg-wc-settings-pq.php:275
 msgid "Your settings have been reset."
 msgstr "Tu configuración se ha restablecido."
 
-#: product-quantity-for-woocommerce-pro.php:28
+#: product-quantity-for-woocommerce-pro.php:30
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s"
 msgstr "Debe desactivar el control de cantidad de productos para WooCommerce. <br/> %s volver a complementos. %s"
 
-#: product-quantity-for-woocommerce-pro.php:256
+#: product-quantity-for-woocommerce-pro.php:258
 msgid "Review Us"
 msgstr "Reseñanos"
 
-#: product-quantity-for-woocommerce-pro.php:260
+#: product-quantity-for-woocommerce-pro.php:262
 msgid "Go Pro"
 msgstr "Conviértete en profesional"
 
@@ -1609,24 +1609,24 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2224
-#: includes/class-alg-wc-pq-core.php:3998
+#: includes/class-alg-wc-pq-core.php:4010
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4009
+#: includes/class-alg-wc-pq-core.php:4021
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4075
-#: includes/class-alg-wc-pq-core.php:4105
+#: includes/class-alg-wc-pq-core.php:4087
+#: includes/class-alg-wc-pq-core.php:4117
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4458
+#: includes/class-alg-wc-pq-core.php:4470
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4531
+#: includes/class-alg-wc-pq-core.php:4543
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -1847,7 +1847,7 @@ msgstr ""
 msgid "https://wpfactory.com"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:253
+#: product-quantity-for-woocommerce-pro.php:255
 msgid "Settings"
 msgstr ""
 
@@ -1873,7 +1873,6 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:217
 #: includes/settings/class-alg-wc-pq-settings-general.php:232
-#: includes/settings/class-alg-wc-pq-settings-min.php:273
 msgid "Min quantity"
 msgstr ""
 
@@ -1903,11 +1902,11 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:139
 #: includes/settings/class-alg-wc-pq-settings-max.php:214
-#: includes/settings/class-alg-wc-pq-settings-min.php:272
 msgid "General > Initial Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:143
+#: includes/settings/class-alg-wc-pq-settings-min.php:271
 msgid "If the default quantity is lower than minimum quantity, the initial quantity will be set to minimum."
 msgstr ""
 
@@ -1927,10 +1926,10 @@ msgstr ""
 msgid "Specify a minimum quantity based on one of the options below."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-min.php:271
-msgid "To make the minimum quantity appear on page load, set an option from the %s section to %s."
-msgstr ""
-
 #: includes/settings/class-alg-wc-pq-settings-section.php:154
 msgid "Notes"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-min.php:270
+msgid "The initial default quantity visible will be set to minimum."
 msgstr ""

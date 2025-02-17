@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 4.9.5
+ * @version 4.9.7
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2348,15 +2348,27 @@ class Alg_WC_PQ_Core {
 	/**
 	 * float_stock_amount.
 	 *
-	 * @version 4.9.2
+	 * @version 4.9.7
 	 * @since   1.3.0
 	 */
 	function float_stock_amount() {
 		remove_filter( 'woocommerce_stock_amount', 'intval' );
-		add_filter( 'woocommerce_stock_amount', function ( $qty ) {
-			return ( $qty < 1 ? rtrim( number_format( (float) $qty, 6, '.', '' ), '0' ) : $qty );
-		} );
+		add_filter( 'woocommerce_stock_amount', array( $this, 'alg_wc_pq_floatval' ) );
 	}
+
+	/**
+	 * alg_wc_pq_floatval.
+	 *
+	 * @version 4.9.7
+	 * @since   4.9.7
+	 */
+	 function alg_wc_pq_floatval( $value ) {
+		 return apply_filters(
+			'alg_wc_product_quantity_floatval',
+			round( floatval( $value ), 6 ),
+			$value
+		);
+	 }
 
 	/**
 	 * alg_wc_woocommerce_product_set_stock_action.
@@ -2364,7 +2376,7 @@ class Alg_WC_PQ_Core {
 	 * @version 4.5.10
 	 * @since   4.5.10
 	 */
-	 function alg_wc_woocommerce_product_set_stock_action( $product ){
+	 function alg_wc_woocommerce_product_set_stock_action( $product ) {
 		 if(!$product){
 			 return;
 		 }
