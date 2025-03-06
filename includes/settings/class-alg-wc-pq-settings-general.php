@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - General Section Settings
  *
- * @version 4.9.3
+ * @version 4.9.9
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -44,7 +44,7 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.9.3
+	 * @version 4.9.9
 	 * @since   1.0.0
 	 * @todo    [feature] Force initial quantity on single product page - add "Custom value" option
 	 * @todo    [feature] Force initial quantity on single product page - per product
@@ -78,8 +78,9 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Decimal quantities', 'product-quantity-for-woocommerce' ),
-				'desc_tip' => __( 'Use decimal values on minimum/maximum/step quantities, <br>so to allow orders to buy in decimal, a decimal value needs to be used in min/max/step (i.e. to sell in 0.5 quantity, it has to be defined on step for example)', 'product-quantity-for-woocommerce' ),
-				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Example: to allow purchases in increments of 0.5, set the step value accordingly.', 'product-quantity-for-woocommerce' ) . ' ' .
+				              sprintf( __( '<b>Note</b>: You\'ll probably need to enable the classic Cart/Checkout to use this option as <a href="%s" target="_blank">decimal quantities are not supported yet in Cart/Checkout blocks</a>.', 'product-quantity-for-woocommerce' ), 'https://github.com/woocommerce/woocommerce/issues/50327' ),
+				'desc'     => __( 'Use decimal values for minimum, maximum, and step quantities', 'product-quantity-for-woocommerce' ),
 				'id'       => 'alg_wc_pq_decimal_quantities_enabled',
 				'default'  => 'no',
 				'type'     => 'checkbox',

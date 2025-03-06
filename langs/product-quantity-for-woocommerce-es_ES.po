@@ -43,9 +43,9 @@ msgstr[1] "%s se han añadido al carrito."
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-alg-wc-pq-core.php:3189
-#: includes/class-alg-wc-pq-core.php:3286
-#: includes/class-alg-wc-pq-core.php:3405
+#: includes/class-alg-wc-pq-core.php:3201
+#: includes/class-alg-wc-pq-core.php:3298
+#: includes/class-alg-wc-pq-core.php:3417
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
 
@@ -297,8 +297,8 @@ msgstr "Especifique una cadena para esta categoría, esto está controlado por e
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:304
-#: product-quantity-for-woocommerce-pro.php:305
+#: product-quantity-for-woocommerce-pro.php:306
+#: product-quantity-for-woocommerce-pro.php:307
 msgid "Product Quantity"
 msgstr "Cantidad de producto"
 
@@ -346,8 +346,8 @@ msgstr "Cantidades no permitidas como lista separada por comas, por ejemplo: %s.
 #: includes/settings/class-alg-wc-pq-metaboxes.php:574
 #: includes/settings/class-alg-wc-pq-settings-default.php:61
 #: includes/settings/class-alg-wc-pq-settings-default.php:140
-#: includes/settings/class-alg-wc-pq-settings-general.php:219
-#: includes/settings/class-alg-wc-pq-settings-general.php:234
+#: includes/settings/class-alg-wc-pq-settings-general.php:220
+#: includes/settings/class-alg-wc-pq-settings-general.php:235
 msgid "Default quantity"
 msgstr "Cantidad predeterminada"
 
@@ -428,15 +428,14 @@ msgstr "Columnas de administración"
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:156
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:191
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:221
-#: includes/settings/class-alg-wc-pq-settings-general.php:82
-#: includes/settings/class-alg-wc-pq-settings-general.php:90
-#: includes/settings/class-alg-wc-pq-settings-general.php:97
-#: includes/settings/class-alg-wc-pq-settings-general.php:105
-#: includes/settings/class-alg-wc-pq-settings-general.php:143
-#: includes/settings/class-alg-wc-pq-settings-general.php:162
-#: includes/settings/class-alg-wc-pq-settings-general.php:179
-#: includes/settings/class-alg-wc-pq-settings-general.php:250
-#: includes/settings/class-alg-wc-pq-settings-general.php:273
+#: includes/settings/class-alg-wc-pq-settings-general.php:91
+#: includes/settings/class-alg-wc-pq-settings-general.php:98
+#: includes/settings/class-alg-wc-pq-settings-general.php:106
+#: includes/settings/class-alg-wc-pq-settings-general.php:144
+#: includes/settings/class-alg-wc-pq-settings-general.php:163
+#: includes/settings/class-alg-wc-pq-settings-general.php:180
+#: includes/settings/class-alg-wc-pq-settings-general.php:251
+#: includes/settings/class-alg-wc-pq-settings-general.php:274
 #: includes/settings/class-alg-wc-pq-settings-max.php:117
 #: includes/settings/class-alg-wc-pq-settings-max.php:145
 #: includes/settings/class-alg-wc-pq-settings-max.php:175
@@ -538,19 +537,19 @@ msgstr "No redondear"
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:171
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:184
-#: includes/settings/class-alg-wc-pq-settings-general.php:135
+#: includes/settings/class-alg-wc-pq-settings-general.php:136
 msgid "Round"
 msgstr "Redondo"
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:172
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:185
-#: includes/settings/class-alg-wc-pq-settings-general.php:136
+#: includes/settings/class-alg-wc-pq-settings-general.php:137
 msgid "Round up"
 msgstr "Redondeo"
 
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:173
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:186
-#: includes/settings/class-alg-wc-pq-settings-general.php:137
+#: includes/settings/class-alg-wc-pq-settings-general.php:138
 msgid "Round down"
 msgstr "Redondear a la baja"
 
@@ -1004,151 +1003,147 @@ msgstr "Opciones generales"
 msgid "Decimal quantities"
 msgstr "Cantidades decimales"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:81
-msgid "Use decimal values on minimum/maximum/step quantities, <br>so to allow orders to buy in decimal, a decimal value needs to be used in min/max/step (i.e. to sell in 0.5 quantity, it has to be defined on step for example)"
-msgstr "Use valores decimales en cantidades mínimas/máximas/escalonadas, <br>para permitir que las órdenes compren en decimales, se debe usar un valor decimal en mín./máx./escalón (es decir, para vender en 0.5 cantidad, debe definirse en paso por ejemplo)"
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:88
+#: includes/settings/class-alg-wc-pq-settings-general.php:89
 msgid "Decimal quantities in admin order"
 msgstr "Cantidades decimales en orden de administración"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:89
+#: includes/settings/class-alg-wc-pq-settings-general.php:90
 msgid "Allow store admins to create orders with decimal values from store backend"
 msgstr "Permita que los administradores de la tienda creen pedidos con valores decimales desde el backend de la tienda"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:96
+#: includes/settings/class-alg-wc-pq-settings-general.php:97
 msgid "Sold individually"
 msgstr "Vendido Individualmente"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:98
+#: includes/settings/class-alg-wc-pq-settings-general.php:99
 msgid "This will enable \"Sold individually\" (no quantities) option for <strong>all products</strong> at once."
 msgstr "Esto habilitará la opción \"Vendido individualmente\" (sin cantidades) para <strong>todos los productos</strong> a la vez."
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:107
+#: includes/settings/class-alg-wc-pq-settings-general.php:108
 msgid "This includes cart items, grouped products etc."
 msgstr "Esto incluye artículos del carrito, productos agrupados, etc."
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:108
+#: includes/settings/class-alg-wc-pq-settings-general.php:109
 msgid "Ignored if \"Minimum quantity\" section is enabled."
 msgstr "Ignorado si la sección \"Cantidad mínima\" está habilitada."
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:114
+#: includes/settings/class-alg-wc-pq-settings-general.php:115
 msgid "\"Add to cart\" validation"
 msgstr "Validación \"Añadir al carrito\""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:122
+#: includes/settings/class-alg-wc-pq-settings-general.php:123
 msgid "Do not validate"
 msgstr "No validar"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:123
+#: includes/settings/class-alg-wc-pq-settings-general.php:124
 msgid "Validate and add notices"
 msgstr "Validar y agregar avisos"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:124
+#: includes/settings/class-alg-wc-pq-settings-general.php:125
 msgid "Validate and auto-correct quantities"
 msgstr "Validar y corregir cantidades automáticamente"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:128
+#: includes/settings/class-alg-wc-pq-settings-general.php:129
 msgid "Step auto-correct"
 msgstr "Autocorrección de pasos"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:129
+#: includes/settings/class-alg-wc-pq-settings-general.php:130
 msgid "Ignored unless \"Validate and auto-correct quantities\" option is selected above."
 msgstr "Se ignora a menos que se seleccione la opción \"Validar y corregir automáticamente las cantidades\" arriba."
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:141
+#: includes/settings/class-alg-wc-pq-settings-general.php:142
 msgid "Cart notices"
 msgstr "Avisos del carrito"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:142
+#: includes/settings/class-alg-wc-pq-settings-general.php:143
 msgid "Show error or notification messages on cart if users reached cart with wrong quantities."
 msgstr "Mostrar mensajes de error o notificación en el carrito si los usuarios llegaron al carrito con cantidades incorrectas."
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:149
+#: includes/settings/class-alg-wc-pq-settings-general.php:150
 msgid "Cart notice type"
 msgstr "Tipo de aviso de carrito"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:155
+#: includes/settings/class-alg-wc-pq-settings-general.php:156
 msgid "Notice"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:156
+#: includes/settings/class-alg-wc-pq-settings-general.php:157
 msgid "Error"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:157
+#: includes/settings/class-alg-wc-pq-settings-general.php:158
 msgid "Success"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:161
+#: includes/settings/class-alg-wc-pq-settings-general.php:162
 msgid "Block checkout page"
 msgstr "Bloquear página de pago"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:163
+#: includes/settings/class-alg-wc-pq-settings-general.php:164
 msgid "Block users from reaching checkout on wrong quantities (if notification is selected in Cart Notices)"
 msgstr "Impedir que los usuarios lleguen al pago en cantidades incorrectas (si se selecciona la notificación en Avisos del carrito)"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:173
+#: includes/settings/class-alg-wc-pq-settings-general.php:174
 msgid "Quantity on archive pages"
 msgstr "Cantidad en páginas de archivo"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:178
+#: includes/settings/class-alg-wc-pq-settings-general.php:179
 msgid "Enable quantity on archive pages"
 msgstr "Habilitar cantidad en páginas de archivo"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:180
+#: includes/settings/class-alg-wc-pq-settings-general.php:181
 msgid "Allow customers to select quantities and add to cart from shop/archive/categories pages, <strong>this works only on simple products.</strong>"
 msgstr "Permita que los clientes seleccionen cantidades y agreguen al carrito desde las páginas de tienda/archivo/categorías, <strong>esto funciona solo en productos simples.</strong>"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:193
+#: includes/settings/class-alg-wc-pq-settings-general.php:194
 msgid "Language Guide"
 msgstr "Guía de idiomas"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:194
+#: includes/settings/class-alg-wc-pq-settings-general.php:195
 msgid "WPML OR Polylang"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:194
+#: includes/settings/class-alg-wc-pq-settings-general.php:195
 msgid "If you are using multi-language store with WPML or Polylang, you can use shortcodes to show different languages, example: [alg_wc_pq_translate lang=\"EN\"] Allowed quantity for %product_title% is %allowed_quantity%. Your current quantity is %quantity%.[/alg_wc_pq_translate] can be used to show English messages, similar to other languages you have, use [alg_wc_pq_translate not_lang=\" \"] as fallback for non-defined languages."
 msgstr "Si está utilizando una tienda en varios idiomas con WPML o Polylang, puede usar códigos abreviados para mostrar diferentes idiomas, por ejemplo: [alg_wc_pq_translate lang=\"EN\"] La cantidad permitida para %product_title% es %allowed_quantity%. Su cantidad actual es %quantity%.[/alg_wc_pq_translate] se puede usar para mostrar mensajes en inglés, similar a otros idiomas que tiene, use [alg_wc_pq_translate not_lang=\" \"] como respaldo para idiomas no definidos."
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:244
+#: includes/settings/class-alg-wc-pq-settings-general.php:245
 msgid "Variable Products Options"
 msgstr "Opciones de productos variables"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:249
+#: includes/settings/class-alg-wc-pq-settings-general.php:250
 msgid "Load all variations"
 msgstr "Cargar todas las variaciones"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:257
+#: includes/settings/class-alg-wc-pq-settings-general.php:258
 msgid "On variation change"
 msgstr "En el cambio de variación"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:259
+#: includes/settings/class-alg-wc-pq-settings-general.php:260
 msgid "Select what you want to happen to quantity field when you change a variation, you can leave the quantity as is, reset to min, max, or default for the new selected variation"
 msgstr "Seleccione lo que desea que suceda con el campo de cantidad cuando cambie una variación, puede dejar la cantidad como está, restablecer al mínimo, máximo o predeterminado para la nueva variación seleccionada"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:264
+#: includes/settings/class-alg-wc-pq-settings-general.php:265
 msgid "Do nothing"
 msgstr "Hacer nada"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:265
+#: includes/settings/class-alg-wc-pq-settings-general.php:266
 msgid "Reset to min quantity"
 msgstr "Restablecer a cantidad mínima"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:266
+#: includes/settings/class-alg-wc-pq-settings-general.php:267
 msgid "Reset to max quantity"
 msgstr "Restablecer a la cantidad máxima"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:267
+#: includes/settings/class-alg-wc-pq-settings-general.php:268
 msgid "Reset to default quantity"
 msgstr "Restablecer a la cantidad predeterminada"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:268
+#: includes/settings/class-alg-wc-pq-settings-general.php:269
 msgid "Reset to lowest fixed quantity"
 msgstr "Restablecer a la cantidad fija más baja"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:272
+#: includes/settings/class-alg-wc-pq-settings-general.php:273
 msgid "Sum variations"
 msgstr "Suma variaciones"
 
@@ -1454,7 +1449,7 @@ msgstr "Códigos cortos disponibles: %s."
 msgid "Quantity Info Options"
 msgstr "Opciones de información de cantidad"
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:209
+#: includes/settings/class-alg-wc-pq-settings-general.php:210
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:73
 msgid "Single product page"
 msgstr "Página de un solo producto"
@@ -1563,31 +1558,31 @@ msgstr "Estilo de entrada de cantidad"
 msgid "E.g.: %s"
 msgstr "Por ejemplo: %s"
 
-#: includes/settings/class-alg-wc-settings-pq.php:108
+#: includes/settings/class-alg-wc-settings-pq.php:127
 msgid "Reset Section"
 msgstr "Restablecer sección"
 
-#: includes/settings/class-alg-wc-settings-pq.php:113
+#: includes/settings/class-alg-wc-settings-pq.php:132
 msgid "Reset section settings"
 msgstr "Restablecer la configuración de la sección"
 
-#: includes/settings/class-alg-wc-settings-pq.php:114
+#: includes/settings/class-alg-wc-settings-pq.php:133
 msgid "Reset"
 msgstr "Reiniciar"
 
-#: includes/settings/class-alg-wc-settings-pq.php:255
+#: includes/settings/class-alg-wc-settings-pq.php:275
 msgid "Your settings have been reset."
 msgstr "Tu configuración se ha restablecido."
 
-#: product-quantity-for-woocommerce-pro.php:28
+#: product-quantity-for-woocommerce-pro.php:30
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s"
 msgstr "Debe desactivar el control de cantidad de productos para WooCommerce. <br/> %s volver a complementos. %s"
 
-#: product-quantity-for-woocommerce-pro.php:256
+#: product-quantity-for-woocommerce-pro.php:258
 msgid "Review Us"
 msgstr "Reseñanos"
 
-#: product-quantity-for-woocommerce-pro.php:260
+#: product-quantity-for-woocommerce-pro.php:262
 msgid "Go Pro"
 msgstr "Conviértete en profesional"
 
@@ -1609,24 +1604,24 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2224
-#: includes/class-alg-wc-pq-core.php:3998
+#: includes/class-alg-wc-pq-core.php:4010
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4009
+#: includes/class-alg-wc-pq-core.php:4021
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4075
-#: includes/class-alg-wc-pq-core.php:4105
+#: includes/class-alg-wc-pq-core.php:4087
+#: includes/class-alg-wc-pq-core.php:4117
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4458
+#: includes/class-alg-wc-pq-core.php:4470
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4531
+#: includes/class-alg-wc-pq-core.php:4543
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -1716,34 +1711,34 @@ msgid ""
 "\t\t\t\tA description or tooltip is provided on almost every option to explain what it does and how it affects behavior based on your needs."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:104
+#: includes/settings/class-alg-wc-pq-settings-general.php:105
 msgid "Change minimum quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:106
+#: includes/settings/class-alg-wc-pq-settings-general.php:107
 msgid "Will change all minimum quantities to %s."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:115
+#: includes/settings/class-alg-wc-pq-settings-general.php:116
 msgid ""
 "Configure if you want to validate correct amounts on \"Add to Cart\", you can block reaching cart, or correct quantities automatically (see next option for rounding).\r\n"
 "\t\t\t\tFor most stores, the \"Validate and add notices\" is recommended."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:216
+#: includes/settings/class-alg-wc-pq-settings-general.php:217
 msgid "Do not Change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:220
-#: includes/settings/class-alg-wc-pq-settings-general.php:235
+#: includes/settings/class-alg-wc-pq-settings-general.php:221
+#: includes/settings/class-alg-wc-pq-settings-general.php:236
 msgid "Change to lowest fixed quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:231
+#: includes/settings/class-alg-wc-pq-settings-general.php:232
 msgid "Do not change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:251
+#: includes/settings/class-alg-wc-pq-settings-general.php:252
 msgid "Please leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues with loading variations customized with this plugin, if it didn't fix the issue, please revert it back unticked and send us a support request."
 msgstr ""
 
@@ -1847,7 +1842,7 @@ msgstr ""
 msgid "https://wpfactory.com"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:253
+#: product-quantity-for-woocommerce-pro.php:255
 msgid "Settings"
 msgstr ""
 
@@ -1859,35 +1854,34 @@ msgstr ""
 msgid "You can have a default quantity different from the minimum quantity."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:203
+#: includes/settings/class-alg-wc-pq-settings-general.php:204
 msgid "Initial Quantity Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:204
+#: includes/settings/class-alg-wc-pq-settings-general.php:205
 msgid "Set the initial quantity you want to show on page load, whether on product pages, or archive (shop/category) pages."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:213
+#: includes/settings/class-alg-wc-pq-settings-general.php:214
 msgid "Set initial quantity on single product page."
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:217
-#: includes/settings/class-alg-wc-pq-settings-general.php:232
-#: includes/settings/class-alg-wc-pq-settings-min.php:273
-msgid "Min quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:218
 #: includes/settings/class-alg-wc-pq-settings-general.php:233
+msgid "Min quantity"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:219
+#: includes/settings/class-alg-wc-pq-settings-general.php:234
 #: includes/settings/class-alg-wc-pq-settings-max.php:215
 msgid "Max quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:224
+#: includes/settings/class-alg-wc-pq-settings-general.php:225
 msgid "Archive pages"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:225
+#: includes/settings/class-alg-wc-pq-settings-general.php:226
 msgid "Set initial quantity on archives."
 msgstr ""
 
@@ -1903,11 +1897,11 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:139
 #: includes/settings/class-alg-wc-pq-settings-max.php:214
-#: includes/settings/class-alg-wc-pq-settings-min.php:272
 msgid "General > Initial Quantity Options"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-default.php:143
+#: includes/settings/class-alg-wc-pq-settings-min.php:271
 msgid "If the default quantity is lower than minimum quantity, the initial quantity will be set to minimum."
 msgstr ""
 
@@ -1927,10 +1921,22 @@ msgstr ""
 msgid "Specify a minimum quantity based on one of the options below."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-min.php:271
-msgid "To make the minimum quantity appear on page load, set an option from the %s section to %s."
-msgstr ""
-
 #: includes/settings/class-alg-wc-pq-settings-section.php:154
 msgid "Notes"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-min.php:270
+msgid "The initial default quantity visible will be set to minimum."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:81
+msgid "Example: to allow purchases in increments of 0.5, set the step value accordingly."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:82
+msgid "<b>Note</b>: You'll probably need to enable the classic Cart/Checkout to use this option as <a href=\"%s\" target=\"_blank\">decimal quantities are not supported yet in Cart/Checkout blocks</a>."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:83
+msgid "Use decimal values for minimum, maximum, and step quantities"
 msgstr ""

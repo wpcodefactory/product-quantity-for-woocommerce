@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Min Section Settings
  *
- * @version 4.9.4
+ * @version 4.9.8
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -45,7 +45,7 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.9.4
+	 * @version 4.9.8
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -267,11 +267,8 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 				'type'  => 'title',
 				'desc'  => $this->section_notes(
 					array(
-						sprintf(
-							__( 'To make the minimum quantity appear on page load, set an option from the %s section to %s.', 'product-quantity-for-woocommerce' ),
-							'<strong>' . '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq#alg_wc_pq_qty_forcing_qty_options-description' ) . '">' . __( 'General > Initial Quantity Options', 'product-quantity-for-woocommerce' ) . '</a>' . '</strong>',
-							'<code>' . __( 'Min quantity', 'product-quantity-for-woocommerce' ) . '</code>'
-						),
+						__( 'The initial default quantity visible will be set to minimum.', 'product-quantity-for-woocommerce' ),
+						__( 'If the default quantity is lower than minimum quantity, the initial quantity will be set to minimum.', 'product-quantity-for-woocommerce' ),
 					)
 				),
 				'id'    => 'alg_wc_pq_min_useful_options',

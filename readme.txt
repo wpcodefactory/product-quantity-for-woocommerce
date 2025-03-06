@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.7
-Stable tag: 4.9.7
+Stable tag: 4.9.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,14 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 4.9.9 - 06/03/2025 =
+* Fix - Translation loading was triggered too early.
+* Fix - General - Decimal quantities - Improved text informing about the classic cart/checkout.
+* WC tested up to: 9.7.
+
+= 4.9.8 - 17/02/2025 =
+* Dev - Minimum Quantity - Improved notes about initial default quantity.
 
 = 4.9.7 - 07/02/2025 =
 * Fix - Decimal quantities - Converting to float (with rounding to precision `6`).
