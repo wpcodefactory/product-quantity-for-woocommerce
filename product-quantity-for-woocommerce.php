@@ -3,7 +3,7 @@
 Plugin Name: Min Max Step Quantity Limits Manager for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 4.9.9
+Version: 5.0.0
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -74,7 +74,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '4.9.9';
+	public $version = '5.0.0';
 
 	/**
 	 * core.
@@ -118,7 +118,7 @@ final class Alg_WC_PQ {
 	/**
 	 * Alg_WC_PQ Constructor.
 	 *
-	 * @version 4.9.1
+	 * @version 5.0.0
 	 * @since   1.0.0
 	 *
 	 * @access  public
@@ -210,7 +210,7 @@ final class Alg_WC_PQ {
 		$this->add_cross_selling_library();
 
 		// WC Settings tab as WPFactory submenu item.
-		add_action( 'admin_init', array( $this, 'move_wc_settings_tab_to_wpfactory_menu' ) );
+		add_action( 'init', array( $this, 'move_wc_settings_tab_to_wpfactory_menu' ) );
 
 		// Settings
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
@@ -286,12 +286,14 @@ final class Alg_WC_PQ {
 	/**
 	 * move_wc_settings_tab_to_wpfactory_menu.
 	 *
-	 * @version 4.8.0
+	 * @version 5.0.0
 	 * @since   4.8.0
 	 */
 	function move_wc_settings_tab_to_wpfactory_menu() {
-
-		if ( ! class_exists( '\WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu' ) ) {
+		if (
+			! class_exists( '\WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu' ) ||
+			! is_admin()
+		) {
 			return;
 		}
 
@@ -306,7 +308,6 @@ final class Alg_WC_PQ {
 			'menu_title'         => __( 'Product Quantity', 'product-quantity-for-woocommerce' ),
 			'page_title'         => __( 'Product Quantity', 'product-quantity-for-woocommerce' ),
 		) );
-
 	}
 
 	/**

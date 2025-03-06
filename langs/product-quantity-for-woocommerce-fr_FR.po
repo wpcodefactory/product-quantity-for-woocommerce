@@ -76,8 +76,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:306
-#: product-quantity-for-woocommerce-pro.php:307
+#: product-quantity-for-woocommerce-pro.php:308
+#: product-quantity-for-woocommerce-pro.php:309
 msgid "Product Quantity"
 msgstr ""
 
