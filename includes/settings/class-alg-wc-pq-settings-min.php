@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Min Section Settings
  *
- * @version 4.9.8
+ * @version 5.0.2
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -45,7 +45,7 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.9.8
+	 * @version 5.0.2
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -62,16 +62,25 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Minimum Quantity Options', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'desc'     => __('Specify a minimum quantity based on one of the options below.','product-quantity-for-woocommerce'),
-
+				'desc'     => __('Manage the minimum quantity for products.','product-quantity-for-woocommerce'),
 				'id'       => 'alg_wc_pq_min_options',
 			),
 			array(
 				'title'    => __( 'Minimum quantity', 'product-quantity-for-woocommerce' ),
-				'desc'     => '<strong>' . __( 'Enable section', 'product-quantity-for-woocommerce' ) . '</strong>',
+				'desc'     => '<strong>' . __( 'Enable Minimum quantity section', 'product-quantity-for-woocommerce' ) . '</strong>',
 				'id'       => 'alg_wc_pq_min_section_enabled',
 				'default'  => 'no',
 				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Add to cart button', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Hide "Add To Cart" button when stock < min quantity', 'product-quantity-for-woocommerce' ),
+				apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use per attribute quantity options.',
+						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
+				'id'       => 'alg_wc_pq_min_hide_add_to_cart_less_stock',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
 				'type'     => 'sectionend',
@@ -175,7 +184,6 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_min_cat_cart_total_quantity_options',
@@ -246,17 +254,6 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 				'alg_wc_pq_raw' => true,
-			),
-			array(
-				'title'    => __( 'Hide "Add To Cart" button when stock < min quantity', 'product-quantity-for-woocommerce' ),
-				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
-				'desc_tip' => __( 'Hide "Add To Cart" when stock less than min quantity', 'product-quantity-for-woocommerce' ) .
-					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use per attribute quantity options.',
-						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
-				'id'       => 'alg_wc_pq_min_hide_add_to_cart_less_stock',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
 				'type'     => 'sectionend',
