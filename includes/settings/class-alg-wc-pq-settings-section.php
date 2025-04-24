@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Section Settings
  *
- * @version 4.9.4
+ * @version 5.0.3
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -12,6 +12,22 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_PQ_Settings_Section' ) ) :
 
 class Alg_WC_PQ_Settings_Section {
+
+	/**
+	 * id.
+	 *
+	 * @var   string
+	 * @since 5.0.3
+	 */
+	public $id = null;
+
+	/**
+	 * desc.
+	 *
+	 * @var   string
+	 * @since 5.0.3
+	 */
+	public $desc = null;
 
 	/**
 	 * qty_step_settings
@@ -28,9 +44,22 @@ class Alg_WC_PQ_Settings_Section {
 	 * @since   1.0.0
 	 */
 	function __construct() {
+		add_filter( 'woocommerce_get_sections_alg_wc_pq',              array( $this, 'set_section_variables' ), 9 );
 		add_filter( 'woocommerce_get_sections_alg_wc_pq',              array( $this, 'settings_section' ) );
 		add_filter( 'woocommerce_get_settings_alg_wc_pq_' . $this->id, array( $this, 'get_settings' ), PHP_INT_MAX );
 		add_action( 'admin_head', array( $this, 'custom_admin_inline_styles' ) );
+	}
+
+	/**
+	 * set_section_variables.
+	 *
+	 * @version 5.0.3
+	 * @since   5.0.3
+	 *
+	 * @return void
+	 */
+	function set_section_variables(){
+
 	}
 
 	/**

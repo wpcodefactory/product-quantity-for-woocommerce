@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Quantity Info Section Settings
  *
- * @version 4.6.0
+ * @version 5.0.3
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -14,31 +14,27 @@ if ( ! class_exists( 'Alg_WC_PQ_Settings_Quantity_Info' ) ) :
 class Alg_WC_PQ_Settings_Quantity_Info extends Alg_WC_PQ_Settings_Section {
 	
 	/**
-	 * id 
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $id   = null;
-	
-	/**
-	 * desc  
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $desc    = null;
-	
-	/**
 	 * Constructor.
 	 *
-	 * @version 1.7.0
+	 * @version 5.0.3
 	 * @since   1.7.0
 	 */
 	function __construct() {
 		$this->id   = 'quantity_info';
-		$this->desc = __( 'Quantity Info', 'product-quantity-for-woocommerce' );
 		parent::__construct();
+	}
+
+	/**
+	 * set_section_variables.
+	 *
+	 * @version 5.0.3
+	 * @since   5.0.3
+	 *
+	 * @return void
+	 */
+	public function set_section_variables() {
+		parent::set_section_variables();
+		$this->desc = __( 'Quantity Info', 'product-quantity-for-woocommerce' );
 	}
 
 	/**

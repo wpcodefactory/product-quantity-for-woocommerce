@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Price by Qty Section Settings
  *
- * @version 4.6.0
+ * @version 5.0.3
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -14,31 +14,27 @@ if ( ! class_exists( 'Alg_WC_PQ_Settings_Price_Unit' ) ) :
 class Alg_WC_PQ_Settings_Price_Unit extends Alg_WC_PQ_Settings_Section {
 	
 	/**
-	 * id 
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $id   = null;
-	
-	/**
-	 * desc  
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $desc    = null;
-	
-	/**
 	 * Constructor.
 	 *
-	 * @version 1.7.0
+	 * @version 5.0.3
 	 * @since   1.7.0
 	 */
 	function __construct() {
-		$this->id   = 'price_unit';
-		$this->desc = __( 'Price Unit', 'product-quantity-for-woocommerce' );
+		$this->id = 'price_unit';
 		parent::__construct();
+	}
+
+	/**
+	 * set_section_variables.
+	 *
+	 * @version 5.0.3
+	 * @since   5.0.3
+	 *
+	 * @return void
+	 */
+	public function set_section_variables() {
+		parent::set_section_variables();
+		$this->desc = __( 'Price Unit', 'product-quantity-for-woocommerce' );
 	}
 
 	/**

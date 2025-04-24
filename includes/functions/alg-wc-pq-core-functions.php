@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Functions - Core
  *
- * @version 1.6.3
+ * @version 5.0.3
  * @since   1.6.3
  * @author  WPFactory
  */
@@ -66,21 +66,29 @@ if ( ! function_exists( 'alg_wc_pq_wc_get_attribute_taxonomies' ) ) {
 	/**
 	 * alg_wc_pq_wc_get_attribute_taxonomies
 	 *
-	 * @version 1.6.3
+	 * @version 5.0.3
 	 * @since   1.6.3
 	 */
 	function alg_wc_pq_wc_get_attribute_taxonomies() {
 		global $wpdb;
 
-		$raw_attribute_taxonomies = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}woocommerce_attribute_taxonomies WHERE attribute_name != '' ORDER BY attribute_name ASC;" );
-		
-		// Index by ID for easer lookups.
-		$attribute_taxonomies = array();
+		$cache_key = 'alg_wc_pq_attribute_taxonomies';
+		$attribute_taxonomies = get_transient( $cache_key );
 
-		foreach ( $raw_attribute_taxonomies as $result ) {
-			$attribute_taxonomies[ $result->attribute_id ] = $result;
+		if ( false === $attribute_taxonomies ) {
+			$raw_attribute_taxonomies = $wpdb->get_results(
+				"SELECT * FROM {$wpdb->prefix}woocommerce_attribute_taxonomies WHERE attribute_name != '' ORDER BY attribute_name ASC"
+			);
+
+			$attribute_taxonomies = array();
+
+			foreach ( $raw_attribute_taxonomies as $result ) {
+				$attribute_taxonomies[ $result->attribute_id ] = $result;
+			}
+
+			set_transient( $cache_key, $attribute_taxonomies, DAY_IN_SECONDS );
 		}
-		
+
 		return $attribute_taxonomies;
 	}
 }

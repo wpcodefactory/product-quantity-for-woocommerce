@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Max Section Settings
  *
- * @version 4.9.4
+ * @version 5.0.3
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -15,31 +15,27 @@ if ( ! class_exists( 'Alg_WC_PQ_Settings_Max' ) ) :
 class Alg_WC_PQ_Settings_Max extends Alg_WC_PQ_Settings_Section {
 
 	/**
-	 * id.
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $id = null;
-
-	/**
-	 * desc.
-	 *
-	 * @var   string
-	 * @since 4.6.0
-	 */
-	public $desc = null;
-
-	/**
 	 * Constructor.
 	 *
-	 * @version 1.6.0
+	 * @version 5.0.3
 	 * @since   1.6.0
 	 */
 	function __construct() {
 		$this->id   = 'max';
-		$this->desc = __( 'Maximum Quantity', 'product-quantity-for-woocommerce' );
 		parent::__construct();
+	}
+
+	/**
+	 * set_section_variables.
+	 *
+	 * @version 5.0.3
+	 * @since   5.0.3
+	 *
+	 * @return void
+	 */
+	public function set_section_variables() {
+		parent::set_section_variables();
+		$this->desc = __( 'Maximum Quantity', 'product-quantity-for-woocommerce' );
 	}
 
 	/**
