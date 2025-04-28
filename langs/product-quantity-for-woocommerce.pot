@@ -2,35 +2,40 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 5.0.3\n"
+"Project-Id-Version: Min Max Step Quantity Limits Manager for WooCommerce 5.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-24T17:48:34+02:00\n"
+"POT-Creation-Date: 2025-04-28T14:13:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: product-quantity-for-woocommerce\n"
 
 #. Plugin Name of the plugin
-msgid "Min Max Step Quantity Limits Manager for WooCommerce Pro"
+#: product-quantity-for-woocommerce.php
+msgid "Min Max Step Quantity Limits Manager for WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: product-quantity-for-woocommerce.php
 msgid "https://wpfactory.com/item/product-quantity-for-woocommerce/"
 msgstr ""
 
 #. Description of the plugin
+#: product-quantity-for-woocommerce.php
 msgid "Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products."
 msgstr ""
 
 #. Author of the plugin
+#: product-quantity-for-woocommerce.php
 msgid "WPFactory"
 msgstr ""
 
 #. Author URI of the plugin
+#: product-quantity-for-woocommerce.php
 msgid "https://wpfactory.com"
 msgstr ""
 
@@ -345,8 +350,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:308
-#: product-quantity-for-woocommerce-pro.php:309
+#: product-quantity-for-woocommerce.php:313
+#: product-quantity-for-woocommerce.php:314
 msgid "Product Quantity"
 msgstr ""
 
@@ -924,7 +929,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:112
 msgid ""
-"Use the below two fields to show a text (like unit) next to values appearing in dropdown (i.e. 1 KG, 10 KGs, 20 pieces, 30 liters), you can define singular & plural texts.\r\n"
+"Use the below two fields to show a text (like unit) next to values appearing in dropdown (i.e. 1 KG, 10 KGs, 20 pieces, 30 liters), you can define singular & plural texts.\n"
 "\t\t\t\tYou can also define this label on product level by enabling \"Labels per product\""
 msgstr ""
 
@@ -1034,7 +1039,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:52
 msgid ""
-"Specify fixed (allowed/disallowed) quantities for products in your store, settings here overwrite minimum/maximum/or step quantities (if defined site-wide), <br>only the values here will be accepted for the products that have this field defined.\r\n"
+"Specify fixed (allowed/disallowed) quantities for products in your store, settings here overwrite minimum/maximum/or step quantities (if defined site-wide), <br>only the values here will be accepted for the products that have this field defined.\n"
 "\t\t\t\tFunctions here follow the same logic in minimum/maximum quantities on cart/all products/product level quantities."
 msgstr ""
 
@@ -1155,7 +1160,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:71
 msgid ""
-"This section contains settings that will be applied generally to your store, regardless of other settings defined in other tabs.\r\n"
+"This section contains settings that will be applied generally to your store, regardless of other settings defined in other tabs.\n"
 "\t\t\t\tA description or tooltip is provided on almost every option to explain what it does and how it affects behavior based on your needs."
 msgstr ""
 
@@ -1213,7 +1218,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:112
 msgid ""
-"Configure if you want to validate correct amounts on \"Add to Cart\", you can block reaching cart, or correct quantities automatically (see next option for rounding).\r\n"
+"Configure if you want to validate correct amounts on \"Add to Cart\", you can block reaching cart, or correct quantities automatically (see next option for rounding).\n"
 "\t\t\t\tFor most stores, the \"Validate and add notices\" is recommended."
 msgstr ""
 
@@ -1404,7 +1409,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:69
 msgid ""
-"Specify maximum quantity on the cart level, <strong>regardless</strong> of number of products on it.\r\n"
+"Specify maximum quantity on the cart level, <strong>regardless</strong> of number of products on it.\n"
 "\t\t\t\tThe Message field will allow you to customize the notification message on wrong quantities"
 msgstr ""
 
@@ -1516,7 +1521,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:88
 msgid ""
-"Specify minimum quantity on the cart level, <strong>regardless</strong> of number of products on it.\r\n"
+"Specify minimum quantity on the cart level, <strong>regardless</strong> of number of products on it.\n"
 "\t\t\t\tThe Message field will allow you to customize the notification message on wrong quantities"
 msgstr ""
 
@@ -1928,18 +1933,18 @@ msgstr ""
 msgid "Your settings have been reset."
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:30
+#: product-quantity-for-woocommerce.php:30
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:255
+#: product-quantity-for-woocommerce.php:257
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:258
+#: product-quantity-for-woocommerce.php:261
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:262
+#: product-quantity-for-woocommerce.php:266
 msgid "Go Pro"
 msgstr ""

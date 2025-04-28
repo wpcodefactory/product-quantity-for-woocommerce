@@ -3,7 +3,7 @@
 Plugin Name: Min Max Step Quantity Limits Manager for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 5.0.3
+Version: 5.0.4
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -74,7 +74,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '5.0.3';
+	public $version = '5.0.4';
 
 	/**
 	 * core.
@@ -99,12 +99,13 @@ final class Alg_WC_PQ {
 	protected static $_instance = null;
 
 	/**
-	 * Main Alg_WC_PQ Instance
+	 * Main Alg_WC_PQ Instance.
 	 *
 	 * Ensures only one instance of Alg_WC_PQ is loaded or can be loaded.
 	 *
 	 * @version 1.0.0
 	 * @since   1.0.0
+	 *
 	 * @static
 	 * @return  Alg_WC_PQ - Main instance
 	 */
@@ -251,17 +252,21 @@ final class Alg_WC_PQ {
 	 */
 	function action_links( $links ) {
 		$custom_links = array();
+
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pq' ) . '">' .
 			__( 'Settings', 'product-quantity-for-woocommerce' ) .
 		'</a>';
+
 		$custom_links[] = '<a style=" font-weight: bold;" target="_blank" href="' . esc_url( 'https://wordpress.org/support/plugin/product-quantity-for-woocommerce/reviews/#new-post"' ) . '">' .
 			__( 'Review Us', 'product-quantity-for-woocommerce' ) .
 		'</a>';
+
 		if ( 'product-quantity-for-woocommerce.php' === basename( __FILE__ ) ) {
 			$custom_links[] = '<a style="color: green; font-weight: bold;" target="_blank" href="' . esc_url( 'https://wpfactory.com/item/product-quantity-for-woocommerce/"' ) . '">' .
 				__( 'Go Pro', 'product-quantity-for-woocommerce' ) .
 			'</a>';
 		}
+
 		return array_merge( $custom_links, $links );
 	}
 
@@ -336,6 +341,7 @@ final class Alg_WC_PQ {
 	 *
 	 * @version 1.0.0
 	 * @since   1.0.0
+	 *
 	 * @return  string
 	 */
 	function plugin_url() {
@@ -347,6 +353,7 @@ final class Alg_WC_PQ {
 	 *
 	 * @version 1.0.0
 	 * @since   1.0.0
+	 *
 	 * @return  string
 	 */
 	function plugin_path() {
