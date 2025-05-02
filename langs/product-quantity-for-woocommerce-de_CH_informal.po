@@ -76,8 +76,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:85
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:308
-#: product-quantity-for-woocommerce-pro.php:309
+#: product-quantity-for-woocommerce-pro.php:313
+#: product-quantity-for-woocommerce-pro.php:314
 msgid "Product Quantity"
 msgstr ""
 
@@ -884,30 +884,30 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2242
-#: includes/class-alg-wc-pq-core.php:4049
+#: includes/class-alg-wc-pq-core.php:4057
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3211
-#: includes/class-alg-wc-pq-core.php:3306
-#: includes/class-alg-wc-pq-core.php:3423
+#: includes/class-alg-wc-pq-core.php:3219
+#: includes/class-alg-wc-pq-core.php:3314
+#: includes/class-alg-wc-pq-core.php:3431
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4059
+#: includes/class-alg-wc-pq-core.php:4067
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4120
-#: includes/class-alg-wc-pq-core.php:4148
+#: includes/class-alg-wc-pq-core.php:4128
+#: includes/class-alg-wc-pq-core.php:4156
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4501
+#: includes/class-alg-wc-pq-core.php:4509
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4569
+#: includes/class-alg-wc-pq-core.php:4577
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -1829,11 +1829,11 @@ msgstr ""
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:258
+#: product-quantity-for-woocommerce-pro.php:261
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:262
+#: product-quantity-for-woocommerce-pro.php:266
 msgid "Go Pro"
 msgstr ""
 
@@ -1845,7 +1845,7 @@ msgstr ""
 msgid "https://wpfactory.com"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:255
+#: product-quantity-for-woocommerce-pro.php:257
 msgid "Settings"
 msgstr ""
 
