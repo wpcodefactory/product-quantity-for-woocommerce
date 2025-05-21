@@ -74,18 +74,18 @@ msgstr ""
 msgid "Disallowed quantity for %product_title% is %disallowed_quantity%. Your current quantity is %quantity%."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:85
+#: includes/settings/class-alg-wc-pq-metaboxes.php:93
 #: includes/settings/class-alg-wc-settings-pq.php:25
 #: product-quantity-for-woocommerce-pro.php:313
 #: product-quantity-for-woocommerce-pro.php:314
 msgid "Product Quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:425
+#: includes/settings/class-alg-wc-pq-metaboxes.php:433
 msgid "Main variable product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:461
+#: includes/settings/class-alg-wc-pq-metaboxes.php:469
 #: includes/settings/class-alg-wc-pq-settings-min.php:65
 msgid "Minimum quantity"
 msgstr ""
@@ -94,23 +94,23 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:82
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:89
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:95
-#: includes/settings/class-alg-wc-pq-metaboxes.php:467
-#: includes/settings/class-alg-wc-pq-metaboxes.php:492
-#: includes/settings/class-alg-wc-pq-metaboxes.php:580
-#: includes/settings/class-alg-wc-pq-metaboxes.php:682
-#: includes/settings/class-alg-wc-pq-metaboxes.php:698
-#: includes/settings/class-alg-wc-pq-metaboxes.php:714
+#: includes/settings/class-alg-wc-pq-metaboxes.php:475
+#: includes/settings/class-alg-wc-pq-metaboxes.php:500
+#: includes/settings/class-alg-wc-pq-metaboxes.php:588
+#: includes/settings/class-alg-wc-pq-metaboxes.php:690
+#: includes/settings/class-alg-wc-pq-metaboxes.php:706
+#: includes/settings/class-alg-wc-pq-metaboxes.php:722
 msgid "Set 0 to use global settings. Set -1 to disable."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:486
+#: includes/settings/class-alg-wc-pq-metaboxes.php:494
 #: includes/settings/class-alg-wc-pq-settings-max.php:56
 msgid "Maximum quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:102
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:185
-#: includes/settings/class-alg-wc-pq-metaboxes.php:509
+#: includes/settings/class-alg-wc-pq-metaboxes.php:517
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:101
 #: includes/settings/class-alg-wc-pq-settings-advanced.php:114
 #: includes/settings/class-alg-wc-pq-settings-step.php:56
@@ -119,62 +119,62 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:102
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:110
-#: includes/settings/class-alg-wc-pq-metaboxes.php:515
+#: includes/settings/class-alg-wc-pq-metaboxes.php:523
 msgid "Set 0 to use global settings."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:532
+#: includes/settings/class-alg-wc-pq-metaboxes.php:540
 msgid "Exact quantity allowed"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:117
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:123
-#: includes/settings/class-alg-wc-pq-metaboxes.php:537
+#: includes/settings/class-alg-wc-pq-metaboxes.php:545
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:65
 #, php-format
 msgid "Allowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:538
-#: includes/settings/class-alg-wc-pq-metaboxes.php:562
-#: includes/settings/class-alg-wc-pq-metaboxes.php:626
-#: includes/settings/class-alg-wc-pq-metaboxes.php:637
-#: includes/settings/class-alg-wc-pq-metaboxes.php:653
-#: includes/settings/class-alg-wc-pq-metaboxes.php:664
+#: includes/settings/class-alg-wc-pq-metaboxes.php:546
+#: includes/settings/class-alg-wc-pq-metaboxes.php:570
+#: includes/settings/class-alg-wc-pq-metaboxes.php:634
+#: includes/settings/class-alg-wc-pq-metaboxes.php:645
+#: includes/settings/class-alg-wc-pq-metaboxes.php:661
+#: includes/settings/class-alg-wc-pq-metaboxes.php:672
 msgid "Set blank to use global settings."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:556
+#: includes/settings/class-alg-wc-pq-metaboxes.php:564
 msgid "Exact quantity disallowed"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:561
+#: includes/settings/class-alg-wc-pq-metaboxes.php:569
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:177
 #, php-format
 msgid "Disallowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:622
+#: includes/settings/class-alg-wc-pq-metaboxes.php:630
 msgid "Dropdown label template: Singular"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:623
-#: includes/settings/class-alg-wc-pq-metaboxes.php:634
-#: includes/settings/class-alg-wc-pq-metaboxes.php:650
-#: includes/settings/class-alg-wc-pq-metaboxes.php:661
-#: includes/settings/class-alg-wc-pq-metaboxes.php:678
-#: includes/settings/class-alg-wc-pq-metaboxes.php:694
-#: includes/settings/class-alg-wc-pq-metaboxes.php:710
+#: includes/settings/class-alg-wc-pq-metaboxes.php:631
+#: includes/settings/class-alg-wc-pq-metaboxes.php:642
+#: includes/settings/class-alg-wc-pq-metaboxes.php:658
+#: includes/settings/class-alg-wc-pq-metaboxes.php:669
+#: includes/settings/class-alg-wc-pq-metaboxes.php:686
+#: includes/settings/class-alg-wc-pq-metaboxes.php:702
+#: includes/settings/class-alg-wc-pq-metaboxes.php:718
 msgid "All variations"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:625
-#: includes/settings/class-alg-wc-pq-metaboxes.php:636
+#: includes/settings/class-alg-wc-pq-metaboxes.php:633
+#: includes/settings/class-alg-wc-pq-metaboxes.php:644
 #, php-format
 msgid "Dropdown label template, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:633
+#: includes/settings/class-alg-wc-pq-metaboxes.php:641
 msgid "Dropdown label template: Plural"
 msgstr ""
 
@@ -218,7 +218,7 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-general.php:159
 #: includes/settings/class-alg-wc-pq-settings-general.php:176
 #: includes/settings/class-alg-wc-pq-settings-general.php:247
-#: includes/settings/class-alg-wc-pq-settings-general.php:270
+#: includes/settings/class-alg-wc-pq-settings-general.php:272
 #: includes/settings/class-alg-wc-pq-settings-max.php:113
 #: includes/settings/class-alg-wc-pq-settings-max.php:141
 #: includes/settings/class-alg-wc-pq-settings-max.php:171
@@ -636,23 +636,23 @@ msgstr ""
 msgid "Load all variations"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:254
+#: includes/settings/class-alg-wc-pq-settings-general.php:256
 msgid "On variation change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:261
+#: includes/settings/class-alg-wc-pq-settings-general.php:263
 msgid "Do nothing"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:262
+#: includes/settings/class-alg-wc-pq-settings-general.php:264
 msgid "Reset to min quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:263
+#: includes/settings/class-alg-wc-pq-settings-general.php:265
 msgid "Reset to max quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:269
+#: includes/settings/class-alg-wc-pq-settings-general.php:271
 msgid "Sum variations"
 msgstr ""
 
@@ -969,7 +969,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:159
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:231
-#: includes/settings/class-alg-wc-pq-metaboxes.php:649
+#: includes/settings/class-alg-wc-pq-metaboxes.php:657
 msgid "Unit label template: Singular"
 msgstr ""
 
@@ -979,7 +979,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php:166
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:238
-#: includes/settings/class-alg-wc-pq-metaboxes.php:660
+#: includes/settings/class-alg-wc-pq-metaboxes.php:668
 msgid "Unit label template: Plural"
 msgstr ""
 
@@ -1069,7 +1069,7 @@ msgid "Specify a plural string for this category, this is controlled by Product 
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-category-metaboxes.php:248
-#: includes/settings/class-alg-wc-pq-metaboxes.php:598
+#: includes/settings/class-alg-wc-pq-metaboxes.php:606
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:37
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:55
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:105
@@ -1080,12 +1080,12 @@ msgstr ""
 msgid "Specify a string for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:445
-#: includes/settings/class-alg-wc-pq-metaboxes.php:450
+#: includes/settings/class-alg-wc-pq-metaboxes.php:453
+#: includes/settings/class-alg-wc-pq-metaboxes.php:458
 msgid "Allow selling below this number if no stock is available to meet this number"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:574
+#: includes/settings/class-alg-wc-pq-metaboxes.php:582
 #: includes/settings/class-alg-wc-pq-settings-default.php:56
 #: includes/settings/class-alg-wc-pq-settings-default.php:135
 #: includes/settings/class-alg-wc-pq-settings-general.php:216
@@ -1093,24 +1093,24 @@ msgstr ""
 msgid "Default quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:604
+#: includes/settings/class-alg-wc-pq-metaboxes.php:612
 msgid "Any string value."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:652
-#: includes/settings/class-alg-wc-pq-metaboxes.php:663
+#: includes/settings/class-alg-wc-pq-metaboxes.php:660
+#: includes/settings/class-alg-wc-pq-metaboxes.php:671
 msgid "Unit label template, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:677
+#: includes/settings/class-alg-wc-pq-metaboxes.php:685
 msgid "Minimum quantity for all variations"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:693
+#: includes/settings/class-alg-wc-pq-metaboxes.php:701
 msgid "Maximum quantity for all variations"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-metaboxes.php:709
+#: includes/settings/class-alg-wc-pq-metaboxes.php:717
 msgid "Exact quantity allowed for all variations"
 msgstr ""
 
@@ -1482,19 +1482,15 @@ msgstr ""
 msgid "Do not change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:248
-msgid "Please leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues with loading variations customized with this plugin, if it didn't fix the issue, please revert it back unticked and send us a support request."
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:256
+#: includes/settings/class-alg-wc-pq-settings-general.php:258
 msgid "Select what you want to happen to quantity field when you change a variation, you can leave the quantity as is, reset to min, max, or default for the new selected variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:264
+#: includes/settings/class-alg-wc-pq-settings-general.php:266
 msgid "Reset to default quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:265
+#: includes/settings/class-alg-wc-pq-settings-general.php:267
 msgid "Reset to lowest fixed quantity"
 msgstr ""
 
@@ -1950,4 +1946,16 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-min.php:72
 msgid "Add to cart button"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:248
+msgid "Leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues loading variations."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:249
+msgid "Note:"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:250
+msgid "This option might affect the performance. If your site starts loading slower, turn it off."
 msgstr ""

@@ -321,7 +321,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				require_once( 'class-alg-wc-pq-scripts.php' );
 
 				// For cart & for `input_value`
-				add_filter( 'woocommerce_quantity_input_args', array( $this, 'set_quantity_input_args' ), PHP_INT_MAX, 2 );
+				add_filter( 'woocommerce_quantity_input_args', array( $this, 'set_quantity_input_args' ), PHP_INT_MAX - 100, 2 );
 
 				// Decimal qty
 				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {

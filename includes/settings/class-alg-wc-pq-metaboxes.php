@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 4.6.0
+ * @version 5.0.6
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -20,6 +20,14 @@ class Alg_WC_PQ_Metaboxes {
 	 * @since 4.6.0
 	 */
 	public $is_section_enabled  = null;
+
+	/**
+	 * is_wc_version_below_3.
+	 *
+	 * @since 5.0.6
+	 * @var   string
+	 */
+	public $is_wc_version_below_3 = null;
 	
 	/**
 	 * Constructor.
