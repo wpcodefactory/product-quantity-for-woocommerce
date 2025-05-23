@@ -140,7 +140,7 @@ class Alg_WC_PQ_Settings_Step extends Alg_WC_PQ_Settings_Section {
 			array(
 				'title'    => __( 'Allow adding all quantity in stock (skip step restriction)', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
-				'desc_tip' => __( 'Allow adding all remaining quantities to the cart after the last multiple of the step value. ( Simple product and non-decimal step values are recommended. )', 'product-quantity-for-woocommerce' ) .
+				'desc_tip' => __( 'Allow adding all remaining quantities to the cart after the last multiple of the step value. (Simple product and non-decimal step values are recommended. For now, only classic cart supported).', 'product-quantity-for-woocommerce' ) .
 					apply_filters( 'alg_wc_pq_settings', '<br>' . sprintf( 'You will need %s to use per category quantity options.',
 						'<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 				'id'       => 'alg_wc_pq_step_per_item_quantity_allow_all_remaining',

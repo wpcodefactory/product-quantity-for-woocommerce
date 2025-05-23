@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 5.0.6\n"
+"Project-Id-Version: product-quantity-for-woocommerce 5.0.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-21T21:41:17+02:00\n"
+"POT-Creation-Date: 2025-05-23T23:54:47+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: product-quantity-for-woocommerce\n"
@@ -1881,7 +1881,7 @@ msgid "Allow adding all quantity in stock (skip step restriction)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:143
-msgid "Allow adding all remaining quantities to the cart after the last multiple of the step value. ( Simple product and non-decimal step values are recommended. )"
+msgid "Allow adding all remaining quantities to the cart after the last multiple of the step value. (Simple product and non-decimal step values are recommended. For now, only classic cart supported)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:157

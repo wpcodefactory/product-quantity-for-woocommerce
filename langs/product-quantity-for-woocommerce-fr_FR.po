@@ -1797,10 +1797,6 @@ msgstr ""
 msgid "Allow adding all quantity in stock (skip step restriction)"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-step.php:143
-msgid "Allow adding all remaining quantities to the cart after the last multiple of the step value. ( Simple product and non-decimal step values are recommended. )"
-msgstr ""
-
 #: includes/settings/class-alg-wc-pq-settings-step.php:157
 msgid "Per Category Step Quantity Options"
 msgstr ""
@@ -1958,4 +1954,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:250
 msgid "This option might affect the performance. If your site starts loading slower, turn it off."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-step.php:143
+msgid "Allow adding all remaining quantities to the cart after the last multiple of the step value. (Simple product and non-decimal step values are recommended. For now, only classic cart supported)."
 msgstr ""
