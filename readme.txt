@@ -345,6 +345,9 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 
 == Changelog ==
 
+= 5.0.8 - 23/05/2025 =
+* Fix - Quantity Step - Fixed Per product option on free version.
+
 = 5.0.7 - 23/05/2025 =
 * Fix - Quantity Step - Improved mechanism of Skip Step Restriction feature.
 

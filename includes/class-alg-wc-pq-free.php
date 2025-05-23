@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Pro Class
  *
- * @version 1.8.0
+ * @version 5.0.8
  * @since   1.8.0
  *
  * @author  WPFactory
@@ -58,12 +58,12 @@ class Alg_WC_PQ_Free {
 	/**
 	 * quantity_step_per_product_value.
 	 *
-	 * @version 4.6.13
+	 * @version 5.0.8
 	 * @since   1.8.0
 	 */
 	function quantity_step_per_product_value( $value, $product_id, $from_shortcode = false ) {
-		$product = wc_get_product($product_id);
-		if('yes' == get_post_meta( $product_id, '_' . 'alg_wc_pq_min_allow_selling_below_stock', true ) ) {
+		$product = wc_get_product( $product_id );
+		if ( 'yes' == get_post_meta( $product_id, '_' . 'alg_wc_pq_min_allow_selling_below_stock', true ) ) {
 			$stock = $product->get_stock_quantity();
 			$min   = get_post_meta( $product_id, '_' . 'alg_wc_pq_min', true );
 			if ( $product->managing_stock() && $stock < $min ) {
@@ -71,19 +71,21 @@ class Alg_WC_PQ_Free {
 			}
 		}
 		$step = get_post_meta( $product_id, '_' . 'alg_wc_pq_step', true );
-		if (
-			'yes' === get_option( 'alg_wc_pq_step_per_item_quantity_per_product_less2x', 'no' ) &&
-			! $from_shortcode
-		) {
+		if ( 'yes' === get_option( 'alg_wc_pq_step_per_item_quantity_per_product_less2x', 'no' ) && ! $from_shortcode ) {
 			if ( $step > 0 ) {
 				$step       = floatval( $step );
 				$doublestep = $step * 2;
 				$stock      = $product->get_stock_quantity();
-				if ( $stock < $doublestep ) {
+				if ( ! empty( $stock ) && $stock < $doublestep ) {
 					$step = $stock - $step;
 				}
 			}
 		}
+
+		if ( empty( $step ) ) {
+			return 0;
+		}
+
 		return $step;
 	}
 
