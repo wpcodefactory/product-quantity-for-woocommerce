@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Pro Class
  *
- * @version 5.0.8
+ * @version 5.1.0
  * @since   1.8.0
  *
  * @author  WPFactory
@@ -92,21 +92,22 @@ class Alg_WC_PQ_Free {
 	/**
 	 * per_item_quantity_per_product_value.
 	 *
-	 * @version 1.8.0
+	 * @version 5.1.0
 	 * @since   1.8.0
 	 */
 	function per_item_quantity_per_product_value( $value, $product_id, $min_or_max ) {
-		if ( 'min' == $min_or_max ) {
+		if ( $min_or_max == 'min' ) {
 			if ( 'yes' == get_post_meta( $product_id, '_' . 'alg_wc_pq_min_allow_selling_below_stock', true ) ) {
 				$product = wc_get_product( $product_id );
 				$stock   = $product->get_stock_quantity();
 				$min     = get_post_meta( $product_id, '_' . 'alg_wc_pq_min', true );
 				if ( $product->managing_stock() && $stock <= $min ) {
-					return $stock;
+					return (float) $stock;
 				}
 			}
 		}
-		return get_post_meta( $product_id, '_' . 'alg_wc_pq_' . $min_or_max, true );
+
+		return (float) get_post_meta( $product_id, '_' . 'alg_wc_pq_' . $min_or_max, true );
 	}
 
 }

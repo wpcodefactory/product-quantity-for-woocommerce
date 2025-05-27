@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.8
-Stable tag: 5.0.9
+Stable tag: 5.1.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -345,8 +345,11 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 
 == Changelog ==
 
+= 5.1.0 - 27/05/2025 =
+* Minimum Quantity - Fixed Per product on free version.
+
 = 5.0.9 - 23/05/2025 =
-* Fix - Quantity Step - Fixed version.
+* Fixed version.
 
 = 5.0.8 - 23/05/2025 =
 * Fix - Quantity Step - Fixed Per product option on free version.
