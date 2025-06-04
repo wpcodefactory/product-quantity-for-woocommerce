@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.0.5
+ * @version 5.1.1
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -755,9 +755,10 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * alg_wc_pq_update_closedate.
 		 *
-		 * @version 4.9.0
+		 * @version 5.1.1
 		 */
 		function alg_wc_pq_update_closedate() {
+			check_ajax_referer( 'alg_wc_pq_update_closedate', 'nonce' );
 			$user_id = get_current_user_id();
 			if ( $user_id > 0 ) {
 				$phpdatetime = time();
@@ -770,17 +771,22 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * alg_wc_pg_admin_footer_js.
 		 *
-		 * @version 4.9.0
+		 * @version 5.1.1
 		 */
 		function alg_wc_pg_admin_footer_js( $data ) {
+			$php_to_js = array(
+				'nonce'  => wp_create_nonce( 'alg_wc_pq_update_closedate' ),
+				'action' => 'alg_wc_pq_update_closedate'
+			);
 			?>
 			<script>
 				jQuery( document ).ready( function () {
 					jQuery( ".alg_wc_pq_close" ).on( 'click', function () {
+						let dataFromPHP = <?php echo wp_json_encode( $php_to_js );?>;
 						var closeData = {
-							'action': 'alg_wc_pq_update_closedate'
+							action: dataFromPHP.action,
+							nonce: dataFromPHP.nonce
 						};
-
 						jQuery.ajax( {
 							type: 'POST',
 							url: <?php echo "'" . admin_url( 'admin-ajax.php' ) . "'"; ?>,
