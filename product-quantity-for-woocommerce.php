@@ -3,12 +3,12 @@
 Plugin Name: Min Max Step Quantity Limits Manager for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 5.1.1
+Version: 5.1.2
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
 Domain Path: /langs
-WC tested up to: 9.8
+WC tested up to: 9.9
 Requires Plugins: woocommerce
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -74,7 +74,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '5.1.1';
+	public $version = '5.1.2';
 
 	/**
 	 * core.
@@ -291,7 +291,7 @@ final class Alg_WC_PQ {
 	/**
 	 * move_wc_settings_tab_to_wpfactory_menu.
 	 *
-	 * @version 5.0.0
+	 * @version 5.1.2
 	 * @since   4.8.0
 	 */
 	function move_wc_settings_tab_to_wpfactory_menu() {
@@ -310,8 +310,13 @@ final class Alg_WC_PQ {
 
 		$wpfactory_admin_menu->move_wc_settings_tab_to_wpfactory_menu( array(
 			'wc_settings_tab_id' => 'alg_wc_pq',
-			'menu_title'         => __( 'Product Quantity', 'product-quantity-for-woocommerce' ),
-			'page_title'         => __( 'Product Quantity', 'product-quantity-for-woocommerce' ),
+			'menu_title'         => __( 'Quantity Manager', 'product-quantity-for-woocommerce' ),
+			'page_title'         => __( 'Min Max Step Quantity Limits Manager', 'product-quantity-for-woocommerce' ),
+			'plugin_icon' => array(
+				'url'   => 'https://ps.w.org/product-quantity-for-woocommerce/assets/icon.svg?rev=2971558',
+				'style' => 'margin-top:-5px;',
+				'width' => 35,
+			)
 		) );
 	}
 

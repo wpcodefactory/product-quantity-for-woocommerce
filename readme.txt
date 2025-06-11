@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.8
-Stable tag: 5.1.1
+Stable tag: 5.1.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -345,6 +345,9 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 
 == Changelog ==
 
+= 5.1.2 - 11/06/2025 =
+* WC tested up to: 9.9.
+
 = 5.1.1 - 04/06/2025 =
 * Fixed vulnerability issue.
 
@@ -421,37 +424,7 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 * Fix - Fixed dynamic property warning.
 * WC tested up to: 9.5.
 
-= 4.9.1 - 11/12/2024 =
-* Fix - Resolved warning "Function _load_textdomain_just_in_time was called incorrectly".
-* Fix - Fixed the issue with fractional stock quantities when updating a product.
-* Dev - Key Manager - Library updated.
-* WC tested up to: 9.4.
-* Tested up to: 6.7.
-
-= 4.9.0 - 11/11/2024 =
-* Fix - Blocked access to checkout if cart quantity is incorrect.
-* Add - Placeholder for product item price `%item_price%`.
-* Dev - Initializing the plugin on the `plugins_loaded` action.
-* Dev - Code refactoring and cleanup.
-* Plugin name updated.
-
-= 4.8.0 - 05/11/2024 =
-* Dev - Plugin settings moved to the "WPFactory" menu.
-* Dev - "Recommendations" added.
-* Dev - "Key Manager" added.
-* Dev - Code refactoring and cleanup.
-
-= 4.7.1 - 27/10/2024 =
-* Fix - Fixed undefined data when saving.
-* Fix - Fixed issues with multiselect and array data when saving.
-
-= 4.7.0 - 25/10/2024 =
-* Fix - Fatal error in the cart block.
-* Dev - Added a filter to save empty option values in WooCommerce settings.
-* Dev - Code refactoring and cleanup.
-* WC tested up to: 9.3.
-
-[See changelog for all versions](https://plugins.svn.wordpress.org/product-quantity-for-woocommerce/trunk/changelog.txt).
+[View older changelog entries](https://plugins.svn.wordpress.org/product-quantity-for-woocommerce/trunk/changelog-older.txt)
 
 == Frequently Asked Questions ==
 

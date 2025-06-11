@@ -76,8 +76,6 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-metaboxes.php:93
 #: includes/settings/class-alg-wc-settings-pq.php:25
-#: product-quantity-for-woocommerce-pro.php:313
-#: product-quantity-for-woocommerce-pro.php:314
 msgid "Product Quantity"
 msgstr ""
 
@@ -1958,4 +1956,12 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-step.php:143
 msgid "Allow adding all remaining quantities to the cart after the last multiple of the step value. (Simple product and non-decimal step values are recommended. For now, only classic cart supported)."
+msgstr ""
+
+#: product-quantity-for-woocommerce-pro.php:313
+msgid "Quantity Manager"
+msgstr ""
+
+#: product-quantity-for-woocommerce-pro.php:314
+msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
