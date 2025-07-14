@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.1.1
+ * @version 5.1.3
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2557,7 +2557,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.0.5
+		 * @version 5.1.3
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2574,16 +2574,14 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			}
 
 			if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
-				if ( 'disabled' !== $this->alg_wc_pq_force_on_single ) {
-					$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
-					if (
-						is_cart() &&
-						$product->managing_stock() &&
-						$product->get_stock_quantity() === $args['min_value']
-					) {
-						$args['min_value'] = 0;
-						$args['readonly']  = true;
-					}
+				$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
+				if (
+					is_cart() &&
+					$product->managing_stock() &&
+					$product->get_stock_quantity() === $args['min_value']
+				) {
+					$args['min_value'] = 0;
+					$args['readonly']  = true;
 				}
 			} elseif ( 'yes' === get_option( 'alg_wc_pq_force_cart_min_enabled', 'no' ) ) {
 				$args['min_value'] = 1;
