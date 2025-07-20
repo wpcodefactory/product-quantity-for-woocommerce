@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 4.7.0
+ * @version 5.1.4
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -27,7 +27,7 @@ class Alg_WC_PQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 4.7.0
+	 * @version 5.1.4
 	 * @since   1.0.0
 	 *
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -81,7 +81,7 @@ class Alg_WC_PQ_Scripts {
 					}
 				}
 			}
-			wp_enqueue_script(  'alg-wc-pq-variable',
+			alg_wc_pq_enqueue_script(  'alg-wc-pq-variable',
 				trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-variable.js', array( 'jquery' ), alg_wc_pq()->version, true );
 			wp_localize_script( 'alg-wc-pq-variable', 'product_quantities', $product_quantities );
 			wp_localize_script( 'alg-wc-pq-variable', 'quantities_options', $quantities_options );
@@ -93,7 +93,7 @@ class Alg_WC_PQ_Scripts {
 					return;
 				}
 				if($_product->is_purchasable()){
-					wp_enqueue_script(  'alg-wc-pq-price-by-qty',
+					alg_wc_pq_enqueue_script(  'alg-wc-pq-price-by-qty',
 						trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-price-by-qty.js', array( 'jquery' ), alg_wc_pq()->version, true );
 					wp_localize_script( 'alg-wc-pq-price-by-qty',
 					'alg_wc_pq_update_price_by_qty_object', array(
@@ -106,7 +106,7 @@ class Alg_WC_PQ_Scripts {
 			} else {
 				if( (is_shop() || is_product_tag() || is_product_category() || is_front_page() || is_home()) ) {
 					if( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_qty_archive_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_add_quantity_archive_enabled', 'no' ) ){
-							wp_enqueue_script(  'alg-wc-pq-price-by-qty',
+							alg_wc_pq_enqueue_script(  'alg-wc-pq-price-by-qty',
 								trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-price-by-qty.js', array( 'jquery' ), alg_wc_pq()->version, true );
 							wp_localize_script( 'alg-wc-pq-price-by-qty',
 								'alg_wc_pq_update_price_by_qty_object', array(
@@ -121,7 +121,7 @@ class Alg_WC_PQ_Scripts {
 		}
 		// variable Price by qty
 		if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_enabled_variable', 'no' ) && ( $_product = wc_get_product( get_the_ID() ) ) && $_product->is_type( 'variable' ) && is_product() ) {
-			wp_enqueue_script(  'alg-wc-pq-price-by-qty',
+			alg_wc_pq_enqueue_script(  'alg-wc-pq-price-by-qty',
 				trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-price-by-qty.js', array( 'jquery' ), alg_wc_pq()->version, true );
 			wp_localize_script( 'alg-wc-pq-price-by-qty',
 				'alg_wc_pq_update_price_by_qty_object', array(
@@ -136,7 +136,7 @@ class Alg_WC_PQ_Scripts {
 			$force_check_step_periodically = ( 'yes' === get_option( 'alg_wc_pq_force_js_check_step_periodically', 'no' ) );
 			$force_check_step_on_change    = ( 'yes' === get_option( 'alg_wc_pq_force_js_check_step', 'no' ) );
 			if ( $force_check_step_periodically || $force_check_step_on_change ) {
-				wp_enqueue_script(  'alg-wc-pq-force-step-check',
+				alg_wc_pq_enqueue_script(  'alg-wc-pq-force-step-check',
 					trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-force-step-check.js', array( 'jquery' ), alg_wc_pq()->version, true );
 				wp_localize_script( 'alg-wc-pq-force-step-check', 'force_step_check_options', array(
 					'force_check_step_periodically'    => $force_check_step_periodically,
@@ -150,7 +150,7 @@ class Alg_WC_PQ_Scripts {
 			$force_check_min_max_periodically = ( 'yes' === get_option( 'alg_wc_pq_force_js_check_min_max_periodically', 'no' ) );
 			$force_check_min_max_on_change    = ( 'yes' === get_option( 'alg_wc_pq_force_js_check_min_max', 'no' ) );
 			if ( $force_check_min_max_periodically || $force_check_min_max_on_change ) {
-				wp_enqueue_script(  'alg-wc-pq-force-min-max-check',
+				alg_wc_pq_enqueue_script(  'alg-wc-pq-force-min-max-check',
 					trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-force-min-max-check.js', array( 'jquery' ), alg_wc_pq()->version, true );
 				wp_localize_script( 'alg-wc-pq-force-min-max-check', 'force_min_max_check_options', array(
 					'force_check_min_max_periodically'    => $force_check_min_max_periodically,
@@ -161,7 +161,7 @@ class Alg_WC_PQ_Scripts {
 		}
 		// Qty rounding
 		if ( 'no' != ( $round_with_js_func = get_option( 'alg_wc_pq_round_with_js', 'no' ) ) ) {
-			wp_enqueue_script(  'alg-wc-pq-force-rounding',
+			alg_wc_pq_enqueue_script(  'alg-wc-pq-force-rounding',
 				trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-force-rounding.js', array( 'jquery' ), alg_wc_pq()->version, true );
 			wp_localize_script( 'alg-wc-pq-force-rounding', 'force_rounding_options', array(
 				'round_with_js_func' => $round_with_js_func,
@@ -173,7 +173,7 @@ class Alg_WC_PQ_Scripts {
 			wp_register_script( 'select2-algwc', trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-select2.js', array( 'jquery' ), '1.0', true );
 
 			wp_enqueue_style( 'select2-algwc' );
-			wp_enqueue_script( 'select2-algwc' );
+			alg_wc_pq_enqueue_script( 'select2-algwc' );
 
 			wc_enqueue_js('
 			$(document).ready(function($) {
@@ -207,7 +207,7 @@ class Alg_WC_PQ_Scripts {
 
 			$_notice_underflow = html_entity_decode(str_replace( array_keys( $replaced_values_underflow ), array_values( $replaced_values_underflow ), $message_template_underflow ));
 
-			wp_enqueue_script(  'alg-wc-pq-invalid-html5-browser-msg',
+			alg_wc_pq_enqueue_script(  'alg-wc-pq-invalid-html5-browser-msg',
 						trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-invalid-html5-browser-msg.js', array( 'jquery' ), alg_wc_pq()->version, true );
 			wp_localize_script( 'alg-wc-pq-invalid-html5-browser-msg', 'invalid_html_five_message', array(
 					'rangeOverflow' => $_notice_overflow,
@@ -229,7 +229,7 @@ class Alg_WC_PQ_Scripts {
 						$max_qty = $stock_quantity;
 					}
 
-					wp_enqueue_script(  'alg-wc-pq-quantity-steps',
+					alg_wc_pq_enqueue_script(  'alg-wc-pq-quantity-steps',
 								trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-quantity-steps.js', array( 'jquery' ), alg_wc_pq()->version, true );
 					wp_localize_script( 'alg-wc-pq-quantity-steps', 'alg_wc_pq_support_runtime_steps', array(
 							'data' => array(
@@ -284,7 +284,7 @@ class Alg_WC_PQ_Scripts {
 
 				}
 
-				wp_enqueue_script(  'alg-wc-pq-quantity-steps',
+				alg_wc_pq_enqueue_script(  'alg-wc-pq-quantity-steps',
 					trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-quantity-steps.js', array( 'jquery' ), alg_wc_pq()->version, true );
 				wp_localize_script( 'alg-wc-pq-quantity-steps', 'alg_wc_pq_support_runtime_steps', $localize_arr );
 			}

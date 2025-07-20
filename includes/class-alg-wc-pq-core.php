@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.1.3
+ * @version 5.1.4
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -202,7 +202,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.0.3
+		 * @version 5.1.4
 		 * @since   1.0.0
 		 *
 		 * @todo    [fix] mini-cart number of items for decimal qty
@@ -318,6 +318,9 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				}
 
 				// Scripts
+				require_once( 'class-alg-wc-pq-functions.php' );
+
+				// Scripts.
 				require_once( 'class-alg-wc-pq-scripts.php' );
 
 				// For cart & for `input_value`

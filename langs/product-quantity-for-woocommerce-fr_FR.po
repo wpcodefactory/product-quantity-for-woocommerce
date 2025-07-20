@@ -861,51 +861,51 @@ msgstr ""
 msgid "WPFactory"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1266
+#: includes/class-alg-wc-pq-core.php:1269
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1271
+#: includes/class-alg-wc-pq-core.php:1274
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-alg-wc-pq-core.php:1272
+#: includes/class-alg-wc-pq-core.php:1275
 msgid "View cart"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2191
-#: includes/class-alg-wc-pq-core.php:2211
+#: includes/class-alg-wc-pq-core.php:2194
+#: includes/class-alg-wc-pq-core.php:2214
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2248
-#: includes/class-alg-wc-pq-core.php:4061
+#: includes/class-alg-wc-pq-core.php:2251
+#: includes/class-alg-wc-pq-core.php:4064
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3223
-#: includes/class-alg-wc-pq-core.php:3318
-#: includes/class-alg-wc-pq-core.php:3435
+#: includes/class-alg-wc-pq-core.php:3226
+#: includes/class-alg-wc-pq-core.php:3321
+#: includes/class-alg-wc-pq-core.php:3438
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4071
+#: includes/class-alg-wc-pq-core.php:4074
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4132
-#: includes/class-alg-wc-pq-core.php:4160
+#: includes/class-alg-wc-pq-core.php:4135
+#: includes/class-alg-wc-pq-core.php:4163
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4513
+#: includes/class-alg-wc-pq-core.php:4516
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4581
+#: includes/class-alg-wc-pq-core.php:4584
 msgid "Allowed quantity for attribute "
 msgstr ""
 
