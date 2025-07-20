@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmu
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.8
-Stable tag: 5.1.4
+Stable tag: 5.1.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,9 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 5.1.5 - 20/07/2025 =
+* Fix - Fixed `.gitattributes` file.
 
 = 5.1.4 - 20/07/2025 =
 * Fix - Minified version of javascript files are now enqueued when SCRIPT_DEBUG is not enabled.
