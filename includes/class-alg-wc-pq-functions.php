@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'alg_wc_pq_enqueue_script' ) ) {
 	/**
-	 * alg_wc_ev_is_user_verified_by_user_id.
+	 * alg_wc_pq_enqueue_script.
 	 *
 	 * @version 5.1.4
 	 * @since   5.1.4

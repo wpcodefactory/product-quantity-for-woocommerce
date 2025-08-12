@@ -882,30 +882,30 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2251
-#: includes/class-alg-wc-pq-core.php:4064
+#: includes/class-alg-wc-pq-core.php:4060
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3226
-#: includes/class-alg-wc-pq-core.php:3321
-#: includes/class-alg-wc-pq-core.php:3438
+#: includes/class-alg-wc-pq-core.php:3223
+#: includes/class-alg-wc-pq-core.php:3317
+#: includes/class-alg-wc-pq-core.php:3434
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4074
+#: includes/class-alg-wc-pq-core.php:4070
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4135
-#: includes/class-alg-wc-pq-core.php:4163
+#: includes/class-alg-wc-pq-core.php:4131
+#: includes/class-alg-wc-pq-core.php:4159
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4516
+#: includes/class-alg-wc-pq-core.php:4512
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4584
+#: includes/class-alg-wc-pq-core.php:4580
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -1964,4 +1964,12 @@ msgstr ""
 
 #: product-quantity-for-woocommerce-pro.php:314
 msgid "Min Max Step Quantity Limits Manager"
+msgstr ""
+
+#: includes/class-alg-wc-pq-core.php:3054
+msgid "unit"
+msgstr ""
+
+#: includes/class-alg-wc-pq-core.php:3055
+msgid "units"
 msgstr ""

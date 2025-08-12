@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.1.4
+ * @version 5.1.6
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -3041,7 +3041,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * ajax_price_by_qty.
 		 *
-		 * @version 4.6.8
+		 * @version 5.1.6
 		 * @since   1.6.1
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 		 * @todo    [dev] customizable position (instead of the price; after the price, before the price etc.) (NB: maybe do not display for qty=1)
@@ -3051,8 +3051,8 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		 */
 		function ajax_price_by_qty( $param ) {
 
-			$defaultpc  = '!na';
-			$defaultpcs = '!na';
+			$defaultpc  = __( 'unit', 'product-quantity-for-woocommerce' );
+			$defaultpcs = __( 'units', 'product-quantity-for-woocommerce' );
 
 			$woo_discount_rules = is_plugin_active( 'woo-discount-rules/woo-discount-rules.php' );
 
@@ -3088,7 +3088,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				$units = get_option( 'alg_wc_pq_qty_price_by_qty_unit_plural', 'no' );
 				$unit  = ( ( ! empty( $unit ) ) ? $unit : $defaultpc );
 				$units = ( ( ! empty( $units ) ) ? $units : $defaultpcs );
-
 
 				$product_unit  = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_singular', true );
 				$product_units = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_plural', true );
@@ -3134,7 +3133,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						}
 					}
 				}
-
 
 				if ( $pro_type == 'variable' && ( $selectedval != '' || $selectedval != 0 ) ) {
 
@@ -3221,10 +3219,9 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 							'{{%qty / %quantity_step}}' => $step_quotient,
 						);
 
-						if ( $unit != '!na' && $units != '!na' ) {
-							echo str_replace( array_keys( $placeholders ), $placeholders,
-								get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
-						}
+						echo str_replace( array_keys( $placeholders ), $placeholders,
+							get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
+
 					}
 
 				} else if ( $pro_type == 'simple' ) {
@@ -3316,10 +3313,9 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						'{{%qty / %quantity_step}}' => $step_quotient,
 					);
 
-					if ( $unit != '!na' && $units != '!na' ) {
-						echo str_replace( array_keys( $placeholders ), $placeholders,
-							get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
-					}
+					echo str_replace( array_keys( $placeholders ), $placeholders,
+						get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
+
 				}
 			}
 			die();
