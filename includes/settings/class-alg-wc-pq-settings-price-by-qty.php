@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Price by Qty Section Settings
  *
- * @version 5.0.3
+ * @version 5.1.7
  * @since   1.7.0
  * @author  WPFactory
  */
@@ -40,7 +40,7 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.6.8
+	 * @version 5.1.7
 	 * @since   1.7.0
 	 */
 	function get_settings() {
@@ -87,7 +87,6 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 				'type'     => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_pq_settings', array( 'disabled' => 'disabled' ) ),
 			),
-			
 			array(
 				'title'    => __( 'Allow defining unit on attribute level', 'product-quantity-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-quantity-for-woocommerce' ),
@@ -108,8 +107,6 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 				'class'    => 'chosen_select',
 				'options'  => $this->get_attribute_field_lists(),
 			),
-			
-			
 			array(
 				'title'    => __( 'Global label template: Singular', 'product-quantity-for-woocommerce' ),
 				'desc_tip' => __( 'This field will be used if no product/category units are defined', 'product-quantity-for-woocommerce' ),
@@ -152,6 +149,12 @@ class Alg_WC_PQ_Settings_Price_By_Qty extends Alg_WC_PQ_Settings_Section {
 					'after_add_to_cart'   => __( 'After add to cart', 'product-quantity-for-woocommerce' ),
 					
 				),
+			),
+			array(
+				'desc'    => sprintf( __( 'Replace variation price if position is set to %s.', 'product-quantity-for-woocommerce' ), '<code>' . __( 'Instead of the price', 'product-quantity-for-woocommerce' ) . '</code>' ),
+				'id'      => 'alg_wc_pq_qty_price_by_qty_variation_price',
+				'default' => 'no',
+				'type'    => 'checkbox',
 			),
 			array(
 				'type'     => 'sectionend',

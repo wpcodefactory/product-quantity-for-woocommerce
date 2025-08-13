@@ -27,7 +27,7 @@ class Alg_WC_PQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 5.1.4
+	 * @version 5.1.7
 	 * @since   1.0.0
 	 *
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -92,16 +92,17 @@ class Alg_WC_PQ_Scripts {
 				if(alg_wc_pq()->core->alg_wc_pq_price_by_qty_is_disable($_product)){
 					return;
 				}
-				if($_product->is_purchasable()){
-					alg_wc_pq_enqueue_script(  'alg-wc-pq-price-by-qty',
+				if ( $_product->is_purchasable() ) {
+					alg_wc_pq_enqueue_script( 'alg-wc-pq-price-by-qty',
 						trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-price-by-qty.js', array( 'jquery' ), alg_wc_pq()->version, true );
 					wp_localize_script( 'alg-wc-pq-price-by-qty',
-					'alg_wc_pq_update_price_by_qty_object', array(
-						'ajax_url'   => admin_url( 'admin-ajax.php' ),
-						'product_id' => get_the_ID(),
-						'position'   => get_option( 'alg_wc_pq_qty_price_by_qty_position', 'instead' ),
-						'ajax_async'   => get_option( 'alg_wc_pq_false_ajax_async', 'no' )
-					) );
+						'alg_wc_pq_update_price_by_qty_object', array(
+							'ajax_url'                => admin_url( 'admin-ajax.php' ),
+							'product_id'              => get_the_ID(),
+							'position'                => get_option( 'alg_wc_pq_qty_price_by_qty_position', 'instead' ),
+							'replace_variation_price' => 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_variation_price', 'no' ),
+							'ajax_async'              => get_option( 'alg_wc_pq_false_ajax_async', 'no' )
+						) );
 				}
 			} else {
 				if( (is_shop() || is_product_tag() || is_product_category() || is_front_page() || is_home()) ) {
@@ -121,14 +122,15 @@ class Alg_WC_PQ_Scripts {
 		}
 		// variable Price by qty
 		if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_enabled_variable', 'no' ) && ( $_product = wc_get_product( get_the_ID() ) ) && $_product->is_type( 'variable' ) && is_product() ) {
-			alg_wc_pq_enqueue_script(  'alg-wc-pq-price-by-qty',
+			alg_wc_pq_enqueue_script( 'alg-wc-pq-price-by-qty',
 				trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-price-by-qty.js', array( 'jquery' ), alg_wc_pq()->version, true );
 			wp_localize_script( 'alg-wc-pq-price-by-qty',
 				'alg_wc_pq_update_price_by_qty_object', array(
-					'ajax_url'   => admin_url( 'admin-ajax.php' ),
-					'product_id' => get_the_ID(),
-					'position'   => get_option( 'alg_wc_pq_qty_price_by_qty_position', 'instead' ),
-					'ajax_async'   => get_option( 'alg_wc_pq_false_ajax_async', 'no' )
+					'ajax_url'                => admin_url( 'admin-ajax.php' ),
+					'product_id'              => get_the_ID(),
+					'position'                => get_option( 'alg_wc_pq_qty_price_by_qty_position', 'instead' ),
+					'replace_variation_price' => 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_variation_price', 'no' ),
+					'ajax_async'              => get_option( 'alg_wc_pq_false_ajax_async', 'no' )
 				) );
 		}
 		// Force JS step check

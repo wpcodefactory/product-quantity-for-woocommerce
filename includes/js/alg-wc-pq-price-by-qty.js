@@ -1,7 +1,7 @@
 /**
  * alg-wc-pq-price-by-qty.js
  *
- * @version 5.1.6
+ * @version 5.1.7
  * @since   1.6.1
  */
 
@@ -64,6 +64,9 @@ function alg_wc_pq_update_price_by_qty( e, qty = null, attribute = null ) {
 				if ( 'instead' == alg_wc_pq_update_price_by_qty_object.position ) {
 					if ( response.length > 0 ) {
 						jQuery( 'p.price' ).html( response );
+						if(alg_wc_pq_update_price_by_qty_object.replace_variation_price){
+							jQuery( '.woocommerce-variation-price .price' ).html( response );
+						}
 					}
 				} else {
 					jQuery( 'p.alg-wc-pq-price-display-by-qty' ).html( response );

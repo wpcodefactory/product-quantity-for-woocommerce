@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.1.6
+ * @version 5.1.7
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2963,7 +2963,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * alg_wc_pq_get_product_price_unit.
 		 *
-		 * @version 4.5.20
+		 * @version 5.1.7
 		 * @since   4.5.20
 		 */
 		function alg_wc_pq_get_product_price_unit( $product, $quantitiy = 1, $price_unit = false ) {
@@ -2985,10 +2985,12 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
 						if ( ! empty( $product ) && $product->get_id() > 0 && ! is_admin() ) {
 							$product_id = $product->get_id();
-
 							if ( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes' ) {
 								$product_unit = $this->get_term_price_unit( $product_id );
-								$unit         = ( ! empty( $product_unit ) ? $product_unit : $unit );
+								if ( empty( $product_unit ) && 'variation' === $product->get_type() ) {
+									$product_unit = $this->get_term_price_unit( $product->get_parent_id() );
+								}
+								$unit = ( ! empty( $product_unit ) ? $product_unit : $unit );
 							}
 						}
 					}

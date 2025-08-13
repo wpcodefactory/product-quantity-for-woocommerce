@@ -43,9 +43,9 @@ msgstr[1] "%s se han añadido al carrito."
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-alg-wc-pq-core.php:3223
-#: includes/class-alg-wc-pq-core.php:3317
-#: includes/class-alg-wc-pq-core.php:3434
+#: includes/class-alg-wc-pq-core.php:3225
+#: includes/class-alg-wc-pq-core.php:3319
+#: includes/class-alg-wc-pq-core.php:3436
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
 
@@ -65,13 +65,13 @@ msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current
 msgstr "La cantidad mínima de pedido permitida es %min_cart_total_quantity%. La cantidad de su pedido actual es %cart_total_quantity%."
 
 #: includes/class-alg-wc-pq-messenger.php:76
-#: includes/class-alg-wc-pq-scripts.php:196
+#: includes/class-alg-wc-pq-scripts.php:198
 #: includes/settings/class-alg-wc-pq-settings-max.php:124
 msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr "La cantidad máxima permitida para %product_title% es %max_per_item_quantity%. La cantidad actual del artículo es %item_quantity%."
 
 #: includes/class-alg-wc-pq-messenger.php:86
-#: includes/class-alg-wc-pq-scripts.php:205
+#: includes/class-alg-wc-pq-scripts.php:207
 #: includes/settings/class-alg-wc-pq-settings-min.php:143
 msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr "La cantidad mínima permitida para %product_title% es %min_per_item_quantity%. La cantidad actual del artículo es %item_quantity%."
@@ -446,9 +446,9 @@ msgstr "Columnas de administración"
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:63
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:70
 #: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:81
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:93
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:168
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:188
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:92
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:171
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:191
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:63
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:72
 #: includes/settings/class-alg-wc-pq-settings-price-unit.php:83
@@ -810,13 +810,13 @@ msgid "If you want to show dropdown on your store but with excluding some catego
 msgstr "If you want to show dropdown on your store but with excluding some categories, you can enter these categories in the below field."
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:155
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:187
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:190
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:108
 msgid "Enable per category"
 msgstr "Habilitar por categoría"
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:165
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:197
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:200
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:116
 msgid "Exclude product categories"
 msgstr "Excluir categorías de productos"
@@ -826,7 +826,7 @@ msgid "Selected categories will be dropdown disabled"
 msgstr "Las categorías seleccionadas se desactivarán en el menú desplegable"
 
 #: includes/settings/class-alg-wc-pq-settings-dropdown.php:180
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:130
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:127
 msgid "Template"
 msgstr "Modelo"
 
@@ -915,7 +915,7 @@ msgstr "Habilitar esta opción creará un campo para cantidades fijas por atribu
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:127
 #: includes/settings/class-alg-wc-pq-settings-max.php:181
 #: includes/settings/class-alg-wc-pq-settings-min.php:236
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:103
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:102
 #: includes/settings/class-alg-wc-pq-settings-step.php:196
 msgid "Product Attributes"
 msgstr "Atributos del producto"
@@ -923,7 +923,7 @@ msgstr "Atributos del producto"
 #: includes/settings/class-alg-wc-pq-settings-fixed.php:128
 #: includes/settings/class-alg-wc-pq-settings-max.php:182
 #: includes/settings/class-alg-wc-pq-settings-min.php:237
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:104
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:103
 #: includes/settings/class-alg-wc-pq-settings-step.php:197
 msgid "Leave blank to use all"
 msgstr "Dejar en blanco para usar todo"
@@ -1200,7 +1200,7 @@ msgstr "Esta opción funciona exactamente de la misma manera que la categoría, 
 
 #: includes/settings/class-alg-wc-pq-settings-max.php:172
 #: includes/settings/class-alg-wc-pq-settings-min.php:227
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:94
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:93
 #: includes/settings/class-alg-wc-pq-settings-step.php:187
 msgid "This will add meta box to each attribute edit page."
 msgstr "Esto agregará un cuadro meta a cada página de edición de atributos."
@@ -1320,84 +1320,85 @@ msgstr "Permitir definir unidad a nivel de categoría"
 msgid "This will create two new fields on any category edit page, for singular & plural units to be used for all products under that category."
 msgstr "Esto creará dos nuevos campos en cualquier página de edición de categoría, para que las unidades singulares y plurales se utilicen para todos los productos de esa categoría."
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:92
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:91
 msgid "Allow defining unit on attribute level"
 msgstr "Permitir definir unidad a nivel de atributo"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:114
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:111
 msgid "Global label template: Singular"
 msgstr "Plantilla de etiqueta global: Singular"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:115
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:123
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:112
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:120
 msgid "This field will be used if no product/category units are defined"
 msgstr "Este campo se utilizará si no se definen unidades de producto/categoría"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:122
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:119
 msgid "Global label template: Plural"
 msgstr "Plantilla de etiqueta global: Plural"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:131
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:128
 msgid "You can use HTML here."
 msgstr "Puedes usar HTML aquí."
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:132
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:129
 msgid "Placeholders: %s. %s"
 msgstr "Marcadores de posición: %s. %s"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:133
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:130
 msgid "(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)"
 msgstr "(El marcador de posición %unit% se leerá desde 3 lugares, con el nivel de prioridad definido: primero, leerá si una unidad está definida en el nivel de producto, si no está definida, luego verificará si está definida en el nivel de categoría, si no está definida, se leerá desde el nivel global definido en esta página. Si su tienda usa la misma unidad para todos los productos, puede usar la unidad aquí en el campo sin ningún marcador de posición)"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:135
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:132
 msgid "%price% for %qty% pcs."
 msgstr "%price% para %qty% uds."
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:141
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:138
 msgid "Position"
 msgstr "Posición"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:148
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:145
 msgid "Before the price"
 msgstr "Antes del precio"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:149
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:146
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:154
 msgid "Instead of the price"
 msgstr "En lugar del precio"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:150
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:147
 msgid "After the price"
 msgstr "Después del precio"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:151
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:148
 msgid "Before add to cart"
 msgstr "Antes de agregar al carrito"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:152
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:149
 msgid "After add to cart"
 msgstr "Después de agregar al carrito"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:161
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:164
 msgid "Price by quantity on archive pages"
 msgstr "Precio por cantidad en páginas de archivo"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:163
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:166
 msgid "To enable this feature on the whole store but exclude some categories, you can enter these categories in the below field."
 msgstr "Para habilitar esta función en toda la tienda pero excluir algunas categorías, puede ingresar estas categorías en el campo a continuación."
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:167
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:170
 msgid "Enable Price by quantity on archive pages"
 msgstr "Habilitar precio por cantidad en páginas de archivo"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:181
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:184
 msgid "Total Price by Quantity for category"
 msgstr "Precio total por cantidad por categoría"
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:182
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:185
 msgid "Show Total Price by Quantity on archive/category/shop pages (you need to enable quantity on archive pages from General tab)."
 msgstr "Mostrar el precio total por cantidad en las páginas de archivo/categoría/tienda (debe habilitar la cantidad en las páginas de archivo desde la pestaña General)."
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:199
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:202
 msgid "Selected categories will be Total Price by Quantity disabled"
 msgstr "Las categorías seleccionadas tendrán Precio total por cantidad deshabilitado"
 
@@ -1600,24 +1601,24 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2251
-#: includes/class-alg-wc-pq-core.php:4060
+#: includes/class-alg-wc-pq-core.php:4062
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4070
+#: includes/class-alg-wc-pq-core.php:4072
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4131
-#: includes/class-alg-wc-pq-core.php:4159
+#: includes/class-alg-wc-pq-core.php:4133
+#: includes/class-alg-wc-pq-core.php:4161
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4512
+#: includes/class-alg-wc-pq-core.php:4514
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4580
+#: includes/class-alg-wc-pq-core.php:4582
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -1770,7 +1771,7 @@ msgstr ""
 msgid "With this section you can display product price for different quantities in real time (i.e. price is automatically updated when customer changes product's quantity)."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:143
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:140
 msgid "Select where you want this will appear, if you select \"Instead of the price\", then the settings defined under \"Price Unit\" will not work since it will be overwritten by this feature."
 msgstr ""
 
@@ -1957,10 +1958,14 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3054
+#: includes/class-alg-wc-pq-core.php:3056
 msgid "unit"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3055
+#: includes/class-alg-wc-pq-core.php:3057
 msgid "units"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-price-by-qty.php:154
+msgid "Replace variation price if position is set to %s."
 msgstr ""
