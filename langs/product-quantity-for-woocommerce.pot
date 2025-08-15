@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 5.1.7\n"
+"Project-Id-Version: product-quantity-for-woocommerce 5.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-14T01:15:44+02:00\n"
+"POT-Creation-Date: 2025-08-15T20:39:00+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: product-quantity-for-woocommerce\n"
@@ -70,38 +70,38 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-alg-wc-pq-core.php:2251
-#: includes/class-alg-wc-pq-core.php:4062
+#: includes/class-alg-wc-pq-core.php:4066
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3056
+#: includes/class-alg-wc-pq-core.php:3058
 msgid "unit"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3057
+#: includes/class-alg-wc-pq-core.php:3059
 msgid "units"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3225
-#: includes/class-alg-wc-pq-core.php:3319
-#: includes/class-alg-wc-pq-core.php:3436
+#: includes/class-alg-wc-pq-core.php:3227
+#: includes/class-alg-wc-pq-core.php:3321
+#: includes/class-alg-wc-pq-core.php:3438
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4072
+#: includes/class-alg-wc-pq-core.php:4076
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4133
-#: includes/class-alg-wc-pq-core.php:4161
+#: includes/class-alg-wc-pq-core.php:4137
+#: includes/class-alg-wc-pq-core.php:4165
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4514
+#: includes/class-alg-wc-pq-core.php:4518
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4582
+#: includes/class-alg-wc-pq-core.php:4586
 msgid "Allowed quantity for attribute "
 msgstr ""
 

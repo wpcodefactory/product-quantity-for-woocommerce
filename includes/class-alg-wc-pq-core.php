@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.1.7
+ * @version 5.1.8
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2560,7 +2560,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.1.3
+		 * @version 5.1.8
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2636,7 +2636,8 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					$args['input_value'] = ( ! empty( $args['input_value'] ) ? $args['input_value'] : $this->get_product_qty_default( $product->get_id(), 1 ) );
 				} else {
 					if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
-						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $args['input_value'] );
+						$default_qty = $args['input_value'] ?? 1;
+						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $default_qty );
 					}
 				}
 			}
@@ -2644,7 +2645,8 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			if ( 'disabled' != ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() ) {
 				if ( 'default' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) ) {
 					if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
-						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $args['input_value'] );
+						$default_qty = $args['input_value'] ?? 1;
+						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $default_qty );
 					}
 				} else if ( $this->alg_wc_pq_force_on_single !== 'exact_allowed' ) {
 					$args['input_value'] = ( 'min' === $force_on_single ?
@@ -3720,13 +3722,15 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_or_max.
 		 *
-		 * @version 1.7.0
+		 * @version 5.1.8
 		 * @since   1.6.0
 		 * @todo    [dev] (important) rename this (and probably some other `set_...()` functions)
 		 */
 		function set_quantity_input_min_or_max( $qty, $_product, $min_or_max ) {
 			$value  = $this->get_product_qty_min_max( $this->get_product_id( $_product ), $qty, $min_or_max );
+			remove_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX );
 			$_max   = $_product->get_max_purchase_quantity();
+			add_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX, 2 );
 			$return = ( - 1 == $_max || $value < $_max ? $value : $_max );
 
 			return $return;

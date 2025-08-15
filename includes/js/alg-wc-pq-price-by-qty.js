@@ -1,7 +1,7 @@
 /**
  * alg-wc-pq-price-by-qty.js
  *
- * @version 5.1.7
+ * @version 5.1.8
  * @since   1.6.1
  */
 
@@ -131,7 +131,14 @@ jQuery( document ).ready( function () {
 	jQuery( '[name="quantity"]' ).not( ".disable_price_by_qty" ).on( 'change', alg_wc_pq_update_price_by_qty );
 
 	var $el = jQuery( '[name="quantity"]' );
-	var $qty_val = Math.min( Math.max( +$el.val(), +$el.attr( 'min' ) ), +$el.attr( 'max' ) );
+	var val = +$el.val();
+	if ( $el.attr( 'min' ) !== undefined ) {
+		val = Math.max( val, +$el.attr( 'min' ) );
+	}
+	if ( $el.attr( 'max' ) !== undefined ) {
+		val = Math.min( val, +$el.attr( 'max' ) );
+	}
+	var $qty_val = val;
 
 	if ( 'undefined' !== typeof $qty_val ) {
 		alg_wc_pq_update_price_by_qty( false, $qty_val, $attribute );
