@@ -1,9 +1,9 @@
 === Min Max Step Quantity Limits Manager for WooCommerce ===
-Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli, aegkr
+Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, aegkr
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.8
-Stable tag: 5.1.8
+Stable tag: 5.1.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,12 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 5.1.9 - 29/09/2025 =
+* Dev - Minimum Qty - Added option to hide quantity input on product page if stock quantity matches minimum.
+* Dev - Minimum Qty - Added option to hide quantity input on cart if stock quantity matches minimum.
+* WC tested up to: 10.2.
+* Updated cross-selling library to version 1.0.6.
 
 = 5.1.8 - 15/08/2025 =
 * Fix - Fixed Undefined array key "input_value".
