@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.1.9
+ * @version 5.2.0
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2560,7 +2560,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.1.9
+		 * @version 5.2.0
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2584,7 +2584,8 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				) {
 					if (
 						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_product_page_if_stock_matches_min', 'yes' ) && is_product() ) ||
-						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_cart_if_stock_matches_min', 'yes' ) && is_cart() )
+						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_cart_if_stock_matches_min', 'yes' ) && is_cart() ) ||
+						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_loop_if_stock_matches_min', 'yes' ) && ( is_shop() || is_product_tag() || is_product_category() ) )
 					) {
 						$args['min_value'] = 0;
 						$args['readonly']  = true;

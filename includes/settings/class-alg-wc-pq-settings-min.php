@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Min Section Settings
  *
- * @version 5.1.9
+ * @version 5.2.0
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -41,7 +41,7 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 5.1.9
+	 * @version 5.2.0
 	 * @since   1.6.0
 	 */
 	function get_settings() {
@@ -83,28 +83,36 @@ class Alg_WC_PQ_Settings_Min extends Alg_WC_PQ_Settings_Section {
 				'id'       => 'alg_wc_pq_min_options',
 			),
 			array(
-				'title'    => __( 'Quantity input visibility', 'product-quantity-for-woocommerce' ),
+				'title'    => __( 'Hide quantity input', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Hide quantity input if stock quantity matches minimum.', 'product-quantity-for-woocommerce' ),
 				'type'     => 'title',
-				'id'       => 'alg_wc_pq_min_qty_input_visibility_options',
+				'id'       => 'alg_wc_pq_min_qty_input_hide_qty_input_options',
 			),
 			array(
-				'title'         => __( 'Hide quantity input', 'product-quantity-for-woocommerce' ),
-				'desc'          => __( 'Hide quantity on product page if stock quantity matches minimum', 'product-quantity-for-woocommerce' ),
+				'title'         => __( 'Product page', 'product-quantity-for-woocommerce' ),
+				'desc'          => __( 'Hide quantity input on product page', 'product-quantity-for-woocommerce' ),
 				'id'            => 'alg_wc_pq_min_hide_qty_input_on_product_page_if_stock_matches_min',
 				'default'       => 'yes',
 				'type'          => 'checkbox',
-				'checkboxgroup' => 'start',
 			),
 			array(
-				'desc'          => __( 'Hide quantity on cart if stock quantity matches minimum', 'product-quantity-for-woocommerce' ),
+				'title'         => __( 'Cart', 'product-quantity-for-woocommerce' ),
+				'desc'          => __( 'Hide quantity input on cart', 'product-quantity-for-woocommerce' ),
 				'id'            => 'alg_wc_pq_min_hide_qty_input_on_cart_if_stock_matches_min',
 				'default'       => 'yes',
 				'type'          => 'checkbox',
-				'checkboxgroup' => 'end',
+			),
+			array(
+				'title'         => __( 'Loop', 'product-quantity-for-woocommerce' ),
+				'desc'          => __( 'Hide quantity input on loop', 'product-quantity-for-woocommerce' ),
+				'desc_tip'      => __( 'Loop considers shop, category and tag pages.', 'product-quantity-for-woocommerce' ),
+				'id'            => 'alg_wc_pq_min_hide_qty_input_on_loop_if_stock_matches_min',
+				'default'       => 'yes',
+				'type'          => 'checkbox',
 			),
 			array(
 				'type'     => 'sectionend',
-				'id'       => 'alg_wc_pq_min_qty_input_visibility_options',
+				'id'       => 'alg_wc_pq_min_qty_input_hide_qty_input_options',
 			),
 			array(
 				'title'    => __( 'Cart Total Minimum Quantity Options', 'product-quantity-for-woocommerce' ),
