@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.2.0
+ * @version 5.2.1
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2560,7 +2560,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.2.0
+		 * @version 5.2.1
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2666,10 +2666,12 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 			if ( ( is_shop() || is_product_tag() || is_product_category() ) ) {
 				if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
-					if ( ! isset( $args['min_value'] ) ||
-						 $args['min_value'] <= 0 ||
-						 ( 'disabled' == ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) && ! isset( $args['min_value'] ) ) ) {
-						$args['min_value'] = 1;
+					if (
+						! isset( $args['min_value'] ) ||
+						$args['min_value'] <= 0 ||
+						( 'disabled' == ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) && ! isset( $args['min_value'] ) )
+					) {
+						$args['readonly']  = true;
 					}
 				}
 
