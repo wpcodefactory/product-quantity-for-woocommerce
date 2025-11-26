@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, ae
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.8
-Stable tag: 5.2.1
+Stable tag: 5.2.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,7 +13,7 @@ Define a min/max, step, decimal & default quantity for products, show a dropdown
 
 > “The best plugin for product quantity: Without doubt, it´s the best plugin for products quantity I´ve used with woocommerce. And another thing very important: behind the plugin there are people helping and giving support in an extraordinary way. Thank you very much to all of them.” – ⭐⭐⭐⭐⭐  [pozoalcon](https://wordpress.org/support/topic/the-best-plugin-for-product-quantity/)
 
-[Main Page](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Main Page**") |  [Support Forum](https://wpfactory.com/support/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Support Forum**") | [Documentation & How to](https://wpfactory.com/docs/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Documentation & How to**") | [Demo](https://minmaxquantity.instawp.xyz/)
+[Main Page](https://wpfactory.com/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Main Page**") |  [Support Forum](https://wpfactory.com/support/item/product-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Support Forum**") | [Documentation & How to](https://wpfactory.com/docs/min-max-quantity/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Documentation & How to**") | [Demo](https://minmaxquantity.instawp.xyz/)
 
 With a growing demand for detailed customization like defining minimum, maximum, and step quantities, there’s a need for an advanced solution.
 
@@ -344,6 +344,11 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 5.2.2 - 26/11/2025 =
+* Fix - readme.txt - "Documentation & How to" link fixed.
+* Dev - Composer - `autoloader-suffix` param added.
+* WC tested up to: 10.3.
 
 = 5.2.1 - 02/10/2025 =
 * Fix - Changed from forcing minimum val of 1 to readonly on loop, if minimum quantity is enabled.
