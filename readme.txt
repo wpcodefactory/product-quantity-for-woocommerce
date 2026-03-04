@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, aegkr
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
-Tested up to: 6.8
-Stable tag: 5.2.2
+Tested up to: 6.9
+Stable tag: 5.2.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -345,6 +345,14 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 
 == Changelog ==
 
+= 5.2.3 - 04/03/2026 =
+* Fix - Cross Site Scripting (XSS) vulnerability.
+* Dev - Code refactoring and cleanup.
+* Dev - WPFactory Recommendations - Library updated (to v1.0.9).
+* Dev - Key Manager - Library updated (to v1.0.8).
+* WC tested up to: 10.5.
+* Tested up to: 6.9.
+
 = 5.2.2 - 26/11/2025 =
 * Fix - readme.txt - "Documentation & How to" link fixed.
 * Dev - Composer - `autoloader-suffix` param added.
@@ -430,41 +438,6 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 
 = 5.0.0 - 06/03/2025 =
 * Fix - Fixed settings page on WPFactory menu.
-
-= 4.9.9 - 06/03/2025 =
-* Fix - Translation loading was triggered too early.
-* Fix - General - Decimal quantities - Improved text informing about the classic cart/checkout.
-* WC tested up to: 9.7.
-
-= 4.9.8 - 17/02/2025 =
-* Dev - Minimum Quantity - Improved notes about initial default quantity.
-
-= 4.9.7 - 07/02/2025 =
-* Fix - Decimal quantities - Converting to float (with rounding to precision `6`).
-* Dev - Languages - POT file regenerated with WP-CLI.
-* Dev - Code refactoring and cleanup.
-* Readme - Changelog cleanup.
-
-= 4.9.6 - 24/01/2025 =
-* Fix - Decimal quantities - Converting to float (except `qty < 1`).
-* WC tested up to: 9.6.
-
-= 4.9.5 - 21/01/2025 =
-* Fix - Fixed an issue with the Quantity Step.
-
-= 4.9.4 - 20/01/2025 =
-* Fix - Some standards fixed.
-* Dev - Initial quantity is not set automatically by Minimum Quantity section anymore.
-* Dev - Improved texts for Min quantity, Max quantity, and Default quantity.
-
-= 4.9.3 - 19/01/2025 =
-* Fix - Improved Default Quantity section description.
-* Fix - Improved General > Initial Quantity Options description.
-
-= 4.9.2 - 14/01/2025 =
-* Fix - Fixed the fractional stock quantities below 1 on dashboard product inventory".
-* Fix - Fixed dynamic property warning.
-* WC tested up to: 9.5.
 
 [View older changelog entries](https://plugins.svn.wordpress.org/product-quantity-for-woocommerce/trunk/changelog-older.txt)
 

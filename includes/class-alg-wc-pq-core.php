@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.2.1
+ * @version 5.2.3
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -749,7 +749,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						}
 					} );
 
-
 				} );
 			</script>
 			<?php
@@ -1274,7 +1273,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			$added_text = sprintf( _n( '%s have been added to cart.', '%s have been added to cart.', $count, 'product-quantity-for-woocommerce' ), wc_format_list_of_items( $titles ) );
 			$message    = sprintf( '<a href="%s" class="button wc-forward">%s</a> %s', esc_url( wc_get_page_permalink( 'cart' ) ), esc_html__( 'View cart', 'product-quantity-for-woocommerce' ), esc_html( $added_text ) );
 
-
 			return $message;
 		}
 
@@ -1305,7 +1303,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			wc_enqueue_js( '
 		jQuery(function($) {
 		$("form.cart").on("change", "input.qty", function() {
-        $(this.form).find("[data-quantity]").attr("data-quantity", this.value);  //used attr instead of data, for WC 4.0 compatibility
+		$(this.form).find("[data-quantity]").attr("data-quantity", this.value);  //used attr instead of data, for WC 4.0 compatibility
 		});
 		' );
 
@@ -1447,7 +1445,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			return false;
 		}
 
-
 		/**
 		 * set_quantity_input_price_unit.
 		 *
@@ -1493,7 +1490,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			if ( is_object( $product ) ) {
 				$product_id = $product->get_id();
 				if ( $product_id > 0 ) {
-
 
 					if ( $this->is_show_unit() ) {
 
@@ -1546,7 +1542,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				}
 			}
 
-
 			if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'instead' ) {
 				if ( 'disabled' != ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() ) {
 
@@ -1580,7 +1575,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					if ( ! empty( $product ) && $product->get_id() > 0 && ! empty( $price ) && ! is_admin() ) {
 						$product_id = $product->get_id();
 						if ( $productType == 'variation' ) {
-							// $product_id = $product->get_variation_id();
 							$product_id = $product->get_id();
 						}
 						if ( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes' ) {
@@ -1736,7 +1730,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			wc_add_order_item_meta( $item_id, get_option( 'alg_wc_pq_save_qty_in_order_item_meta_key', '_alg_wc_pq_qty' ), $order_item['qty'] );
 		}
 
-
 		/**
 		 * round_on_add_to_cart.
 		 *
@@ -1874,7 +1867,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					$product    = $values['data'];
 					$product_id = ( isset( $values['product_id'] ) ? $values['product_id'] : 0 );
 					if ( ! $group_by_variation ) {
-						/* $quantities[ $product->get_stock_managed_by_id() ] = isset( $quantities[ $product->get_stock_managed_by_id() ] ) ? $quantities[ $product->get_stock_managed_by_id() ] + $values['quantity'] : $values['quantity']; */
 						$quantities[ $product_id ] = isset( $quantities[ $product_id ] ) ? $quantities[ $product_id ] + $values['quantity'] : $values['quantity'];
 					} else {
 						$product_id   = ( isset( $values['product_id'] ) ? $values['product_id'] : 0 );
@@ -1901,7 +1893,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			if ( ! isset( WC()->cart ) ) {
 				$cart_item_quantities = array();
 			} else {
-				// $cart_item_quantities = WC()->cart->get_cart_item_quantities();
 				$cart_item_quantities = $this->alc_wg_get_cart_item_quantities();
 
 				if ( empty( $cart_item_quantities ) || ! is_array( $cart_item_quantities ) ) {
@@ -1916,7 +1907,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 				}
 			}
-
 
 			if ( 0 != $product_id ) {
 				if ( ! isset( $cart_item_quantities[ $product_id ] ) ) {
@@ -2004,7 +1994,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 		function get_cartitem_by_category() {
 			$category = array();
-			// $cart_all_item_quantities = WC()->cart->get_cart_item_quantities();
+
 			$cart_all_item_quantities = $this->alc_wg_get_cart_item_quantities();
 
 			if ( isset( $cart_all_item_quantities ) && ! empty( $cart_all_item_quantities ) ) {
@@ -2136,7 +2126,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				}
 			}
 
-
 			if ( count( $category ) > 0 ) {
 				return $category;
 			} else {
@@ -2152,7 +2141,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		 */
 		function get_cartitem_groupby_parent_id() {
 			$main_products = array();
-			// $cart_all_item_quantities = WC()->cart->get_cart_item_quantities();
+
 			$cart_all_item_quantities = $this->alc_wg_get_cart_item_quantities( true );
 
 			if ( isset( $cart_all_item_quantities ) && ! empty( $cart_all_item_quantities ) ) {
@@ -2446,7 +2435,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 				if ( $product->get_manage_stock() ) {
 
-
 					$stock_is_above_notification_threshold = ( (float) $product->get_stock_quantity() > absint( get_option( 'woocommerce_notify_no_stock_amount', 0 ) ) );
 
 					$backorders_are_allowed = ( 'no' !== $product->get_backorders() );
@@ -2520,7 +2508,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 								if ( count( $terms_id ) > 0 ) {
 									$wpdb->query( "DELETE FROM " . $wpdb->prefix . "term_relationships WHERE object_id IN (" . implode( ", ", $product_ids ) . ") AND term_taxonomy_id  IN (" . implode( ", ", $terms_id ) . ")" );
 								}
-								// delete_transient( 'wc_term_counts' );
+
 								_wc_recount_terms_by_product( $product_id );
 
 							}
@@ -2661,7 +2649,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 			if ( 'disabled' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() && 'no' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
 				$args['min_value'] = $this->set_quantity_input_min( 1, $product );
-				// $args['min_value']   = 1;
 			}
 
 			if ( ( is_shop() || is_product_tag() || is_product_category() ) ) {
@@ -2773,7 +2760,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 							// return decimal
 							return $return_step_var;
 						} else {
-							// return intiger
+							// return integer
 							$return_var = (int) $return_step_var;
 							if ( $return_var < 1 ) {
 								$return_var = 1;
@@ -2797,7 +2784,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						// return decimal
 						return $return_step;
 					} else {
-						// return intiger
+						// return integer
 						$return = (int) $return_step;
 						if ( $return < 1 ) {
 							$return = 1;
@@ -2985,7 +2972,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			}
 			$product_id = $product->get_id();
 
-
 			if ( $price_unit ) {
 				$unit = '';
 				if ( $this->alg_wc_pq_qty_price_unit_enabled === 'yes' ) {
@@ -3052,7 +3038,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * ajax_price_by_qty.
 		 *
-		 * @version 5.1.6
+		 * @version 5.2.3
 		 * @since   1.6.1
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 		 * @todo    [dev] customizable position (instead of the price; after the price, before the price etc.) (NB: maybe do not display for qty=1)
@@ -3061,6 +3047,8 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		 * @todo    [dev] (maybe) add optional "in progress" message (for slow servers)
 		 */
 		function ajax_price_by_qty( $param ) {
+
+			check_ajax_referer( 'alg_wc_pq_nonce', 'nonce' );
 
 			$defaultpc  = __( 'unit', 'product-quantity-for-woocommerce' );
 			$defaultpcs = __( 'units', 'product-quantity-for-woocommerce' );
@@ -3083,7 +3071,11 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 			}
 
-			if ( isset( $_POST['alg_wc_pq_qty'] ) && '' !== $_POST['alg_wc_pq_qty'] && ! empty( $_POST['alg_wc_pq_id'] ) ) {
+			if (
+				isset( $_POST['alg_wc_pq_qty'] ) &&
+				'' !== $_POST['alg_wc_pq_qty'] && !
+				empty( $_POST['alg_wc_pq_id'] )
+			) {
 				$product    = wc_get_product( $_POST['alg_wc_pq_id'] );
 				$product_id = $_POST['alg_wc_pq_id'];
 
@@ -3100,15 +3092,29 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				$unit  = ( ( ! empty( $unit ) ) ? $unit : $defaultpc );
 				$units = ( ( ! empty( $units ) ) ? $units : $defaultpcs );
 
-				$product_unit  = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_singular', true );
-				$product_units = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_plural', true );
+				$product_unit  = get_post_meta(
+					$product_id,
+					'_alg_wc_pq_qty_price_by_qty_unit_label_template_singular',
+					true
+				);
+				$product_units = get_post_meta(
+					$product_id,
+					'_alg_wc_pq_qty_price_by_qty_unit_label_template_plural',
+					true
+				);
 
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_unit_input_enabled', 'no' ) && ! empty( $product_unit ) && ! empty( $product_units ) ) {
+				if (
+					'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_unit_input_enabled', 'no' ) &&
+					! empty( $product_unit ) &&
+					! empty( $product_units )
+				) {
 					if ( ! empty( $unit ) && ! empty( $units ) ) {
 						$unit  = ( ! empty( $product_unit ) ? $product_unit : $defaultpc );
 						$units = ( ! empty( $product_units ) ? $product_units : $defaultpcs );
 					}
-				} else if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_cat_qty_unit_input_enabled', 'no' ) ) {
+				} else if (
+					'yes' === get_option( 'alg_wc_pq_qty_price_by_cat_qty_unit_input_enabled', 'no' )
+				) {
 					$get_unit = $this->get_category_unit_label( $product_id );
 					if ( $get_unit ) {
 						$unit  = $get_unit['singular'];
@@ -3118,7 +3124,9 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 				}
 
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_enabled', 'no' ) ) {
+				if (
+					'yes' === get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_enabled', 'no' )
+				) {
 
 					$get_unit = $this->get_attribute_unit_label( $product_id, $this->attr_taxonomies );
 					if ( $get_unit ) {
@@ -3127,14 +3135,18 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						$unit   = ( ( ! empty( $aunit ) ) ? $aunit : $defaultpc );
 						$units  = ( ( ! empty( $aunits ) ) ? $aunits : $defaultpcs );
 					}
-
 				}
-
 
 				$arrangedArray = array();
 				if ( ! empty( $selectedattribute ) ) {
-					$selectedattribute = json_decode( stripslashes( $selectedattribute ), JSON_UNESCAPED_SLASHES );
-					if ( count( $selectedattribute ) > 0 && is_array( $selectedattribute ) ) {
+					$selectedattribute = json_decode(
+						stripslashes( $selectedattribute ),
+						JSON_UNESCAPED_SLASHES
+					);
+					if (
+						count( $selectedattribute ) > 0 &&
+						is_array( $selectedattribute )
+					) {
 						foreach ( $selectedattribute as $key => $sel ) {
 							foreach ( $sel as $key => $val ) {
 								if ( ! empty( $val ) ) {
@@ -3145,7 +3157,10 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 				}
 
-				if ( $pro_type == 'variable' && ( $selectedval != '' || $selectedval != 0 ) ) {
+				if (
+					$pro_type == 'variable' &&
+					( $selectedval != '' || $selectedval != 0 )
+				) {
 
 					$currency_symbol = get_woocommerce_currency_symbol();
 					$selectedval     = $_POST['selected_val'];
@@ -3155,53 +3170,16 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					$variation_id    = $this->find_matching_product_variation_id( $product_id, $arrangedArray, true );
 
 					$step = $this->get_product_qty_step( $product_id, 1, $variation_id );
-					/*
-			$product = new WC_Product_Variable($product_id);
-			$variations = $product->get_available_variations();
-			// echo '<pre>';
-			//print_r($variations);
-			//echo '</pre>';
-			$var_data = [];
-			foreach ($variations as $variation)
-			{
-				$attribute_get =  $variation['attributes'];
-				//$aKeys = array_keys($attribute_get);
-				//$cKeys = array_keys($arrangedArray);
-				$diff=array_diff($attribute_get,$arrangedArray);
-				//print_r($diff);
-				foreach ($attribute_get as $attribute_get_v)
-				{
-
-					if(is_array($arrangedArray) && count($arrangedArray) > 0)
-					{
-						// if ($attribute_get_v == $selectedval )
-						// {
-							// $price_get =  $variation['price_html'];
-							// echo 'price_get' . $price_get;
-							$display_regular_price = $variation['display_regular_price'].'<span class="currency">'. $currency_symbol .'</span>';
-							$display_price = $variation['display_price'].'<span class="currency">'. $currency_symbol .'</span>';
-
-							//echo 'displayp' . $display_price;
-							//echo 'qty' . $_POST['alg_wc_pq_qty'];
-							$placeholders = array();
-							$placeholders = array(
-								'%price%'   =>$currency_symbol.''.$display_price*$quantity_fetch,
-								'%qty%'     => $quantity_fetch,
-							);
-							echo str_replace( array_keys( $placeholders ), $placeholders,
-							get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% pcs.', 'product-quantity-for-woocommerce' ) ) );
-
-						// }
-					}
-					// exit;
-				}
-				// exit;
-			}
-			*/
 
 					/**Tire pricing for variation product*/
-					if ( file_exists( ABSPATH . 'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php' ) ) {
-						require_once ABSPATH . 'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php';
+					if (
+						file_exists(
+							ABSPATH .
+							'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php'
+						)
+					) {
+						require_once ABSPATH .
+							'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php';
 						if ( class_exists( 'TierPricingTable\PriceManager' ) ) {
 							$PriceManager = new TierPricingTable\PriceManager();
 							if ( $variation_id > 0 ) {
@@ -3223,7 +3201,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 							}
 						}
 						$placeholders = array(
-							/*'%price%'   =>$currency_symbol.''.$variation_price*$quantity_fetch,*/
 							'%price%'                   => wc_price( $variation_price * $quantity_fetch ),
 							'%qty%'                     => $quantity_fetch,
 							'%unit%'                    => ( $quantity_fetch > 1 ? $units : $unit ),
@@ -3231,7 +3208,11 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						);
 
 						echo str_replace( array_keys( $placeholders ), $placeholders,
-							get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
+							get_option(
+								'alg_wc_pq_qty_price_by_qty_template',
+								__( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' )
+							)
+						);
 
 					}
 
@@ -3245,12 +3226,17 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						global $woocommerce_wpml;
 						if ( ! empty( $woocommerce_wpml ) ) {
 							$currency = $woocommerce_wpml->get_multi_currency()->get_client_currency();
-							$price    = $woocommerce_wpml->multi_currency->prices->get_product_price_in_currency( $product->get_id(), $currency );
-							// $price = wc_get_price_including_tax( $product, [ 'price' => $price ] );
+							$price    = $woocommerce_wpml->multi_currency->prices->get_product_price_in_currency(
+								$product->get_id(),
+								$currency
+							);
 							$price         = $price * $_POST['alg_wc_pq_qty'];
 							$display_price = wc_price( $price, [ 'currency' => $currency ] );
 						} else {
-							$price         = wc_get_price_to_display( $product, array( 'qty' => $_POST['alg_wc_pq_qty'] ) );
+							$price = wc_get_price_to_display(
+								$product,
+								array( 'qty' => $_POST['alg_wc_pq_qty'] )
+							);
 							$display_price = wc_price( $price );
 						}
 					} else {
@@ -3258,15 +3244,25 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 						// woo discount rule
 						if ( $woo_discount_rules ) {
-							$discountprices              = ManageDiscount::calculateInitialAndDiscountedPrice( $product, $_POST['alg_wc_pq_qty'], $is_cart = false, true );
-							$initial_price_with_tax      = ( isset( $discountprices['initial_price_with_tax'] ) ? $discountprices['initial_price_with_tax'] : $discountprices['initial_price'] );
-							$discounted_price_with_tax   = ( isset( $discountprices['discounted_price_with_tax'] ) ? $discountprices['discounted_price_with_tax'] : $discountprices['discounted_price_with_tax'] );
+							$discountprices              = ManageDiscount::calculateInitialAndDiscountedPrice(
+								$product, $_POST['alg_wc_pq_qty'],
+								$is_cart = false,
+								true
+							);
+							$initial_price_with_tax      = (
+								isset( $discountprices['initial_price_with_tax'] ) ?
+									$discountprices['initial_price_with_tax'] :
+									$discountprices['initial_price']
+							);
+							$discounted_price_with_tax   = (
+								isset( $discountprices['discounted_price_with_tax'] ) ?
+									$discountprices['discounted_price_with_tax'] :
+									$discountprices['discounted_price_with_tax']
+							);
 							$qty                         = $_POST['alg_wc_pq_qty'];
 							$productprice_after_discount = $initial_price_with_tax - $discounted_price_with_tax;
 							$discountPrice               = $productprice_after_discount * $qty;
-							// $discountPrice = $discountCalculator->mayApplyPriceDiscount($product, $_POST['alg_wc_pq_qty'], $price, false, array(), true, $manual_request);
 							if ( ! empty( $discountPrice ) ) {
-								// $price = (isset($discountPrice['discounted_price']) ? $discountPrice['discounted_price'] : $discountPrice['initial_price']);
 								$price = $discountPrice;
 							}
 						}
@@ -3276,7 +3272,11 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 
 					/**Tire pricing for variation product*/
-					if ( file_exists( ABSPATH . 'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php' ) ) {
+					if (
+						file_exists(
+							ABSPATH . 'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php'
+						)
+					) {
 						require_once ABSPATH . 'wp-content/plugins/tier-pricing-table-premium/src/PriceManager.php';
 						if ( class_exists( 'TierPricingTable\PriceManager' ) ) {
 							$PriceManager = new TierPricingTable\PriceManager();
@@ -3287,12 +3287,19 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 								}
 							}
 						}
-					} else if ( file_exists( ABSPATH . 'wp-content/plugins/tier-pricing-table/src/PriceManager.php' ) ) {
+					} else if (
+						file_exists(
+							ABSPATH . 'wp-content/plugins/tier-pricing-table/src/PriceManager.php'
+						)
+					) {
 						require_once ABSPATH . 'wp-content/plugins/tier-pricing-table/src/PriceManager.php';
 						if ( class_exists( 'TierPricingTable\PriceManager' ) ) {
 							$PriceManager = new TierPricingTable\PriceManager();
 							if ( $variation_id > 0 ) {
-								$tire_variation_price = $PriceManager->getPriceByRules( $quantity_fetch, $variation_id );
+								$tire_variation_price = $PriceManager->getPriceByRules(
+									$quantity_fetch,
+									$variation_id
+								);
 								if ( $tire_variation_price ) {
 									$variation_price = $tire_variation_price;
 								}
@@ -3316,16 +3323,21 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						}
 					}
 
-
 					$placeholders = array(
-						'%price%'                   => $display_price,
-						'%qty%'                     => $_POST['alg_wc_pq_qty'],
-						'%unit%'                    => ( $_POST['alg_wc_pq_qty'] > 1 ? $units : $unit ),
-						'{{%qty / %quantity_step}}' => $step_quotient,
+						'%price%'                   => wp_kses_post( $display_price ),
+						'%qty%'                     => esc_html( $_POST['alg_wc_pq_qty'] ),
+						'%unit%'                    => esc_html( $_POST['alg_wc_pq_qty'] > 1 ? $units : $unit ),
+						'{{%qty / %quantity_step}}' => esc_html( $step_quotient ),
 					);
 
-					echo str_replace( array_keys( $placeholders ), $placeholders,
-						get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
+					echo str_replace(
+						array_keys( $placeholders ),
+						$placeholders,
+						get_option(
+							'alg_wc_pq_qty_price_by_qty_template',
+							__( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' )
+						)
+					);
 
 				}
 			}
@@ -3360,7 +3372,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				$product_id = $product->get_id();
 			}
 
-
 			$pro_type = $product->get_type();
 			if ( empty( $qty ) ) {
 				$selectedval = $this->set_quantity_input_min( 1, $product );
@@ -3375,7 +3386,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			$units = get_option( 'alg_wc_pq_qty_price_by_qty_unit_plural', 'no' );
 			$unit  = ( ( ! empty( $unit ) ) ? $unit : $defaultpc );
 			$units = ( ( ! empty( $units ) ) ? $units : $defaultpcs );
-
 
 			$product_unit  = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_singular', true );
 			$product_units = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_plural', true );
@@ -3407,7 +3417,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 			}
 
-
 			if ( $pro_type == 'simple' || $pro_type == 'variation' ) {
 				global $woocommerce_wpml;
 				if ( function_exists( 'icl_object_id' ) && isset( $woocommerce_wpml ) && defined( 'ICL_LANGUAGE_CODE' ) ) {
@@ -3432,7 +3441,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 				}
 
-
 				$placeholders = array(
 					'%price%'                   => $display_price,
 					'%qty%'                     => $selectedval,
@@ -3449,57 +3457,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 			return '';
 		}
-
-		// function ajax_price_by_qty_variable( $param ) {
-
-		// 	if ( isset( $_POST['alg_wc_pq_qty'] ) && '' !== $_POST['alg_wc_pq_qty'] && ! empty( $_POST['alg_wc_pq_id'] ) ) {
-		// 		$selectedval = $_POST['selected_val'];
-		// 		$quantity_fetch = $_POST['quantity_fetch'];
-		// 		$product_id =  $_POST['alg_wc_pq_id'] ;
-		// 		$currency_symbol = get_woocommerce_currency_symbol();
-		// 		$product = new WC_Product_Variable($product_id);
-		// 		$variations = $product->get_available_variations();
-		// 		//echo '<pre>';
-		// 		//print_r($variations);
-		// 		//echo '</pre>';
-		// 		$var_data = [];
-		// 		foreach ($variations as $variation) {
-		// 			/*print_r($variation);*/
-		// 			$attribute_get =  $variation['attributes'];
-		// 			foreach($attribute_get as $attribute_get_v)
-		// 			{
-
-		// 			if($attribute_get_v == $selectedval )
-		// 			{
-		// 				// $price_get =  $variation['price_html'];
-		// 				// echo 'price_get' . $price_get;
-		// 				$display_regular_price = $variation['display_regular_price'].'<span class="currency">'. $currency_symbol .'</span>';
-		// 				$display_price = $variation['display_price'].'<span class="currency">'. $currency_symbol .'</span>';
-
-		// 				//echo 'displayp' . $display_price;
-		// 				//echo 'qty' . $_POST['alg_wc_pq_qty'];
-		// 				$placeholders = array();
-		// 				$placeholders = array(
-		// 			'%price%'   =>$currency_symbol.''.$display_price*$quantity_fetch,
-		// 			'%qty%'     => $quantity_fetch,
-		// 		);
-		// 		echo str_replace( array_keys( $placeholders ), $placeholders,
-		// 			get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% pcs.', 'product-quantity-for-woocommerce' ) ) );
-
-		// 			}
-		// 				// exit;
-		// 			}
-		// 			// exit;
-		// 		}
-		// 		// $placeholders = array(
-		// 		// 	'%price%'   => wc_price( wc_get_price_to_display( wc_get_product( $_POST['alg_wc_pq_id'] ), array( 'qty' => $_POST['alg_wc_pq_qty'] ) ) ),
-		// 		// 	'%qty%'     => $_POST['alg_wc_pq_qty'],
-		// 		// );
-		// 		// echo str_replace( array_keys( $placeholders ), $placeholders,
-		// 		// 	get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% pcs.', 'product-quantity-for-woocommerce' ) ) );
-		// 	}
-		// 	die();
-		// }
 
 		/**
 		 * get_product_id.
@@ -3554,7 +3511,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				}
 
 			}
-
 
 			return apply_filters( 'alg_wc_pq_get_product_qty_default', $default, $product_id );
 		}
@@ -3679,12 +3635,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			$args['max_qty'] = $this->get_product_qty_min_max( $variation_id, $args['max_qty'], 'max' );
 			$_max            = $_variation->get_max_purchase_quantity();
 
-			/*
-		if ( -1 != $_max && $args['min_qty'] > $_max ) {
-			$args['min_qty'] = $_max;
-		}
-		*/
-
 			if ( - 1 != $_max && $args['max_qty'] > $_max ) {
 				$args['max_qty'] = $_max;
 			}
@@ -3721,7 +3671,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 				}
 			}
-
 
 			return $is_purchasable;
 		}
@@ -3770,7 +3719,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						// return decimal
 						return $return_min;
 					} else {
-						// return intiger
+						// return integer
 						$return = (int) $return_min;
 						if ( $return < 1 ) {
 							$return = 1;
@@ -3820,7 +3769,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 						// return decimal
 						return $return_max;
 					} else {
-						// return intiger
+						// return integer
 						$return = (int) $return_max;
 						if ( $return < 1 ) {
 							$return = '';
@@ -3856,7 +3805,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			if ( ! is_checkout() ) {
 				return;
 			}
-			// $cart_item_quantities = WC()->cart->get_cart_item_quantities();
+
 			$cart_item_quantities = $this->get_cart_item_quantities();
 
 			if ( empty( $cart_item_quantities ) || ! is_array( $cart_item_quantities ) ) {
@@ -3907,7 +3856,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				return;
 			}
 
-			// $cart_item_quantities = WC()->cart->get_cart_item_quantities();
 			$cart_item_quantities = $this->get_cart_item_quantities();
 			if ( empty( $cart_item_quantities ) || ! is_array( $cart_item_quantities ) ) {
 				return;
@@ -4093,7 +4041,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				}
 			}
 
-
 			// Per item quantity
 			foreach ( $cart_item_quantities as $product_id => $cart_item_quantity ) {
 
@@ -4105,7 +4052,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 				}
 			}
-
 
 			// Per item quantity for all variation
 			$cart_item_quantities = $this->get_cartitem_groupby_parent_id();
@@ -4159,7 +4105,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 									}
 								}
 
-
 								if ( $min_or_max == 'min' ) {
 									if ( $attr_quantity > $count ) {
 										if ( ! empty( $this->attribute_taxonomies ) ) {
@@ -4186,7 +4131,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 										}
 									}
 								}
-
 
 							}
 						}
@@ -4330,10 +4274,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				if ( ! $do_fix ) {
 
 					if ( 'yes' === get_option( 'alg_wc_pq_exact_subset_sum_allowed_enabled', 'no' ) ) {
-						/*
-					$all_subset_sums = $this->subset_sums($product_exact_qty, $cart_item_quantity);
-					$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $all_subset_sums ) : ! in_array( $cart_item_quantity, $all_subset_sums ) );
-					*/
 						if ( 'allowed' === $allowed_or_disallowed ) {
 							$is_valid = $this->is_subset_sum( $product_exact_qty, count( $product_exact_qty ), $cart_item_quantity );
 						} else {
@@ -4367,7 +4307,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			return ( ! $do_fix ? true : $quantity );
 		}
 
-
 		/**
 		 * check_product_exact_qty.
 		 *
@@ -4392,10 +4331,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					if ( ! $is_valid ) {
 
 						if ( 'yes' === get_option( 'alg_wc_pq_exact_subset_sum_allowed_enabled', 'no' ) ) {
-							/*
-						$all_subset_sums = $this->subset_sums($product_exact_qty, $cart_item_quantity);
-						$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $all_subset_sums ) : ! in_array( $cart_item_quantity, $all_subset_sums ) );
-						*/
 							if ( 'allowed' === $allowed_or_disallowed ) {
 								$is_valid = $this->is_subset_sum( $product_exact_qty, count( $product_exact_qty ), $cart_item_quantity );
 							} else {
@@ -4450,7 +4385,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				return $this->is_subset_sum( $set, $n - 1, $sum );
 
 			/* else, check if sum can be
-		   obtained by any of the following
+			obtained by any of the following
 			(a) including the last element
 			(b) excluding the last element */
 
@@ -4466,7 +4401,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		function subset_sums( $arr, $incart_qty = 0 ) {
 			$return = array();
 			$n      = sizeof( $arr );
-			// There are totoal 2^n subsets
+			// There are total 2^n subsets
 			$total = 1 << $n;
 
 			// Consider all numbers
@@ -4766,7 +4701,6 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		 * @todo    [dev] (maybe) force `min` in cart to `1` (as it may be zero now)
 		 */
 		function get_quantity_with_sep( $qty ) {
-			/* ('yes' === apply_filters( 'alg_wc_pq_qty_dropdown_thousand_separator', 'no') ) */
 
 			if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown_thousand_separator_enabled', 'no' ) ) {
 				$sep = get_option( 'alg_wc_pq_qty_dropdown_thousand_separator', ',' );

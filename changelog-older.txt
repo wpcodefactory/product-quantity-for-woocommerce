@@ -6,6 +6,14 @@ For the latest changes, please see the "Changelog" section of the [readme.txt fi
 
 == Changelog ==
 
+= 4.9.9 - 06/03/2025 =
+* Fix - Translation loading was triggered too early.
+* Fix - General - Decimal quantities - Improved text informing about the classic cart/checkout.
+* WC tested up to: 9.7.
+
+= 4.9.8 - 17/02/2025 =
+* Dev - Minimum Quantity - Improved notes about initial default quantity.
+
 = 4.9.7 - 07/02/2025 =
 * Fix - Decimal quantities - Converting to float (with rounding to precision `6`).
 * Dev - Languages - POT file regenerated with WP-CLI.

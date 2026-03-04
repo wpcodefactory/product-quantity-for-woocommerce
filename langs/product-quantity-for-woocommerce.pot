@@ -1,15 +1,15 @@
-# Copyright (C) 2025 WPFactory
+# Copyright (C) 2026 WPFactory
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Min Max Step Quantity Limits Manager for WooCommerce 5.2.2\n"
+"Project-Id-Version: Min Max Step Quantity Limits Manager for WooCommerce 5.2.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-26T23:47:34+00:00\n"
+"POT-Creation-Date: 2026-03-04T22:23:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: product-quantity-for-woocommerce\n"
@@ -54,59 +54,59 @@ msgstr ""
 msgid "Qty Step"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1269
+#: includes/class-alg-wc-pq-core.php:1268
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1274
+#: includes/class-alg-wc-pq-core.php:1273
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-alg-wc-pq-core.php:1275
+#: includes/class-alg-wc-pq-core.php:1274
 msgid "View cart"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2194
-#: includes/class-alg-wc-pq-core.php:2214
+#: includes/class-alg-wc-pq-core.php:2183
+#: includes/class-alg-wc-pq-core.php:2203
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2251
-#: includes/class-alg-wc-pq-core.php:4073
+#: includes/class-alg-wc-pq-core.php:2240
+#: includes/class-alg-wc-pq-core.php:4021
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3065
+#: includes/class-alg-wc-pq-core.php:3053
 msgid "unit"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3066
+#: includes/class-alg-wc-pq-core.php:3054
 msgid "units"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3234
-#: includes/class-alg-wc-pq-core.php:3328
-#: includes/class-alg-wc-pq-core.php:3445
+#: includes/class-alg-wc-pq-core.php:3213
+#: includes/class-alg-wc-pq-core.php:3338
+#: includes/class-alg-wc-pq-core.php:3453
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4083
+#: includes/class-alg-wc-pq-core.php:4031
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4144
-#: includes/class-alg-wc-pq-core.php:4172
+#: includes/class-alg-wc-pq-core.php:4090
+#: includes/class-alg-wc-pq-core.php:4117
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4525
+#: includes/class-alg-wc-pq-core.php:4460
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4593
+#: includes/class-alg-wc-pq-core.php:4528
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -126,13 +126,13 @@ msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:76
-#: includes/class-alg-wc-pq-scripts.php:198
+#: includes/class-alg-wc-pq-scripts.php:382
 #: includes/settings/class-alg-wc-pq-settings-max.php:124
 msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
 
 #: includes/class-alg-wc-pq-messenger.php:86
-#: includes/class-alg-wc-pq-scripts.php:207
+#: includes/class-alg-wc-pq-scripts.php:402
 #: includes/settings/class-alg-wc-pq-settings-min.php:175
 msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
