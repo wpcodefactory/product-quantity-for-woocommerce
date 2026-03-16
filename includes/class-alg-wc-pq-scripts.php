@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 5.2.3
+ * @version 4.5.9
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -27,7 +27,7 @@ class Alg_WC_PQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 5.2.3
+	 * @version 4.5.9
 	 * @since   1.0.0
 	 *
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -141,6 +141,11 @@ class Alg_WC_PQ_Scripts {
 				'alg-wc-pq-variable',
 				'product_quantities',
 				$product_quantities
+			);
+			wp_localize_script(
+				'alg-wc-pq-variable',
+				'quantities_options',
+				$quantities_options
 			);
 		}
 

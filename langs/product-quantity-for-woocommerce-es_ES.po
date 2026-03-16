@@ -28,24 +28,24 @@ msgstr "Cantidad Máxima"
 msgid "Qty Step"
 msgstr "Paso de cantidad"
 
-#: includes/class-alg-wc-pq-core.php:1269
+#: includes/class-alg-wc-pq-core.php:1268
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr "&ldquo;%s&rdquo;"
 
-#: includes/class-alg-wc-pq-core.php:1274
+#: includes/class-alg-wc-pq-core.php:1273
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] "%s se han añadido al carrito."
 msgstr[1] "%s se han añadido al carrito."
 
-#: includes/class-alg-wc-pq-core.php:1275
+#: includes/class-alg-wc-pq-core.php:1274
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-alg-wc-pq-core.php:3234
-#: includes/class-alg-wc-pq-core.php:3328
-#: includes/class-alg-wc-pq-core.php:3445
+#: includes/class-alg-wc-pq-core.php:3213
+#: includes/class-alg-wc-pq-core.php:3338
+#: includes/class-alg-wc-pq-core.php:3453
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
 
@@ -65,13 +65,13 @@ msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current
 msgstr "La cantidad mínima de pedido permitida es %min_cart_total_quantity%. La cantidad de su pedido actual es %cart_total_quantity%."
 
 #: includes/class-alg-wc-pq-messenger.php:76
-#: includes/class-alg-wc-pq-scripts.php:198
+#: includes/class-alg-wc-pq-scripts.php:387
 #: includes/settings/class-alg-wc-pq-settings-max.php:124
 msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr "La cantidad máxima permitida para %product_title% es %max_per_item_quantity%. La cantidad actual del artículo es %item_quantity%."
 
 #: includes/class-alg-wc-pq-messenger.php:86
-#: includes/class-alg-wc-pq-scripts.php:207
+#: includes/class-alg-wc-pq-scripts.php:407
 #: includes/settings/class-alg-wc-pq-settings-min.php:175
 msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr "La cantidad mínima permitida para %product_title% es %min_per_item_quantity%. La cantidad actual del artículo es %item_quantity%."
@@ -1595,30 +1595,30 @@ msgstr "Administre la cantidad de productos en WooCommerce, maravillosamente. De
 msgid "WPFactory"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2194
-#: includes/class-alg-wc-pq-core.php:2214
+#: includes/class-alg-wc-pq-core.php:2183
+#: includes/class-alg-wc-pq-core.php:2203
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2251
-#: includes/class-alg-wc-pq-core.php:4073
+#: includes/class-alg-wc-pq-core.php:2240
+#: includes/class-alg-wc-pq-core.php:4021
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4083
+#: includes/class-alg-wc-pq-core.php:4031
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4144
-#: includes/class-alg-wc-pq-core.php:4172
+#: includes/class-alg-wc-pq-core.php:4090
+#: includes/class-alg-wc-pq-core.php:4117
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4525
+#: includes/class-alg-wc-pq-core.php:4460
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4593
+#: includes/class-alg-wc-pq-core.php:4528
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -1958,11 +1958,11 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3065
+#: includes/class-alg-wc-pq-core.php:3053
 msgid "unit"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3066
+#: includes/class-alg-wc-pq-core.php:3054
 msgid "units"
 msgstr ""
 
