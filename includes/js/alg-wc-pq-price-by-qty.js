@@ -1,9 +1,39 @@
 /**
  * alg-wc-pq-price-by-qty.js
  *
- * @version 5.2.3
+ * @version 5.2.5
  * @since   1.6.1
  */
+var alg_wc_pq_fresh_nonce = null;
+var alg_wc_pq_nonce_request = null;
+
+function alg_wc_pq_get_fresh_nonce( callback ) {
+	if ( alg_wc_pq_fresh_nonce !== null ) {
+		callback( alg_wc_pq_fresh_nonce );
+		return;
+	}
+
+	if ( alg_wc_pq_nonce_request !== null ) {
+		alg_wc_pq_nonce_request.done( callback );
+		return;
+	}
+
+	alg_wc_pq_nonce_request = jQuery.ajax( {
+		url: alg_wc_pq_update_price_by_qty_object.ajax_url,
+		type: 'POST',
+		data: {
+			action: 'alg_wc_pq_refresh_nonce',
+			nonce: alg_wc_pq_update_price_by_qty_object.nonce,
+		},
+		success: function ( response ) {
+			if ( response.success ) {
+				alg_wc_pq_fresh_nonce = response.data.nonce;
+				alg_wc_pq_nonce_request = null;
+				callback( alg_wc_pq_fresh_nonce );
+			}
+		}
+	} );
+}
 
 function alg_wc_pq_update_price_by_qty( e, qty = null, attribute = null ) {
 	var selected_val = 0;
@@ -45,41 +75,43 @@ function alg_wc_pq_update_price_by_qty( e, qty = null, attribute = null ) {
 		'quantity_fetch': quantity_fetch,
 		'attribute': (
 			null !== attribute ? attribute : attribute_fetch
-		),
-		'nonce': alg_wc_pq_update_price_by_qty_object.nonce
+		)
 	};
 
 	var ajax_async = (
 		alg_wc_pq_update_price_by_qty_object.ajax_async == 'yes' ? false : true
 	);
 
-	jQuery.ajax( {
-		type: 'POST',
-		url: alg_wc_pq_update_price_by_qty_object.ajax_url,
-		data: data,
-		async: ajax_async,
-		success: function ( response ) {
-			if ( alg_wc_pq_update_price_by_qty_object.product_id == 0 ) {
-				if ( response.length > 0 ) {
-					if ( 'instead' == alg_wc_pq_update_price_by_qty_object.position ) {
-						jQuery( '.product.post-' + product_id ).find( '.price' ).html( response );
-					} else {
-						jQuery( '.product.post-' + product_id ).find( 'p.alg-wc-pq-price-display-by-qty' ).html( response );
-					}
-				}
-			} else {
-				if ( 'instead' == alg_wc_pq_update_price_by_qty_object.position ) {
+	alg_wc_pq_get_fresh_nonce( function ( fresh_nonce ) {
+		data.nonce = fresh_nonce;
+		jQuery.ajax( {
+			type: 'POST',
+			url: alg_wc_pq_update_price_by_qty_object.ajax_url,
+			data: data,
+			async: ajax_async,
+			success: function ( response ) {
+				if ( alg_wc_pq_update_price_by_qty_object.product_id == 0 ) {
 					if ( response.length > 0 ) {
-						jQuery( 'p.price' ).html( response );
-						if ( alg_wc_pq_update_price_by_qty_object.replace_variation_price ) {
-							jQuery( '.woocommerce-variation-price .price' ).html( response );
+						if ( 'instead' == alg_wc_pq_update_price_by_qty_object.position ) {
+							jQuery( '.product.post-' + product_id ).find( '.price' ).html( response );
+						} else {
+							jQuery( '.product.post-' + product_id ).find( 'p.alg-wc-pq-price-display-by-qty' ).html( response );
 						}
 					}
 				} else {
-					jQuery( 'p.alg-wc-pq-price-display-by-qty' ).html( response );
+					if ( 'instead' == alg_wc_pq_update_price_by_qty_object.position ) {
+						if ( response.length > 0 ) {
+							jQuery( 'p.price' ).html( response );
+							if ( alg_wc_pq_update_price_by_qty_object.replace_variation_price ) {
+								jQuery( '.woocommerce-variation-price .price' ).html( response );
+							}
+						}
+					} else {
+						jQuery( 'p.alg-wc-pq-price-display-by-qty' ).html( response );
+					}
 				}
-			}
-		},
+			},
+		} );
 	} );
 }
 

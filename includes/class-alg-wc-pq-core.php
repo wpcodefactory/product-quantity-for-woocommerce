@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.2.3
+ * @version 5.2.5
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -202,7 +202,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.1.4
+		 * @version 5.2.5
 		 * @since   1.0.0
 		 *
 		 * @todo    [fix] mini-cart number of items for decimal qty
@@ -386,8 +386,24 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 				// Price by Qty
 				if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_enabled', 'no' ) ) {
-					add_action( 'wp_ajax_' . 'alg_wc_pq_update_price_by_qty', array( $this, 'ajax_price_by_qty' ) );
-					add_action( 'wp_ajax_nopriv_' . 'alg_wc_pq_update_price_by_qty', array( $this, 'ajax_price_by_qty' ) );
+
+					add_action(
+						'wp_ajax_alg_wc_pq_refresh_nonce',
+						array( $this, 'ajax_refresh_nonce' )
+					);
+					add_action(
+						'wp_ajax_nopriv_alg_wc_pq_refresh_nonce',
+						array( $this, 'ajax_refresh_nonce' )
+					);
+
+					add_action(
+						'wp_ajax_' . 'alg_wc_pq_update_price_by_qty',
+						array( $this, 'ajax_price_by_qty' )
+					);
+					add_action(
+						'wp_ajax_nopriv_' . 'alg_wc_pq_update_price_by_qty',
+						array( $this, 'ajax_price_by_qty' )
+					);
 
 					$this->attr_taxonomies = $this->get_allowed_attribute_tax();
 				}
@@ -3033,6 +3049,18 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			}
 
 			return '';
+		}
+
+		/**
+		 * ajax_refresh_nonce.
+		 *
+		 * @version 5.2.5
+		 * @since   5.2.5
+		 */
+		function ajax_refresh_nonce() {
+			wp_send_json_success( array(
+				'nonce' => wp_create_nonce( 'alg_wc_pq_nonce' )
+			) );
 		}
 
 		/**
