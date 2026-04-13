@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.2.5
+ * @version 5.2.6
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2209,7 +2209,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * validate_on_add_to_cart.
 		 *
-		 * @version 4.5.9
+		 * @version 5.2.6
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 		 */
@@ -2228,9 +2228,27 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			}
 			// Prepare data.
 			if ( ! isset( $cart_item_quantities ) ) {
-				$cart_item_quantities = $this->get_cart_item_quantities( $product_id, $quantity );
-				$cart_total_quantity  = apply_filters( 'alg_wc_pq_cart_total_quantity', array_sum( $cart_item_quantities ), $cart_item_quantities );
-				$cart_item_quantity   = $cart_item_quantities[ $product_id ];
+				// For variations with per-product limits, get quantities grouped by variation.
+				$quantities_key = $product_id;
+				if (
+					$variation_id > 0 &&
+					'yes' === apply_filters( 'alg_wc_pq_per_item_quantity_per_product', 'no', 'max' ) &&
+					'yes' !== get_option( 'alg_wc_pq_sum_variations', 'no' )
+				) {
+					$cart_item_quantities = $this->alc_wg_get_cart_item_quantities( true );
+					$quantities_key       = $variation_id;
+				} else {
+					$cart_item_quantities = $this->get_cart_item_quantities( $product_id, $quantity );
+				}
+
+				// Add the quantity being added to the appropriate key.
+				if ( ! isset( $cart_item_quantities[ $quantities_key ] ) ) {
+					$cart_item_quantities[ $quantities_key ] = 0;
+				}
+				$cart_item_quantities[ $quantities_key ] += $quantity;
+
+				$cart_total_quantity = apply_filters( 'alg_wc_pq_cart_total_quantity', array_sum( $cart_item_quantities ), $cart_item_quantities );
+				$cart_item_quantity  = $cart_item_quantities[ $quantities_key ];
 			}
 
 			$cartitem_by_category = $this->get_cartitem_by_category();
@@ -4019,7 +4037,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * check_min_max.
 		 *
-		 * @version 1.7.0
+		 * @version 5.2.6
 		 * @since   1.0.0
 		 */
 		function check_min_max( $min_or_max, $cart_item_quantities, $cart_total_quantity, $_is_cart, $_return ) {
@@ -4069,8 +4087,19 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 				}
 			}
 
-			// Per item quantity
-			foreach ( $cart_item_quantities as $product_id => $cart_item_quantity ) {
+			// Per item quantity.
+			$cart_item_quantities_per_item = $cart_item_quantities;
+			if (
+				'yes' === apply_filters( 'alg_wc_pq_per_item_quantity_per_product', 'no', $min_or_max ) &&
+				'yes' !== get_option( 'alg_wc_pq_sum_variations', 'no' )
+			) {
+				$grouped_by_variation_quantities = $this->alc_wg_get_cart_item_quantities( true );
+				if ( ! empty( $grouped_by_variation_quantities ) && is_array( $grouped_by_variation_quantities ) ) {
+					$cart_item_quantities_per_item = $grouped_by_variation_quantities;
+				}
+			}
+
+			foreach ( $cart_item_quantities_per_item as $product_id => $cart_item_quantity ) {
 
 				if ( ! $this->check_product_min_max( $product_id, $min_or_max, $cart_item_quantity ) ) {
 					if ( $_return ) {
