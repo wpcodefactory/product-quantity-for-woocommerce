@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.2.6
+ * @version 5.2.7
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2209,7 +2209,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * validate_on_add_to_cart.
 		 *
-		 * @version 5.2.6
+		 * @version 5.2.7
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 		 */
@@ -2238,10 +2238,12 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					$cart_item_quantities = $this->alc_wg_get_cart_item_quantities( true );
 					$quantities_key       = $variation_id;
 				} else {
-					$cart_item_quantities = $this->get_cart_item_quantities( $product_id, $quantity );
+					$cart_item_quantities = $this->get_cart_item_quantities( $product_id, 0 );
 				}
 
-				// Add the quantity being added to the appropriate key.
+				$cart_item_quantity_before_add = ( isset( $cart_item_quantities[ $quantities_key ] ) ? $cart_item_quantities[ $quantities_key ] : 0 );
+
+				// Add the quantity being added to the appropriate key for validation.
 				if ( ! isset( $cart_item_quantities[ $quantities_key ] ) ) {
 					$cart_item_quantities[ $quantities_key ] = 0;
 				}
@@ -2302,7 +2304,8 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 					}
 					// Per item quantity
 					if ( ! $this->check_product_min_max( $product_id, $min_or_max, $cart_item_quantity ) ) {
-						$this->messenger->print_message( $min_or_max . '_per_item_quantity', false, $this->get_product_qty_min_max( $product_id, 0, $min_or_max ), $cart_item_quantity, $product_id );
+						$item_quantity_for_message = ( 'max' === $min_or_max ? $cart_item_quantity_before_add : $cart_item_quantity );
+						$this->messenger->print_message( $min_or_max . '_per_item_quantity', false, $this->get_product_qty_min_max( $product_id, 0, $min_or_max ), $item_quantity_for_message, $product_id );
 
 						return false;
 					}
