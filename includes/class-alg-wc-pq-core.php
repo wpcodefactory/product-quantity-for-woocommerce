@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.2.8
+ * @version 5.2.9
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -2209,7 +2209,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * validate_on_add_to_cart.
 		 *
-		 * @version 5.2.8
+		 * @version 5.2.9
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 		 */
@@ -2359,18 +2359,9 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 							return false;
 						}
 						// Per item quantity
-						if ( ! $this->check_product_min_max_allvar( $product_id, $min_or_max, $cart_item_quantity, $variation_id ) ) {
+						if ( ! $this->check_product_min_max_allvar( $product_id, $min_or_max, $cart_item_quantity ) ) {
 							$item_quantity_for_message = ( 'max' === $min_or_max ? $cart_item_quantity_before_add : $cart_item_quantity );
-							$limit_to_show             = 0;
-							if ( $variation_id > 0 && 'yes' === apply_filters( 'alg_wc_pq_per_item_quantity_per_product', 'no', $min_or_max ) ) {
-								$limit_to_show = apply_filters( 'alg_wc_pq_per_item_quantity_per_product_value', 'no', $variation_id, $min_or_max );
-								if ( 0 == $limit_to_show ) {
-									$limit_to_show = $this->get_variation_legacy_qty_min_max_value( $product_id, $variation_id, $min_or_max );
-								}
-							}
-							if ( 0 == $limit_to_show ) {
-								$limit_to_show = $this->get_product_qty_min_max_allvar( $product_id, 0, $min_or_max );
-							}
+							$limit_to_show = $this->get_product_qty_min_max_allvar( $product_id, 0, $min_or_max );
 							$this->messenger->print_message( $min_or_max . '_per_item_quantity', false, $limit_to_show, $item_quantity_for_message, $product_id );
 
 							return false;
@@ -4118,7 +4109,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * check_min_max.
 		 *
-		 * @version 5.2.8
+		 * @version 5.2.9
 		 * @since   1.0.0
 		 */
 		function check_min_max( $min_or_max, $cart_item_quantities, $cart_total_quantity, $_is_cart, $_return ) {
@@ -4194,34 +4185,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 			// Per item quantity for all variation.
 			$cart_item_quantities = $this->get_cartitem_groupby_parent_id();
 			if ( $cart_item_quantities && count( $cart_item_quantities ) ) {
-				$parent_ids_with_variation_specific_limits = array();
-
-				if ( 'yes' === apply_filters( 'alg_wc_pq_per_item_quantity_per_product', 'no', $min_or_max ) && WC()->cart ) {
-					foreach ( WC()->cart->get_cart() as $item ) {
-						if ( empty( $item['variation_id'] ) ) {
-							continue;
-						}
-
-						$variation_id = (int) $item['variation_id'];
-						$parent_id    = (int) $item['product_id'];
-
-						$variation_value = apply_filters( 'alg_wc_pq_per_item_quantity_per_product_value', 'no', $variation_id, $min_or_max );
-						if ( 0 == $variation_value ) {
-							$variation_value = $this->get_variation_legacy_qty_min_max_value( $parent_id, $variation_id, $min_or_max );
-						}
-
-						if ( 0 != $variation_value ) {
-							$parent_ids_with_variation_specific_limits[ $parent_id ] = true;
-						}
-					}
-				}
-
 				foreach ( $cart_item_quantities as $product_id => $cart_item_quantity ) {
-					// If this parent has explicit variation-level limits, those are the active limits.
-					if ( isset( $parent_ids_with_variation_specific_limits[ $product_id ] ) ) {
-						continue;
-					}
-
 					if ( ! $this->check_product_min_max_allvar( $product_id, $min_or_max, $cart_item_quantity ) ) {
 						if ( $_return ) {
 							return false;
