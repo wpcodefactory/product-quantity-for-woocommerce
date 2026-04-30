@@ -61,6 +61,14 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		public $qty_info = null;
 
 		/**
+		 * buy_all_stock_btn.
+		 *
+		 * @since 5.2.10
+		 * @var   object
+		 */
+		public $buy_all_stock_btn = null;
+
+		/**
 		 * alg_wc_pq_qty_price_unit_enabled.
 		 *
 		 * @since 4.6.0
@@ -202,7 +210,7 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.2.5
+		 * @version 5.3.0
 		 * @since   1.0.0
 		 *
 		 * @todo    [fix] mini-cart number of items for decimal qty
@@ -322,6 +330,9 @@ if ( ! class_exists( 'Alg_WC_PQ_Core' ) ) :
 
 				// Scripts.
 				require_once( 'class-alg-wc-pq-scripts.php' );
+
+				// Buy all stock button.
+				$this->buy_all_stock_btn = require_once( 'class-alg-wc-pq-buy-all-stock-btn.php' );
 
 				// For cart & for `input_value`
 				add_filter( 'woocommerce_quantity_input_args', array( $this, 'set_quantity_input_args' ), PHP_INT_MAX - 100, 2 );

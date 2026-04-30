@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 5.2.9\n"
+"Project-Id-Version: product-quantity-for-woocommerce 5.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-21T21:10:31+02:00\n"
+"POT-Creation-Date: 2026-04-30T15:25:51+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: product-quantity-for-woocommerce\n"
@@ -49,59 +49,71 @@ msgstr ""
 msgid "Qty Step"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1284
+#: includes/class-alg-wc-pq-buy-all-stock-btn.php:48
+#: includes/class-alg-wc-pq-buy-all-stock-btn.php:52
+#: includes/settings/class-alg-wc-pq-settings-general.php:186
+msgid "Buy all stock"
+msgstr ""
+
+#: includes/class-alg-wc-pq-buy-all-stock-btn.php:50
+#: includes/class-alg-wc-pq-buy-all-stock-btn.php:58
+#: includes/settings/class-alg-wc-pq-settings-general.php:200
+msgid "Please select product options with managed stock before using Buy all stock."
+msgstr ""
+
+#: includes/class-alg-wc-pq-core.php:1295
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:1289
+#: includes/class-alg-wc-pq-core.php:1300
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-alg-wc-pq-core.php:1290
+#: includes/class-alg-wc-pq-core.php:1301
 msgid "View cart"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2199
-#: includes/class-alg-wc-pq-core.php:2219
+#: includes/class-alg-wc-pq-core.php:2210
+#: includes/class-alg-wc-pq-core.php:2230
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:2276
-#: includes/class-alg-wc-pq-core.php:4139
+#: includes/class-alg-wc-pq-core.php:2287
+#: includes/class-alg-wc-pq-core.php:4150
 msgid "Maximum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3106
+#: includes/class-alg-wc-pq-core.php:3117
 msgid "unit"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3107
+#: includes/class-alg-wc-pq-core.php:3118
 msgid "units"
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:3266
-#: includes/class-alg-wc-pq-core.php:3391
-#: includes/class-alg-wc-pq-core.php:3506
+#: includes/class-alg-wc-pq-core.php:3277
+#: includes/class-alg-wc-pq-core.php:3402
+#: includes/class-alg-wc-pq-core.php:3517
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4149
+#: includes/class-alg-wc-pq-core.php:4160
 msgid "Minimum allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4219
-#: includes/class-alg-wc-pq-core.php:4246
+#: includes/class-alg-wc-pq-core.php:4230
+#: includes/class-alg-wc-pq-core.php:4257
 msgid "Maximum allowed quantity for attribute "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4589
+#: includes/class-alg-wc-pq-core.php:4600
 msgid "Allowed quantity for category "
 msgstr ""
 
-#: includes/class-alg-wc-pq-core.php:4657
+#: includes/class-alg-wc-pq-core.php:4668
 msgid "Allowed quantity for attribute "
 msgstr ""
 
@@ -400,8 +412,8 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-metaboxes.php:582
 #: includes/settings/class-alg-wc-pq-settings-default.php:56
 #: includes/settings/class-alg-wc-pq-settings-default.php:135
-#: includes/settings/class-alg-wc-pq-settings-general.php:216
-#: includes/settings/class-alg-wc-pq-settings-general.php:231
+#: includes/settings/class-alg-wc-pq-settings-general.php:254
+#: includes/settings/class-alg-wc-pq-settings-general.php:269
 msgid "Default quantity"
 msgstr ""
 
@@ -487,9 +499,9 @@ msgstr ""
 #: includes/settings/class-alg-wc-pq-settings-general.php:102
 #: includes/settings/class-alg-wc-pq-settings-general.php:140
 #: includes/settings/class-alg-wc-pq-settings-general.php:159
-#: includes/settings/class-alg-wc-pq-settings-general.php:176
-#: includes/settings/class-alg-wc-pq-settings-general.php:247
-#: includes/settings/class-alg-wc-pq-settings-general.php:272
+#: includes/settings/class-alg-wc-pq-settings-general.php:214
+#: includes/settings/class-alg-wc-pq-settings-general.php:285
+#: includes/settings/class-alg-wc-pq-settings-general.php:310
 #: includes/settings/class-alg-wc-pq-settings-max.php:113
 #: includes/settings/class-alg-wc-pq-settings-max.php:141
 #: includes/settings/class-alg-wc-pq-settings-max.php:171
@@ -1276,127 +1288,165 @@ msgid "Block users from reaching checkout on wrong quantities (if notification i
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:170
-msgid "Quantity on archive pages"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:175
-msgid "Enable quantity on archive pages"
-msgstr ""
-
 #: includes/settings/class-alg-wc-pq-settings-general.php:177
-msgid "Allow customers to select quantities and add to cart from shop/archive/categories pages, <strong>this works only on simple products.</strong>"
+msgid "Buy all stock button"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:171
+msgid "A button displayed on the product page allowing customers to buy all available stock of a product."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:171
+#: includes/settings/class-alg-wc-pq-settings-general.php:287
+msgid "Note:"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:172
+msgid "It will only work for products with managed stock."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:178
+msgid "Create a Buy all stock button on product page"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:184
+msgid "Button label"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pq-settings-general.php:190
+msgid "Button class"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:191
+msgid "Base CSS classes for the Buy all stock button."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:197
+msgid "Alert message"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:198
+msgid "Error message shown when the button is clicked on a variation without managed stock."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:208
+msgid "Quantity on archive pages"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:213
+msgid "Enable quantity on archive pages"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:215
+msgid "Allow customers to select quantities and add to cart from shop/archive/categories pages, <strong>this works only on simple products.</strong>"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pq-settings-general.php:228
 msgid "Language Guide"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:191
+#: includes/settings/class-alg-wc-pq-settings-general.php:229
 msgid "WPML OR Polylang"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:191
+#: includes/settings/class-alg-wc-pq-settings-general.php:229
 msgid "If you are using multi-language store with WPML or Polylang, you can use shortcodes to show different languages, example: [alg_wc_pq_translate lang=\"EN\"] Allowed quantity for %product_title% is %allowed_quantity%. Your current quantity is %quantity%.[/alg_wc_pq_translate] can be used to show English messages, similar to other languages you have, use [alg_wc_pq_translate not_lang=\" \"] as fallback for non-defined languages."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:200
+#: includes/settings/class-alg-wc-pq-settings-general.php:238
 msgid "Initial Quantity Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:201
+#: includes/settings/class-alg-wc-pq-settings-general.php:239
 msgid "Set the initial quantity you want to show on page load, whether on product pages, or archive (shop/category) pages."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:206
+#: includes/settings/class-alg-wc-pq-settings-general.php:244
 #: includes/settings/class-alg-wc-pq-settings-qty-info.php:69
 msgid "Single product page"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:210
+#: includes/settings/class-alg-wc-pq-settings-general.php:248
 msgid "Set initial quantity on single product page."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:213
+#: includes/settings/class-alg-wc-pq-settings-general.php:251
 msgid "Do not Change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:214
-#: includes/settings/class-alg-wc-pq-settings-general.php:229
+#: includes/settings/class-alg-wc-pq-settings-general.php:252
+#: includes/settings/class-alg-wc-pq-settings-general.php:267
 msgid "Min quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:215
-#: includes/settings/class-alg-wc-pq-settings-general.php:230
+#: includes/settings/class-alg-wc-pq-settings-general.php:253
+#: includes/settings/class-alg-wc-pq-settings-general.php:268
 #: includes/settings/class-alg-wc-pq-settings-max.php:211
 msgid "Max quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:217
-#: includes/settings/class-alg-wc-pq-settings-general.php:232
+#: includes/settings/class-alg-wc-pq-settings-general.php:255
+#: includes/settings/class-alg-wc-pq-settings-general.php:270
 msgid "Change to lowest fixed quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:221
+#: includes/settings/class-alg-wc-pq-settings-general.php:259
 msgid "Archive pages"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:222
+#: includes/settings/class-alg-wc-pq-settings-general.php:260
 msgid "Set initial quantity on archives."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:228
+#: includes/settings/class-alg-wc-pq-settings-general.php:266
 msgid "Do not change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:241
+#: includes/settings/class-alg-wc-pq-settings-general.php:279
 msgid "Variable Products Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:246
+#: includes/settings/class-alg-wc-pq-settings-general.php:284
 msgid "Load all variations"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:248
+#: includes/settings/class-alg-wc-pq-settings-general.php:286
 msgid "Leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues loading variations."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:249
-msgid "Note:"
-msgstr ""
-
-#: includes/settings/class-alg-wc-pq-settings-general.php:250
+#: includes/settings/class-alg-wc-pq-settings-general.php:288
 msgid "This option might affect the performance. If your site starts loading slower, turn it off."
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:256
+#: includes/settings/class-alg-wc-pq-settings-general.php:294
 msgid "On variation change"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:258
+#: includes/settings/class-alg-wc-pq-settings-general.php:296
 msgid "Select what you want to happen to quantity field when you change a variation, you can leave the quantity as is, reset to min, max, or default for the new selected variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:263
+#: includes/settings/class-alg-wc-pq-settings-general.php:301
 msgid "Do nothing"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:264
+#: includes/settings/class-alg-wc-pq-settings-general.php:302
 msgid "Reset to min quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:265
+#: includes/settings/class-alg-wc-pq-settings-general.php:303
 msgid "Reset to max quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:266
+#: includes/settings/class-alg-wc-pq-settings-general.php:304
 msgid "Reset to default quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:267
+#: includes/settings/class-alg-wc-pq-settings-general.php:305
 msgid "Reset to lowest fixed quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-pq-settings-general.php:271
+#: includes/settings/class-alg-wc-pq-settings-general.php:309
 msgid "Sum variations"
 msgstr ""
 

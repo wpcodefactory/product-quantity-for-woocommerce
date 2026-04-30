@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - General Section Settings
  *
- * @version 5.0.3
+ * @version 5.3.0
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -40,7 +40,7 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.9.9
+	 * @version 5.3.0
 	 * @since   1.0.0
 	 * @todo    [feature] Force initial quantity on single product page - add "Custom value" option
 	 * @todo    [feature] Force initial quantity on single product page - per product
@@ -165,6 +165,44 @@ class Alg_WC_PQ_Settings_General extends Alg_WC_PQ_Settings_Section {
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pq_general_options',
+			),
+			array(
+				'title'    => __( 'Buy all stock button', 'product-quantity-for-woocommerce' ),
+                'desc'     => __( 'A button displayed on the product page allowing customers to buy all available stock of a product.', 'product-quantity-for-woocommerce' ).' '.'<strong>' . __( 'Note:', 'product-quantity-for-woocommerce' ) . '</strong>' . ' ' .
+                __( 'It will only work for products with managed stock.', 'product-quantity-for-woocommerce' ),
+				'type'     => 'title',
+				'id'       => 'alg_wc_pq_buy_all_stock_button_options',
+			),
+			array(
+				'title'    => __( 'Buy all stock button', 'product-quantity-for-woocommerce' ),
+				'desc'     => __( 'Create a Buy all stock button on product page', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_buy_all_stock_button_enabled',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Button label', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_buy_all_stock_button_label',
+				'default'  => __( 'Buy all stock', 'product-quantity-for-woocommerce' ),
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Button class', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Base CSS classes for the Buy all stock button.', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_buy_all_stock_button_class',
+				'default'  => 'button alt alg-wc-pq-buy-all-stock-button',
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Alert message', 'product-quantity-for-woocommerce' ),
+				'desc_tip' => __( 'Error message shown when the button is clicked on a variation without managed stock.', 'product-quantity-for-woocommerce' ),
+				'id'       => 'alg_wc_pq_buy_all_stock_button_alert_msg',
+				'default'  => __( 'Please select product options with managed stock before using Buy all stock.', 'product-quantity-for-woocommerce' ),
+				'type'     => 'text',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_wc_pq_buy_all_stock_button_options',
 			),
 			array(
 				'title'    => __( 'Quantity on archive pages', 'product-quantity-for-woocommerce' ),

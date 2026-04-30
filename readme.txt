@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, ae
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 6.9
-Stable tag: 5.2.9
+Stable tag: 5.3.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,13 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 5.3.0 - 30/04/2026 =
+* Fix - Step - Fixed "Allow adding all quantity in stock" option on variations. 
+* Dev - General - Added new option Buy all stock button.
+* Dev - General - Buy all stock - Added new option Button label.
+* Dev - General - Buy all stock - Added new option Button class.
+* Dev - General - Buy all stock - Added new option Alert message.
 
 = 5.2.9 - 21/04/2026 =
 * Fix - Max Qty - Fixed inconsistency between "All Products" and "Per Product" options.

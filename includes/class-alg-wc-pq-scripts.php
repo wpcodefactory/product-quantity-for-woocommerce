@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 4.5.9
+ * @version 5.3.0
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -27,7 +27,7 @@ class Alg_WC_PQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 4.5.9
+	 * @version 5.3.0
 	 * @since   1.0.0
 	 *
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -440,7 +440,10 @@ class Alg_WC_PQ_Scripts {
 				$alg_wc_pq_step_per_item_quantity_allow_all_remaining == 'yes'
 			) {
 
-				if ( $_product->is_type( 'simple' ) ) {
+				if ( $_product->is_type( 'simple' ) || $_product->is_type( 'variable' ) ) {
+					$data = array();
+
+					if ( $_product->is_type( 'simple' ) ) {
 					$product_id     = $_product->get_id();
 					$variation_id   = 0;
 					$stock_quantity = $_product->get_stock_quantity();
@@ -466,6 +469,13 @@ class Alg_WC_PQ_Scripts {
 						$max_qty = $stock_quantity;
 					}
 
+						$data = array(
+							'min_qty' => $min_qty,
+							'max_qty' => $max_qty,
+							'step'    => $step,
+						);
+					}
+
 					alg_wc_pq_enqueue_script(
 						'alg-wc-pq-quantity-steps',
 						trailingslashit( alg_wc_pq()->plugin_url() ) . 'includes/js/alg-wc-pq-quantity-steps.js',
@@ -477,11 +487,7 @@ class Alg_WC_PQ_Scripts {
 						'alg-wc-pq-quantity-steps',
 						'alg_wc_pq_support_runtime_steps',
 						array(
-							'data' => array(
-								'min_qty' => $min_qty,
-								'max_qty' => $max_qty,
-								'step'    => $step,
-							),
+							'data' => $data,
 							'page' => 'product'
 						)
 					);
@@ -507,42 +513,43 @@ class Alg_WC_PQ_Scripts {
 					$key          = $cart_item['key'];
 					$product_id   = $cart_item['product_id'];
 					$variation_id = $cart_item['variation_id'];
-					$quantity     = $cart_item['quantity'];
+					$target_id    = ( $variation_id > 0 ? $variation_id : $product_id );
 
-					if ( $variation_id == 0 ) {
+					$_product = wc_get_product( $target_id );
 
-						$_product = wc_get_product( $product_id );
+					if ( ! $_product ) {
+						continue;
+					}
 
-						$stock_quantity = $_product->get_stock_quantity();
-						$min_qty        = alg_wc_pq()->core->get_product_qty_min_max(
-							$product_id,
-							1,
-							'min',
-							$variation_id
-						);
-						$max_qty        = alg_wc_pq()->core->get_product_qty_min_max(
-							$product_id,
-							0,
-							'max',
-							$variation_id
-						);
-						$step           = (int) alg_wc_pq()->core->get_product_qty_step(
-							$product_id,
-							1,
-							$variation_id
-						);
+					$stock_quantity = $_product->get_stock_quantity();
+					$min_qty        = alg_wc_pq()->core->get_product_qty_min_max(
+						$product_id,
+						1,
+						'min',
+						$variation_id
+					);
+					$max_qty        = alg_wc_pq()->core->get_product_qty_min_max(
+						$product_id,
+						0,
+						'max',
+						$variation_id
+					);
+					$step           = (float) alg_wc_pq()->core->get_product_qty_step(
+						$product_id,
+						1,
+						$variation_id
+					);
 
-						if ( $stock_quantity > $max_qty ) {
-							$max_qty = $stock_quantity;
-						}
+					if ( '' !== $stock_quantity && null !== $stock_quantity && $stock_quantity > $max_qty ) {
+						$max_qty = $stock_quantity;
+					}
 
-						if ( $max_qty > 0 && is_int( $step ) ) {
+					if ( $max_qty > 0 && $step > 0 ) {
 
-							$localize_arr['data'][ $key ]['min_qty'] = $min_qty;
-							$localize_arr['data'][ $key ]['max_qty'] = $max_qty;
-							$localize_arr['data'][ $key ]['step']    = $step;
+						$localize_arr['data'][ $key ]['min_qty'] = $min_qty;
+						$localize_arr['data'][ $key ]['max_qty'] = $max_qty;
+						$localize_arr['data'][ $key ]['step']    = $step;
 
-						}
 					}
 
 				}
