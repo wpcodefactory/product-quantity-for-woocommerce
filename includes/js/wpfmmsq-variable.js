@@ -1,0 +1,314 @@
+/**
+ * wpfmmsq-variable.js
+ *
+ * @version 5.3.1
+ * @since   1.0.0
+ */
+
+/**
+ * wpfmmsq_check_qty
+ *
+ * @version 5.3.1
+ * @since   1.0.0
+ * @todo    [dev] (maybe) `jQuery( '[name=quantity]' ).val( '0' )` on `jQuery.isEmptyObject( wpfmmsq_product_quantities[ variation_id ] )` (i.e. instead of `return`)
+ */
+function wpfmmsq_check_qty( var_id = 0, that = false ) {
+	var variation_id = 0;
+
+	if ( var_id > 0 ) {
+		variation_id = var_id;
+	} else {
+		variation_id = jQuery( this ).val();
+	}
+
+
+	if ( 0 == variation_id || jQuery.isEmptyObject( wpfmmsq_product_quantities[ variation_id ] ) ) {
+		return;
+	}
+
+	var quantity_input = null;
+	var quantity_dropdown = null;
+
+	if ( that ) {
+		quantity_input = that.parent().find( '[name=quantity]' );
+		quantity_dropdown = that.parent().find( 'select[name=quantity_pq_dropdown]' );
+	} else {
+		quantity_input = jQuery( this ).parent().find( '[name=quantity]' );
+		quantity_dropdown = jQuery( this ).parent().find( 'select[name=quantity_pq_dropdown]' );
+	}
+
+	// Step
+	var step = parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'step' ] );
+	var default_qty = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'default' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'default' ] ) : 1 );
+	var lowest_qty = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'lowest_qty' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'lowest_qty' ] ) : 1 );
+
+	if ( 0 != step ) {
+		quantity_input.attr( 'step', step );
+	}
+	// quantity_input.attr('value',12);
+	// Min/max
+	var current_qty = quantity_input.val();
+
+	if ( wpfmmsq_quantities_options[ 'reset_to_lowest_fixed' ] ) {
+		quantity_input.val( lowest_qty );
+	} else if ( wpfmmsq_quantities_options[ 'reset_to_default' ] ) {
+		quantity_input.val( default_qty );
+		/*
+		if (default_qty > 0) {
+			if ( default_qty < parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) ) {
+				default_qty = ( !isNaN (parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) : 1  );
+				quantity_input.attr( 'value', default_qty );
+			} else if ( default_qty > parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) ) {
+				default_qty = ( ( !isNaN (parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) ) && parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) > 0 ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) : 100  );
+				quantity_input.attr( 'value', default_qty );
+			} else {
+				quantity_input.attr( 'value', default_qty );
+			}
+		}
+		*/
+	} else if ( wpfmmsq_quantities_options[ 'reset_to_min' ] ) {
+		// off for variation product
+		if ( wpfmmsq_quantities_options.alg_wc_is_catalog == 'yes' ) {
+			quantity_input.val( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] );
+		}
+	} else if ( wpfmmsq_quantities_options[ 'reset_to_max' ] ) {
+		quantity_input.val( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] );
+	} else if ( current_qty < parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) ) {
+		quantity_input.val( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] );
+	} else if ( current_qty > parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) ) {
+		quantity_input.val( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] );
+	}
+
+
+	if ( quantity_dropdown.length > 0 ) {
+		wpfmmsq_change_select_options( variation_id, quantity_dropdown, default_qty );
+	} else {
+		if ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) ) ) {
+			// quantity_input.prop( 'max', wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] );
+		}
+		if ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) ) ) {
+			// quantity_input.prop( 'min', wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] );
+		}
+	}
+}
+
+/**
+ * wpfmmsq_change_select_options
+ *
+ * @version 5.3.1
+ * @since   1.7.0
+ */
+function wpfmmsq_change_select_options( variation_id, quantity_dropdown, default_qty ) {
+
+	var step = parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'step' ] );
+	var max_value_fallback = parseFloat( wpfmmsq_quantities_options[ 'max_value_fallback' ] );
+	var max_qty = ( ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) ) && parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) > 0 ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) : max_value_fallback );
+	var min_qty = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) : 1 );
+	var label_singular = wpfmmsq_product_quantities[ variation_id ][ 'label' ][ 'singular' ];
+	var label_plural = wpfmmsq_product_quantities[ variation_id ][ 'label' ][ 'plural' ];
+	var exact_qty = ( ( wpfmmsq_product_quantities[ variation_id ][ 'exact_qty' ] === null || wpfmmsq_product_quantities[ variation_id ][ 'exact_qty' ] == null ) ? '' : wpfmmsq_product_quantities[ variation_id ][ 'exact_qty' ] );
+	var vprice_by_qty = ( ( wpfmmsq_product_quantities[ variation_id ][ 'vprice_by_qty' ] === null || wpfmmsq_product_quantities[ variation_id ][ 'vprice_by_qty' ] == null ) ? '' : wpfmmsq_product_quantities[ variation_id ][ 'vprice_by_qty' ] );
+
+
+	var n = exact_qty.indexOf( "," );
+
+	var html = '';
+	var selected = '';
+
+	if ( exact_qty === '' ) {
+		for ( i = min_qty; i <= max_qty; i = i + step ) {
+			var vl = Math.round( ( i + Number.EPSILON ) * 100 ) / 100;
+			var option_label_txt = ( vl > 1 ? label_plural : label_singular );
+			var option_txt = option_label_txt.replace( "%qty%", vl );
+			var price = '';
+			if ( vprice_by_qty !== '' ) {
+				price = vprice_by_qty[ vl ];
+				option_txt = option_txt.replace( "%price%", price );
+			}
+			selected = ( vl === default_qty ? 'selected="selected"' : '' );
+			html += '<option value="' + vl + '" ' + selected + '>' + option_txt + '</option>';
+		}
+	} else if ( n === -1 ) {
+		var option_label_txt = ( exact_qty > 1 ? label_plural : label_singular );
+		var option_txt = option_label_txt.replace( "%qty%", exact_qty );
+		var price = '';
+		if ( vprice_by_qty !== '' ) {
+			price = vprice_by_qty[ vl ];
+			option_txt = option_txt.replace( "%price%", price );
+		}
+		selected = 'selected="selected"';
+		html += '<option value="' + exact_qty + '" ' + selected + '>' + option_txt + '</option>';
+	} else {
+		var exact_arr = new Array();
+		exact_arr = exact_qty.split( ',' );
+		for ( a in exact_arr ) {
+			exact_arr[ a ] = parseFloat( exact_arr[ a ] );
+			var option_label_txt = ( exact_arr[ a ] > 1 ? label_plural : label_singular );
+			var option_txt = option_label_txt.replace( "%qty%", exact_arr[ a ] );
+			var price = '';
+			if ( vprice_by_qty !== '' ) {
+				price = vprice_by_qty[ vl ];
+				option_txt = option_txt.replace( "%price%", price );
+			}
+			selected = ( exact_arr[ a ] === default_qty ? 'selected="selected"' : '' );
+			html += '<option value="' + exact_arr[ a ] + '" ' + selected + '>' + option_txt + '</option>';
+		}
+	}
+
+	var sel_id = quantity_dropdown.attr( 'id' );
+	jQuery( "#" + sel_id ).html( html ).change();
+}
+
+
+/**
+ * wpfmmsq_check_qty_all
+ *
+ * @version 5.3.1
+ * @since   1.7.0
+ */
+function wpfmmsq_check_qty_all() {
+	jQuery( '[name=variation_id]' ).each( wpfmmsq_check_qty );
+}
+
+/**
+ * wpfmmsq_check_qty_category
+ *
+ * @version 5.3.1
+ * @since   4.6.6
+ */
+function wpfmmsq_check_qty_category() {
+	var vid = jQuery( this ).val();
+
+	// jQuery('form.variations_form').find('input[name="variation_id"], input.variation_id').each( wpfmmsq_check_qty );
+	if ( parseInt( vid ) > 0 ) {
+		wpfmmsq_check_qty( vid, jQuery( this ) );
+	}
+}
+
+
+/**
+ * document ready
+ *
+ * @version 5.3.1
+ * @since   1.0.0
+ */
+
+
+jQuery( document ).ready( function () {
+	if ( wpfmmsq_quantities_options[ 'do_load_all_variations' ] ) {
+		// jQuery( 'body' ).on( 'change', wpfmmsq_check_qty_all );
+		jQuery( '[name=variation_id]' ).on( 'change', wpfmmsq_check_qty );
+	} else {
+		jQuery( '[name=variation_id]' ).on( 'change', wpfmmsq_check_qty );
+	}
+
+	if ( wpfmmsq_quantities_options.alg_wc_is_catalog == 'yes' ) {
+		jQuery( 'body' ).on( 'change', '[name=variation_id]', wpfmmsq_check_qty_category );
+	}
+
+	jQuery( ".single_variation_wrap" ).on( "show_variation", function ( event, variation ) {
+		var variation_id = variation.variation_id;
+		var quantity_input_var = jQuery( this ).parent().find( '[name=quantity]' );
+		var quantity_select_var = jQuery( this ).parent().find( '[name=quantity_pq_dropdown]' );
+		var cur_val = quantity_input_var.val();
+
+		if ( variation_id > 0 && wpfmmsq_product_quantities[ variation_id ] !== undefined ) {
+
+			var quantity_dropdown_var = jQuery( this ).parent().find( 'select[name=quantity_pq_dropdown]' );
+			var max_qty_var = ( ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) ) && parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) > 0 ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'max_qty' ] ) : '' );
+			var min_qty_var = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] ) : 1 );
+			var step_var = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'step' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'step' ] ) : 1 );
+			var default_var = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'default' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'default' ] ) : 1 );
+			var lowest_var = ( !isNaN( parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'lowest_qty' ] ) ) ? parseFloat( wpfmmsq_product_quantities[ variation_id ][ 'lowest_qty' ] ) : 1 );
+
+			if ( quantity_dropdown_var.length <= 0 ) {
+				quantity_input_var.prop( 'max', max_qty_var );
+				quantity_input_var.prop( 'min', min_qty_var );
+				quantity_input_var.prop( 'step', step_var );
+
+
+				if ( wpfmmsq_quantities_options[ 'reset_to_lowest_fixed' ] ) {
+					quantity_input_var.val( lowest_var ).change();
+				} else if ( wpfmmsq_quantities_options[ 'reset_to_min' ] ) {
+					quantity_input_var.val( min_qty_var ).change();
+				} else if ( wpfmmsq_quantities_options[ 'reset_to_max' ] ) {
+					quantity_input_var.val( max_qty_var ).change();
+				} else if ( default_var > 0 ) {
+					quantity_input_var.val( default_var ).change();
+				} else if ( cur_val < min_qty_var ) {
+					quantity_input_var.val( min_qty_var ).change();
+				}
+
+
+			} else {
+				quantity_dropdown_var.change();
+			}
+		} else {
+			if ( quantity_select_var.length > 0 ) {
+				wpfmmsq_get_dropdown_options( variation_id, quantity_select_var );
+			} else {
+				wpfmmsq_get_options_input( variation_id, quantity_input_var );
+			}
+		}
+	} );
+} );
+
+/**
+ * wpfmmsq_get_options_input
+ *
+ * @version 5.3.1
+ * @since   4.6.6
+ */
+function wpfmmsq_get_options_input( variation_id, quantity_input_var ) {
+	var data = {
+		'action': 'wpfmmsq_update_get_input_options',
+		'variation_id': variation_id
+	};
+	jQuery.ajax( {
+		type: 'POST',
+		url: woocommerce_params.ajax_url,
+		data: data,
+		async: true,
+		dataType: 'json',
+		success: function ( response ) {
+			if ( response.min > 0 ) {
+				quantity_input_var.prop( 'min', response.min );
+			}
+			if ( response.max > 0 ) {
+				quantity_input_var.prop( 'max', response.max );
+			}
+			if ( response.step > 0 ) {
+				quantity_input_var.prop( 'step', response.step );
+			}
+			if ( response.default > 0 ) {
+				quantity_input_var.val( response.default );
+			}
+			quantity_input_var.change();
+		},
+	} );
+}
+
+/**
+ * wpfmmsq_get_dropdown_options
+ *
+ * @version 5.3.1
+ * @since   4.6.6
+ */
+function wpfmmsq_get_dropdown_options( variation_id, quantity_select_var ) {
+	var data = {
+		'action': 'wpfmmsq_update_get_dropdown_options',
+		'variation_id': variation_id
+	};
+	jQuery.ajax( {
+		type: 'POST',
+		url: woocommerce_params.ajax_url,
+		data: data,
+		async: true,
+		success: function ( response ) {
+			if ( response.length > 0 ) {
+				quantity_select_var.html( response );
+				quantity_select_var.change();
+			}
+		},
+	} );
+}

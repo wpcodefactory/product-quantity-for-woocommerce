@@ -3,7 +3,7 @@
 Plugin Name: Min Max Step Quantity Limits Manager for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 5.3.0
+Version: 5.3.1
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -17,20 +17,24 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 defined( 'ABSPATH' ) || exit;
 
 /**
- * alg_wc_pq_check_free_active.
+ * wpfmmsq_check_free_active.
+ *
+ * @version 5.3.1
  */
-if ( ! function_exists( 'alg_wc_pq_check_free_active' ) ) :
-function alg_wc_pq_check_free_active() {
+if ( ! function_exists( 'wpfmmsq_check_free_active' ) ) :
+function wpfmmsq_check_free_active() {
 
 	$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
 
-	if ( alg_wc_pq_check_if_active_plugin( 'product-quantity-for-woocommerce', 'product-quantity-for-woocommerce.php', $active_plugins ) ) {
+	if ( wpfmmsq_check_if_active_plugin( 'product-quantity-for-woocommerce', 'product-quantity-for-woocommerce.php', $active_plugins ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( sprintf(
-			__( 'You need to deactivate Product Quantity Control for WooCommerce. <br/> %s back to plugins. %s', 'product-quantity-for-woocommerce' ),
-			'<a href="' . wp_nonce_url( 'plugins.php?plugin_status=all' ) . '">',
+		/* translators: 1: Opening link tag to plugins list, 2: Closing link tag. */
+		$message = sprintf(
+			__( 'You need to deactivate Product Quantity Control for WooCommerce. <br/> %1$s back to plugins. %2$s', 'product-quantity-for-woocommerce' ),
+			'<a href="' . esc_url( wp_nonce_url( 'plugins.php?plugin_status=all' ) ) . '">',
 			'</a>'
-		) );
+		);
+		wp_die( wp_kses_post( $message ) );
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );
 		}
@@ -42,31 +46,52 @@ endif;
 /**
  * register_activation_hook.
  */
-register_activation_hook( __FILE__, 'alg_wc_pq_check_free_active' );
+register_activation_hook( __FILE__, 'wpfmmsq_check_free_active' );
 
 /**
  * functions.
  */
-require_once( 'includes/functions/alg-wc-pq-core-functions.php' );
+require_once( 'includes/functions/wpfmmsq-core-functions.php' );
+
+/**
+ * deprecated.
+ *
+ * @version 5.3.1
+ */
+require_once( 'includes/functions/wpfmmsq-deprecated-functions.php' );
+
+/**
+ * deprecated hooks.
+ *
+ * @version 5.3.1
+ */
+require_once( 'includes/functions/wpfmmsq-deprecated-hooks.php' );
+
+/**
+ * deprecated shortcodes.
+ *
+ * @version 5.3.1
+ */
+require_once( 'includes/functions/wpfmmsq-deprecated-shortcodes.php' );
 
 /**
  * do_disable.
  */
-if ( alg_wc_pq_do_disable( basename( __FILE__ ) ) ) {
+if ( wpfmmsq_do_disable( basename( __FILE__ ) ) ) {
 	return;
 }
 
 /**
- * Main Alg_WC_PQ Class.
+ * Main WPFMMSQ Class.
  *
- * @class   Alg_WC_PQ
+ * @class   WPFMMSQ
  *
- * @version 4.9.2
+ * @version 5.3.1
  * @since   1.0.0
  */
-if ( ! class_exists( 'Alg_WC_PQ' ) ) :
+if ( ! class_exists( 'WPFMMSQ' ) ) :
 
-final class Alg_WC_PQ {
+final class WPFMMSQ {
 
 	/**
 	 * Plugin version.
@@ -74,7 +99,7 @@ final class Alg_WC_PQ {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '5.3.0';
+	public $version = '5.3.1';
 
 	/**
 	 * core.
@@ -93,21 +118,21 @@ final class Alg_WC_PQ {
 	public $settings = null;
 
 	/**
-	 * @var   Alg_WC_PQ The single instance of the class
+	 * @var   WPFMMSQ The single instance of the class
 	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
 	/**
-	 * Main Alg_WC_PQ Instance.
+	 * Main WPFMMSQ Instance.
 	 *
-	 * Ensures only one instance of Alg_WC_PQ is loaded or can be loaded.
+	 * Ensures only one instance of WPFMMSQ is loaded or can be loaded.
 	 *
 	 * @version 1.0.0
 	 * @since   1.0.0
 	 *
 	 * @static
-	 * @return  Alg_WC_PQ - Main instance
+	 * @return  WPFMMSQ - Main instance
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -117,7 +142,7 @@ final class Alg_WC_PQ {
 	}
 
 	/**
-	 * Alg_WC_PQ Constructor.
+	 * WPFMMSQ Constructor.
 	 *
 	 * @version 5.0.0
 	 * @since   1.0.0
@@ -139,9 +164,9 @@ final class Alg_WC_PQ {
 
 		// Pro
 		if ( 'product-quantity-for-woocommerce-pro.php' === basename( __FILE__ ) ) {
-			require_once( 'includes/pro/class-alg-wc-pq-pro.php' );
+			require_once( 'includes/pro/class-wpfmmsq-pro.php' );
 		} else {
-			require_once( 'includes/class-alg-wc-pq-free.php' );
+			require_once( 'includes/class-wpfmmsq-free.php' );
 		}
 
 		// Include required files
@@ -193,7 +218,7 @@ final class Alg_WC_PQ {
 	 */
 	function includes() {
 		// Core
-		$this->core = require_once( 'includes/class-alg-wc-pq-core.php' );
+		$this->core = require_once( 'includes/class-wpfmmsq-core.php' );
 	}
 
 	/**
@@ -215,24 +240,24 @@ final class Alg_WC_PQ {
 
 		// Settings
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
-		require_once( 'includes/settings/class-alg-wc-pq-metaboxes.php' );
-		require_once( 'includes/settings/class-alg-wc-pq-category-metaboxes.php' );
-		require_once( 'includes/settings/class-alg-wc-pq-attribute-item-metaboxes.php' );
-		require_once( 'includes/settings/class-alg-wc-pq-settings-section.php' );
+		require_once( 'includes/settings/class-wpfmmsq-metaboxes.php' );
+		require_once( 'includes/settings/class-wpfmmsq-category-metaboxes.php' );
+		require_once( 'includes/settings/class-wpfmmsq-attribute-item-metaboxes.php' );
+		require_once( 'includes/settings/class-wpfmmsq-settings-section.php' );
 		$this->settings = array();
-		$this->settings['general']      = require_once( 'includes/settings/class-alg-wc-pq-settings-general.php' );
-		$this->settings['min']          = require_once( 'includes/settings/class-alg-wc-pq-settings-min.php' );
-		$this->settings['max']          = require_once( 'includes/settings/class-alg-wc-pq-settings-max.php' );
-		$this->settings['default']      = require_once( 'includes/settings/class-alg-wc-pq-settings-default.php' );
-		$this->settings['step']         = require_once( 'includes/settings/class-alg-wc-pq-settings-step.php' );
-		$this->settings['fixed']        = require_once( 'includes/settings/class-alg-wc-pq-settings-fixed.php' );
-		$this->settings['dropdown']     = require_once( 'includes/settings/class-alg-wc-pq-settings-dropdown.php' );
-		$this->settings['price_by_qty'] = require_once( 'includes/settings/class-alg-wc-pq-settings-price-by-qty.php' );
-		$this->settings['price_unit']   = require_once( 'includes/settings/class-alg-wc-pq-settings-price-unit.php' );
-		$this->settings['qty_info']     = require_once( 'includes/settings/class-alg-wc-pq-settings-qty-info.php' );
-		$this->settings['styling']      = require_once( 'includes/settings/class-alg-wc-pq-settings-styling.php' );
-		$this->settings['admin']        = require_once( 'includes/settings/class-alg-wc-pq-settings-admin.php' );
-		$this->settings['advanced']     = require_once( 'includes/settings/class-alg-wc-pq-settings-advanced.php' );
+		$this->settings['general']      = require_once( 'includes/settings/class-wpfmmsq-settings-general.php' );
+		$this->settings['min']          = require_once( 'includes/settings/class-wpfmmsq-settings-min.php' );
+		$this->settings['max']          = require_once( 'includes/settings/class-wpfmmsq-settings-max.php' );
+		$this->settings['default']      = require_once( 'includes/settings/class-wpfmmsq-settings-default.php' );
+		$this->settings['step']         = require_once( 'includes/settings/class-wpfmmsq-settings-step.php' );
+		$this->settings['fixed']        = require_once( 'includes/settings/class-wpfmmsq-settings-fixed.php' );
+		$this->settings['dropdown']     = require_once( 'includes/settings/class-wpfmmsq-settings-dropdown.php' );
+		$this->settings['price_by_qty'] = require_once( 'includes/settings/class-wpfmmsq-settings-price-by-qty.php' );
+		$this->settings['price_unit']   = require_once( 'includes/settings/class-wpfmmsq-settings-price-unit.php' );
+		$this->settings['qty_info']     = require_once( 'includes/settings/class-wpfmmsq-settings-qty-info.php' );
+		$this->settings['styling']      = require_once( 'includes/settings/class-wpfmmsq-settings-styling.php' );
+		$this->settings['admin']        = require_once( 'includes/settings/class-wpfmmsq-settings-admin.php' );
+		$this->settings['advanced']     = require_once( 'includes/settings/class-wpfmmsq-settings-advanced.php' );
 
 		// Version updated
 		if ( get_option( 'alg_wc_pq_version', '' ) !== $this->version ) {
@@ -322,11 +347,11 @@ final class Alg_WC_PQ {
 	/**
 	 * Add Product Quantity settings tab to WooCommerce settings.
 	 *
-	 * @version 1.2.0
+	 * @version 5.3.1
 	 * @since   1.0.0
 	 */
 	function add_woocommerce_settings_tab( $settings ) {
-		$settings[] = require_once( 'includes/settings/class-alg-wc-settings-pq.php' );
+		$settings[] = require_once( 'includes/settings/class-wpfmmsq-settings.php' );
 		return $settings;
 	}
 
@@ -368,24 +393,24 @@ final class Alg_WC_PQ {
 
 endif;
 
-if ( ! function_exists( 'alg_wc_pq' ) ) {
+if ( ! function_exists( 'wpfmmsq' ) ) {
 	/**
-	 * Returns the main instance of Alg_WC_PQ to prevent the need to use globals.
+	 * Returns the main instance of WPFMMSQ to prevent the need to use globals.
 	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
+	 * @version 5.3.1
+	 * @since   5.3.1
 	 *
-	 * @return  Alg_WC_PQ
+	 * @return  WPFMMSQ
 	 */
-	function alg_wc_pq() {
-		return Alg_WC_PQ::instance();
+	function wpfmmsq() {
+		return WPFMMSQ::instance();
 	}
 }
 
 /**
  * plugins_loaded.
  *
- * @version 4.9.0
+ * @version 5.3.1
  * @since   4.9.0
  */
-add_action( 'plugins_loaded', 'alg_wc_pq' );
+add_action( 'plugins_loaded', 'wpfmmsq' );
