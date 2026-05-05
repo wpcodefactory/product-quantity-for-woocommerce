@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -1363,38 +1363,39 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_quantity_handler.
 		 *
-		 * @version 5.3.1
+		 * @version 1.3.9
 		 * @since   1.3.3
 		 */
 		public function alg_wc_quantity_handler() {
-			wp_enqueue_script( 'jquery' );
-			wp_add_inline_script(
-				'jquery',
-				'jQuery(function($){' .
-				'$("form.cart").on("change", "input.qty", function(){' .
-				'$(this.form).find("[data-quantity]").attr("data-quantity", this.value);' .
-				'});' .
-				'$(document.body).on("adding_to_cart", function(){' .
-				'$("a.added_to_cart").remove();' .
-				'});' .
-				'});'
-			);
+			wc_enqueue_js( '
+		jQuery(function($) {
+		$("form.cart").on("change", "input.qty", function() {
+		$(this.form).find("[data-quantity]").attr("data-quantity", this.value);  //used attr instead of data, for WC 4.0 compatibility
+		});
+		' );
+
+			wc_enqueue_js( '
+		$(document.body).on("adding_to_cart", function() {
+			$("a.added_to_cart").remove();
+		});
+		});
+		' );
 		}
 
 		/**
 		 * alg_wc_confirm_add.
 		 *
-		 * @version 5.3.1
+		 * @version 1.3.9
 		 * @since   1.3.3
 		 */
 		public function alg_wc_confirm_add() {
-			wp_enqueue_script( 'jquery' );
-			wp_add_inline_script(
-				'jquery',
-				'jQuery(document.body).on("added_to_cart", function( data ) {' .
-				'/* jQuery(".added_to_cart").after("<p class=\"confirm_add\">Item Added</p>"); */' .
-				'});'
-			);
+			wc_enqueue_js( '
+		jQuery(document.body).on("added_to_cart", function( data ) {
+
+		// jQuery(".added_to_cart").after("<p class=\'confirm_add\'>Item Added</p>");
+		});
+
+		' );
 		}
 
 		/**
@@ -2481,12 +2482,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * wpfmmsq_floatval.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.2
 		 * @since   4.9.7
 		 */
 		function wpfmmsq_floatval( $value ) {
 			return apply_filters(
-				'alg_wc_product_quantity_floatval',
+				'wpfmmsq_product_quantity_floatval',
 				round( floatval( $value ), 6 ),
 				$value
 			);

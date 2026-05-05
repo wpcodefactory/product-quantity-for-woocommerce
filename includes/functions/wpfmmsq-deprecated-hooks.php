@@ -2,10 +2,10 @@
 /**
  * Product Quantity for WooCommerce - Deprecated Hooks
  *
- * Adds backward-compatible aliases for hooks renamed in version 5.3.1.
- * Old hook names (alg_wc_pq_*) are forwarded to new hook names (wpfmmsq_*).
+ * Adds backward-compatible aliases for hooks renamed in version 5.3.2.
+ * Old hook names (alg_wc_pq_* and alg_wc_*) are forwarded to new hook names (wpfmmsq_*).
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   5.3.1
  *
  * @author  WPFactory
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Returns the mapping of old hook names to new hook names.
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   5.3.1
  *
  * @return array
@@ -57,6 +57,7 @@ function wpfmmsq_deprecated_hook_map() {
 		'alg_wc_pq_exact_qty_per_product_cat_value'                 => 'wpfmmsq_exact_qty_per_product_cat_value',
 		'alg_wc_pq_exact_qty_per_product_attr'                      => 'wpfmmsq_exact_qty_per_product_attr',
 		'alg_wc_pq_exact_qty_per_product_attr_value'                => 'wpfmmsq_exact_qty_per_product_attr_value',
+		'alg_wc_product_quantity_floatval'                          => 'wpfmmsq_product_quantity_floatval',
 	);
 }
 
@@ -68,17 +69,19 @@ function wpfmmsq_deprecated_hook_map() {
  * callbacks registered on the old hook are called via apply_filters on the
  * old name so external code using the old hook names continues to work.
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   5.3.1
  */
 add_action( 'init', function () {
 	foreach ( wpfmmsq_deprecated_hook_map() as $old => $new ) {
+		$deprecated_version = '5.3.1';
+
 		// Forward filters: if someone hooked into the old name, pipe through new name
-		add_filter( $new, function () use ( $old, $new ) {
+		add_filter( $new, function () use ( $old, $new, $deprecated_version ) {
 			$args = func_get_args();
 			// Only forward if there are actually callbacks on the old hook
 			if ( has_filter( $old ) ) {
-				_deprecated_hook( esc_html( $old ), '5.3.1', esc_html( $new ) );
+				_deprecated_hook( esc_html( $old ), $deprecated_version, esc_html( $new ) );
 
 				return call_user_func_array( 'apply_filters', array_merge( array( $old ), $args ) );
 			}
@@ -87,10 +90,10 @@ add_action( 'init', function () {
 		}, 5, PHP_INT_MAX );
 
 		// Forward actions: if someone hooked into the old action name
-		add_action( $new, function () use ( $old, $new ) {
+		add_action( $new, function () use ( $old, $new, $deprecated_version ) {
 			$args = func_get_args();
 			if ( has_action( $old ) ) {
-				_deprecated_hook( esc_html( $old ), '5.3.1', esc_html( $new ) );
+				_deprecated_hook( esc_html( $old ), $deprecated_version, esc_html( $new ) );
 				call_user_func_array( 'do_action', array_merge( array( $old ), $args ) );
 			}
 

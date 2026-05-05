@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -27,7 +27,7 @@ class WPFMMSQ_Scripts {
 	/**
 	 * enqueue_scripts.
 	 *
-	 * @version 5.3.1
+	 * @version 5.3.2
 	 * @since   1.0.0
 	 *
 	 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -66,11 +66,11 @@ class WPFMMSQ_Scripts {
 					100
 				),
 				'is_dropdown_enabled'    => get_option( 'alg_wc_pq_qty_dropdown', 'no' ),
-				'alg_wc_is_catalog'      => 'no',
+				'wpfmmsq_is_catalog'     => 'no',
 			);
 
 			if ( is_product_category() || is_shop() ) {
-				$wpfmmsq_quantities_options['alg_wc_is_catalog'] = 'yes';
+				$wpfmmsq_quantities_options['wpfmmsq_is_catalog'] = 'yes';
 			}
 
 			$wpfmmsq_product_quantities = array();

@@ -1,14 +1,14 @@
 /**
  * wpfmmsq-variable.js
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   1.0.0
  */
 
 /**
  * wpfmmsq_check_qty
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   1.0.0
  * @todo    [dev] (maybe) `jQuery( '[name=quantity]' ).val( '0' )` on `jQuery.isEmptyObject( wpfmmsq_product_quantities[ variation_id ] )` (i.e. instead of `return`)
  */
@@ -68,7 +68,7 @@ function wpfmmsq_check_qty( var_id = 0, that = false ) {
 		*/
 	} else if ( wpfmmsq_quantities_options[ 'reset_to_min' ] ) {
 		// off for variation product
-		if ( wpfmmsq_quantities_options.alg_wc_is_catalog == 'yes' ) {
+		if ( wpfmmsq_quantities_options.wpfmmsq_is_catalog == 'yes' ) {
 			quantity_input.val( wpfmmsq_product_quantities[ variation_id ][ 'min_qty' ] );
 		}
 	} else if ( wpfmmsq_quantities_options[ 'reset_to_max' ] ) {
@@ -189,7 +189,7 @@ function wpfmmsq_check_qty_category() {
 /**
  * document ready
  *
- * @version 5.3.1
+ * @version 5.3.2
  * @since   1.0.0
  */
 
@@ -202,7 +202,7 @@ jQuery( document ).ready( function () {
 		jQuery( '[name=variation_id]' ).on( 'change', wpfmmsq_check_qty );
 	}
 
-	if ( wpfmmsq_quantities_options.alg_wc_is_catalog == 'yes' ) {
+	if ( wpfmmsq_quantities_options.wpfmmsq_is_catalog == 'yes' ) {
 		jQuery( 'body' ).on( 'change', '[name=variation_id]', wpfmmsq_check_qty_category );
 	}
 
