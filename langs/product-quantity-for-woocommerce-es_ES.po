@@ -28,24 +28,24 @@ msgstr "Cantidad Máxima"
 msgid "Qty Step"
 msgstr "Paso de cantidad"
 
-#: includes/class-wpfmmsq-core.php:1335
+#: includes/class-wpfmmsq-core.php:1334
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr "&ldquo;%s&rdquo;"
 
-#: includes/class-wpfmmsq-core.php:1340
+#: includes/class-wpfmmsq-core.php:1339
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] "%s se han añadido al carrito."
 msgstr[1] "%s se han añadido al carrito."
 
-#: includes/class-wpfmmsq-core.php:1341
+#: includes/class-wpfmmsq-core.php:1340
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-wpfmmsq-core.php:3306
-#: includes/class-wpfmmsq-core.php:3433
-#: includes/class-wpfmmsq-core.php:3548
+#: includes/class-wpfmmsq-core.php:3288
+#: includes/class-wpfmmsq-core.php:3415
+#: includes/class-wpfmmsq-core.php:3530
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
 
@@ -1591,8 +1591,8 @@ msgstr "Administre la cantidad de productos en WooCommerce, maravillosamente. De
 msgid "WPFactory"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2256
-#: includes/class-wpfmmsq-core.php:2279
+#: includes/class-wpfmmsq-core.php:2238
+#: includes/class-wpfmmsq-core.php:2261
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
@@ -1933,11 +1933,11 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3153
+#: includes/class-wpfmmsq-core.php:3135
 msgid "unit"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3154
+#: includes/class-wpfmmsq-core.php:3136
 msgid "units"
 msgstr ""
 
@@ -2038,24 +2038,24 @@ msgstr ""
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %1$s back to plugins. %2$s"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2336
-#: includes/class-wpfmmsq-core.php:4181
+#: includes/class-wpfmmsq-core.php:2318
+#: includes/class-wpfmmsq-core.php:4163
 msgid "Maximum allowed quantity for category %1$s is %2$s. Your current quantity for this category is %3$s."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4191
+#: includes/class-wpfmmsq-core.php:4173
 msgid "Minimum allowed quantity for category %1$s is %2$s. Your current quantity is %3$s."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4261
-#: includes/class-wpfmmsq-core.php:4286
+#: includes/class-wpfmmsq-core.php:4243
+#: includes/class-wpfmmsq-core.php:4268
 msgid "Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4627
+#: includes/class-wpfmmsq-core.php:4609
 msgid "Allowed quantity for category %1$s is %2$s. Your current quantity is %3$s"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4695
+#: includes/class-wpfmmsq-core.php:4677
 msgid "Allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute item is %3$s"
 msgstr ""

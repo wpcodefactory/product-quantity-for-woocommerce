@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.3.2
+ * @version 5.3.3
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -210,7 +210,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.3
 		 * @since   1.0.0
 		 *
 		 * @todo    [fix] mini-cart number of items for decimal qty
@@ -462,7 +462,6 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				if ( 'yes' === get_option( 'alg_wc_pq_add_quantity_archive_enabled', 'no' ) ) {
 					add_action( 'init', array( $this, 'alg_wc_quantity_handler' ) );
-					add_action( 'init', array( $this, 'alg_wc_confirm_add' ) );
 					add_action( 'wp_footer', array( $this, 'alg_wc_archive_quanitity_filed_style' ), PHP_INT_MAX );
 				}
 
@@ -1363,39 +1362,22 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_quantity_handler.
 		 *
-		 * @version 1.3.9
+		 * @version 5.3.3
 		 * @since   1.3.3
 		 */
 		public function alg_wc_quantity_handler() {
-			wc_enqueue_js( '
-		jQuery(function($) {
-		$("form.cart").on("change", "input.qty", function() {
-		$(this.form).find("[data-quantity]").attr("data-quantity", this.value);  //used attr instead of data, for WC 4.0 compatibility
-		});
-		' );
-
-			wc_enqueue_js( '
-		$(document.body).on("adding_to_cart", function() {
-			$("a.added_to_cart").remove();
-		});
-		});
-		' );
-		}
-
-		/**
-		 * alg_wc_confirm_add.
-		 *
-		 * @version 1.3.9
-		 * @since   1.3.3
-		 */
-		public function alg_wc_confirm_add() {
-			wc_enqueue_js( '
-		jQuery(document.body).on("added_to_cart", function( data ) {
-
-		// jQuery(".added_to_cart").after("<p class=\'confirm_add\'>Item Added</p>");
-		});
-
-		' );
+			wp_enqueue_script( 'jquery' );
+			wp_add_inline_script(
+				'jquery',
+				'jQuery(function($){' .
+				'$("form.cart").on("change", "input.qty", function(){' .
+				'$(this.form).find("[data-quantity]").attr("data-quantity", this.value);' .
+				'});' .
+				'$(document.body).on("adding_to_cart", function(){' .
+				'$("a.added_to_cart").remove();' .
+				'});' .
+				'});'
+			);
 		}
 
 		/**
