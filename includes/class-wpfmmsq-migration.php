@@ -1,8 +1,8 @@
 <?php
 /**
- * WPFMMSQ Migration class.
+ * Product Quantity for WooCommerce - Migration class.
  *
- * @version 5.3.4
+ * @version 5.3.6
  * @since   5.3.4
  * @package WPFMMSQ
  */
@@ -25,6 +25,44 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 		 * @var string
 		 */
 		private static $version = '5.3.4';
+
+		/**
+		 * Get migration version.
+		 *
+		 * @version 5.3.4
+		 * @since   5.3.4
+		 *
+		 * @return string
+		 */
+		public static function get_version() {
+			return self::$version;
+		}
+
+		/**
+		 * Run all migrations.
+		 *
+		 * @version 5.3.4
+		 * @since   5.3.4
+		 */
+		public static function run() {
+			if ( get_transient( 'wpfmmsq_migrating' ) ) {
+				return;
+			}
+
+			set_transient( 'wpfmmsq_migrating', 1, 300 );
+
+			try {
+				self::migrate_options();
+				self::migrate_post_metas();
+				self::migrate_user_metas();
+				self::migrate_term_metas();
+
+				// Only update version if all migrations succeed
+				update_option( 'wpfmmsq_migration_version', self::$version );
+			} finally {
+				delete_transient( 'wpfmmsq_migrating' );
+			}
+		}
 
 		/**
 		 * Legacy option keys mapped to new option keys.
@@ -221,69 +259,31 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 		/**
 		 * Get migration version.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.6
 		 * @since   5.3.4
 		 *
 		 * @return string
 		 */
-		public static function get_version() {
-			return self::$version;
-		}
-
-		/**
-		 * Run all migrations.
-		 *
-		 * @version 5.3.4
-		 * @since   5.3.4
-		 */
-		public static function run() {
-			if ( get_transient( 'wpfmmsq_migrating' ) ) {
-				return;
-			}
-
-			set_transient( 'wpfmmsq_migrating', 1, 300 );
-
-			try {
-				self::migrate_options();
-				self::migrate_post_metas();
-				self::migrate_user_metas();
-				self::migrate_term_metas();
-
-				// Only update version if all migrations succeed
-				update_option( 'wpfmmsq_migration_version', self::$version );
-			} finally {
-				delete_transient( 'wpfmmsq_migrating' );
-			}
-		}
-
-		/**
-		 * Migrate WordPress options.
-		 *
-		 * @version 5.3.4
-		 * @since   5.3.4
-		 */
 		private static function migrate_options() {
 			global $wpdb;
+			$old_keys_to_delete = array();
 			foreach ( self::get_option_mapping() as $old_key => $new_key ) {
-				// Fetch old option value directly from DB
 				$old_row    = $wpdb->get_row( $wpdb->prepare(
 					"SELECT option_value FROM {$wpdb->options} WHERE option_name = %s LIMIT 1",
 					$old_key
 				) );
 				$old_exists = ( $old_row !== null );
 				$old_val    = $old_exists ? maybe_unserialize( $old_row->option_value ) : null;
-				// Check if new option exists in DB directly, bypassing Compat
 				$new_exists = $wpdb->get_var( $wpdb->prepare(
 					"SELECT option_id FROM {$wpdb->options} WHERE option_name = %s LIMIT 1",
 					$new_key
 				) );
-				// Only migrate if old key exists (regardless of value) and new key does not exist in DB
 				if ( $old_exists && ! $new_exists ) {
 					update_option( $new_key, $old_val );
+					$old_keys_to_delete[] = $old_key;
 				}
 			}
 
-			// Generic fallback: migrate any remaining alg_wc_pq_* options to wpfmmsq_*.
 			$generic_rows = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE %s",
@@ -294,33 +294,36 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 			foreach ( $generic_rows as $row ) {
 				$old_key = $row->option_name;
 				$new_key = 'wpfmmsq_' . substr( $old_key, strlen( 'alg_wc_pq_' ) );
-
 				if ( empty( $new_key ) || $new_key === $old_key ) {
 					continue;
 				}
-
 				$new_exists = $wpdb->get_var(
 					$wpdb->prepare(
 						"SELECT option_id FROM {$wpdb->options} WHERE option_name = %s LIMIT 1",
 						$new_key
 					)
 				);
-
 				if ( ! $new_exists ) {
 					update_option( $new_key, maybe_unserialize( $row->option_value ) );
+					$old_keys_to_delete[] = $old_key;
 				}
+			}
+
+			// Delete old options after migration
+			foreach ( $old_keys_to_delete as $old_key ) {
+				delete_option( $old_key );
 			}
 		}
 
 		/**
 		 * Migrate post meta.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.6
 		 * @since   5.3.4
 		 */
 		private static function migrate_post_metas() {
 			global $wpdb;
-
+			$to_delete = array();
 			foreach ( self::get_post_meta_mapping() as $old_key => $new_key ) {
 				$results = $wpdb->get_results(
 					$wpdb->prepare(
@@ -328,29 +331,32 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 						$old_key
 					)
 				);
-
 				foreach ( $results as $row ) {
-					// Check if new meta does not exist for this post
 					$exists = $wpdb->get_var( $wpdb->prepare(
 						"SELECT meta_id FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = %s LIMIT 1",
 						$row->post_id, $new_key
 					) );
 					if ( ! $exists ) {
 						update_post_meta( $row->post_id, $new_key, maybe_unserialize( $row->meta_value ) );
+						$to_delete[] = array( 'post_id' => $row->post_id, 'meta_key' => $old_key );
 					}
 				}
+			}
+			// Delete old post meta after migration
+			foreach ( $to_delete as $item ) {
+				delete_post_meta( $item['post_id'], $item['meta_key'] );
 			}
 		}
 
 		/**
 		 * Migrate user meta.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.6
 		 * @since   5.3.4
 		 */
 		private static function migrate_user_metas() {
 			global $wpdb;
-
+			$to_delete = array();
 			foreach ( self::get_user_meta_mapping() as $old_key => $new_key ) {
 				$results = $wpdb->get_results(
 					$wpdb->prepare(
@@ -358,29 +364,32 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 						$old_key
 					)
 				);
-
 				foreach ( $results as $row ) {
-					// Check if new meta does not exist for this user
 					$exists = $wpdb->get_var( $wpdb->prepare(
 						"SELECT umeta_id FROM {$wpdb->usermeta} WHERE user_id = %d AND meta_key = %s LIMIT 1",
 						$row->user_id, $new_key
 					) );
 					if ( ! $exists ) {
 						update_user_meta( $row->user_id, $new_key, maybe_unserialize( $row->meta_value ) );
+						$to_delete[] = array( 'user_id' => $row->user_id, 'meta_key' => $old_key );
 					}
 				}
+			}
+			// Delete old user meta after migration
+			foreach ( $to_delete as $item ) {
+				delete_user_meta( $item['user_id'], $item['meta_key'] );
 			}
 		}
 
 		/**
 		 * Migrate term option buckets.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.6
 		 * @since   5.3.4
 		 */
 		private static function migrate_term_metas() {
 			global $wpdb;
-
+			$to_delete = array();
 			foreach ( self::get_term_option_prefix_map() as $old_prefix => $new_prefix ) {
 				$results = $wpdb->get_results(
 					$wpdb->prepare(
@@ -388,20 +397,21 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 						$old_prefix . '%'
 					)
 				);
-
 				foreach ( $results as $row ) {
 					$suffix = substr( $row->option_name, strlen( $old_prefix ) );
-
 					if ( '' === $suffix ) {
 						continue;
 					}
-
 					$new_key = $new_prefix . $suffix;
-
 					if ( false === get_option( $new_key, false ) ) {
 						update_option( $new_key, maybe_unserialize( $row->option_value ) );
+						$to_delete[] = $row->option_name;
 					}
 				}
+			}
+			// Delete old term options after migration
+			foreach ( $to_delete as $old_key ) {
+				delete_option( $old_key );
 			}
 		}
 
