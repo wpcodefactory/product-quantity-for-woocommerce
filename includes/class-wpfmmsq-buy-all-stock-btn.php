@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Buy All Stock Button Class
  *
- * @version 5.3.1
+ * @version 5.3.4
  * @since   5.3.0
  *
  * @author  WPFactory
@@ -17,7 +17,7 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   5.3.0
 		 */
 		function __construct() {
@@ -29,7 +29,7 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		/**
 		 * render_buy_all_stock_button.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   5.3.0
 		 */
 		function render_buy_all_stock_button() {
@@ -38,29 +38,29 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 			$can_render_button = ( $product && is_a( $product, 'WC_Product' ) && ( $product->is_type( 'variable' ) || $product->managing_stock() ) );
 
 			if (
-				'yes' === get_option( 'alg_wc_pq_buy_all_stock_button_enabled', 'no' ) &&
+				'yes' === get_option( 'wpfmmsq_buy_all_stock_button_enabled', 'no' ) &&
 				$can_render_button &&
 				$product->is_purchasable() &&
 				$product->is_in_stock() &&
 				! $product->is_type( 'external' ) &&
 				! $product->is_type( 'grouped' )
 			) {
-				$button_label = get_option( 'alg_wc_pq_buy_all_stock_button_label', __( 'Buy all stock', 'product-quantity-for-woocommerce' ) );
-				$button_class = get_option( 'alg_wc_pq_buy_all_stock_button_class', 'button alt alg-wc-pq-buy-all-stock-button' );
-				$alert_msg    = get_option( 'alg_wc_pq_buy_all_stock_button_alert_msg', __( 'Please select product options with managed stock before using Buy all stock.', 'product-quantity-for-woocommerce' ) );
+				$button_label = get_option( 'wpfmmsq_buy_all_stock_button_label', __( 'Buy all stock', 'product-quantity-for-woocommerce' ) );
+				$button_class = get_option( 'wpfmmsq_buy_all_stock_button_class', 'button alt wpfmmsq-buy-all-stock-button' );
+				$alert_msg    = get_option( 'wpfmmsq_buy_all_stock_button_alert_msg', __( 'Please select product options with managed stock before using Buy all stock.', 'product-quantity-for-woocommerce' ) );
 				if ( '' === $button_label ) {
 					$button_label = __( 'Buy all stock', 'product-quantity-for-woocommerce' );
 				}
 				if ( '' === $button_class ) {
-					$button_class = 'button alt alg-wc-pq-buy-all-stock-button';
+					$button_class = 'button alt wpfmmsq-buy-all-stock-button';
 				}
 				if ( '' === $alert_msg ) {
 					$alert_msg = __( 'Please select product options with managed stock before using Buy all stock.', 'product-quantity-for-woocommerce' );
 				}
 
 				$button_classes_arr = array_filter( array_map( 'sanitize_html_class', preg_split( '/\s+/', trim( $button_class ) ) ) );
-				if ( ! in_array( 'alg-wc-pq-buy-all-stock-button', $button_classes_arr, true ) ) {
-					$button_classes_arr[] = 'alg-wc-pq-buy-all-stock-button';
+				if ( ! in_array( 'wpfmmsq-buy-all-stock-button', $button_classes_arr, true ) ) {
+					$button_classes_arr[] = 'wpfmmsq-buy-all-stock-button';
 				}
 
 				$button_classes = implode( ' ', $button_classes_arr );
@@ -74,7 +74,7 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 				if ( ! $is_variable ) {
 					echo '<input type="hidden" name="add-to-cart" value="' . esc_attr( $product->get_id() ) . '">';
 				}
-				echo '<button type="submit" name="alg_wc_pq_buy_all_stock_button" value="1" class="' . esc_attr( $button_classes ) . '" data-parent-managing-stock="' . esc_attr( $product->managing_stock() ? 'yes' : 'no' ) . '" data-alert-msg="' . esc_attr( $alert_msg ) . '"' . ( $is_variable ? ' aria-disabled="true"' : '' ) . '>' . esc_html( $button_label ) . '</button>';
+				echo '<button type="submit" name="wpfmmsq_buy_all_stock_button" value="1" class="' . esc_attr( $button_classes ) . '" data-parent-managing-stock="' . esc_attr( $product->managing_stock() ? 'yes' : 'no' ) . '" data-alert-msg="' . esc_attr( $alert_msg ) . '"' . ( $is_variable ? ' aria-disabled="true"' : '' ) . '>' . esc_html( $button_label ) . '</button>';
 
 				if ( $product->is_type( 'variable' ) ) {
 					$this->enqueue_buy_all_stock_script();
@@ -87,15 +87,15 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		 *
 		 * Enqueues the inline JS that handles the Buy all stock button behavior for variable products.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   5.3.1
 		 */
 		function enqueue_buy_all_stock_script() {
 			ob_start();
 			?>
 			<script>
-				jQuery( function( $ ) {
-					$( document ).on( "click", ".alg-wc-pq-buy-all-stock-button", function( event ) {
+				jQuery( function ( $ ) {
+					$( document ).on( "click", ".wpfmmsq-buy-all-stock-button", function ( event ) {
 						var $button = $( this );
 						if ( $button.hasClass( "disabled" ) || $button.hasClass( "wc-variation-selection-needed" ) ) {
 							event.preventDefault();
@@ -103,24 +103,24 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 						}
 					} );
 
-					$( document ).on( "found_variation reset_data hide_variation", "form.variations_form", function( event, variation ) {
+					$( document ).on( "found_variation reset_data hide_variation", "form.variations_form", function ( event, variation ) {
 						var $form = $( this );
-						var $button = $form.find( ".alg-wc-pq-buy-all-stock-button" );
-						if ( ! $button.length ) {
+						var $button = $form.find( ".wpfmmsq-buy-all-stock-button" );
+						if ( !$button.length ) {
 							return;
 						}
 
 						var parentManagesStock = ( "yes" === $button.data( "parent-managing-stock" ) );
-						var variationManagesStock = ( variation && "yes" === variation.alg_wc_pq_managing_stock );
+						var variationManagesStock = ( variation && "yes" === variation.wpfmmsq_managing_stock );
 						var enableButton = ( "found_variation" === event.type && ( parentManagesStock || variationManagesStock ) );
 
 						$button.attr( "aria-disabled", enableButton ? "false" : "true" );
-						$button.toggleClass( "disabled wc-variation-selection-needed", ! enableButton );
+						$button.toggleClass( "disabled wc-variation-selection-needed", !enableButton );
 					} );
 				} );
 			</script>
 			<?php
-			$script = ob_get_clean();
+			$script    = ob_get_clean();
 			$inline_js = trim( str_replace( array( '<script>', '</script>' ), '', $script ) );
 
 			wp_enqueue_script( 'wc-add-to-cart-variation' );
@@ -132,7 +132,7 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		 *
 		 * Adds stock-management info used by the Buy all stock button JS toggle.
 		 *
-		 * @version 5.3.0
+		 * @version 5.3.4
 		 * @since   5.3.0
 		 *
 		 * @param   array                 $variation_data  Variation data sent to JS.
@@ -142,7 +142,7 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		 * @return array
 		 */
 		function add_buy_all_stock_variation_data( $variation_data, $product, $variation ) {
-			$variation_data['alg_wc_pq_managing_stock'] = ( $variation->managing_stock() ? 'yes' : 'no' );
+			$variation_data['wpfmmsq_managing_stock'] = ( $variation->managing_stock() ? 'yes' : 'no' );
 
 			return $variation_data;
 		}
@@ -150,16 +150,16 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		/**
 		 * is_buy_all_stock_request.
 		 *
-		 * @version 5.3.0
+		 * @version 5.3.4
 		 * @since   5.3.0
 		 *
 		 * @return bool
 		 */
 		function is_buy_all_stock_request() {
 			return (
-				'yes' === get_option( 'alg_wc_pq_buy_all_stock_button_enabled', 'no' ) &&
-				isset( $_REQUEST['alg_wc_pq_buy_all_stock_button'] ) &&
-				'1' === sanitize_text_field( wp_unslash( $_REQUEST['alg_wc_pq_buy_all_stock_button'] ) )
+				'yes' === get_option( 'wpfmmsq_buy_all_stock_button_enabled', 'no' ) &&
+				isset( $_REQUEST['wpfmmsq_buy_all_stock_button'] ) &&
+				'1' === sanitize_text_field( wp_unslash( $_REQUEST['wpfmmsq_buy_all_stock_button'] ) )
 			);
 		}
 
@@ -168,7 +168,7 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		 *
 		 * Filters the quantity before WooCommerce adds the product to the cart.
 		 *
-		 * @version 5.3.0
+		 * @version 5.3.4
 		 * @since   5.3.0
 		 */
 		function override_quantity_for_buy_all_stock( $quantity, $product_id ) {

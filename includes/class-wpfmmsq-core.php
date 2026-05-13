@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.3.3
+ * @version 5.3.4
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -210,7 +210,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.3
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 *
 		 * @todo    [fix] mini-cart number of items for decimal qty
@@ -225,11 +225,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		 * @todo    [feature] add option to replace product's add to cart form on archives with form from the single product page
 		 */
 		function __construct() {
-			if ( 'yes' === get_option( 'alg_wc_pq_enabled', 'yes' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_enabled', 'yes' ) ) {
 
 				// Disable plugin by user who after purchase first order.
 				if (
-					'yes' === get_option( 'alg_wc_pq_disable_by_order_per_user', 'no' ) &&
+					'yes' === get_option( 'wpfmmsq_disable_by_order_per_user', 'no' ) &&
 					$this->has_purchased_first()
 				) {
 					return;
@@ -240,7 +240,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 
 				// Disable plugin by URL
-				if ( '' != ( $urls = get_option( 'alg_wc_pq_disable_urls', '' ) ) ) {
+				if ( '' != ( $urls = get_option( 'wpfmmsq_disable_urls', '' ) ) ) {
 					$urls = array_map( 'trim', explode( PHP_EOL, $urls ) );
 					$url  = ( isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' );
 					if ( '' !== $url && in_array( $url, $urls, true ) ) {
@@ -248,15 +248,15 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						return;
 					}
 
-					$ids                 = get_option( 'alg_wc_pq_disable_urls_excluded_pids', '' );
+					$ids                 = get_option( 'wpfmmsq_disable_urls_excluded_pids', '' );
 					$ids                 = array_map( 'trim', explode( ',', $ids ) );
 					$this->excluded_pids = array_unique( array_merge( $this->excluded_pids, $ids ) );
 				}
 
 				// Disable plugin by category
-				if ( '' != ( $disable_categories = get_option( 'alg_wc_pq_disable_by_category', '' ) ) ) {
+				if ( '' != ( $disable_categories = get_option( 'wpfmmsq_disable_by_category', '' ) ) ) {
 
-					$d_cat_ids = get_option( 'alg_wc_pq_disable_category_excluded_pids', '' );
+					$d_cat_ids = get_option( 'wpfmmsq_disable_category_excluded_pids', '' );
 					if ( '' != $d_cat_ids ) {
 						$d_cat_ids           = array_map( 'trim', explode( ',', $d_cat_ids ) );
 						$this->excluded_pids = array_unique( array_merge( $this->excluded_pids, $d_cat_ids ) );
@@ -266,40 +266,40 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				// Core
 				$this->messenger = require_once( 'class-wpfmmsq-messenger.php' );
 				if (
-					'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ||
-					'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ||
-					'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ||
-					'yes' === get_option( 'alg_wc_pq_exact_qty_allowed_section_enabled', 'no' ) ||
-					'yes' === get_option( 'alg_wc_pq_exact_qty_disallowed_section_enabled', 'no' )
+					'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ||
+					'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ||
+					'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ||
+					'yes' === get_option( 'wpfmmsq_exact_qty_allowed_section_enabled', 'no' ) ||
+					'yes' === get_option( 'wpfmmsq_exact_qty_disallowed_section_enabled', 'no' )
 				) {
-					if ( 'yes' === get_option( 'alg_wc_pq_validate_on_checkout', 'yes' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_validate_on_checkout', 'yes' ) ) {
 						add_action( 'woocommerce_checkout_process', array( $this, 'check_order_quantities' ) );
 					}
 					add_action( 'woocommerce_before_cart', array( $this, 'check_order_quantities' ) );
-					if ( 'yes' === get_option( 'alg_wc_pq_stop_from_seeing_checkout', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_stop_from_seeing_checkout', 'no' ) ) {
 						add_action( 'wp', array( $this, 'block_checkout' ), PHP_INT_MAX );
 					}
 				}
 
 				// Min/max
-				if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) || 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) || 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_available_variation', array( $this, 'set_quantity_input_min_max_variation' ), PHP_INT_MAX, 3 );
-					if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 						add_filter( 'woocommerce_store_api_product_quantity_minimum', array( $this, 'store_api_product_min_quantity' ), PHP_INT_MAX, 3 );
 						add_filter( 'woocommerce_is_purchasable', array( $this, 'disable_purchased_products' ), PHP_INT_MAX, 2 );
 					}
-					if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
 						add_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX, 2 );
 						add_filter( 'woocommerce_store_api_product_quantity_maximum', array( $this, 'store_api_product_max_quantity' ), PHP_INT_MAX, 3 );
 					}
 					// Force on archives
-					if ( 'disabled' != ( $this->force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) ) {
+					if ( 'disabled' != ( $this->force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' ) ) ) {
 						add_filter( 'woocommerce_loop_add_to_cart_args', array( $this, 'force_qty_on_loop' ), PHP_INT_MAX, 2 );
 					}
 				}
 
 				// Step
-				if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_quantity_input_step', array( $this, 'set_quantity_input_step' ), PHP_INT_MAX, 2 );
 
 					add_action( 'admin_init', function () {
@@ -307,13 +307,13 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						$current_postid = ( isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0 );
 
 						if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
-							if ( ( ( $pagenow == 'post.php' ) && ( OrderUtil::get_order_type( $current_postid ) === 'shop_order' ) ) && 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+							if ( ( ( $pagenow == 'post.php' ) && ( OrderUtil::get_order_type( $current_postid ) === 'shop_order' ) ) && 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 								remove_filter( 'woocommerce_quantity_input_step', array( $this, 'set_quantity_input_step' ), PHP_INT_MAX );
 
 								add_filter( 'woocommerce_quantity_input_step', array( $this, 'admin_set_quantity_input_step' ), PHP_INT_MAX, 2 );
 							}
 						} else {
-							if ( ( ( $pagenow == 'post.php' ) && ( get_post_type( $current_postid ) == 'shop_order' ) ) && 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+							if ( ( ( $pagenow == 'post.php' ) && ( get_post_type( $current_postid ) == 'shop_order' ) ) && 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 								remove_filter( 'woocommerce_quantity_input_step', array( $this, 'set_quantity_input_step' ), PHP_INT_MAX );
 
 								add_filter( 'woocommerce_quantity_input_step', array( $this, 'admin_set_quantity_input_step' ), PHP_INT_MAX, 2 );
@@ -334,7 +334,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				add_filter( 'woocommerce_quantity_input_args', array( $this, 'set_quantity_input_args' ), PHP_INT_MAX - 100, 2 );
 
 				// Decimal qty
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 					add_action( 'init', array( $this, 'float_stock_amount' ), PHP_INT_MAX );
 					add_action( 'save_post', array( $this, 'save_stock_status_overwrite_thresold' ), PHP_INT_MAX, 3 );
 					add_action( 'woocommerce_save_product_variation', array( $this, 'save_variation_stock_status_overwrite_thresold' ), PHP_INT_MAX, 2 );
@@ -343,39 +343,39 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 
 				// Sold individually
-				if ( 'yes' === get_option( 'alg_wc_pq_all_sold_individually_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_all_sold_individually_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_is_sold_individually', '__return_true', PHP_INT_MAX );
 				}
 
 				// Styling
-				if ( '' != get_option( 'alg_wc_pq_qty_input_style', '' ) ) {
+				if ( '' != get_option( 'wpfmmsq_qty_input_style', '' ) ) {
 					add_action( 'wp_head', array( $this, 'style_qty_input' ), PHP_INT_MAX );
 				}
 
 				// Hide "Update cart" button
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_hide_update_cart', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_qty_hide_update_cart', 'no' ) ) {
 					add_action( 'wp_head', array( $this, 'hide_update_cart_button' ), PHP_INT_MAX );
 				}
 
 				// "Add to cart" validation
-				if ( 'notice' === get_option( 'alg_wc_pq_add_to_cart_validation', 'disable' ) ) {
+				if ( 'notice' === get_option( 'wpfmmsq_add_to_cart_validation', 'disable' ) ) {
 					add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'validate_on_add_to_cart' ), PHP_INT_MAX, 4 );
-				} elseif ( 'correct' === get_option( 'alg_wc_pq_add_to_cart_validation', 'disable' ) ) {
+				} elseif ( 'correct' === get_option( 'wpfmmsq_add_to_cart_validation', 'disable' ) ) {
 					add_filter( 'woocommerce_add_to_cart_quantity', array( $this, 'correct_on_add_to_cart' ), PHP_INT_MAX, 2 );
 				} else {
 					add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'not_validate_on_add_to_cart' ), PHP_INT_MAX, 4 );
 				}
 
 				// Qty rounding
-				if ( 'no' != ( $this->round_on_add_to_cart = get_option( 'alg_wc_pq_round_on_add_to_cart', 'no' ) ) ) {
+				if ( 'no' != ( $this->round_on_add_to_cart = get_option( 'wpfmmsq_round_on_add_to_cart', 'no' ) ) ) {
 					add_filter( 'woocommerce_add_to_cart_quantity', array( $this, 'round_on_add_to_cart' ), PHP_INT_MAX, 2 );
 				}
 
 				// Dropdown
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_qty_dropdown', 'no' ) ) {
 					add_filter( 'wc_get_template', array( $this, 'replace_quantity_input_template' ), PHP_INT_MAX, 5 );
 				} else {
-					if ( 'yes' === get_option( 'alg_wc_pq_replace_woocommerce_quantity_field', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_replace_woocommerce_quantity_field', 'no' ) ) {
 						add_filter( 'wc_get_template', array( $this, 'replace_quantity_input_template_html_five' ), PHP_INT_MAX, 5 );
 					}
 				}
@@ -392,7 +392,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$this->attribute_taxonomies = wpfmmsq_wc_get_attribute_taxonomies();
 
 				// Price by Qty
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_enabled', 'no' ) ) {
 
 					add_action(
 						'wp_ajax_wpfmmsq_refresh_nonce',
@@ -400,15 +400,6 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					);
 					add_action(
 						'wp_ajax_nopriv_wpfmmsq_refresh_nonce',
-						array( $this, 'ajax_refresh_nonce' )
-					);
-
-					add_action(
-						'wp_ajax_alg_wc_pq_refresh_nonce',
-						array( $this, 'ajax_refresh_nonce' )
-					);
-					add_action(
-						'wp_ajax_nopriv_alg_wc_pq_refresh_nonce',
 						array( $this, 'ajax_refresh_nonce' )
 					);
 
@@ -421,20 +412,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						array( $this, 'ajax_price_by_qty' )
 					);
 
-					add_action(
-						'wp_ajax_' . 'alg_wc_pq_update_price_by_qty',
-						array( $this, 'ajax_price_by_qty' )
-					);
-					add_action(
-						'wp_ajax_nopriv_' . 'alg_wc_pq_update_price_by_qty',
-						array( $this, 'ajax_price_by_qty' )
-					);
-
 					$this->attr_taxonomies = $this->get_allowed_attribute_tax();
 				}
 
 				// Order item meta
-				if ( 'yes' === get_option( 'alg_wc_pq_save_qty_in_order_item_meta', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_save_qty_in_order_item_meta', 'no' ) ) {
 					add_action( 'woocommerce_new_order_item', array( $this, 'add_qty_to_order_item_meta' ), PHP_INT_MAX, 3 );
 				}
 
@@ -442,59 +424,51 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				add_filter( 'woocommerce_get_price_html', array( $this, 'pq_change_product_price_unit' ), 99, 2 );
 
-				$this->alg_wc_pq_qty_price_unit_enabled = get_option( 'alg_wc_pq_qty_price_unit_enabled', 'no' );
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_price_unit_enabled', 'no' ) ) {
-					$this->enabled_priceunit_category        = get_option( 'alg_wc_pq_qty_price_unit_category_enabled', 'no' );
-					$this->enabled_priceunit_product         = get_option( 'alg_wc_pq_qty_price_unit_product_enabled', 'no' );
-					$this->enabled_priceunit_product_archive = get_option( 'alg_wc_pq_qty_price_unit_show_archive_enabled', 'no' );
+				$this->alg_wc_pq_qty_price_unit_enabled = get_option( 'wpfmmsq_qty_price_unit_enabled', 'no' );
+				if ( 'yes' === get_option( 'wpfmmsq_qty_price_unit_enabled', 'no' ) ) {
+					$this->enabled_priceunit_category        = get_option( 'wpfmmsq_qty_price_unit_category_enabled', 'no' );
+					$this->enabled_priceunit_product         = get_option( 'wpfmmsq_qty_price_unit_product_enabled', 'no' );
+					$this->enabled_priceunit_product_archive = get_option( 'wpfmmsq_qty_price_unit_show_archive_enabled', 'no' );
 
 					add_filter( 'woocommerce_cart_item_price', array( $this, 'pq_change_cart_product_price_unit' ), 99, 3 );
 					add_filter( 'woocommerce_email_order_item_quantity', array( $this, 'pq_filter_woocommerce_email_order_item_quantity' ), 99, 2 );
 				}
 
-				$this->alg_wc_pq_qty_price_by_qty_position = get_option( 'alg_wc_pq_qty_price_by_qty_position', 'instead' );
-				$this->alg_wc_pq_qty_price_by_qty_enabled  = get_option( 'alg_wc_pq_qty_price_by_qty_enabled', 'no' );
+				$this->alg_wc_pq_qty_price_by_qty_position = get_option( 'wpfmmsq_qty_price_by_qty_position', 'instead' );
+				$this->alg_wc_pq_qty_price_by_qty_enabled  = get_option( 'wpfmmsq_qty_price_by_qty_enabled', 'no' );
 
-				$this->price_by_qty_qty_archive_enabled = get_option( 'alg_wc_pq_qty_price_by_qty_qty_archive_enabled', 'no' );
+				$this->price_by_qty_qty_archive_enabled = get_option( 'wpfmmsq_qty_price_by_qty_qty_archive_enabled', 'no' );
 
-				$this->alg_wc_pq_add_quantity_archive_enabled = get_option( 'alg_wc_pq_add_quantity_archive_enabled', 'no' );
+				$this->alg_wc_pq_add_quantity_archive_enabled = get_option( 'wpfmmsq_add_quantity_archive_enabled', 'no' );
 				add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'alg_wc_add_archive_quantity_fields' ), PHP_INT_MAX, 2 );
 
-				if ( 'yes' === get_option( 'alg_wc_pq_add_quantity_archive_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_add_quantity_archive_enabled', 'no' ) ) {
 					add_action( 'init', array( $this, 'alg_wc_quantity_handler' ) );
 					add_action( 'wp_footer', array( $this, 'alg_wc_archive_quanitity_filed_style' ), PHP_INT_MAX );
 				}
 
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 					add_filter( 'wc_add_to_cart_message_html', array( $this, 'alg_wc_add_to_cart_message_html' ), 10, 2 );
 				}
 
 				add_action( 'admin_init', array( $this, 'wpfmmsq_all_below_stock' ) );
 
-				$this->force_on_loop_archive = get_option( 'alg_wc_pq_force_on_loop', 'disabled' );
+				$this->force_on_loop_archive = get_option( 'wpfmmsq_force_on_loop', 'disabled' );
 
-				$this->alg_wc_pq_exact_qty_allowed_section_enabled = get_option( 'alg_wc_pq_exact_qty_allowed_section_enabled', 'no' );
+				$this->alg_wc_pq_exact_qty_allowed_section_enabled = get_option( 'wpfmmsq_exact_qty_allowed_section_enabled', 'no' );
 
-				$this->alg_wc_pq_force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' );
+				$this->alg_wc_pq_force_on_single = get_option( 'wpfmmsq_force_on_single', 'disabled' );
 
-				$this->alg_wc_pq_force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' );
+				$this->alg_wc_pq_force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' );
 
 				// Get dropdown option
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown', 'no' ) ) {
-					add_action( 'wp_ajax_' . 'ajax_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
-					add_action( 'wp_ajax_nopriv_' . 'ajax_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
+				if ( 'yes' === get_option( 'wpfmmsq_qty_dropdown', 'no' ) ) {
 					add_action( 'wp_ajax_' . 'wpfmmsq_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
 					add_action( 'wp_ajax_nopriv_' . 'wpfmmsq_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
-					add_action( 'wp_ajax_' . 'alg_wc_pq_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
-					add_action( 'wp_ajax_nopriv_' . 'alg_wc_pq_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
 				}
 
-				add_action( 'wp_ajax_' . 'ajax_update_get_input_options', array( $this, 'ajax_update_get_input_options' ) );
-				add_action( 'wp_ajax_nopriv_' . 'ajax_update_get_input_options', array( $this, 'ajax_update_get_input_options' ) );
 				add_action( 'wp_ajax_' . 'wpfmmsq_update_get_input_options', array( $this, 'ajax_update_get_input_options' ) );
 				add_action( 'wp_ajax_nopriv_' . 'wpfmmsq_update_get_input_options', array( $this, 'ajax_update_get_input_options' ) );
-				add_action( 'wp_ajax_' . 'alg_wc_pq_update_get_input_options', array( $this, 'ajax_update_get_input_options' ) );
-				add_action( 'wp_ajax_nopriv_' . 'alg_wc_pq_update_get_input_options', array( $this, 'ajax_update_get_input_options' ) );
 
 				add_action( 'woocommerce_update_product', array( $this, 'mp_sync_on_product_save' ) );
 
@@ -503,8 +477,6 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				add_action( 'wp_ajax_wpfmmsq_update_closedate', array( $this, 'ajax_update_closedate' ) );
 				add_action( 'wp_ajax_nopriv_wpfmmsq_update_closedate', array( $this, 'ajax_update_closedate' ) );
-				add_action( 'wp_ajax_alg_wc_pq_update_closedate', array( $this, 'ajax_update_closedate' ) );
-				add_action( 'wp_ajax_nopriv_alg_wc_pq_update_closedate', array( $this, 'ajax_update_closedate' ) );
 				add_action( 'admin_footer', array( $this, 'alg_wc_pg_admin_footer_js' ) );
 
 				add_action( 'admin_head', array( $this, 'quantity_to_all' ) );
@@ -513,34 +485,34 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				add_action( 'admin_footer', array( $this, 'pq_custom_admin_js_add_order' ) );
 
-				// Delete attribute alg_wc_pq_attribute_taxonomies transient.
-				add_action( 'woocommerce_attribute_added', array( $this, 'delete_alg_wc_pq_attribute_taxonomies_transient' ) );
-				add_action( 'woocommerce_attribute_updated', array( $this, 'delete_alg_wc_pq_attribute_taxonomies_transient' ) );
-				add_action( 'woocommerce_attribute_deleted', array( $this, 'delete_alg_wc_pq_attribute_taxonomies_transient' ) );
+				// Delete attribute wpfmmsq_attribute_taxonomies transient.
+				add_action( 'woocommerce_attribute_added', array( $this, 'delete_wpfmmsq_attribute_taxonomies_transient' ) );
+				add_action( 'woocommerce_attribute_updated', array( $this, 'delete_wpfmmsq_attribute_taxonomies_transient' ) );
+				add_action( 'woocommerce_attribute_deleted', array( $this, 'delete_wpfmmsq_attribute_taxonomies_transient' ) );
 			}
 		}
 
 		/**
-		 * delete_alg_wc_pq_attribute_taxonomies_transient.
+		 * delete_wpfmmsq_attribute_taxonomies_transient.
 		 *
 		 * Deletes the transient when an attribute is updated, deleted or created.
 		 *
-		 * @version 5.0.3
+		 * @version 5.3.4
 		 * @since   5.0.3
 		 *
 		 * @return void
 		 */
-		function delete_alg_wc_pq_attribute_taxonomies_transient() {
-			delete_transient( 'alg_wc_pq_attribute_taxonomies' );
+		function delete_wpfmmsq_attribute_taxonomies_transient() {
+			delete_transient( 'wpfmmsq_attribute_taxonomies' );
 		}
 
 		/**
 		 * pq_custom_admin_js_add_order.
 		 *
-		 * @version 4.9.0
+		 * @version 5.3.4
 		 */
 		function pq_custom_admin_js_add_order() {
-			if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_admin_order_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_admin_order_enabled', 'no' ) ) {
 				?>
 				<script>
 					jQuery( document.body ).on( 'wc_backbone_modal_loaded', function ( evt, target ) {
@@ -560,7 +532,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * pq_select_footer_scripts.
 		 *
-		 * @version 4.9.0
+		 * @version 5.3.4
 		 */
 		function pq_select_footer_scripts() {
 			?>
@@ -617,12 +589,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * quantity_to_all.
 		 *
-		 * @version 4.9.0
+		 * @version 5.3.4
 		 */
 		function quantity_to_all() {
 			?>
 			<style>
-				.alg_wc_pq_close {
+				.wpfmmsq_close {
 					position: absolute;
 					right: -13px;
 					top: -26px;
@@ -640,11 +612,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					display: none;
 				}
 
-				.alg_wc_pq_name_heading {
+				.wpfmmsq_name_heading {
 					position: relative;
 				}
 
-				.alg_wc_pq_right_ad {
+				.wpfmmsq_right_ad {
 					position: absolute;
 					right: 20px;
 					padding: 16px;
@@ -659,7 +631,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				}
 
-				.alg_wc_pq-button-upsell {
+				.wpfmmsq-button-upsell {
 					display: inline-flex;
 					align-items: center;
 					justify-content: center;
@@ -678,29 +650,29 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					font-weight: 600;
 				}
 
-				.alg_wc_pq-button-upsell:hover {
+				.wpfmmsq-button-upsell:hover {
 					background-color: #7ce577;
 					color: #000;
 					font-weight: 600;
 				}
 
-				.alg_wc_pq-sidebar__section li:before {
+				.wpfmmsq-sidebar__section li:before {
 					content: "+";
 					position: absolute;
 					left: 0;
 					font-weight: 700
 				}
 
-				.alg_wc_pq-sidebar__section li {
+				.wpfmmsq-sidebar__section li {
 					list-style: none;
 					margin-left: 20px
 				}
 
-				.alg_wc_pq-sidebar__section {
+				.wpfmmsq-sidebar__section {
 					position: relative;
 				}
 
-				img.alg_wc_pq_resize {
+				img.wpfmmsq_resize {
 					width: 60px;
 					float: right;
 					position: absolute;
@@ -709,7 +681,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					padding-left: 10px;
 				}
 
-				.alg_wc_pq_text {
+				.wpfmmsq_text {
 					margin-right: 18%;
 				}
 			</style>
@@ -807,14 +779,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_closedate.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 */
 		function ajax_update_closedate() {
 			check_ajax_referer( 'wpfmmsq_update_closedate', 'nonce' );
 			$user_id = get_current_user_id();
 			if ( $user_id > 0 ) {
 				$phpdatetime = time();
-				update_user_meta( $user_id, 'alg_wc_pq_closedate', $phpdatetime );
+				update_user_meta( $user_id, 'wpfmmsq_closedate', $phpdatetime );
 			}
 			echo "ok";
 			die;
@@ -823,7 +795,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_pg_admin_footer_js.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 */
 		function alg_wc_pg_admin_footer_js( $data ) {
 			$php_to_js = array(
@@ -833,7 +805,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			?>
 			<script>
 				jQuery( document ).ready( function () {
-					jQuery( ".alg_wc_pq_close" ).on( 'click', function () {
+					jQuery( ".wpfmmsq_close" ).on( 'click', function () {
 						let dataFromPHP = <?php echo wp_json_encode( $php_to_js ); ?>;
 						var closeData = {
 							action: dataFromPHP.action,
@@ -846,7 +818,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 							async: true,
 							success: function ( response ) {
 								if ( response == 'ok' ) {
-									jQuery( ".alg_wc_pq_right_ad" ).remove();
+									jQuery( ".wpfmmsq_right_ad" ).remove();
 								}
 							},
 						} );
@@ -886,14 +858,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * save_adv_product_options.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 */
 		function save_adv_product_options( $id, $post ) {
-			$main_product_min_quantity_to_all           = ( isset( $_POST['main_product_min_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_min_quantity_to_all'] ) ) : '' );
-			$main_product_max_quantity_to_all           = ( isset( $_POST['main_product_max_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_max_quantity_to_all'] ) ) : '' );
-			$main_product_step_quantity_to_all          = ( isset( $_POST['main_product_step_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_step_quantity_to_all'] ) ) : '' );
-			$main_product_default_quantity_to_all       = ( isset( $_POST['main_product_default_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_default_quantity_to_all'] ) ) : '' );
-			$main_product_exact_qty_allowed_to_all      = ( isset( $_POST['main_product_exact_qty_allowed_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_exact_qty_allowed_quantity_to_all'] ) ) : '' );
+			$main_product_min_quantity_to_all      = ( isset( $_POST['main_product_min_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_min_quantity_to_all'] ) ) : '' );
+			$main_product_max_quantity_to_all      = ( isset( $_POST['main_product_max_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_max_quantity_to_all'] ) ) : '' );
+			$main_product_step_quantity_to_all     = ( isset( $_POST['main_product_step_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_step_quantity_to_all'] ) ) : '' );
+			$main_product_default_quantity_to_all  = ( isset( $_POST['main_product_default_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_default_quantity_to_all'] ) ) : '' );
+			$main_product_exact_qty_allowed_to_all = ( isset( $_POST['main_product_exact_qty_allowed_quantity_to_all'] ) ? sanitize_text_field( wp_unslash( $_POST['main_product_exact_qty_allowed_quantity_to_all'] ) ) : '' );
 
 			if ( ! empty( $main_product_min_quantity_to_all ) ) {
 				$alg_wc_pq_min_name = 'alg_wc_pq_min_' . $id . '_to_all';
@@ -935,7 +907,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * adv_product_options.
 		 *
-		 * @version 4.9.0
+		 * @version 5.3.4
 		 */
 		function adv_product_options() {
 			echo '<div class="options_group custom_quantity_options_group">';
@@ -980,7 +952,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * mp_sync_on_product_save.
 		 *
-		 * @version 4.9.0
+		 * @version 5.3.4
 		 */
 		function mp_sync_on_product_save( $post_id ) {
 			// For language WPML support
@@ -1007,30 +979,30 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				update_post_meta( $post_id, 'main_product_default_quantity_to_all', 'no' );
 				update_post_meta( $post_id, 'main_product_exact_qty_allowed_quantity_to_all', 'no' );
 
-				$_alg_wc_pq_min               = get_post_meta( $post_id, '_alg_wc_pq_min', true );
-				$_alg_wc_pq_max               = get_post_meta( $post_id, '_alg_wc_pq_max', true );
-				$_alg_wc_pq_step              = get_post_meta( $post_id, '_alg_wc_pq_step', true );
-				$_alg_wc_pq_default           = get_post_meta( $post_id, '_alg_wc_pq_default', true );
-				$_alg_wc_pq_exact_qty_allowed = get_post_meta( $post_id, '_alg_wc_pq_exact_qty_allowed', true );
+				$_alg_wc_pq_min               = get_post_meta( $post_id, '_wpfmmsq_min', true );
+				$_alg_wc_pq_max               = get_post_meta( $post_id, '_wpfmmsq_max', true );
+				$_alg_wc_pq_step              = get_post_meta( $post_id, '_wpfmmsq_step', true );
+				$_alg_wc_pq_default           = get_post_meta( $post_id, '_wpfmmsq_default', true );
+				$_alg_wc_pq_exact_qty_allowed = get_post_meta( $post_id, '_wpfmmsq_exact_qty_allowed', true );
 				$available_variations         = $product->get_available_variations();
 
 				foreach ( $available_variations as $res ) {
 					$variation_id   = $res['variation_id'];
 					$variation_meta = get_post_meta( $variation_id );
 					if ( $main_product_min_quantity_to_all == 'yes' ) {
-						update_post_meta( $variation_id, '_alg_wc_pq_min', $_alg_wc_pq_min );
+						update_post_meta( $variation_id, '_wpfmmsq_min', $_alg_wc_pq_min );
 					}
 					if ( $main_product_max_quantity_to_all == 'yes' ) {
-						update_post_meta( $variation_id, '_alg_wc_pq_max', $_alg_wc_pq_max );
+						update_post_meta( $variation_id, '_wpfmmsq_max', $_alg_wc_pq_max );
 					}
 					if ( $main_product_step_quantity_to_all == 'yes' ) {
-						update_post_meta( $variation_id, '_alg_wc_pq_step', $_alg_wc_pq_step );
+						update_post_meta( $variation_id, '_wpfmmsq_step', $_alg_wc_pq_step );
 					}
 					if ( $main_product_default_quantity_to_all == 'yes' ) {
-						update_post_meta( $variation_id, '_alg_wc_pq_default', $_alg_wc_pq_default );
+						update_post_meta( $variation_id, '_wpfmmsq_default', $_alg_wc_pq_default );
 					}
 					if ( $main_product_exact_qty_allowed_quantity_to_all == 'yes' ) {
-						update_post_meta( $variation_id, '_alg_wc_pq_exact_qty_allowed', $_alg_wc_pq_exact_qty_allowed );
+						update_post_meta( $variation_id, '_wpfmmsq_exact_qty_allowed', $_alg_wc_pq_exact_qty_allowed );
 					}
 
 					// For language WPML support
@@ -1043,19 +1015,19 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 								$lang_vpid = icl_object_id( $variation_id, 'product_variation', false, $lang['code'] );
 								if ( $lang_vpid > 0 ) {
 									if ( $main_product_min_quantity_to_all == 'yes' ) {
-										update_post_meta( $lang_vpid, '_alg_wc_pq_min', $_alg_wc_pq_min );
+										update_post_meta( $lang_vpid, '_wpfmmsq_min', $_alg_wc_pq_min );
 									}
 									if ( $main_product_max_quantity_to_all == 'yes' ) {
-										update_post_meta( $lang_vpid, '_alg_wc_pq_max', $_alg_wc_pq_max );
+										update_post_meta( $lang_vpid, '_wpfmmsq_max', $_alg_wc_pq_max );
 									}
 									if ( $main_product_step_quantity_to_all == 'yes' ) {
-										update_post_meta( $lang_vpid, '_alg_wc_pq_step', $_alg_wc_pq_step );
+										update_post_meta( $lang_vpid, '_wpfmmsq_step', $_alg_wc_pq_step );
 									}
 									if ( $main_product_default_quantity_to_all == 'yes' ) {
-										update_post_meta( $lang_vpid, '_alg_wc_pq_default', $_alg_wc_pq_default );
+										update_post_meta( $lang_vpid, '_wpfmmsq_default', $_alg_wc_pq_default );
 									}
 									if ( $main_product_exact_qty_allowed_quantity_to_all == 'yes' ) {
-										update_post_meta( $lang_vpid, '_alg_wc_pq_exact_qty_allowed', $_alg_wc_pq_exact_qty_allowed );
+										update_post_meta( $lang_vpid, '_wpfmmsq_exact_qty_allowed', $_alg_wc_pq_exact_qty_allowed );
 									}
 								}
 							}
@@ -1069,7 +1041,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * has_purchased_first.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.10
 		 */
 		function has_purchased_first() {
@@ -1080,9 +1052,9 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				return false;
 			}
 
-			$user_id          = get_current_user_id();
-			$transient        = 'wpfmmsq_has_bought_' . $user_id;
-			$has_bought       = get_transient( $transient );
+			$user_id    = get_current_user_id();
+			$transient  = 'wpfmmsq_has_bought_' . $user_id;
+			$has_bought = get_transient( $transient );
 
 			if ( false === $has_bought ) {
 
@@ -1109,7 +1081,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_get_input_options.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.6.1
 		 *
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
@@ -1119,8 +1091,8 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		 * @todo    [dev] (maybe) add optional "in progress" message (for slow servers)
 		 */
 		function ajax_update_get_input_options() {
-			$return          = array();
-			$variation_id    = ( isset( $_REQUEST['variation_id'] ) ? absint( wp_unslash( $_REQUEST['variation_id'] ) ) : 0 );
+			$return       = array();
+			$variation_id = ( isset( $_REQUEST['variation_id'] ) ? absint( wp_unslash( $_REQUEST['variation_id'] ) ) : 0 );
 			if ( $variation_id <= 0 ) {
 				wp_die();
 			}
@@ -1144,20 +1116,20 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$attr_max  = '';
 			$attr_step = '';
 
-			if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_min_per_attribute_item_quantity', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_min_per_attribute_item_quantity', 'no' ) ) {
 					$min_attribute_enable = true;
 				}
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_max_per_attribute_item_quantity', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_max_per_attribute_item_quantity', 'no' ) ) {
 					$max_attribute_enable = true;
 				}
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_step_per_attribute_item_quantity', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_step_per_attribute_item_quantity', 'no' ) ) {
 					$step_attribute_enable = true;
 				}
 			}
@@ -1171,7 +1143,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						$term = get_term_by( 'slug', $value, $name );
 						if ( ! empty( $term ) ) {
 							$term_id   = $term->term_id;
-							$term_meta = get_option( "taxonomy_product_attribute_item_$term_id" );
+							$term_meta = get_option( "wpfmmsq_taxonomy_product_attribute_item_$term_id" );
 
 							if ( $min_attribute_enable && empty( $attr_min ) ) {
 								if ( ! empty( $term_meta ) && is_array( $term_meta ) && isset( $term_meta[ $min_meta_key ] ) && ! empty( $term_meta[ $min_meta_key ] ) ) {
@@ -1199,7 +1171,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$max  = ( $attr_max > 0 ? $attr_max : $max );
 			$step = ( $attr_step > 0 ? $attr_step : $step );
 
-			if ( 'reset_to_lowest_fixed' === get_option( 'alg_wc_pq_variation_change', 'do_nothing' ) ) {
+			if ( 'reset_to_lowest_fixed' === get_option( 'wpfmmsq_variation_change', 'do_nothing' ) ) {
 				$exact_qty  = $this->get_product_exact_qty( $product_id, 'allowed', '', $variation_id );
 				$lowest_qty = 0;
 				if ( ! empty( $exact_qty ) ) {
@@ -1207,7 +1179,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$lowest_qty    = min( $exact_qty_arr );
 					$default       = $lowest_qty;
 				}
-			} else if ( 'reset_to_default' === get_option( 'alg_wc_pq_variation_change', 'do_nothing' ) ) {
+			} else if ( 'reset_to_default' === get_option( 'wpfmmsq_variation_change', 'do_nothing' ) ) {
 				$default = $this->get_product_qty_default( $product_id, 0 );
 			}
 
@@ -1219,7 +1191,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$max = '';
 			}
 
-			if ( 'disabled' === get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) {
+			if ( 'disabled' === get_option( 'wpfmmsq_force_on_single', 'disabled' ) ) {
 				$default = '';
 			}
 
@@ -1233,7 +1205,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_get_dropdown_options.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.6.1
 		 *
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
@@ -1243,7 +1215,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		 * @todo    [dev] (maybe) add optional "in progress" message (for slow servers)
 		 */
 		function ajax_update_get_dropdown_options() {
-			$variation_id    = ( isset( $_REQUEST['variation_id'] ) ? absint( wp_unslash( $_REQUEST['variation_id'] ) ) : 0 );
+			$variation_id = ( isset( $_REQUEST['variation_id'] ) ? absint( wp_unslash( $_REQUEST['variation_id'] ) ) : 0 );
 			if ( $variation_id <= 0 ) {
 				wp_die();
 			}
@@ -1254,16 +1226,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			// Labels
 			$label_template_singular = '';
 			$label_template_plural   = '';
-			if ( $product && 'yes' === get_option( 'alg_wc_pq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
+			if ( $product && 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
 				$product_or_parent_id    = $product_id;
-				$label_template_singular = do_shortcode( get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_singular', true ) );
-				$label_template_plural   = do_shortcode( get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_plural', true ) );
+				$label_template_singular = do_shortcode( get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_singular', true ) );
+				$label_template_plural   = do_shortcode( get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_plural', true ) );
 			}
 			if ( '' === $label_template_singular ) {
-				$label_template_singular = do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_label_template_singular', '%qty%' ) );
+				$label_template_singular = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_singular', '%qty%' ) );
 			}
 			if ( '' === $label_template_plural ) {
-				$label_template_plural = do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_label_template_plural', '%qty%' ) );
+				$label_template_plural = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_plural', '%qty%' ) );
 			}
 
 			ob_start();
@@ -1297,7 +1269,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_create_products_xml.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 *
 		 * @todo    [dev] with wp_safe_redirect there is no notice displayed
@@ -1312,7 +1284,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$loop = new WP_Query( $args );
 				if ( $loop->have_posts() ): while ( $loop->have_posts() ): $loop->the_post();
 					$id = get_the_ID();
-					update_post_meta( $id, '_alg_wc_pq_min_allow_selling_below_stock', 'yes' );
+					update_post_meta( $id, '_wpfmmsq_min_allow_selling_below_stock', 'yes' );
 				endwhile; endif;
 				wp_reset_postdata();
 				wp_safe_redirect( remove_query_arg( 'wpfmmsq_all_below_stock' ) );
@@ -1323,7 +1295,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_add_to_cart_message_html.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function alg_wc_add_to_cart_message_html( $message, $products ) {
@@ -1345,7 +1317,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_archive_quanitity_filed_style.
 		 *
-		 * @version 1.3.9
+		 * @version 5.3.4
 		 * @since   1.3.3
 		 */
 		public function alg_wc_archive_quanitity_filed_style() {
@@ -1362,7 +1334,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_quantity_handler.
 		 *
-		 * @version 5.3.3
+		 * @version 5.3.4
 		 * @since   1.3.3
 		 */
 		public function alg_wc_quantity_handler() {
@@ -1383,15 +1355,15 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_pq_qty_dropdown_is_enabled.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.3.3
 		 */
 		function wpfmmsq_price_by_qty_is_disable( $product ) {
 			if ( ! $product ) {
 				return false;
 			}
-			$alg_wc_pq_price_by_qty_enable_per_category     = get_option( 'alg_wc_pq_price_by_qty_enable_per_category', 'no' );
-			$alg_wc_pq_price_by_qty_per_category_categories = get_option( 'alg_wc_pq_price_by_qty_per_category_categories', array() );
+			$alg_wc_pq_price_by_qty_enable_per_category     = get_option( 'wpfmmsq_price_by_qty_enable_per_category', 'no' );
+			$alg_wc_pq_price_by_qty_per_category_categories = get_option( 'wpfmmsq_price_by_qty_per_category_categories', array() );
 
 			if ( $alg_wc_pq_price_by_qty_enable_per_category == 'yes' ) {
 				if ( ! empty( $alg_wc_pq_price_by_qty_per_category_categories ) ) {
@@ -1416,13 +1388,13 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_add_quantity_fields.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.3.3
 		 */
 		function alg_wc_add_archive_quantity_fields( $html, $product ) {
 			if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'before_add_to_cart' ) {
 				if ( $this->price_by_qty_qty_archive_enabled == 'yes' ) {
-					$html = '<p class="alg-wc-pq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>' . $html;
+					$html = '<p class="wpfmmsq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>' . $html;
 				}
 			}
 			if ( $this->alg_wc_pq_add_quantity_archive_enabled === 'yes' ) {
@@ -1435,7 +1407,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$args = array( 'classes' => ' qty quantity-alg-wc' . $disableClass );
 					$html = '';
 					if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'before_add_to_cart' ) {
-						$html = '<p class="alg-wc-pq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>';
+						$html = '<p class="wpfmmsq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>';
 					}
 					//rewrite form code for add to cart button
 					$html .= '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data">';
@@ -1457,7 +1429,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'after_add_to_cart' ) {
 				if ( $this->price_by_qty_qty_archive_enabled == 'yes' ) {
-					$html .= '<p class="alg-wc-pq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>';
+					$html .= '<p class="wpfmmsq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>';
 				}
 			}
 
@@ -1467,12 +1439,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_pq_qty_dropdown_is_enabled.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.3.3
 		 */
 		function wpfmmsq_qty_dropdown_is_disable( $product ) {
-			$alg_wc_pq_qty_dropdown_enable_per_category     = get_option( 'alg_wc_pq_qty_dropdown_enable_per_category', 'no' );
-			$alg_wc_pq_qty_dropdown_per_category_categories = get_option( 'alg_wc_pq_qty_dropdown_per_category_categories', array() );
+			$alg_wc_pq_qty_dropdown_enable_per_category     = get_option( 'wpfmmsq_qty_dropdown_enable_per_category', 'no' );
+			$alg_wc_pq_qty_dropdown_per_category_categories = get_option( 'wpfmmsq_qty_dropdown_per_category_categories', array() );
 
 			if ( $alg_wc_pq_qty_dropdown_enable_per_category == 'yes' ) {
 				if ( ! empty( $alg_wc_pq_qty_dropdown_per_category_categories ) ) {
@@ -1497,7 +1469,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_price_unit.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function set_quantity_input_price_unit( $default, $product ) {
@@ -1505,7 +1477,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			if ( $this->alg_wc_pq_qty_price_unit_enabled === 'yes' ) {
 				$productType = $product->get_type();
 				if ( $this->is_show_unit() ) {
-					$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
+					$unit = get_option( 'wpfmmsq_qty_price_unit', '' );
 					if ( ! empty( $product ) && $product->get_id() > 0 && ! is_admin() ) {
 						$product_id = $product->get_id();
 
@@ -1517,24 +1489,24 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 
-			return do_shortcode( $unit );
+			return wp_kses_post( do_shortcode( $unit ) );
 		}
 
 		/**
 		 * pq_filter_woocommerce_email_order_item_quantity.
 		 *
-		 * @version 4.6.1
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function pq_filter_woocommerce_email_order_item_quantity( $qty_display, $item ) {
 
-			if ( 'yes' !== get_option( 'alg_wc_pq_qty_price_unit_email_order_item_enabled', 'no' ) ) {
+			if ( 'yes' !== get_option( 'wpfmmsq_qty_price_unit_email_order_item_enabled', 'no' ) ) {
 
 				return $qty_display;
 
 			}
 
-			$unit    = get_option( 'alg_wc_pq_qty_price_unit', '' );
+			$unit    = get_option( 'wpfmmsq_qty_price_unit', '' );
 			$product = $item->get_product();
 			if ( is_object( $product ) ) {
 				$product_id = $product->get_id();
@@ -1560,7 +1532,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * pq_change_product_price_unit.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function pq_change_product_price_unit( $price, $product ) {
@@ -1592,7 +1564,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 
 			if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'instead' ) {
-				if ( 'disabled' != ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() ) {
+				if ( 'disabled' != ( $force_on_single = get_option( 'wpfmmsq_force_on_single', 'disabled' ) ) && is_product() ) {
 
 					if ( $force_on_single == 'min' ) {
 						$qty = $this->get_product_qty_min_max( $product->get_id(), 1, 'min' );
@@ -1610,17 +1582,17 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_qty_archive_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_qty_archive_enabled', 'no' ) ) {
 				if ( ( is_shop() || is_product_tag() || is_product_category() ) ) {
 					if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'before' ) {
-						$price = '<p class="alg-wc-pq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>' . $price;
+						$price = '<p class="wpfmmsq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '' ) . '</p>' . $price;
 					}
 				}
 			}
 			if ( $this->alg_wc_pq_qty_price_unit_enabled === 'yes' ) {
 
 				if ( $this->is_show_unit() ) {
-					$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
+					$unit = get_option( 'wpfmmsq_qty_price_unit', '' );
 					if ( ! empty( $product ) && $product->get_id() > 0 && ! empty( $price ) && ! is_admin() ) {
 						$product_id = $product->get_id();
 						if ( $productType == 'variation' ) {
@@ -1633,16 +1605,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 						if ( ! empty( $unit ) ) {
 							if ( ! strpos( $price, $unit ) ) {
-								$price .= ' <span class="alg_pq_wc_price_unit">' . do_shortcode( $unit ) . '</span>';
+								$price .= ' <span class="alg_pq_wc_price_unit">' . wp_kses_post( do_shortcode( $unit ) ) . '</span>';
 							}
 						}
 					}
 				}
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_qty_archive_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_qty_archive_enabled', 'no' ) ) {
 				if ( ( is_shop() || is_product_tag() || is_product_category() || is_front_page() || is_home() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) ) {
 					if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'after' ) {
-						$price .= '<p class="alg-wc-pq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '', $data_quantity ) . '</p>';
+						$price .= '<p class="wpfmmsq-price-display-by-qty">' . $this->get_price_by_qty_on_load( $product, '', $data_quantity ) . '</p>';
 					}
 					if ( $this->alg_wc_pq_qty_price_by_qty_enabled === 'yes' && $this->alg_wc_pq_qty_price_by_qty_position === 'instead' ) {
 						$price = $this->get_price_by_qty_on_load( $product, $price, $data_quantity );
@@ -1656,12 +1628,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * pq_change_cart_product_price_unit.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function pq_change_cart_product_price_unit( $price, $cart_item, $cart_item_key ) {
 
-			$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
+			$unit = get_option( 'wpfmmsq_qty_price_unit', '' );
 			if ( isset( $cart_item['product_id'] ) && ! empty( $cart_item['product_id'] ) && ! empty( $price ) && ! is_admin() ) {
 
 				$product_id = $cart_item['product_id'];
@@ -1672,7 +1644,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$product_unit = $this->get_term_price_unit( $product_id );
 					$unit         = ( ! empty( $product_unit ) ? $product_unit : $unit );
 				}
-				$price .= ' <span class="alg_pq_wc_price_unit">' . do_shortcode( $unit ) . '</span>';
+				$price .= ' <span class="alg_pq_wc_price_unit">' . wp_kses_post( do_shortcode( $unit ) ) . '</span>';
 			}
 
 			return $price;
@@ -1681,7 +1653,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * is_show_unit.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function is_show_unit() {
@@ -1701,18 +1673,18 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_term_price_unit.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function get_term_price_unit( $product_id ) {
 			$terms        = get_the_terms( $product_id, 'product_cat' );
-			$product_meta = get_post_meta( $product_id, '_alg_wc_pq_price_unit', true );
+			$product_meta = get_post_meta( $product_id, '_wpfmmsq_price_unit', true );
 			if ( ! empty( $product_meta ) && $this->enabled_priceunit_product == 'yes' ) {
 				return $product_meta;
 			} else if ( ! empty( $terms ) ) {
 				foreach ( $terms as $term ) {
 					$t_id      = $term->term_id;
-					$term_meta = get_option( "taxonomy_product_cat_$t_id" );
+					$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$t_id" );
 					if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 						if ( isset( $term_meta['alg_wc_pq_category_price_unit'] ) && ! empty( $term_meta['alg_wc_pq_category_price_unit'] ) ) {
 							return $term_meta['alg_wc_pq_category_price_unit'];
@@ -1727,7 +1699,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_user_role.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.3.3
 		 */
 		function check_user_role() {
@@ -1737,7 +1709,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * disable_product_id_by_url_option.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.7.0
 		 * @todo    [dev] maybe add option to overwrite the default `_qty` meta (as it's `absint( $order_item['qty'] )`)
 		 */
@@ -1754,7 +1726,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * change_paypal_line_item_quantity_type.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function change_paypal_line_item_quantity_type( $item, $item_name, $quantity, $amount, $item_number ) {
@@ -1771,14 +1743,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * add_qty_to_order_item_meta.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.7.0
 		 * @todo    [dev] maybe add option to overwrite the default `_qty` meta (as it's `absint( $order_item['qty'] )`)
 		 */
 		function add_qty_to_order_item_meta( $item_id, $order_item, $order_id ) {
 			$item = WC_Order_Factory::get_order_item( $item_id );
 			if ( $item ) {
-				$item->add_meta_data( get_option( 'alg_wc_pq_save_qty_in_order_item_meta_key', '_alg_wc_pq_qty' ), $order_item['qty'] );
+				$item->add_meta_data( get_option( 'wpfmmsq_save_qty_in_order_item_meta_key', '_alg_wc_pq_qty' ), $order_item['qty'] );
 				$item->save();
 			}
 		}
@@ -1786,7 +1758,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * round_on_add_to_cart.
 		 *
-		 * @version 1.6.2
+		 * @version 5.3.4
 		 * @since   1.6.2
 		 * @todo    [feature] (maybe) add `precision` option
 		 */
@@ -1799,7 +1771,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * force_qty_on_loop.
 		 *
-		 * @version 1.6.0
+		 * @version 5.3.4
 		 * @since   1.6.0
 		 */
 		function force_qty_on_loop( $args, $product ) {
@@ -1812,7 +1784,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * replace_quantity_input_template_html_five.
 		 *
-		 * @version 1.6.0
+		 * @version 5.3.4
 		 * @since   1.6.0
 		 */
 		function replace_quantity_input_template_html_five( $located, $template_name, $args, $template_path, $default_path ) {
@@ -1826,18 +1798,18 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * replace_quantity_input_template.
 		 *
-		 * @version 1.6.0
+		 * @version 5.3.4
 		 * @since   1.6.0
 		 */
 		function replace_quantity_input_template( $located, $template_name, $args, $template_path, $default_path ) {
 			if ( ( is_shop() || is_product_tag() || is_product_category() ) ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown_qty_archive_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_add_quantity_archive_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_qty_dropdown_qty_archive_enabled', 'no' ) && 'yes' === get_option( 'wpfmmsq_add_quantity_archive_enabled', 'no' ) ) {
 					if ( 'global/quantity-input.php' === $template_name ) {
 						return wpfmmsq()->plugin_path() . '/includes/templates/global/quantity-input.php';
 					}
 				}
 			} else if ( is_cart() ) {
-				if ( 'no' === get_option( 'alg_wc_pq_qty_dropdown_disable_dropdown_on_cart', 'no' ) ) {
+				if ( 'no' === get_option( 'wpfmmsq_qty_dropdown_disable_dropdown_on_cart', 'no' ) ) {
 					if ( 'global/quantity-input.php' === $template_name ) {
 						return wpfmmsq()->plugin_path() . '/includes/templates/global/quantity-input.php';
 					}
@@ -1854,7 +1826,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_dropdown_option_label.
 		 *
-		 * @version 1.6.0
+		 * @version 5.3.4
 		 * @since   1.6.0
 		 */
 		function get_dropdown_option_label( $id = 0 ) {
@@ -1864,16 +1836,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$product                 = wc_get_product( $id );
 			$label_template_singular = '';
 			$label_template_plural   = '';
-			if ( $product && 'yes' === get_option( 'alg_wc_pq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
+			if ( $product && 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
 				$product_or_parent_id    = ( $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id() );
-				$label_template_singular = get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_singular', true );
-				$label_template_plural   = get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_plural', true );
+				$label_template_singular = get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_singular', true );
+				$label_template_plural   = get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_plural', true );
 			}
 			if ( '' === $label_template_singular ) {
-				$label_template_singular = get_option( 'alg_wc_pq_qty_dropdown_label_template_singular', '%qty%' );
+				$label_template_singular = get_option( 'wpfmmsq_qty_dropdown_label_template_singular', '%qty%' );
 			}
 			if ( '' === $label_template_plural ) {
-				$label_template_plural = get_option( 'alg_wc_pq_qty_dropdown_label_template_plural', '%qty%' );
+				$label_template_plural = get_option( 'wpfmmsq_qty_dropdown_label_template_plural', '%qty%' );
 			}
 
 			return array( 'singular' => $label_template_singular, 'plural' => $label_template_plural );
@@ -1882,7 +1854,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alc_wg_get_cart_item_quantities.
 		 *
-		 * @version 5.0.1
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 
@@ -1901,7 +1873,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						continue;
 					}
 
-					if ( 'yes' === get_option( 'alg_wc_pq_advance_wpc_product_bundle', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_advance_wpc_product_bundle', 'no' ) ) {
 						if ( isset( $values['woosb_ids'] ) && ! empty( $values['woosb_ids'] ) ) {
 							$total_qty   = 0;
 							$ids_qty     = $values['woosb_ids'];
@@ -1938,7 +1910,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_cart_item_quantities.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function get_cart_item_quantities( $product_id = 0, $quantity = 0, $sort_by_sumup_variation = false ) {
@@ -1967,7 +1939,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 				$cart_item_quantities[ $product_id ] += $quantity;
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_sum_variations', 'no' ) || $sort_by_sumup_variation ) {
+			if ( 'yes' === get_option( 'wpfmmsq_sum_variations', 'no' ) || $sort_by_sumup_variation ) {
 				if ( 0 != $product_id && ( $product = wc_get_product( $product_id ) ) ) {
 					$children   = $product->get_children();
 					$qty_to_add = 0;
@@ -1987,7 +1959,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * correct_on_add_to_cart.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 * @todo    [fix] (important) fix "X products have been added to your cart." notice
 		 * @todo    [dev] (important) maybe need to add a notice on corrected qty = 0
@@ -2004,7 +1976,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$cart_item_quantity   = $cart_item_quantities[ $product_id ];
 			// Min & Max
 			foreach ( array( 'min', 'max' ) as $min_or_max ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) ) {
 					// Cart total quantity
 					if ( ! $this->check_min_max_cart_total_qty( $min_or_max, $cart_total_quantity ) ) {
 						return ( $this->get_min_max_cart_total_qty( $min_or_max ) - ( $cart_total_quantity - $quantity ) );
@@ -2016,7 +1988,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 			// Step
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				// Cart total
 				if ( $quantity != ( $fixed_qty = $this->check_step_cart_total_qty( $cart_total_quantity, true, $quantity ) ) ) {
 					return $fixed_qty;
@@ -2028,7 +2000,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			// Exact quantities
 			foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 					if ( $quantity != ( $fixed_qty = $this->check_product_exact_qty( $product_id, $allowed_or_disallowed, $quantity, $cart_item_quantity, true ) ) ) {
 						return $fixed_qty;
 					}
@@ -2041,7 +2013,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_cartitem_by_category.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 
@@ -2078,7 +2050,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_cartitem_by_product_attribute.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 
@@ -2189,7 +2161,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_cartitem_groupby_parent_id.
 		 *
-		 * @version 4.5.20
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function get_cartitem_groupby_parent_id() {
@@ -2227,7 +2199,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * not_validate_on_add_to_cart.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.9
 		 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 		 */
@@ -2248,7 +2220,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * validate_on_add_to_cart.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 		 */
@@ -2275,7 +2247,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				if (
 					$variation_id > 0 &&
 					'yes' === apply_filters( 'wpfmmsq_per_item_qty_per_product', 'no', 'max' ) &&
-					'yes' !== get_option( 'alg_wc_pq_sum_variations', 'no' )
+					'yes' !== get_option( 'wpfmmsq_sum_variations', 'no' )
 				) {
 					$cart_item_quantities = $this->alc_wg_get_cart_item_quantities( true );
 					$quantities_key       = $variation_id;
@@ -2301,11 +2273,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$term_list = wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'ids' ) );
 
 			foreach ( array( 'min', 'max' ) as $min_or_max ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_per_cat_item_quantity_per_product', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) && 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_per_cat_item_quantity_per_product', 'no' ) ) {
 					if ( isset( $term_list ) && count( $term_list ) > 0 ) {
 						foreach ( $term_list as $term ) {
 							$t_id      = $term;
-							$term_meta = get_option( "taxonomy_product_cat_$t_id" );
+							$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$t_id" );
 							if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 								$term_qty             = ( isset( $cartitem_by_category[ $term ] ) ? (int) $cartitem_by_category[ $term ] + $quantity : $quantity );
 								$alg_wc_pq_min_or_max = 'alg_wc_pq_' . $min_or_max;
@@ -2337,7 +2309,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			// Min & Max.
 			foreach ( array( 'min', 'max' ) as $min_or_max ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) ) {
 					// Cart total quantity
 					if ( ! $this->check_min_max_cart_total_qty( $min_or_max, $cart_total_quantity ) ) {
 						$this->messenger->print_message( $min_or_max . '_cart_total_quantity', false, $this->get_min_max_cart_total_qty( $min_or_max ), $cart_total_quantity );
@@ -2354,7 +2326,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 			// Step.
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				// Cart total
 				if ( ! $this->check_step_cart_total_qty( $cart_total_quantity ) ) {
 					$this->messenger->print_message( 'step_cart_total_quantity', false, $this->get_step_cart_total_qty(), $cart_total_quantity );
@@ -2376,7 +2348,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			// Exact quantities variation.
 			if ( $variation_id > 0 ) {
 				foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
-					if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 						if ( ! $this->check_product_exact_qty( $product_id, $allowed_or_disallowed, $quantity, $cart_item_quantity, false, $variation_id ) ) {
 							$this->messenger->print_message( 'exact_qty_' . $allowed_or_disallowed, false, $this->get_product_exact_qty( $product_id, $allowed_or_disallowed, '', $variation_id ), $quantity, $variation_id );
 
@@ -2388,12 +2360,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				// Min & Max.
 				$cart_item_quantities_before_add = $this->get_cart_item_quantities( $product_id, 0, true );
 				$cart_item_quantity_before_add   = ( isset( $cart_item_quantities_before_add[ $product_id ] ) ? $cart_item_quantities_before_add[ $product_id ] : 0 );
-				$cart_item_quantities = $this->get_cart_item_quantities( $product_id, $quantity, true );
-				$cart_total_quantity  = apply_filters( 'wpfmmsq_cart_total_quantity', array_sum( $cart_item_quantities ), $cart_item_quantities );
-				$cart_item_quantity   = $cart_item_quantities[ $product_id ];
+				$cart_item_quantities            = $this->get_cart_item_quantities( $product_id, $quantity, true );
+				$cart_total_quantity             = apply_filters( 'wpfmmsq_cart_total_quantity', array_sum( $cart_item_quantities ), $cart_item_quantities );
+				$cart_item_quantity              = $cart_item_quantities[ $product_id ];
 
 				foreach ( array( 'max' ) as $min_or_max ) {
-					if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) ) {
 						// Cart total quantity
 						if ( ! $this->check_min_max_cart_total_allvar_qty( $min_or_max, $cart_total_quantity ) ) {
 							$this->messenger->print_message( $min_or_max . '_cart_total_quantity', false, $this->get_min_max_cart_total_allvar_qty( $min_or_max ), $cart_total_quantity );
@@ -2403,7 +2375,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						// Per item quantity
 						if ( ! $this->check_product_min_max_allvar( $product_id, $min_or_max, $cart_item_quantity ) ) {
 							$item_quantity_for_message = ( 'max' === $min_or_max ? $cart_item_quantity_before_add : $cart_item_quantity );
-							$limit_to_show = $this->get_product_qty_min_max_allvar( $product_id, 0, $min_or_max );
+							$limit_to_show             = $this->get_product_qty_min_max_allvar( $product_id, 0, $min_or_max );
 							$this->messenger->print_message( $min_or_max . '_per_item_quantity', false, $limit_to_show, $item_quantity_for_message, $product_id );
 
 							return false;
@@ -2413,7 +2385,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			} else {
 				// Exact quantities
 				foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
-					if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 						if ( ! $this->check_product_exact_qty( $product_id, $allowed_or_disallowed, $quantity, $cart_item_quantity ) ) {
 							$this->messenger->print_message( 'exact_qty_' . $allowed_or_disallowed, false, $this->get_product_exact_qty( $product_id, $allowed_or_disallowed ), $quantity, $product_id );
 
@@ -2431,17 +2403,17 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * style_qty_input.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.3.0
 		 */
 		function style_qty_input() {
-			echo '<style>input.qty,select.qty{' . esc_html( wp_strip_all_tags( get_option( 'alg_wc_pq_qty_input_style', '' ) ) ) . '}</style>';
+			echo '<style>input.qty,select.qty{' . esc_html( wp_strip_all_tags( get_option( 'wpfmmsq_qty_input_style', '' ) ) ) . '}</style>';
 		}
 
 		/**
 		 * hide_update_cart_button.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.7.0
 		 * @todo    [dev] add option to make qty input readonly
 		 * @todo    [dev] add option to make "Update cart" button always enabled (i.e. even in case if quantities were not changed)
@@ -2453,7 +2425,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * float_stock_amount.
 		 *
-		 * @version 4.9.7
+		 * @version 5.3.4
 		 * @since   1.3.0
 		 */
 		function float_stock_amount() {
@@ -2464,7 +2436,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * wpfmmsq_floatval.
 		 *
-		 * @version 5.3.2
+		 * @version 5.3.4
 		 * @since   4.9.7
 		 */
 		function wpfmmsq_floatval( $value ) {
@@ -2478,7 +2450,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * alg_wc_woocommerce_product_set_stock_action.
 		 *
-		 * @version 4.5.10
+		 * @version 5.3.4
 		 * @since   4.5.10
 		 */
 		function alg_wc_woocommerce_product_set_stock_action( $product ) {
@@ -2507,7 +2479,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * save_variation_stock_status_overwrite_thresold.
 		 *
-		 * @version 4.5.12
+		 * @version 5.3.4
 		 * @since   4.5.12
 		 */
 		function save_variation_stock_status_overwrite_thresold( $product_id, $loop ) {
@@ -2539,7 +2511,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * save_stock_status_overwrite_thresold.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.10
 		 */
 		function save_stock_status_overwrite_thresold( $product_id, $post, $update ) {
@@ -2613,7 +2585,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.2.1
+		 * @version 5.3.4
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2629,28 +2601,28 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				return $args;
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 				$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
 				if (
 					$product->managing_stock() &&
 					$product->get_stock_quantity() === $args['min_value']
 				) {
 					if (
-						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_product_page_if_stock_matches_min', 'yes' ) && is_product() ) ||
-						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_cart_if_stock_matches_min', 'yes' ) && is_cart() ) ||
-						( 'no' === get_option( 'alg_wc_pq_min_hide_qty_input_on_loop_if_stock_matches_min', 'yes' ) && ( is_shop() || is_product_tag() || is_product_category() ) )
+						( 'no' === get_option( 'wpfmmsq_min_hide_qty_input_on_product_page_if_stock_matches_min', 'yes' ) && is_product() ) ||
+						( 'no' === get_option( 'wpfmmsq_min_hide_qty_input_on_cart_if_stock_matches_min', 'yes' ) && is_cart() ) ||
+						( 'no' === get_option( 'wpfmmsq_min_hide_qty_input_on_loop_if_stock_matches_min', 'yes' ) && ( is_shop() || is_product_tag() || is_product_category() ) )
 					) {
 						$args['min_value'] = 0;
 						$args['readonly']  = true;
 					}
 				}
-			} elseif ( 'yes' === get_option( 'alg_wc_pq_force_cart_min_enabled', 'no' ) ) {
+			} elseif ( 'yes' === get_option( 'wpfmmsq_force_cart_min_enabled', 'no' ) ) {
 				$args['min_value'] = 1;
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
 				$args['max_value'] = $this->set_quantity_input_max( $args['max_value'], $product );
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				$args['step'] = $this->set_quantity_input_step( $args['step'], $product );
 			}
 
@@ -2694,16 +2666,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$args['input_value'] = ( ! empty( $args['input_value'] ) ? $args['input_value'] : $this->get_product_qty_default( $product->get_id(), 1 ) );
 				} else {
 					if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
-						$default_qty = $args['input_value'] ?? 1;
+						$default_qty         = $args['input_value'] ?? 1;
 						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $default_qty );
 					}
 				}
 			}
 
-			if ( 'disabled' != ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() ) {
-				if ( 'default' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) ) {
+			if ( 'disabled' != ( $force_on_single = get_option( 'wpfmmsq_force_on_single', 'disabled' ) ) && is_product() ) {
+				if ( 'default' === ( $force_on_single = get_option( 'wpfmmsq_force_on_single', 'disabled' ) ) ) {
 					if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
-						$default_qty = $args['input_value'] ?? 1;
+						$default_qty         = $args['input_value'] ?? 1;
 						$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $default_qty );
 					}
 				} else if ( $this->alg_wc_pq_force_on_single !== 'exact_allowed' ) {
@@ -2712,22 +2684,22 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 
-			if ( 'disabled' === ( $force_on_single = get_option( 'alg_wc_pq_force_on_single', 'disabled' ) ) && is_product() && 'no' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+			if ( 'disabled' === ( $force_on_single = get_option( 'wpfmmsq_force_on_single', 'disabled' ) ) && is_product() && 'no' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 				$args['min_value'] = $this->set_quantity_input_min( 1, $product );
 			}
 
 			if ( ( is_shop() || is_product_tag() || is_product_category() ) ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 					if (
 						! isset( $args['min_value'] ) ||
 						$args['min_value'] <= 0 ||
-						( 'disabled' == ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) && ! isset( $args['min_value'] ) )
+						( 'disabled' == ( $force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' ) ) && ! isset( $args['min_value'] ) )
 					) {
-						$args['readonly']  = true;
+						$args['readonly'] = true;
 					}
 				}
 
-				if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
 					if ( ! isset( $args['max_value'] ) || $args['max_value'] <= 0 ) {
 						$stock = $product->get_stock_quantity();
 						if ( $stock > 0 ) {
@@ -2736,8 +2708,8 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					}
 				}
 
-				if ( 'disabled' != ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) ) {
-					if ( 'default' === ( $force_on_loop = get_option( 'alg_wc_pq_force_on_loop', 'disabled' ) ) ) {
+				if ( 'disabled' != ( $force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' ) ) ) {
+					if ( 'default' === ( $force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' ) ) ) {
 						if ( ( isset( $args['input_value'] ) && ( empty( $args['input_value'] ) || $args['input_value'] == 1 ) ) || ! isset( $args['input_value'] ) ) {
 							$args['input_value'] = $this->get_product_qty_default( $product->get_id(), $args['input_value'] );
 						}
@@ -2766,7 +2738,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_qty_step.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.1.0
 		 */
 		function get_product_qty_step( $product_id, $default_step = 0, $variation_id = 0, $from_shortcode = false ) {
@@ -2774,7 +2746,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			if ( $variation_id > 0 ) {
 				$per_product_id = $variation_id;
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				if ( 'yes' === apply_filters( 'wpfmmsq_quantity_step_per_product', 'no' ) && 0 != ( $step_per_product = apply_filters( 'wpfmmsq_quantity_step_per_product_value', 0, $per_product_id, $from_shortcode ) ) ) {
 					return apply_filters( 'wpfmmsq_get_product_qty_step', $step_per_product, $per_product_id );
 				} else if ( 'yes' === apply_filters( 'wpfmmsq_quantity_step_per_product_cat', 'no' ) && 0 != ( $step_per_product = apply_filters( 'wpfmmsq_quantity_step_per_product_cat_value', 0, $product_id ) ) ) {
@@ -2783,7 +2755,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					// Per attribute
 					return apply_filters( 'wpfmmsq_get_product_qty_' . 'step', $value, $product_id );
 				} else {
-					return apply_filters( 'wpfmmsq_get_product_qty_step', ( 0 != ( $step_all_products = get_option( 'alg_wc_pq_step', 0 ) ) ? $step_all_products : $default_step ), $product_id );
+					return apply_filters( 'wpfmmsq_get_product_qty_step', ( 0 != ( $step_all_products = get_option( 'wpfmmsq_step', 0 ) ) ? $step_all_products : $default_step ), $product_id );
 				}
 
 			} else {
@@ -2794,7 +2766,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_step.
 		 *
-		 * @version 4.6.12
+		 * @version 5.3.4
 		 * @since   1.1.0
 		 */
 		function set_quantity_input_step( $step, $_product, $from_shortcode = false ) {
@@ -2811,16 +2783,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * store_api_product_step_quantity.
 		 *
-		 * @version 4.5.14
+		 * @version 5.3.4
 		 * @since   1.1.0
 		 */
 		function store_api_product_step_quantity( $step, $_product, $cart_item ) {
-			if ( 'yes' === get_option( 'alg_wc_pq_advance_wc_block_api', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_advance_wc_block_api', 'no' ) ) {
 				if ( $_product->get_type() == 'variation' ) {
 					$variation_id    = $_product->get_id();
 					$product_id      = wp_get_post_parent_id( $_product->get_id() );
 					$return_step_var = $this->get_product_qty_step( $product_id, $step, $variation_id );
-					if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && ! empty( $return_step_var ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) && ! empty( $return_step_var ) ) {
 						if ( fmod( $return_step_var, 1 ) !== 0.00 ) {
 							// return decimal
 							return $return_step_var;
@@ -2844,7 +2816,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 
 				$return_step = $this->get_product_qty_step( $this->get_product_id( $_product ), $step );
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && ! empty( $return_step ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) && ! empty( $return_step ) ) {
 					if ( fmod( $return_step, 1 ) !== 0.00 ) {
 						// return decimal
 						return $return_step;
@@ -2881,7 +2853,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * admin_set_quantity_input_step.
 		 *
-		 * @version 1.1.0
+		 * @version 5.3.4
 		 * @since   1.1.0
 		 */
 		function admin_set_quantity_input_step( $step, $_product ) {
@@ -2932,7 +2904,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_attribute_unit_label.
 		 *
-		 * @version 1.6.1
+		 * @version 5.3.4
 		 * @since   1.6.1
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 		 */
@@ -2944,7 +2916,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 					if ( isset( $term_list ) && count( $term_list ) > 0 ) {
 						foreach ( $term_list as $term ) {
-							$term_meta = get_option( "taxonomy_product_attribute_item_$term" );
+							$term_meta = get_option( "wpfmmsq_taxonomy_product_attribute_item_$term" );
 
 							if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 								$singular_meta = 'alg_wc_pq_price_by_qty_attribute_unit_singular';
@@ -2969,7 +2941,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_category_unit_label.
 		 *
-		 * @version 4.6.5
+		 * @version 5.3.4
 		 * @since   1.6.1
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 		 */
@@ -2978,7 +2950,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$term_list = wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'ids' ) );
 			if ( isset( $term_list ) && count( $term_list ) > 0 ) {
 				foreach ( $term_list as $term ) {
-					$term_meta = get_option( "taxonomy_product_cat_$term" );
+					$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$term" );
 					if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 						$singular_meta = 'alg_wc_pq_category_unit_singular';
 						$plural_meta   = 'alg_wc_pq_category_unit_plural';
@@ -3002,12 +2974,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_allowed_attribute_tax.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function get_allowed_attribute_tax() {
 			$allowed_attribute_tax                                    = array();
-			$alg_wc_pq_qty_price_by_attribute_qty_unit_input_selected = get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_selected', array() );
+			$alg_wc_pq_qty_price_by_attribute_qty_unit_input_selected = get_option( 'wpfmmsq_qty_price_by_attribute_qty_unit_input_selected', array() );
 			if ( ! empty( $this->attribute_taxonomies ) ) {
 				foreach ( $this->attribute_taxonomies as $tax ) {
 					$name                    = wpfmmsq_wc_attribute_taxonomy_name( $tax->attribute_name );
@@ -3024,7 +2996,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * wpfmmsq_get_product_price_unit.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   4.5.20
 		 */
 		function wpfmmsq_get_product_price_unit( $product, $quantitiy = 1, $price_unit = false ) {
@@ -3042,7 +3014,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				if ( $this->alg_wc_pq_qty_price_unit_enabled === 'yes' ) {
 					$productType = $product->get_type();
 					if ( $this->is_show_unit() ) {
-						$unit = get_option( 'alg_wc_pq_qty_price_unit', '' );
+						$unit = get_option( 'wpfmmsq_qty_price_unit', '' );
 						if ( ! empty( $product ) && $product->get_id() > 0 && ! is_admin() ) {
 							$product_id = $product->get_id();
 							if ( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes' ) {
@@ -3056,23 +3028,23 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					}
 				}
 
-				return do_shortcode( $unit );
+				return wp_kses_post( do_shortcode( $unit ) );
 			}
 
-			$unit  = get_option( 'alg_wc_pq_qty_price_by_qty_unit_singular', 'no' );
-			$units = get_option( 'alg_wc_pq_qty_price_by_qty_unit_plural', 'no' );
+			$unit  = get_option( 'wpfmmsq_qty_price_by_qty_unit_singular', 'no' );
+			$units = get_option( 'wpfmmsq_qty_price_by_qty_unit_plural', 'no' );
 			$unit  = ( ( ! empty( $unit ) ) ? $unit : $defaultpc );
 			$units = ( ( ! empty( $units ) ) ? $units : $defaultpcs );
 
-			$product_unit  = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_singular', true );
-			$product_units = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_plural', true );
+			$product_unit  = get_post_meta( $product_id, '_wpfmmsq_qty_price_by_qty_unit_label_template_singular', true );
+			$product_units = get_post_meta( $product_id, '_wpfmmsq_qty_price_by_qty_unit_label_template_plural', true );
 
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_unit_input_enabled', 'no' ) && ! empty( $product_unit ) && ! empty( $product_units ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_unit_input_enabled', 'no' ) && ! empty( $product_unit ) && ! empty( $product_units ) ) {
 				if ( ! empty( $unit ) && ! empty( $units ) ) {
 					$unit  = ( ! empty( $product_unit ) ? $product_unit : $defaultpc );
 					$units = ( ! empty( $product_units ) ? $product_units : $defaultpcs );
 				}
-			} else if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_cat_qty_unit_input_enabled', 'no' ) ) {
+			} else if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_cat_qty_unit_input_enabled', 'no' ) ) {
 				$get_unit = $this->get_category_unit_label( $product_id );
 				if ( $get_unit ) {
 					$unit  = $get_unit['singular'];
@@ -3082,7 +3054,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_attribute_qty_unit_input_enabled', 'no' ) ) {
 
 				$get_unit = $this->get_attribute_unit_label( $product_id, $this->attr_taxonomies );
 				if ( $get_unit ) {
@@ -3103,7 +3075,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_refresh_nonce.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   5.2.5
 		 */
 		function ajax_refresh_nonce() {
@@ -3115,7 +3087,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_price_by_qty.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.6.1
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 		 * @todo    [dev] customizable position (instead of the price; after the price, before the price etc.) (NB: maybe do not display for qty=1)
@@ -3126,11 +3098,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		function ajax_price_by_qty( $param ) {
 			check_ajax_referer( 'wpfmmsq_nonce', 'nonce' );
 
-			$posted_qty         = ( isset( $_POST['wpfmmsq_qty'] ) ? (float) sanitize_text_field( wp_unslash( $_POST['wpfmmsq_qty'] ) ) : 0 );
-			$posted_product_id  = ( isset( $_POST['wpfmmsq_id'] ) ? absint( sanitize_text_field( wp_unslash( $_POST['wpfmmsq_id'] ) ) ) : 0 );
-			$selectedval        = ( isset( $_POST['selected_val'] ) ? (float) sanitize_text_field( wp_unslash( $_POST['selected_val'] ) ) : 0 );
-			$selectedattribute  = ( isset( $_POST['attribute'] ) ? sanitize_textarea_field( wp_unslash( $_POST['attribute'] ) ) : '' );
-			$quantity_fetch     = ( isset( $_POST['quantity_fetch'] ) ? (float) sanitize_text_field( wp_unslash( $_POST['quantity_fetch'] ) ) : 0 );
+			$posted_qty        = ( isset( $_POST['wpfmmsq_qty'] ) ? (float) sanitize_text_field( wp_unslash( $_POST['wpfmmsq_qty'] ) ) : 0 );
+			$posted_product_id = ( isset( $_POST['wpfmmsq_id'] ) ? absint( sanitize_text_field( wp_unslash( $_POST['wpfmmsq_id'] ) ) ) : 0 );
+			$selectedval       = ( isset( $_POST['selected_val'] ) ? (float) sanitize_text_field( wp_unslash( $_POST['selected_val'] ) ) : 0 );
+			$selectedattribute = ( isset( $_POST['attribute'] ) ? sanitize_textarea_field( wp_unslash( $_POST['attribute'] ) ) : '' );
+			$quantity_fetch    = ( isset( $_POST['quantity_fetch'] ) ? (float) sanitize_text_field( wp_unslash( $_POST['quantity_fetch'] ) ) : 0 );
 
 			$defaultpc  = __( 'unit', 'product-quantity-for-woocommerce' );
 			$defaultpcs = __( 'units', 'product-quantity-for-woocommerce' );
@@ -3160,27 +3132,27 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$product    = wc_get_product( $posted_product_id );
 				$product_id = $posted_product_id;
 
-				$pro_type = $product->get_type();
+				$pro_type    = $product->get_type();
 				$selectedval = (float) $selectedval;
 
-				$unit  = get_option( 'alg_wc_pq_qty_price_by_qty_unit_singular', 'no' );
-				$units = get_option( 'alg_wc_pq_qty_price_by_qty_unit_plural', 'no' );
+				$unit  = get_option( 'wpfmmsq_qty_price_by_qty_unit_singular', 'no' );
+				$units = get_option( 'wpfmmsq_qty_price_by_qty_unit_plural', 'no' );
 				$unit  = ( ( ! empty( $unit ) ) ? $unit : $defaultpc );
 				$units = ( ( ! empty( $units ) ) ? $units : $defaultpcs );
 
 				$product_unit  = get_post_meta(
 					$product_id,
-					'_alg_wc_pq_qty_price_by_qty_unit_label_template_singular',
+					'_wpfmmsq_qty_price_by_qty_unit_label_template_singular',
 					true
 				);
 				$product_units = get_post_meta(
 					$product_id,
-					'_alg_wc_pq_qty_price_by_qty_unit_label_template_plural',
+					'_wpfmmsq_qty_price_by_qty_unit_label_template_plural',
 					true
 				);
 
 				if (
-					'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_unit_input_enabled', 'no' ) &&
+					'yes' === get_option( 'wpfmmsq_qty_price_by_qty_unit_input_enabled', 'no' ) &&
 					! empty( $product_unit ) &&
 					! empty( $product_units )
 				) {
@@ -3189,7 +3161,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						$units = ( ! empty( $product_units ) ? $product_units : $defaultpcs );
 					}
 				} else if (
-					'yes' === get_option( 'alg_wc_pq_qty_price_by_cat_qty_unit_input_enabled', 'no' )
+					'yes' === get_option( 'wpfmmsq_qty_price_by_cat_qty_unit_input_enabled', 'no' )
 				) {
 					$get_unit = $this->get_category_unit_label( $product_id );
 					if ( $get_unit ) {
@@ -3201,7 +3173,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 
 				if (
-					'yes' === get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_enabled', 'no' )
+					'yes' === get_option( 'wpfmmsq_qty_price_by_attribute_qty_unit_input_enabled', 'no' )
 				) {
 
 					$get_unit = $this->get_attribute_unit_label( $product_id, $this->attr_taxonomies );
@@ -3245,7 +3217,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$variation_price = $this->find_matching_product_variation_id( $product_id, $arrangedArray );
 					$variation_id    = $this->find_matching_product_variation_id( $product_id, $arrangedArray, true );
 
-					$step = $this->get_product_qty_step( $product_id, 1, $variation_id );
+					$step                                          = $this->get_product_qty_step( $product_id, 1, $variation_id );
 					$tier_pricing_table_premium_price_manager_file = trailingslashit( WP_PLUGIN_DIR ) . 'tier-pricing-table-premium/src/PriceManager.php';
 
 					/**Tire pricing for variation product*/
@@ -3284,7 +3256,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 						echo wp_kses_post( str_replace( array_keys( $placeholders ), $placeholders,
 							get_option(
-								'alg_wc_pq_qty_price_by_qty_template',
+								'wpfmmsq_qty_price_by_qty_template',
 								__( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' )
 							)
 						) );
@@ -3292,25 +3264,25 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					}
 
 				} else if ( $pro_type == 'simple' ) {
-					$product        = wc_get_product( $posted_product_id );
-					$product_id     = $posted_product_id;
-					$quantity_fetch = $posted_qty;
-					$step           = $this->get_product_qty_step( $product_id, 1 );
+					$product                                       = wc_get_product( $posted_product_id );
+					$product_id                                    = $posted_product_id;
+					$quantity_fetch                                = $posted_qty;
+					$step                                          = $this->get_product_qty_step( $product_id, 1 );
 					$tier_pricing_table_premium_price_manager_file = trailingslashit( WP_PLUGIN_DIR ) . 'tier-pricing-table-premium/src/PriceManager.php';
 					$tier_pricing_table_price_manager_file         = trailingslashit( WP_PLUGIN_DIR ) . 'tier-pricing-table/src/PriceManager.php';
 
 					if ( function_exists( 'icl_object_id' ) ) {
 						global $woocommerce_wpml;
 						if ( ! empty( $woocommerce_wpml ) ) {
-							$currency = $woocommerce_wpml->get_multi_currency()->get_client_currency();
-							$price    = $woocommerce_wpml->multi_currency->prices->get_product_price_in_currency(
+							$currency      = $woocommerce_wpml->get_multi_currency()->get_client_currency();
+							$price         = $woocommerce_wpml->multi_currency->prices->get_product_price_in_currency(
 								$product->get_id(),
 								$currency
 							);
 							$price         = $price * $posted_qty;
 							$display_price = wc_price( $price, [ 'currency' => $currency ] );
 						} else {
-							$price = wc_get_price_to_display(
+							$price         = wc_get_price_to_display(
 								$product,
 								array( 'qty' => $posted_qty )
 							);
@@ -3327,14 +3299,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 								true
 							);
 							$initial_price_with_tax      = (
-								isset( $discountprices['initial_price_with_tax'] ) ?
-									$discountprices['initial_price_with_tax'] :
-									$discountprices['initial_price']
+							isset( $discountprices['initial_price_with_tax'] ) ?
+								$discountprices['initial_price_with_tax'] :
+								$discountprices['initial_price']
 							);
 							$discounted_price_with_tax   = (
-								isset( $discountprices['discounted_price_with_tax'] ) ?
-									$discountprices['discounted_price_with_tax'] :
-									$discountprices['discounted_price_with_tax']
+							isset( $discountprices['discounted_price_with_tax'] ) ?
+								$discountprices['discounted_price_with_tax'] :
+								$discountprices['discounted_price_with_tax']
 							);
 							$qty                         = $posted_qty;
 							$productprice_after_discount = $initial_price_with_tax - $discounted_price_with_tax;
@@ -3411,7 +3383,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						array_keys( $placeholders ),
 						$placeholders,
 						get_option(
-							'alg_wc_pq_qty_price_by_qty_template',
+							'wpfmmsq_qty_price_by_qty_template',
 							__( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' )
 						)
 					) );
@@ -3424,7 +3396,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_price_by_qty_on_load.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   5.3.1
 		 */
 		function get_price_by_qty_on_load( $product, $default, $qty = 0, $returnUnit = false ) {
@@ -3459,20 +3431,20 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$selectedval = 1;
 			}
 
-			$unit  = get_option( 'alg_wc_pq_qty_price_by_qty_unit_singular', 'no' );
-			$units = get_option( 'alg_wc_pq_qty_price_by_qty_unit_plural', 'no' );
+			$unit  = get_option( 'wpfmmsq_qty_price_by_qty_unit_singular', 'no' );
+			$units = get_option( 'wpfmmsq_qty_price_by_qty_unit_plural', 'no' );
 			$unit  = ( ( ! empty( $unit ) ) ? $unit : $defaultpc );
 			$units = ( ( ! empty( $units ) ) ? $units : $defaultpcs );
 
-			$product_unit  = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_singular', true );
-			$product_units = get_post_meta( $product_id, '_alg_wc_pq_qty_price_by_qty_unit_label_template_plural', true );
+			$product_unit  = get_post_meta( $product_id, '_wpfmmsq_qty_price_by_qty_unit_label_template_singular', true );
+			$product_units = get_post_meta( $product_id, '_wpfmmsq_qty_price_by_qty_unit_label_template_plural', true );
 
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_qty_unit_input_enabled', 'no' ) && ! empty( $product_unit ) && ! empty( $product_units ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_unit_input_enabled', 'no' ) && ! empty( $product_unit ) && ! empty( $product_units ) ) {
 				if ( ! empty( $unit ) && ! empty( $units ) ) {
 					$unit  = ( ! empty( $product_unit ) ? $product_unit : $defaultpc );
 					$units = ( ! empty( $product_units ) ? $product_units : $defaultpcs );
 				}
-			} else if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_cat_qty_unit_input_enabled', 'no' ) ) {
+			} else if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_cat_qty_unit_input_enabled', 'no' ) ) {
 				$get_unit = $this->get_category_unit_label( $product_id );
 				if ( $get_unit ) {
 					$unit  = $get_unit['singular'];
@@ -3482,7 +3454,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_price_by_attribute_qty_unit_input_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_attribute_qty_unit_input_enabled', 'no' ) ) {
 
 				$get_unit = $this->get_attribute_unit_label( $product_id, $this->attr_taxonomies );
 				if ( $get_unit ) {
@@ -3527,7 +3499,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				if ( $unit != '!na' && $units != '!na' ) {
 					return str_replace( array_keys( $placeholders ), $placeholders,
-						get_option( 'alg_wc_pq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
+						get_option( 'wpfmmsq_qty_price_by_qty_template', __( '%price% for %qty% %unit%.', 'product-quantity-for-woocommerce' ) ) );
 				}
 
 			}
@@ -3538,7 +3510,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_id.
 		 *
-		 * @version 1.0.0
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function get_product_id( $_product ) {
@@ -3558,11 +3530,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_qty_default.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function get_product_qty_default( $product_id, $default = 1 ) {
-			if ( 'yes' === get_option( 'alg_wc_pq_default_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_default_section_enabled', 'no' ) ) {
 				// Check if "Sold individually" is enabled for the product
 				$product = wc_get_product( $product_id );
 				if ( $product && $product->is_sold_individually() ) {
@@ -3583,7 +3555,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 
 				// All products
-				if ( '' != ( $value = get_option( 'alg_wc_pq_default_per_item_quantity', 0 ) ) ) {
+				if ( '' != ( $value = get_option( 'wpfmmsq_default_per_item_quantity', 0 ) ) ) {
 					return apply_filters( 'wpfmmsq_get_product_qty_default', $value, $product_id );
 				}
 
@@ -3595,7 +3567,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_variation_legacy_qty_min_max_value.
 		 *
-		 * @version 5.2.8
+		 * @version 5.3.4
 		 * @since   5.2.8
 		 */
 		function get_variation_legacy_qty_min_max_value( $parent_id, $variation_id, $min_or_max ) {
@@ -3634,7 +3606,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_qty_min_max.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function get_product_qty_min_max( $product_id, $default, $min_or_max, $variation_id = 0 ) {
@@ -3656,7 +3628,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				return apply_filters( 'wpfmmsq_get_product_qty_' . $min_or_max, $default, $product_id );
 			}
 
-			if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) ) {
 				// Check if "Sold individually" is enabled for the product.
 				$product = wc_get_product( $product_id );
 				if ( $product && $product->is_sold_individually() ) {
@@ -3706,7 +3678,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				}
 
 				// All products.
-				if ( 0 != ( $value = get_option( 'alg_wc_pq_' . $min_or_max . '_per_item_quantity', 0 ) ) && '' !== $value ) {
+				if ( 0 != ( $value = get_option( 'wpfmmsq_' . $min_or_max . '_per_item_quantity', 0 ) ) && '' !== $value ) {
 					$this->product_qty_min_max[ $cached_obj_name ] = $value;
 
 					return apply_filters( 'wpfmmsq_get_product_qty_' . $min_or_max, $value, $product_id );
@@ -3721,11 +3693,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_qty_min_max_allvar.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function get_product_qty_min_max_allvar( $product_id, $default, $min_or_max ) {
-			if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) ) {
 				// Check if "Sold individually" is enabled for the product
 				$product = wc_get_product( $product_id );
 				if ( $product && $product->is_sold_individually() ) {
@@ -3745,7 +3717,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_max_variation.
 		 *
-		 * @version 1.4.0
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function set_quantity_input_min_max_variation( $args, $_product, $_variation ) {
@@ -3774,7 +3746,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * disable_purchased_products.
 		 *
-		 * @version 4.5.10
+		 * @version 5.3.4
 		 * @since   4.5.10
 		 * @todo    [dev] (important) rename this (and probably some other `set_...()` functions)
 		 */
@@ -3782,7 +3754,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		function disable_purchased_products( $is_purchasable, $_product ) {
 
 			$value            = $this->get_product_qty_min_max( $this->get_product_id( $_product ), 0, 'min' );
-			$hide_add_to_cart = get_option( 'alg_wc_pq_min_hide_add_to_cart_less_stock', 'no' );
+			$hide_add_to_cart = get_option( 'wpfmmsq_min_hide_add_to_cart_less_stock', 'no' );
 			if ( $hide_add_to_cart == 'yes' ) {
 				if ( $_product->get_manage_stock() ) {
 
@@ -3800,14 +3772,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_or_max.
 		 *
-		 * @version 5.1.8
+		 * @version 5.3.4
 		 * @since   1.6.0
 		 * @todo    [dev] (important) rename this (and probably some other `set_...()` functions)
 		 */
 		function set_quantity_input_min_or_max( $qty, $_product, $min_or_max ) {
-			$value  = $this->get_product_qty_min_max( $this->get_product_id( $_product ), $qty, $min_or_max );
+			$value = $this->get_product_qty_min_max( $this->get_product_id( $_product ), $qty, $min_or_max );
 			remove_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX );
-			$_max   = $_product->get_max_purchase_quantity();
+			$_max = $_product->get_max_purchase_quantity();
 			add_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX, 2 );
 			$return = ( - 1 == $_max || $value < $_max ? $value : $_max );
 
@@ -3817,7 +3789,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min.
 		 *
-		 * @version 1.6.0
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function set_quantity_input_min( $qty, $_product ) {
@@ -3827,16 +3799,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * store_api_product_min_quantity.
 		 *
-		 * @version 4.5.15
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function store_api_product_min_quantity( $qty, $_product, $cart_item ) {
 
-			if ( 'yes' === get_option( 'alg_wc_pq_advance_wc_block_api', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_advance_wc_block_api', 'no' ) ) {
 
 				$return_min = $this->set_quantity_input_min_or_max( $qty, $_product, 'min' );
 				$return     = $return_min;
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && ! empty( $return_min ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) && ! empty( $return_min ) ) {
 					if ( fmod( $return_min, 1 ) !== 0.00 ) {
 						// return decimal
 						return $return_min;
@@ -3867,7 +3839,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_max.
 		 *
-		 * @version 1.6.0
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function set_quantity_input_max( $qty, $_product ) {
@@ -3877,16 +3849,16 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * store_api_product_max_quantity.
 		 *
-		 * @version 4.5.15
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function store_api_product_max_quantity( $qty, $_product, $cart_item ) {
 
-			if ( 'yes' === get_option( 'alg_wc_pq_advance_wc_block_api', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_advance_wc_block_api', 'no' ) ) {
 				$return = $this->set_quantity_input_min_or_max( $qty, $_product, 'max' );
 
 				$return_max = $return;
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) && ! empty( $return_max ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) && ! empty( $return_max ) ) {
 					if ( fmod( $return_max, 1 ) !== 0.00 ) {
 						// return decimal
 						return $return_max;
@@ -3917,7 +3889,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * block_checkout.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function block_checkout() {
@@ -3935,21 +3907,21 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			$cart_total_quantity = apply_filters( 'wpfmmsq_cart_total_quantity', array_sum( $cart_item_quantities ), $cart_item_quantities );
 			// Max quantity
-			if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
 				if ( ! $this->check_min_max( 'max', $cart_item_quantities, $cart_total_quantity, false, true ) ) {
 					wp_safe_redirect( wc_get_cart_url() );
 					exit;
 				}
 			}
 			// Min quantity
-			if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 				if ( ! $this->check_min_max( 'min', $cart_item_quantities, $cart_total_quantity, false, true ) ) {
 					wp_safe_redirect( wc_get_cart_url() );
 					exit;
 				}
 			}
 			// Step
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				if ( ! $this->check_step( $cart_item_quantities, $cart_total_quantity, false, true ) ) {
 					wp_safe_redirect( wc_get_cart_url() );
 					exit;
@@ -3957,7 +3929,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			// Exact quantities
 			foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 					if ( ! $this->check_exact_qty( $allowed_or_disallowed, $cart_item_quantities, false, true ) ) {
 						wp_safe_redirect( wc_get_cart_url() );
 						exit;
@@ -3969,7 +3941,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_order_quantities.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 * @todo    [dev] code refactoring min/max (same in `block_checkout()`)
 		 */
@@ -3985,20 +3957,20 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$cart_total_quantity = apply_filters( 'wpfmmsq_cart_total_quantity', array_sum( $cart_item_quantities ), $cart_item_quantities );
 			$_is_cart            = is_cart();
 			// Max quantity
-			if ( 'yes' === get_option( 'alg_wc_pq_max_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
 				$this->check_min_max( 'max', $cart_item_quantities, $cart_total_quantity, $_is_cart, false );
 			}
 			// Min quantity
-			if ( 'yes' === get_option( 'alg_wc_pq_min_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 				$this->check_min_max( 'min', $cart_item_quantities, $cart_total_quantity, $_is_cart, false );
 			}
 			// Step
-			if ( 'yes' === get_option( 'alg_wc_pq_step_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				$this->check_step( $cart_item_quantities, $cart_total_quantity, $_is_cart, false );
 			}
 			// Exact quantities
 			foreach ( array( 'allowed', 'disallowed' ) as $allowed_or_disallowed ) {
-				if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 					$this->check_exact_qty( $allowed_or_disallowed, $cart_item_quantities, $_is_cart, false );
 				}
 			}
@@ -4007,11 +3979,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_min_max_cart_total_qty.
 		 *
-		 * @version 4.7.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function get_min_max_cart_total_qty( $min_or_max ) {
-			$option_value = get_option( 'alg_wc_pq_' . $min_or_max . '_cart_total_quantity', 0 );
+			$option_value = get_option( 'wpfmmsq_' . $min_or_max . '_cart_total_quantity', 0 );
 
 			return ( $option_value === '' ) ? 0 : (int) $option_value;
 		}
@@ -4019,11 +3991,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_min_max_cart_total_allvar_qty.
 		 *
-		 * @version 4.7.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function get_min_max_cart_total_allvar_qty( $min_or_max ) {
-			$option_value = get_option( 'alg_wc_pq_' . $min_or_max . '_cart_total_quantity', 0 );
+			$option_value = get_option( 'wpfmmsq_' . $min_or_max . '_cart_total_quantity', 0 );
 
 			return ( $option_value === '' ) ? 0 : (int) $option_value;
 		}
@@ -4031,7 +4003,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_min_max_cart_total_qty.
 		 *
-		 * @version 1.4.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function check_min_max_cart_total_qty( $min_or_max, $cart_total_quantity ) {
@@ -4050,7 +4022,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_min_max_cart_total_allvar_qty.
 		 *
-		 * @version 1.4.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function check_min_max_cart_total_allvar_qty( $min_or_max, $cart_total_quantity ) {
@@ -4069,7 +4041,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_product_min_max.
 		 *
-		 * @version 1.4.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function check_product_min_max( $product_id, $min_or_max, $quantity ) {
@@ -4094,7 +4066,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_product_min_max_allvar.
 		 *
-		 * @version 5.2.8
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 */
 		function check_product_min_max_allvar( $product_id, $min_or_max, $quantity, $variation_id = 0 ) {
@@ -4114,9 +4086,10 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				) {
 					return false;
 				}
+
 				return true;
 			}
-			
+
 			// Then check all-variations limit (which should override global).
 			if ( 0 != ( $product_min_max = $this->get_product_qty_min_max_allvar( $product_id, 0, $min_or_max ) ) ) {
 				if (
@@ -4133,7 +4106,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_min_max.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.0.0
 		 */
 		function check_min_max( $min_or_max, $cart_item_quantities, $cart_total_quantity, $_is_cart, $_return ) {
@@ -4147,11 +4120,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 
 			// Per category quantity
-			if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_per_cat_item_quantity_per_product', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) && 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_per_cat_item_quantity_per_product', 'no' ) ) {
 				$cartitem_by_category = $this->get_cartitem_by_category();
 				if ( isset( $cartitem_by_category ) && ! empty( $cartitem_by_category ) && count( $cartitem_by_category ) > 0 ) {
 					foreach ( $cartitem_by_category as $category_id => $count ) {
-						$term_meta = get_option( "taxonomy_product_cat_$category_id" );
+						$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$category_id" );
 						if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 							$alg_wc_pq_min_or_max = 'alg_wc_pq_' . $min_or_max;
 							$cat_quantity         = ( isset( $term_meta[ $alg_wc_pq_min_or_max ] ) ) ? (int) $term_meta[ $alg_wc_pq_min_or_max ] : 0;
@@ -4187,7 +4160,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$cart_item_quantities_per_item = $cart_item_quantities;
 			if (
 				'yes' === apply_filters( 'wpfmmsq_per_item_qty_per_product', 'no', $min_or_max ) &&
-				'yes' !== get_option( 'alg_wc_pq_sum_variations', 'no' )
+				'yes' !== get_option( 'wpfmmsq_sum_variations', 'no' )
 			) {
 				$grouped_by_variation_quantities = $this->alc_wg_get_cart_item_quantities( true );
 				if ( ! empty( $grouped_by_variation_quantities ) && is_array( $grouped_by_variation_quantities ) ) {
@@ -4221,11 +4194,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 
 			// per attribute
-			if ( 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_section_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_' . $min_or_max . '_per_attribute_item_quantity', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_section_enabled', 'no' ) && 'yes' === get_option( 'wpfmmsq_' . $min_or_max . '_per_attribute_item_quantity', 'no' ) ) {
 				$cart_by_arranged_attr = $this->get_cartitem_by_product_attribute();
 				if ( isset( $cart_by_arranged_attr ) && ! empty( $cart_by_arranged_attr ) && count( $cart_by_arranged_attr ) > 0 ) {
 					foreach ( $cart_by_arranged_attr as $attr_item_id => $count ) {
-						$term_meta = get_option( "taxonomy_product_attribute_item_$attr_item_id" );
+						$term_meta = get_option( "wpfmmsq_taxonomy_product_attribute_item_$attr_item_id" );
 						if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 							$alg_wc_pq_min_or_max = 'alg_wc_pq_' . $min_or_max;
 							$attr_quantity        = $term_meta[ $alg_wc_pq_min_or_max ];
@@ -4240,12 +4213,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 												if ( $min_or_max == 'max' && ! empty( $trm ) ) {
 													$message_template = get_option( $alg_wc_pq_min_or_max . '_per_attribute_message',
-															sprintf( __( 'Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s.', 'product-quantity-for-woocommerce' ), $trm->name, $attr_quantity, $count ) );
+														sprintf( __( 'Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s.', 'product-quantity-for-woocommerce' ), $trm->name, $attr_quantity, $count ) );
 													if ( $_return ) {
 														return false;
 													} else {
 														if ( $_is_cart ) {
-															wc_print_notice( $_notice, get_option( 'alg_wc_pq_cart_notice_type', 'notice' ) );
+															wc_print_notice( $_notice, get_option( 'wpfmmsq_cart_notice_type', 'notice' ) );
 														} else {
 															wc_add_notice( $_notice, 'error' );
 														}
@@ -4265,12 +4238,12 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 												if ( $min_or_max == 'min' && ! empty( $trm ) ) {
 													$message_template = get_option( $alg_wc_pq_min_or_max . '_per_attribute_message',
-															sprintf( __( 'Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s.', 'product-quantity-for-woocommerce' ), $trm->name, $attr_quantity, $count ) );
+														sprintf( __( 'Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s.', 'product-quantity-for-woocommerce' ), $trm->name, $attr_quantity, $count ) );
 													if ( $_return ) {
 														return false;
 													} else {
 														if ( $_is_cart ) {
-															wc_print_notice( $_notice, get_option( 'alg_wc_pq_cart_notice_type', 'notice' ) );
+															wc_print_notice( $_notice, get_option( 'wpfmmsq_cart_notice_type', 'notice' ) );
 														} else {
 															wc_add_notice( $_notice, 'error' );
 														}
@@ -4296,7 +4269,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_exact_qty.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.5.0
 		 * @todo    [feature] (maybe) total qty of item in cart
 		 * @todo    [feature] (maybe) total items in cart
@@ -4306,7 +4279,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			if ( $variation_id > 0 ) {
 				$per_product_id = $variation_id;
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 				if (
 					'yes' === apply_filters( 'wpfmmsq_exact_qty_per_product', 'no', $allowed_or_disallowed ) &&
 					'' !== ( $exact_qty_per_product = apply_filters( 'wpfmmsq_exact_qty_per_product_value', '', $per_product_id, $allowed_or_disallowed ) )
@@ -4323,7 +4296,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				) {
 					return $exact_qty_per_product;
 				} else {
-					return ( '' !== ( $exact_qty_all_products = get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed, '' ) ) ? $exact_qty_all_products : $default_exact_qty );
+					return ( '' !== ( $exact_qty_all_products = get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed, '' ) ) ? $exact_qty_all_products : $default_exact_qty );
 				}
 			} else {
 				return $default_exact_qty;
@@ -4333,7 +4306,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_product_exact_qty_allvar.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.5.0
 		 * @todo    [feature] (maybe) total qty of item in cart
 		 * @todo    [feature] (maybe) total items in cart
@@ -4343,7 +4316,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			if ( $variation_id > 0 ) {
 				$per_product_id = $variation_id;
 			}
-			if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) ) {
 				if (
 					'yes' === apply_filters( 'wpfmmsq_exact_qty_per_product', 'no', $allowed_or_disallowed ) &&
 					'' !== ( $exact_qty_per_product = apply_filters( 'wpfmmsq_exact_qty_per_product_value_allvar', '', $per_product_id, $allowed_or_disallowed ) )
@@ -4360,7 +4333,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				) {
 					return $exact_qty_per_product;
 				} else {
-					return ( '' !== ( $exact_qty_all_products = get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed, '' ) ) ? $exact_qty_all_products : $default_exact_qty );
+					return ( '' !== ( $exact_qty_all_products = get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed, '' ) ) ? $exact_qty_all_products : $default_exact_qty );
 				}
 			} else {
 				return $default_exact_qty;
@@ -4370,7 +4343,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * process_exact_qty_option.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.7.0
 		 * @todo    [dev] (important) qty range in `print_message()`
 		 * @todo    [dev] qty range: power of X (i.e. instead of adding range step)
@@ -4403,7 +4376,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_product_exact_qty.
 		 *
-		 * @version 4.5.13
+		 * @version 5.3.4
 		 * @since   1.5.0
 		 * @todo    [dev] (important) rethink qty correction on `disallowed`
 		 * @todo    [dev] (important) check if all `$product_exact_qty` elements are `is_numeric()`
@@ -4422,7 +4395,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$is_valid = ( 'allowed' === $allowed_or_disallowed ? in_array( $cart_item_quantity, $product_exact_qty ) : ! in_array( $cart_item_quantity, $product_exact_qty ) );
 				if ( ! $do_fix ) {
 
-					if ( 'yes' === get_option( 'alg_wc_pq_exact_subset_sum_allowed_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_exact_subset_sum_allowed_enabled', 'no' ) ) {
 						if ( 'allowed' === $allowed_or_disallowed ) {
 							$is_valid = $this->is_subset_sum( $product_exact_qty, count( $product_exact_qty ), $cart_item_quantity );
 						} else {
@@ -4459,7 +4432,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_product_exact_qty.
 		 *
-		 * @version 4.5.13
+		 * @version 5.3.4
 		 * @since   1.5.0
 		 * @todo    [dev] (important) rethink qty correction on `disallowed`
 		 * @todo    [dev] (important) check if all `$product_exact_qty` elements are `is_numeric()`
@@ -4479,7 +4452,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 					if ( ! $is_valid ) {
 
-						if ( 'yes' === get_option( 'alg_wc_pq_exact_subset_sum_allowed_enabled', 'no' ) ) {
+						if ( 'yes' === get_option( 'wpfmmsq_exact_subset_sum_allowed_enabled', 'no' ) ) {
 							if ( 'allowed' === $allowed_or_disallowed ) {
 								$is_valid = $this->is_subset_sum( $product_exact_qty, count( $product_exact_qty ), $cart_item_quantity );
 							} else {
@@ -4517,7 +4490,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * is_subset_sum.
 		 *
-		 * @version 4.5.13
+		 * @version 5.3.4
 		 * @since   4.5.13
 		 */
 
@@ -4544,7 +4517,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * subset_sums.
 		 *
-		 * @version 4.5.13
+		 * @version 5.3.4
 		 * @since   4.5.13
 		 */
 		function subset_sums( $arr, $incart_qty = 0 ) {
@@ -4583,17 +4556,17 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_exact_qty.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.4
 		 * @since   1.5.0
 		 */
 		function check_exact_qty( $allowed_or_disallowed, $cart_item_quantities, $_is_cart, $_return ) {
 			// Per category quantity
-			if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_per_cat_item_quantity_per_product', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) && 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_per_cat_item_quantity_per_product', 'no' ) ) {
 
 				$cartitem_by_category = $this->get_cartitem_by_category();
 				if ( isset( $cartitem_by_category ) && ! empty( $cartitem_by_category ) && count( $cartitem_by_category ) > 0 ) {
 					foreach ( $cartitem_by_category as $category_id => $count ) {
-						$term_meta = get_option( "taxonomy_product_cat_$category_id" );
+						$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$category_id" );
 						if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 							$alg_wc_pq_allowed_or_disallowed = 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed;
 							$cat_quantity                    = $term_meta[ $alg_wc_pq_allowed_or_disallowed ];
@@ -4613,7 +4586,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 											return false;
 										} else {
 											if ( $_is_cart ) {
-												wc_print_notice( $_notice, get_option( 'alg_wc_pq_cart_notice_type', 'notice' ) );
+												wc_print_notice( $_notice, get_option( 'wpfmmsq_cart_notice_type', 'notice' ) );
 											} else {
 												wc_add_notice( $_notice, 'error' );
 											}
@@ -4653,11 +4626,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 
 			// per attribute
-			if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) && 'yes' === get_option( 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed . '_per_attribute_item_quantity', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_section_enabled', 'no' ) && 'yes' === get_option( 'wpfmmsq_exact_qty_' . $allowed_or_disallowed . '_per_attribute_item_quantity', 'no' ) ) {
 				$cart_by_arranged_attr = $this->get_cartitem_by_product_attribute();
 				if ( isset( $cart_by_arranged_attr ) && ! empty( $cart_by_arranged_attr ) && count( $cart_by_arranged_attr ) > 0 ) {
 					foreach ( $cart_by_arranged_attr as $attr_item_id => $count ) {
-						$term_meta = get_option( "taxonomy_product_attribute_item_$attr_item_id" );
+						$term_meta = get_option( "wpfmmsq_taxonomy_product_attribute_item_$attr_item_id" );
 						if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 							$alg_wc_pq_allowed_or_disallowed = 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed;
 							$attr_quantity                   = $term_meta[ $alg_wc_pq_allowed_or_disallowed ];
@@ -4681,7 +4654,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 													return false;
 												} else {
 													if ( $_is_cart ) {
-														wc_print_notice( $_notice, get_option( 'alg_wc_pq_cart_notice_type', 'notice' ) );
+														wc_print_notice( $_notice, get_option( 'wpfmmsq_cart_notice_type', 'notice' ) );
 													} else {
 														wc_add_notice( $_notice, 'error' );
 													}
@@ -4705,7 +4678,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_product_step.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 * @todo    [dev] `$multiplier` should be calculated automatically according to the `$qty_step_settings` value (same in `force_js_check_step()`)
 		 */
@@ -4716,7 +4689,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			if ( 0 != $product_qty_step ) {
 				$min_value = $this->get_product_qty_min_max( $product_id, 0, 'min' );
-				if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 					$multiplier        = floatval( 1000000 );
 					$_min_value        = intval( round( floatval( $min_value ) * $multiplier ) );
 					$_quantity         = intval( round( floatval( $quantity ) * $multiplier ) );
@@ -4737,11 +4710,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				if ( ! $do_fix ) {
 					return $is_valid;
 				} elseif ( ! $is_valid ) {
-					$step_auto_correct = get_option( 'alg_wc_pq_add_to_cart_validation_step_auto_correct', 'round' );
+					$step_auto_correct = get_option( 'wpfmmsq_add_to_cart_validation_step_auto_correct', 'round' );
 					$extra_qty         = ( 'round_down' != $step_auto_correct && ( 'round_up' == $step_auto_correct || $_reminder * 2 >= $_product_qty_step ) ?
 						$_product_qty_step : 0 );
 					$quantity          = $_quantity + $extra_qty - $_reminder + $_min_value;
-					if ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) ) {
+					if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 						$quantity = $quantity / $multiplier;
 					}
 
@@ -4755,23 +4728,23 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_step_cart_total_qty.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.7.0
 		 */
 		function get_step_cart_total_qty() {
-			return get_option( 'alg_wc_pq_step_cart_total_quantity', 0 );
+			return get_option( 'wpfmmsq_step_cart_total_quantity', 0 );
 		}
 
 		/**
 		 * check_step_cart_total_qty.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.7.0
 		 * @todo    [dev] (important) (maybe) code refactoring (merge with `check_product_step()`)
 		 */
 		function check_step_cart_total_qty( $cart_total_quantity, $do_fix = false, $product_qty = 0 ) {
 			if ( 0 != ( $step_cart_total_quantity = $this->get_step_cart_total_qty() ) ) {
-				$is_decimal = ( 'yes' === get_option( 'alg_wc_pq_decimal_quantities_enabled', 'no' ) );
+				$is_decimal = ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) );
 				if ( $is_decimal ) {
 					$multiplier                = floatval( 1000000 );
 					$_cart_total_quantity      = intval( round( floatval( $cart_total_quantity ) * $multiplier ) );
@@ -4795,7 +4768,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					if ( $is_decimal ) {
 						$product_qty = intval( round( floatval( $product_qty ) * $multiplier ) );
 					}
-					$step_auto_correct = get_option( 'alg_wc_pq_add_to_cart_validation_step_auto_correct', 'round' );
+					$step_auto_correct = get_option( 'wpfmmsq_add_to_cart_validation_step_auto_correct', 'round' );
 					$extra_qty         = ( 'round_down' != $step_auto_correct && ( 'round_up' == $step_auto_correct || $_reminder * 2 >= $_step_cart_total_quantity ) ?
 						$_step_cart_total_quantity : 0 );
 					$product_qty       = $product_qty + $extra_qty - $_reminder;
@@ -4813,7 +4786,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_step.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) force `min` in cart to `1` (as it may be zero now)
 		 */
@@ -4845,13 +4818,13 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_step.
 		 *
-		 * @version 1.7.0
+		 * @version 5.3.4
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) force `min` in cart to `1` (as it may be zero now)
 		 */
 		function get_quantity_with_sep( $qty ) {
 
-			if ( 'yes' === get_option( 'alg_wc_pq_qty_dropdown_thousand_separator_enabled', 'no' ) ) {
+			if ( 'yes' === get_option( 'wpfmmsq_qty_dropdown_thousand_separator_enabled', 'no' ) ) {
 				$sep = get_option( 'wpfmmsq_qty_dropdown_thousand_separator', ',' );
 				if ( ! empty( $sep ) && ! empty( $qty ) ) {
 					if ( $qty < 100 ) {

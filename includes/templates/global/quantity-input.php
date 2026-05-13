@@ -2,7 +2,7 @@
 /**
  * Product quantity inputs // Drop down by WPFactory
  *
- * @version 5.3.1
+ * @version 5.3.4
  * @since   1.6.0
  *
  * @todo    [dev] (important) re-check new template in WC 3.6
@@ -39,7 +39,7 @@ $variation_exact     = '';
 $productType         = $product->get_type();
 $is_dropdown_disable = wpfmmsq()->core->wpfmmsq_qty_dropdown_is_disable( $product );
 
-if ( $productType == 'variable' && 'yes' === get_option( 'alg_wc_pq_variation_do_load_all', 'no' ) ) {
+if ( $productType == 'variable' && 'yes' === get_option( 'wpfmmsq_variation_do_load_all', 'no' ) ) {
 	if ( $_product = wc_get_product( $product_id ) ) {
 
 		foreach ( $_product->get_available_variations() as $variation ) {
@@ -82,13 +82,13 @@ if ( $max_value && $min_value === $max_value ) {
 		       name="<?php echo esc_attr( $input_name ); ?>" value="<?php echo esc_attr( $min_value ); ?>"/>
 	</div>
 	<?php
-} elseif ( ( ( ! empty( $alg_wc_max ) || 0 != ( $max_value_fallback = get_option( 'alg_wc_pq_qty_dropdown_max_value_fallback', 0 ) ) ) && ! empty( $step ) && ! $is_dropdown_disable ) || ( ( $productType == 'variable' || $productType == 'variation' ) && ( $variation_max > 0 || ! empty( $variation_exact ) ) && ! $is_dropdown_disable ) ) { // dropdown
+} elseif ( ( ( ! empty( $alg_wc_max ) || 0 != ( $max_value_fallback = get_option( 'wpfmmsq_qty_dropdown_max_value_fallback', 0 ) ) ) && ! empty( $step ) && ! $is_dropdown_disable ) || ( ( $productType == 'variable' || $productType == 'variation' ) && ( $variation_max > 0 || ! empty( $variation_exact ) ) && ! $is_dropdown_disable ) ) { // dropdown
 	if ( empty( $max_value ) ) {
 		$max_value = $max_value_fallback;
 	}
 	?>
 	<div class="quantity dropdown_pq first">
-		<?php echo do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_template_before', '' ) ); ?>
+		<?php echo wp_kses_post( do_shortcode( get_option( 'wpfmmsq_qty_dropdown_template_before', '' ) ) ); ?>
 		<label class="screen-reader-text"
 		       for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></label>
 		<select
@@ -140,16 +140,16 @@ if ( $max_value && $min_value === $max_value ) {
 			// Labels
 			$label_template_singular = '';
 			$label_template_plural   = '';
-			if ( $product && 'yes' === get_option( 'alg_wc_pq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
+			if ( $product && 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
 				$product_or_parent_id    = ( $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id() );
-				$label_template_singular = get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_singular', true );
-				$label_template_plural   = get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_plural', true );
+				$label_template_singular = get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_singular', true );
+				$label_template_plural   = get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_plural', true );
 			}
 			if ( '' === $label_template_singular ) {
-				$label_template_singular = do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_label_template_singular', '%qty%' ) );
+				$label_template_singular = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_singular', '%qty%' ) );
 			}
 			if ( '' === $label_template_plural ) {
-				$label_template_plural = do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_label_template_plural', '%qty%' ) );
+				$label_template_plural = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_plural', '%qty%' ) );
 			}
 
 			// Select options
@@ -180,13 +180,13 @@ if ( $max_value && $min_value === $max_value ) {
 		<input type="hidden" id="<?php echo esc_attr( $input_id ); ?>" name="<?php echo esc_attr( $input_name ); ?>"
 		       class="qty ajax-ready <?php echo esc_attr( $disable_price_by_qty ); ?>"
 		       value="<?php echo esc_attr( $input_value ); ?>">
-		<?php echo do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_template_after', '' ) ); ?>
+		<?php echo wp_kses_post( do_shortcode( get_option( 'wpfmmsq_qty_dropdown_template_after', '' ) ) ); ?>
 	</div>
 	<?php
-} else if ( 'yes' === get_option( 'alg_wc_pq_exact_qty_allowed_section_enabled', 'no' ) && '' != ( $fixed_qty = wpfmmsq()->core->get_product_exact_qty( $product->get_id(), 'allowed' ) ) && ! $is_dropdown_disable ) {
+} else if ( 'yes' === get_option( 'wpfmmsq_exact_qty_allowed_section_enabled', 'no' ) && '' != ( $fixed_qty = wpfmmsq()->core->get_product_exact_qty( $product->get_id(), 'allowed' ) ) && ! $is_dropdown_disable ) {
 	?>
 	<div class="quantity dropdown_pq second">
-		<?php echo do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_template_before', '' ) ); ?>
+		<?php echo wp_kses_post( do_shortcode( get_option( 'wpfmmsq_qty_dropdown_template_before', '' ) ) ); ?>
 		<label class="screen-reader-text"
 		       for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></label>
 		<select
@@ -224,16 +224,16 @@ if ( $max_value && $min_value === $max_value ) {
 			// Labels
 			$label_template_singular = '';
 			$label_template_plural   = '';
-			if ( $product && 'yes' === get_option( 'alg_wc_pq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
+			if ( $product && 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
 				$product_or_parent_id    = ( $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id() );
-				$label_template_singular = do_shortcode( get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_singular', true ) );
-				$label_template_plural   = do_shortcode( get_post_meta( $product_or_parent_id, '_alg_wc_pq_qty_dropdown_label_template_plural', true ) );
+				$label_template_singular = do_shortcode( get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_singular', true ) );
+				$label_template_plural   = do_shortcode( get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_plural', true ) );
 			}
 			if ( '' === $label_template_singular ) {
-				$label_template_singular = do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_label_template_singular', '%qty%' ) );
+				$label_template_singular = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_singular', '%qty%' ) );
 			}
 			if ( '' === $label_template_plural ) {
-				$label_template_plural = do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_label_template_plural', '%qty%' ) );
+				$label_template_plural = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_plural', '%qty%' ) );
 			}
 
 			if ( is_product() ) {
@@ -271,7 +271,7 @@ if ( $max_value && $min_value === $max_value ) {
 		<input type="hidden" id="<?php echo esc_attr( $input_id ); ?>" name="<?php echo esc_attr( $input_name ); ?>"
 		       class="qty ajax-ready <?php echo esc_attr( $disable_price_by_qty ); ?>"
 		       value="<?php echo esc_attr( $input_value ); ?>">
-		<?php echo do_shortcode( get_option( 'alg_wc_pq_qty_dropdown_template_after', '' ) ); ?>
+		<?php echo wp_kses_post( do_shortcode( get_option( 'wpfmmsq_qty_dropdown_template_after', '' ) ) ); ?>
 	</div>
 	<?php
 } else {

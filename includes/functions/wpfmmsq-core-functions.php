@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Functions - Core
  *
- * @version 5.3.1
+ * @version 5.3.4
  * @since   1.6.3
  * @author  WPFactory
  */
@@ -29,9 +29,11 @@ if ( ! function_exists( 'wpfmmsq_check_if_active_plugin' ) ) {
 					return true;
 				}
 			}
+
 			// Not active
 			return false;
 		}
+
 		// Active
 		return true;
 	}
@@ -57,6 +59,7 @@ if ( ! function_exists( 'wpfmmsq_do_disable' ) ) {
 				return true;
 			}
 		}
+
 		// Do not disable
 		return false;
 	}
@@ -66,13 +69,13 @@ if ( ! function_exists( 'wpfmmsq_wc_get_attribute_taxonomies' ) ) {
 	/**
 	 * wpfmmsq_wc_get_attribute_taxonomies
 	 *
-	 * @version 5.3.1
+	 * @version 5.3.4
 	 * @since   1.6.3
 	 */
 	function wpfmmsq_wc_get_attribute_taxonomies() {
 		global $wpdb;
 
-		$cache_key = 'alg_wc_pq_attribute_taxonomies';
+		$cache_key            = 'wpfmmsq_attribute_taxonomies';
 		$attribute_taxonomies = get_transient( $cache_key );
 
 		if ( false === $attribute_taxonomies ) {
@@ -100,7 +103,8 @@ if ( ! function_exists( 'wpfmmsq_wc_attribute_taxonomy_name' ) ) {
 	 * @version 5.3.1
 	 * @since   5.3.1
 	 *
-	 * @param string $attribute_name Attribute name.
+	 * @param   string  $attribute_name  Attribute name.
+	 *
 	 * @return string
 	 */
 	function wpfmmsq_wc_attribute_taxonomy_name( $attribute_name ) {
@@ -116,7 +120,8 @@ if ( ! function_exists( 'wpfmmsq_wc_sanitize_taxonomy_name' ) ) {
 	 * @version 5.3.1
 	 * @since   5.3.1
 	 *
-	 * @param string $taxonomy Taxonomy name.
+	 * @param   string  $taxonomy  Taxonomy name.
+	 *
 	 * @return string
 	 */
 	function wpfmmsq_wc_sanitize_taxonomy_name( $taxonomy ) {

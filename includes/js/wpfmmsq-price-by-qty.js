@@ -1,7 +1,7 @@
 /**
  * wpfmmsq-price-by-qty.js
  *
- * @version 5.3.1
+ * @version 5.3.4
  * @since   1.6.1
  */
 var wpfmmsq_fresh_nonce = null;
@@ -95,7 +95,7 @@ function wpfmmsq_update_price_by_qty( e, qty = null, attribute = null ) {
 						if ( 'instead' == wpfmmsq_price_by_qty_obj.position ) {
 							jQuery( '.product.post-' + product_id ).find( '.price' ).html( response );
 						} else {
-							jQuery( '.product.post-' + product_id ).find( 'p.alg-wc-pq-price-display-by-qty' ).html( response );
+							jQuery( '.product.post-' + product_id ).find( 'p.wpfmmsq-price-display-by-qty' ).html( response );
 						}
 					}
 				} else {
@@ -107,7 +107,7 @@ function wpfmmsq_update_price_by_qty( e, qty = null, attribute = null ) {
 							}
 						}
 					} else {
-						jQuery( 'p.alg-wc-pq-price-display-by-qty' ).html( response );
+						jQuery( 'p.wpfmmsq-price-display-by-qty' ).html( response );
 					}
 				}
 			},
@@ -120,7 +120,7 @@ jQuery( document ).ready( function () {
 		'instead' != wpfmmsq_price_by_qty_obj.position &&
 		parseInt( wpfmmsq_price_by_qty_obj.product_id ) != 0
 	) {
-		var price_display_by_qty_element = '<p class="alg-wc-pq-price-display-by-qty"></p>';
+		var price_display_by_qty_element = '<p class="wpfmmsq-price-display-by-qty"></p>';
 		switch ( wpfmmsq_price_by_qty_obj.position ) {
 			case 'before':
 				jQuery( 'p.price' ).before( price_display_by_qty_element );
