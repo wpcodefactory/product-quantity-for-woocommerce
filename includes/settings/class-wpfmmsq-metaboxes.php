@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 5.3.4
+ * @version 5.3.5
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -133,7 +133,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 		/**
 		 * display_pq_metabox.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.5
 		 * @since   1.0.0
 		 * @todo    [dev] `placeholder` for textarea
 		 * @todo    [dev] `class` for all remaining types
@@ -315,7 +315,27 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 			}
 			$html .= '</table>';
 			$html .= '<input type="hidden" name="wpfmmsq_save_post" value="wpfmmsq_save_post">';
-			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from controlled plugin field definitions.
+			$wpfmmsq_allowed_html = array(
+			    'table'   => array('class' => true),
+			    'tr'      => array(),
+			    'th'      => array('colspan' => true, 'style' => true),
+			    'td'      => array('style' => true),
+			    'input'   => array(
+			        'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'style' => true, 'checked' => true, 'placeholder' => true, 'step' => true, 'min' => true, 'max' => true, 'multiple' => true, 'custom_attributes' => true
+			    ),
+			    'select'  => array('id' => true, 'name' => true, 'class' => true, 'style' => true, 'multiple' => true, 'custom_attributes' => true),
+			    'option'  => array('value' => true, 'selected' => true),
+			    'textarea'=> array('id' => true, 'name' => true, 'class' => true, 'style' => true, 'placeholder' => true),
+			    'b'       => array(),
+			    'em'      => array(),
+			    'span'    => array('class' => true, 'style' => true),
+			    'br'      => array(),
+			    'strong'  => array(),
+			    'small'   => array(),
+			    'a'       => array('href' => true, 'title' => true, 'class' => true, 'target' => true, 'rel' => true),
+			    'div'     => array('class' => true, 'style' => true),
+			);
+			echo wp_kses( $html, $wpfmmsq_allowed_html );
 			do_action( 'wpfmmsq_after_meta_box_settings' );
 		}
 

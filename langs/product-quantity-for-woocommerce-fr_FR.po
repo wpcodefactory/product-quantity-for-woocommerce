@@ -79,11 +79,11 @@ msgstr ""
 msgid "Product Quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:468
+#: includes/settings/class-wpfmmsq-metaboxes.php:488
 msgid "Main variable product"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:504
+#: includes/settings/class-wpfmmsq-metaboxes.php:524
 #: includes/settings/class-wpfmmsq-settings-min.php:65
 msgid "Minimum quantity"
 msgstr ""
@@ -92,23 +92,23 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:82
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:89
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:95
-#: includes/settings/class-wpfmmsq-metaboxes.php:510
-#: includes/settings/class-wpfmmsq-metaboxes.php:535
-#: includes/settings/class-wpfmmsq-metaboxes.php:623
-#: includes/settings/class-wpfmmsq-metaboxes.php:725
-#: includes/settings/class-wpfmmsq-metaboxes.php:741
-#: includes/settings/class-wpfmmsq-metaboxes.php:757
+#: includes/settings/class-wpfmmsq-metaboxes.php:530
+#: includes/settings/class-wpfmmsq-metaboxes.php:555
+#: includes/settings/class-wpfmmsq-metaboxes.php:643
+#: includes/settings/class-wpfmmsq-metaboxes.php:745
+#: includes/settings/class-wpfmmsq-metaboxes.php:761
+#: includes/settings/class-wpfmmsq-metaboxes.php:777
 msgid "Set 0 to use global settings. Set -1 to disable."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:529
+#: includes/settings/class-wpfmmsq-metaboxes.php:549
 #: includes/settings/class-wpfmmsq-settings-max.php:56
 msgid "Maximum quantity"
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:102
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:194
-#: includes/settings/class-wpfmmsq-metaboxes.php:552
+#: includes/settings/class-wpfmmsq-metaboxes.php:572
 #: includes/settings/class-wpfmmsq-settings-advanced.php:104
 #: includes/settings/class-wpfmmsq-settings-advanced.php:117
 #: includes/settings/class-wpfmmsq-settings-step.php:56
@@ -117,62 +117,62 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:102
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:110
-#: includes/settings/class-wpfmmsq-metaboxes.php:558
+#: includes/settings/class-wpfmmsq-metaboxes.php:578
 msgid "Set 0 to use global settings."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:575
+#: includes/settings/class-wpfmmsq-metaboxes.php:595
 msgid "Exact quantity allowed"
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:117
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:123
-#: includes/settings/class-wpfmmsq-metaboxes.php:580
+#: includes/settings/class-wpfmmsq-metaboxes.php:600
 #: includes/settings/class-wpfmmsq-settings-fixed.php:65
 #, php-format
 msgid "Allowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:581
-#: includes/settings/class-wpfmmsq-metaboxes.php:605
-#: includes/settings/class-wpfmmsq-metaboxes.php:669
-#: includes/settings/class-wpfmmsq-metaboxes.php:680
-#: includes/settings/class-wpfmmsq-metaboxes.php:696
-#: includes/settings/class-wpfmmsq-metaboxes.php:707
+#: includes/settings/class-wpfmmsq-metaboxes.php:601
+#: includes/settings/class-wpfmmsq-metaboxes.php:625
+#: includes/settings/class-wpfmmsq-metaboxes.php:689
+#: includes/settings/class-wpfmmsq-metaboxes.php:700
+#: includes/settings/class-wpfmmsq-metaboxes.php:716
+#: includes/settings/class-wpfmmsq-metaboxes.php:727
 msgid "Set blank to use global settings."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:599
+#: includes/settings/class-wpfmmsq-metaboxes.php:619
 msgid "Exact quantity disallowed"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:604
+#: includes/settings/class-wpfmmsq-metaboxes.php:624
 #: includes/settings/class-wpfmmsq-settings-fixed.php:177
 #, php-format
 msgid "Disallowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:665
+#: includes/settings/class-wpfmmsq-metaboxes.php:685
 msgid "Dropdown label template: Singular"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:666
-#: includes/settings/class-wpfmmsq-metaboxes.php:677
-#: includes/settings/class-wpfmmsq-metaboxes.php:693
-#: includes/settings/class-wpfmmsq-metaboxes.php:704
-#: includes/settings/class-wpfmmsq-metaboxes.php:721
-#: includes/settings/class-wpfmmsq-metaboxes.php:737
-#: includes/settings/class-wpfmmsq-metaboxes.php:753
+#: includes/settings/class-wpfmmsq-metaboxes.php:686
+#: includes/settings/class-wpfmmsq-metaboxes.php:697
+#: includes/settings/class-wpfmmsq-metaboxes.php:713
+#: includes/settings/class-wpfmmsq-metaboxes.php:724
+#: includes/settings/class-wpfmmsq-metaboxes.php:741
+#: includes/settings/class-wpfmmsq-metaboxes.php:757
+#: includes/settings/class-wpfmmsq-metaboxes.php:773
 msgid "All variations"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:668
-#: includes/settings/class-wpfmmsq-metaboxes.php:679
+#: includes/settings/class-wpfmmsq-metaboxes.php:688
+#: includes/settings/class-wpfmmsq-metaboxes.php:699
 #, php-format
 msgid "Dropdown label template, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:676
+#: includes/settings/class-wpfmmsq-metaboxes.php:696
 msgid "Dropdown label template: Plural"
 msgstr ""
 
@@ -946,7 +946,7 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:181
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:248
-#: includes/settings/class-wpfmmsq-metaboxes.php:692
+#: includes/settings/class-wpfmmsq-metaboxes.php:712
 msgid "Unit label template: Singular"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:190
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:257
-#: includes/settings/class-wpfmmsq-metaboxes.php:703
+#: includes/settings/class-wpfmmsq-metaboxes.php:723
 msgid "Unit label template: Plural"
 msgstr ""
 
@@ -1046,7 +1046,7 @@ msgid "Specify a plural string for this category, this is controlled by Product 
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-category-metaboxes.php:269
-#: includes/settings/class-wpfmmsq-metaboxes.php:641
+#: includes/settings/class-wpfmmsq-metaboxes.php:661
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:37
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:55
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:105
@@ -1057,12 +1057,12 @@ msgstr ""
 msgid "Specify a string for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:488
-#: includes/settings/class-wpfmmsq-metaboxes.php:493
+#: includes/settings/class-wpfmmsq-metaboxes.php:508
+#: includes/settings/class-wpfmmsq-metaboxes.php:513
 msgid "Allow selling below this number if no stock is available to meet this number"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:617
+#: includes/settings/class-wpfmmsq-metaboxes.php:637
 #: includes/settings/class-wpfmmsq-settings-default.php:56
 #: includes/settings/class-wpfmmsq-settings-default.php:135
 #: includes/settings/class-wpfmmsq-settings-general.php:254
@@ -1070,24 +1070,24 @@ msgstr ""
 msgid "Default quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:647
+#: includes/settings/class-wpfmmsq-metaboxes.php:667
 msgid "Any string value."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:695
-#: includes/settings/class-wpfmmsq-metaboxes.php:706
+#: includes/settings/class-wpfmmsq-metaboxes.php:715
+#: includes/settings/class-wpfmmsq-metaboxes.php:726
 msgid "Unit label template, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:720
+#: includes/settings/class-wpfmmsq-metaboxes.php:740
 msgid "Minimum quantity for all variations"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:736
+#: includes/settings/class-wpfmmsq-metaboxes.php:756
 msgid "Maximum quantity for all variations"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:752
+#: includes/settings/class-wpfmmsq-metaboxes.php:772
 msgid "Exact quantity allowed for all variations"
 msgstr ""
 
