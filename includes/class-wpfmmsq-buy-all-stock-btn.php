@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Buy All Stock Button Class
  *
- * @version 5.3.4
+ * @version 5.3.7
  * @since   5.3.0
  *
  * @author  WPFactory
@@ -15,15 +15,40 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 	class WPFMMSQ_Buy_All_Stock_Btn {
 
 		/**
+		 * buy_all_stock_added_qty.
+		 *
+		 * Quantity calculated for the current Buy all stock request.
+		 *
+		 * @version 5.3.7
+		 * @since   5.3.7
+		 *
+		 * @var float
+		 */
+		protected $buy_all_stock_added_qty = 0;
+
+		/**
+		 * buy_all_stock_product_title.
+		 *
+		 * Product title used in Buy all stock success notice.
+		 *
+		 * @version 5.3.7
+		 * @since   5.3.7
+		 *
+		 * @var string
+		 */
+		protected $buy_all_stock_product_title = '';
+
+		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.7
 		 * @since   5.3.0
 		 */
 		function __construct() {
 			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'render_buy_all_stock_button' ), PHP_INT_MAX );
 			add_filter( 'woocommerce_add_to_cart_quantity', array( $this, 'override_quantity_for_buy_all_stock' ), 10, 2 );
 			add_filter( 'woocommerce_available_variation', array( $this, 'add_buy_all_stock_variation_data' ), 10, 3 );
+			add_filter( 'wc_add_to_cart_message_html', array( $this, 'override_buy_all_stock_success_notice' ), 10, 2 );
 		}
 
 		/**
@@ -168,10 +193,13 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 		 *
 		 * Filters the quantity before WooCommerce adds the product to the cart.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.7
 		 * @since   5.3.0
 		 */
 		function override_quantity_for_buy_all_stock( $quantity, $product_id ) {
+			$this->buy_all_stock_added_qty     = 0;
+			$this->buy_all_stock_product_title = '';
+
 			$target_id = isset( $_REQUEST['variation_id'] ) && absint( $_REQUEST['variation_id'] ) > 0
 				? absint( $_REQUEST['variation_id'] )
 				: $product_id;
@@ -213,7 +241,51 @@ if ( ! class_exists( 'WPFMMSQ_Buy_All_Stock_Btn' ) ) :
 				return $quantity;
 			}
 
-			return wc_stock_amount( $remaining_stock );
+			$this->buy_all_stock_added_qty     = wc_stock_amount( $remaining_stock );
+			$this->buy_all_stock_product_title = $product->get_name();
+
+			return $this->buy_all_stock_added_qty;
+		}
+
+		/**
+		 * Overrides success notice message for Buy all stock requests.
+		 *
+		 * Placeholders: %qty%, %product_title%.
+		 *
+		 * @version 5.3.7
+		 * @since   5.3.7
+		 *
+		 * @param string $message  Original WooCommerce success message.
+		 * @param array  $products Added products map.
+		 *
+		 * @return string
+		 */
+		function override_buy_all_stock_success_notice( $message, $products ) {
+			if ( ! $this->is_buy_all_stock_request() || $this->buy_all_stock_added_qty <= 0 ) {
+				return $message;
+			}
+
+			$template = get_option(
+				'wpfmmsq_buy_all_stock_button_success_msg',
+				__( '%qty% x %product_title% has been added to your cart.', 'product-quantity-for-woocommerce' )
+			);
+
+			if ( '' === $template ) {
+				$template = __( '%qty% x %product_title% has been added to your cart.', 'product-quantity-for-woocommerce' );
+			}
+
+			$custom_text = str_replace(
+				array( '%qty%', '%product_title%' ),
+				array( (string) $this->buy_all_stock_added_qty, $this->buy_all_stock_product_title ),
+				$template
+			);
+
+			return sprintf(
+				'<a href="%s" class="button wc-forward">%s</a> %s',
+				esc_url( wc_get_page_permalink( 'cart' ) ),
+				esc_html__( 'View cart', 'woocommerce' ),
+				esc_html( $custom_text )
+			);
 		}
 
 	}

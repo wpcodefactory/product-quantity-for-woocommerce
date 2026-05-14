@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 5.3.6\n"
+"Project-Id-Version: product-quantity-for-woocommerce 5.3.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-13T05:27:12+02:00\n"
+"POT-Creation-Date: 2026-05-15T01:22:21+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: product-quantity-for-woocommerce\n"
@@ -49,16 +49,22 @@ msgstr ""
 msgid "Qty Step"
 msgstr ""
 
-#: includes/class-wpfmmsq-buy-all-stock-btn.php:48
-#: includes/class-wpfmmsq-buy-all-stock-btn.php:52
+#: includes/class-wpfmmsq-buy-all-stock-btn.php:73
+#: includes/class-wpfmmsq-buy-all-stock-btn.php:77
 #: includes/settings/class-wpfmmsq-settings-general.php:186
 msgid "Buy all stock"
 msgstr ""
 
-#: includes/class-wpfmmsq-buy-all-stock-btn.php:50
-#: includes/class-wpfmmsq-buy-all-stock-btn.php:58
+#: includes/class-wpfmmsq-buy-all-stock-btn.php:75
+#: includes/class-wpfmmsq-buy-all-stock-btn.php:83
 #: includes/settings/class-wpfmmsq-settings-general.php:200
 msgid "Please select product options with managed stock before using Buy all stock."
+msgstr ""
+
+#: includes/class-wpfmmsq-buy-all-stock-btn.php:270
+#: includes/class-wpfmmsq-buy-all-stock-btn.php:274
+#: includes/settings/class-wpfmmsq-settings-general.php:208
+msgid "%qty% x %product_title% has been added to your cart."
 msgstr ""
 
 #: includes/class-wpfmmsq-core.php:1306
@@ -82,7 +88,7 @@ msgid "Please choose the quantity of item add to cart. It should be more than ze
 msgstr ""
 
 #: includes/class-wpfmmsq-core.php:2290
-#: includes/class-wpfmmsq-core.php:4136
+#: includes/class-wpfmmsq-core.php:4149
 msgid "Maximum allowed quantity for category %1$s is %2$s. Your current quantity for this category is %3$s."
 msgstr ""
 
@@ -100,20 +106,20 @@ msgstr ""
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4146
+#: includes/class-wpfmmsq-core.php:4159
 msgid "Minimum allowed quantity for category %1$s is %2$s. Your current quantity is %3$s."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4216
-#: includes/class-wpfmmsq-core.php:4241
+#: includes/class-wpfmmsq-core.php:4229
+#: includes/class-wpfmmsq-core.php:4254
 msgid "Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4582
+#: includes/class-wpfmmsq-core.php:4595
 msgid "Allowed quantity for category %1$s is %2$s. Your current quantity is %3$s"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4650
+#: includes/class-wpfmmsq-core.php:4663
 msgid "Allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute item is %3$s"
 msgstr ""
 
@@ -412,8 +418,8 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-metaboxes.php:637
 #: includes/settings/class-wpfmmsq-settings-default.php:56
 #: includes/settings/class-wpfmmsq-settings-default.php:135
-#: includes/settings/class-wpfmmsq-settings-general.php:254
-#: includes/settings/class-wpfmmsq-settings-general.php:269
+#: includes/settings/class-wpfmmsq-settings-general.php:262
+#: includes/settings/class-wpfmmsq-settings-general.php:277
 msgid "Default quantity"
 msgstr ""
 
@@ -499,9 +505,9 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-general.php:102
 #: includes/settings/class-wpfmmsq-settings-general.php:140
 #: includes/settings/class-wpfmmsq-settings-general.php:159
-#: includes/settings/class-wpfmmsq-settings-general.php:214
-#: includes/settings/class-wpfmmsq-settings-general.php:285
-#: includes/settings/class-wpfmmsq-settings-general.php:310
+#: includes/settings/class-wpfmmsq-settings-general.php:222
+#: includes/settings/class-wpfmmsq-settings-general.php:293
+#: includes/settings/class-wpfmmsq-settings-general.php:318
 #: includes/settings/class-wpfmmsq-settings-max.php:113
 #: includes/settings/class-wpfmmsq-settings-max.php:141
 #: includes/settings/class-wpfmmsq-settings-max.php:171
@@ -1301,7 +1307,7 @@ msgid "A button displayed on the product page allowing customers to buy all avai
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-general.php:171
-#: includes/settings/class-wpfmmsq-settings-general.php:287
+#: includes/settings/class-wpfmmsq-settings-general.php:295
 msgid "Note:"
 msgstr ""
 
@@ -1333,124 +1339,136 @@ msgstr ""
 msgid "Error message shown when the button is clicked on a variation without managed stock."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:208
+#: includes/settings/class-wpfmmsq-settings-general.php:204
+msgid "Success message"
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-general.php:205
+msgid "Success notice shown after Buy all stock is added. Placeholders: %qty%, %product_title%."
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-general.php:206
+msgid "Placeholders: %s, %s."
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-general.php:216
 msgid "Quantity on archive pages"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:213
+#: includes/settings/class-wpfmmsq-settings-general.php:221
 msgid "Enable quantity on archive pages"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:215
+#: includes/settings/class-wpfmmsq-settings-general.php:223
 msgid "Allow customers to select quantities and add to cart from shop/archive/categories pages, <strong>this works only on simple products.</strong>"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:228
+#: includes/settings/class-wpfmmsq-settings-general.php:236
 msgid "Language Guide"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:229
+#: includes/settings/class-wpfmmsq-settings-general.php:237
 msgid "WPML OR Polylang"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:229
+#: includes/settings/class-wpfmmsq-settings-general.php:237
 msgid "If you are using multi-language store with WPML or Polylang, you can use shortcodes to show different languages, example: [alg_wc_pq_translate lang=\"EN\"] Allowed quantity for %product_title% is %allowed_quantity%. Your current quantity is %quantity%.[/alg_wc_pq_translate] can be used to show English messages, similar to other languages you have, use [alg_wc_pq_translate not_lang=\" \"] as fallback for non-defined languages."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:238
+#: includes/settings/class-wpfmmsq-settings-general.php:246
 msgid "Initial Quantity Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:239
+#: includes/settings/class-wpfmmsq-settings-general.php:247
 msgid "Set the initial quantity you want to show on page load, whether on product pages, or archive (shop/category) pages."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:244
+#: includes/settings/class-wpfmmsq-settings-general.php:252
 #: includes/settings/class-wpfmmsq-settings-qty-info.php:70
 msgid "Single product page"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:248
+#: includes/settings/class-wpfmmsq-settings-general.php:256
 msgid "Set initial quantity on single product page."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:251
+#: includes/settings/class-wpfmmsq-settings-general.php:259
 msgid "Do not Change"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:252
-#: includes/settings/class-wpfmmsq-settings-general.php:267
+#: includes/settings/class-wpfmmsq-settings-general.php:260
+#: includes/settings/class-wpfmmsq-settings-general.php:275
 msgid "Min quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:253
-#: includes/settings/class-wpfmmsq-settings-general.php:268
+#: includes/settings/class-wpfmmsq-settings-general.php:261
+#: includes/settings/class-wpfmmsq-settings-general.php:276
 #: includes/settings/class-wpfmmsq-settings-max.php:211
 msgid "Max quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:255
-#: includes/settings/class-wpfmmsq-settings-general.php:270
+#: includes/settings/class-wpfmmsq-settings-general.php:263
+#: includes/settings/class-wpfmmsq-settings-general.php:278
 msgid "Change to lowest fixed quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:259
+#: includes/settings/class-wpfmmsq-settings-general.php:267
 msgid "Archive pages"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:260
+#: includes/settings/class-wpfmmsq-settings-general.php:268
 msgid "Set initial quantity on archives."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:266
+#: includes/settings/class-wpfmmsq-settings-general.php:274
 msgid "Do not change"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:279
+#: includes/settings/class-wpfmmsq-settings-general.php:287
 msgid "Variable Products Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:284
+#: includes/settings/class-wpfmmsq-settings-general.php:292
 msgid "Load all variations"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:286
+#: includes/settings/class-wpfmmsq-settings-general.php:294
 msgid "Leave this option <strong>unticked</strong> unless you have YITH WooCommerce Quick View plugin AND you are having issues loading variations."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:288
+#: includes/settings/class-wpfmmsq-settings-general.php:296
 msgid "This option might affect the performance. If your site starts loading slower, turn it off."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:294
+#: includes/settings/class-wpfmmsq-settings-general.php:302
 msgid "On variation change"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:296
+#: includes/settings/class-wpfmmsq-settings-general.php:304
 msgid "Select what you want to happen to quantity field when you change a variation, you can leave the quantity as is, reset to min, max, or default for the new selected variation"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:301
+#: includes/settings/class-wpfmmsq-settings-general.php:309
 msgid "Do nothing"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:302
+#: includes/settings/class-wpfmmsq-settings-general.php:310
 msgid "Reset to min quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:303
+#: includes/settings/class-wpfmmsq-settings-general.php:311
 msgid "Reset to max quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:304
+#: includes/settings/class-wpfmmsq-settings-general.php:312
 msgid "Reset to default quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:305
+#: includes/settings/class-wpfmmsq-settings-general.php:313
 msgid "Reset to lowest fixed quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-general.php:309
+#: includes/settings/class-wpfmmsq-settings-general.php:317
 msgid "Sum variations"
 msgstr ""
 

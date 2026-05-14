@@ -1,7 +1,7 @@
 /**
  * wpfmmsq-quantity-steps.js
  *
- * @version 5.3.1
+ * @version 5.3.7
  * @since   4.6.10
  * @todo    Step Quanity > Allow adding all quantity in stock (skip step restriction)
  */
@@ -227,9 +227,25 @@ jQuery( document ).ready( function () {
 		} );
 
 		input.addEventListener( 'invalid', ( e ) => {
-			normalizeEmptyValue( e.target );
-			rememberLastValidValue( e.target );
-			queue_non_empty_enforcement( e.target );
+			const target = e.target;
+			const maxNumeric = getNumericValue( originalMax );
+			const currentValue = getNumericValue( target.value );
+			if ( target.validity.stepMismatch && null !== maxNumeric && null !== currentValue && currentValue === maxNumeric ) {
+				e.preventDefault();
+				target.step = '';
+				input.dataset.skipMode = 'skip';
+				setTimeout( function () {
+					const form = target.form;
+					if ( form ) {
+						const submitBtn = form.querySelector( '[type="submit"]' );
+						form.requestSubmit( submitBtn || undefined );
+					}
+				}, 0 );
+				return;
+			}
+			normalizeEmptyValue( target );
+			rememberLastValidValue( target );
+			queue_non_empty_enforcement( target );
 		} );
 
 		input.addEventListener( 'wpfmmsq_refresh_state', ( e ) => {

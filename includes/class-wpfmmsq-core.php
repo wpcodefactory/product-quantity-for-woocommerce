@@ -3717,7 +3717,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_max_variation.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.7
 		 * @since   1.0.0
 		 */
 		function set_quantity_input_min_max_variation( $args, $_product, $_variation ) {
@@ -3728,8 +3728,9 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$args['min_qty'] = $this->get_product_qty_min_max( $variation_id, $args['min_qty'], 'min' );
 			$args['max_qty'] = $this->get_product_qty_min_max( $variation_id, $args['max_qty'], 'max' );
 			$_max            = $_variation->get_max_purchase_quantity();
+			$allow_all_remaining = ( 'yes' === get_option( 'wpfmmsq_step_per_item_quantity_allow_all_remaining', 'no' ) );
 
-			if ( - 1 != $_max && $args['max_qty'] > $_max ) {
+			if ( ! $allow_all_remaining && - 1 != $_max && $args['max_qty'] > $_max ) {
 				$args['max_qty'] = $_max;
 			}
 
@@ -3772,16 +3773,28 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_or_max.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.7
 		 * @since   1.6.0
 		 * @todo    [dev] (important) rename this (and probably some other `set_...()` functions)
 		 */
 		function set_quantity_input_min_or_max( $qty, $_product, $min_or_max ) {
 			$value = $this->get_product_qty_min_max( $this->get_product_id( $_product ), $qty, $min_or_max );
+			
+			// If "allow all remaining" is enabled and we're setting max, use stock quantity instead
+			if ( 'max' === $min_or_max && 'yes' === get_option( 'wpfmmsq_step_per_item_quantity_allow_all_remaining', 'no' ) ) {
+				if ( $_product && $_product->managing_stock() ) {
+					$stock_quantity = $_product->get_stock_quantity();
+					if ( is_numeric( $stock_quantity ) ) {
+						$value = (float) $stock_quantity;
+					}
+				}
+			}
+			
 			remove_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX );
 			$_max = $_product->get_max_purchase_quantity();
 			add_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX, 2 );
-			$return = ( - 1 == $_max || $value < $_max ? $value : $_max );
+			$allow_all_remaining = ( 'max' === $min_or_max && 'yes' === get_option( 'wpfmmsq_step_per_item_quantity_allow_all_remaining', 'no' ) );
+			$return = ( $allow_all_remaining || - 1 == $_max || $value < $_max ? $value : $_max );
 
 			return $return;
 		}
@@ -4678,7 +4691,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_product_step.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.7
 		 * @since   1.4.0
 		 * @todo    [dev] `$multiplier` should be calculated automatically according to the `$qty_step_settings` value (same in `force_js_check_step()`)
 		 */
@@ -4688,6 +4701,18 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$product_qty_step = floatval( $product_qty_step );
 			}
 			if ( 0 != $product_qty_step ) {
+				// Check if "allow all remaining" is enabled and quantity equals stock
+				if ( 'yes' === get_option( 'wpfmmsq_step_per_item_quantity_allow_all_remaining', 'no' ) ) {
+					$product = wc_get_product( $product_id );
+					if ( $product && $product->managing_stock() ) {
+						$stock_quantity = $product->get_stock_quantity();
+						if ( is_numeric( $stock_quantity ) && (float) $quantity === (float) $stock_quantity ) {
+							// Allow this quantity to pass step validation if it equals stock
+							return ( ! $do_fix ? true : $quantity );
+						}
+					}
+				}
+
 				$min_value = $this->get_product_qty_min_max( $product_id, 0, 'min' );
 				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 					$multiplier        = floatval( 1000000 );

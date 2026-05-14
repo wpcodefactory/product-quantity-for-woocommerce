@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - General Section Settings
  *
- * @version 5.3.0
+ * @version 5.3.7
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -40,7 +40,7 @@ if ( ! class_exists( 'WPFMMSQ_Settings_General' ) ) :
 		/**
 		 * get_settings.
 		 *
-		 * @version 5.3.1
+		 * @version 5.3.7
 		 * @since   1.0.0
 		 * @todo    [feature] Force initial quantity on single product page - add "Custom value" option
 		 * @todo    [feature] Force initial quantity on single product page - per product
@@ -198,6 +198,14 @@ if ( ! class_exists( 'WPFMMSQ_Settings_General' ) ) :
 					'desc_tip' => __( 'Error message shown when the button is clicked on a variation without managed stock.', 'product-quantity-for-woocommerce' ),
 					'id'       => 'wpfmmsq_buy_all_stock_button_alert_msg',
 					'default'  => __( 'Please select product options with managed stock before using Buy all stock.', 'product-quantity-for-woocommerce' ),
+					'type'     => 'text',
+				),
+				array(
+					'title'    => __( 'Success message', 'product-quantity-for-woocommerce' ),
+					'desc_tip' => __( 'Success notice shown after Buy all stock is added. Placeholders: %qty%, %product_title%.', 'product-quantity-for-woocommerce' ),
+					'desc'     => sprintf(__( 'Placeholders: %s, %s.', 'product-quantity-for-woocommerce' ),'<code>%qty%</code>','<code>%product_title%</code>'),
+					'id'       => 'wpfmmsq_buy_all_stock_button_success_msg',
+					'default'  => __( '%qty% x %product_title% has been added to your cart.', 'product-quantity-for-woocommerce' ),
 					'type'     => 'text',
 				),
 				array(
