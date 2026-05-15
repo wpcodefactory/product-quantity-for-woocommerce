@@ -1,7 +1,7 @@
 /**
  * wpfmmsq-quantity-steps.js
  *
- * @version 5.3.7
+ * @version 5.3.8
  * @since   4.6.10
  * @todo    Step Quanity > Allow adding all quantity in stock (skip step restriction)
  */
@@ -259,6 +259,19 @@ jQuery( document ).ready( function () {
 		manage_skip_step_restriction( input );
 	}
 
+	/**
+	 * Bind skip-step logic to all classic cart quantity inputs.
+	 *
+	 * @version 5.3.8
+	 * @since   5.3.8
+	 */
+	function bind_cart_quantity_inputs() {
+		document.querySelectorAll( 'input[name^="cart["][name$="[qty]"], input.qty[name$="[qty]"]' ).forEach( function ( input ) {
+			manage_skip_step_restriction( input );
+			enforce_non_empty_quantity_value( input );
+		} );
+	}
+
 	if ( wpfmmsq_runtime_steps.page == 'product' ) {
 		bind_product_quantity_input();
 
@@ -270,15 +283,13 @@ jQuery( document ).ready( function () {
 	}
 
 	if ( wpfmmsq_runtime_steps.page == 'cart' ) {
-		const data_loop = wpfmmsq_runtime_steps.data;
-		for ( const key in data_loop ) {
-			var cart_field_name = `cart[${ key }][qty]`;
-			const inputs = document.querySelectorAll( '[name="' + cart_field_name + '"]' );
-			inputs.forEach( input => {
-				manage_skip_step_restriction( input );
-				enforce_non_empty_quantity_value( input );
-			} );
-		}
+		bind_cart_quantity_inputs();
+
+		jQuery( document.body ).on( 'updated_wc_div updated_cart_totals wc_fragments_loaded', function () {
+			setTimeout( function () {
+				bind_cart_quantity_inputs();
+			}, 0 );
+		} );
 	}
 
 	jQuery( document ).on( 'input change blur', '[name="quantity"], input.qty, input[id^="quantity_"], input[name$="[qty]"]', function () {

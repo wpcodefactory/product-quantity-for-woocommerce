@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 5.3.4
+ * @version 5.3.8
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -78,13 +78,13 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 		/**
 		 * pq_taxonomy_edit_custom_meta_field.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   4.6.0
 		 */
 		public function pq_taxonomy_edit_custom_meta_field( $term ) {
 			$taxonomy                                               = $term->taxonomy;
 			$t_id                                                   = $term->term_id;
-			$term_meta                                              = get_option( "wpfmmsq_taxonomy_product_attribute_item_$t_id" );
+			$term_meta                                              = get_option( "wpfmmsq_taxonomy_product_attribute_item_$t_id", array() );
 			$product_attributes_selected                            = get_option( 'wpfmmsq_exact_qty_allowed_per_attributes_selected', array() );
 			$wpfmmsq_min_per_attribute_selected                     = get_option( 'wpfmmsq_min_per_attribute_selected', array() );
 			$wpfmmsq_max_per_attribute_selected                     = get_option( 'wpfmmsq_max_per_attribute_selected', array() );
@@ -97,7 +97,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_min]"><?php esc_html_e( 'Minimum quantity (grouped for this attribute item)', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings. Set -1 to disable.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_min]" id="term_meta[wpfmmsq_min]" value="<?php echo esc_attr( $term_meta['wpfmmsq_min'] ) ? esc_attr( $term_meta['wpfmmsq_min'] ) : ''; ?>">
+						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_min]" id="term_meta[wpfmmsq_min]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_min' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a number of minimum allowed quantity for this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -106,7 +106,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_min_all_product]"><?php esc_html_e( 'Minimum quantity for all product (apply to all products in this attribute item)', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings. Set -1 to disable.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_min_all_product]" id="term_meta[wpfmmsq_min_all_product]" value="<?php echo esc_attr( $term_meta['wpfmmsq_min_all_product'] ) ? esc_attr( $term_meta['wpfmmsq_min_all_product'] ) : ''; ?>">
+						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_min_all_product]" id="term_meta[wpfmmsq_min_all_product]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_min_all_product' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a number of minimum allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -117,7 +117,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_max]"><?php esc_html_e( 'Maximum quantity (grouped for this attribute item)', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings. Set -1 to disable.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_max]" id="term_meta[wpfmmsq_max]" value="<?php echo esc_attr( $term_meta['wpfmmsq_max'] ) ? esc_attr( $term_meta['wpfmmsq_max'] ) : ''; ?>">
+						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_max]" id="term_meta[wpfmmsq_max]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_max' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a number of maximum allowed quantity for this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -126,7 +126,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_max_all_product]"><?php esc_html_e( 'Maximum quantity for all product (apply to all products in this attribute item)', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings. Set -1 to disable.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_max_all_product]" id="term_meta[wpfmmsq_max_all_product]" value="<?php echo esc_attr( $term_meta['wpfmmsq_max_all_product'] ) ? esc_attr( $term_meta['wpfmmsq_max_all_product'] ) : ''; ?>">
+						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_max_all_product]" id="term_meta[wpfmmsq_max_all_product]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_max_all_product' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a number of maximum allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -138,7 +138,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_step]"><?php esc_html_e( 'Step quantity', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings. Set -1 to disable.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_step]" id="term_meta[wpfmmsq_step]" value="<?php echo esc_attr( $term_meta['wpfmmsq_step'] ) ? esc_attr( $term_meta['wpfmmsq_step'] ) : ''; ?>">
+						<input type="number" step="0.000001" min="0" name="term_meta[wpfmmsq_step]" id="term_meta[wpfmmsq_step]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_step' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a number of step quantity for this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -159,7 +159,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_exact_qty_allowed]"><?php esc_html_e( 'Exact quantity allowed (grouped for this attribute item)', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( sprintf( __( 'Allowed quantities as comma separated list, e.g.: %s.', 'product-quantity-for-woocommerce' ), '<em>3,7,9</em>' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="text" name="term_meta[wpfmmsq_exact_qty_allowed]" id="term_meta[wpfmmsq_exact_qty_allowed]" value="<?php echo esc_attr( $term_meta['wpfmmsq_exact_qty_allowed'] ) ? esc_attr( $term_meta['wpfmmsq_exact_qty_allowed'] ) : ''; ?>">
+						<input type="text" name="term_meta[wpfmmsq_exact_qty_allowed]" id="term_meta[wpfmmsq_exact_qty_allowed]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_exact_qty_allowed' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify numbers of exact allowed quantity for this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -169,7 +169,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_exact_qty_allowed_all_product]"><?php esc_html_e( 'Exact quantity allowed for all product (apply to all products in this attribute item)', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( sprintf( __( 'Allowed quantities as comma separated list, e.g.: %s.', 'product-quantity-for-woocommerce' ), '<em>3,7,9</em>' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="text" name="term_meta[wpfmmsq_exact_qty_allowed_all_product]" id="term_meta[wpfmmsq_exact_qty_allowed_all_product]" value="<?php echo esc_attr( $term_meta['wpfmmsq_exact_qty_allowed_all_product'] ) ? esc_attr( $term_meta['wpfmmsq_exact_qty_allowed_all_product'] ) : ''; ?>">
+						<input type="text" name="term_meta[wpfmmsq_exact_qty_allowed_all_product]" id="term_meta[wpfmmsq_exact_qty_allowed_all_product]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_exact_qty_allowed_all_product' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify numbers of exact allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -181,7 +181,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_price_by_qty_attribute_unit_singular]"><?php esc_html_e( 'Unit label template: Singular', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="text" name="term_meta[wpfmmsq_price_by_qty_attribute_unit_singular]" id="term_meta[wpfmmsq_price_by_qty_attribute_unit_singular]" value="<?php echo esc_attr( $term_meta['wpfmmsq_price_by_qty_attribute_unit_singular'] ) ? esc_attr( $term_meta['wpfmmsq_price_by_qty_attribute_unit_singular'] ) : ''; ?>">
+						<input type="text" name="term_meta[wpfmmsq_price_by_qty_attribute_unit_singular]" id="term_meta[wpfmmsq_price_by_qty_attribute_unit_singular]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_price_by_qty_attribute_unit_singular' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a singular string for this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -190,7 +190,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 						<label for="term_meta[wpfmmsq_price_by_qty_attribute_unit_plural]"><?php esc_html_e( 'Unit label template: Plural', 'product-quantity-for-woocommerce' ); ?><?php //echo wc_help_tip( __( 'Set 0 to use global settings.', 'product-quantity-for-woocommerce' ), true ); ?></label>
 					</th>
 					<td>
-						<input type="text" name="term_meta[wpfmmsq_price_by_qty_attribute_unit_plural]" id="term_meta[wpfmmsq_price_by_qty_attribute_unit_plural]" value="<?php echo esc_attr( $term_meta['wpfmmsq_price_by_qty_attribute_unit_plural'] ) ? esc_attr( $term_meta['wpfmmsq_price_by_qty_attribute_unit_plural'] ) : ''; ?>">
+						<input type="text" name="term_meta[wpfmmsq_price_by_qty_attribute_unit_plural]" id="term_meta[wpfmmsq_price_by_qty_attribute_unit_plural]" value="<?php echo esc_attr( wpfmmsq_get_term_meta_value( $term_meta, 'wpfmmsq_price_by_qty_attribute_unit_plural' ) ); ?>">
 						<p class="description"><?php esc_html_e( 'Specify a plural string for this attribute item, this is controlled by Product Quantity plugin', 'product-quantity-for-woocommerce' ); ?></p>
 					</td>
 				</tr>
@@ -203,7 +203,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 		/**
 		 * pq_save_taxonomy_custom_meta_field.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   4.6.0
 		 */
 		public function pq_save_taxonomy_custom_meta_field( $term_id ) {
@@ -211,7 +211,7 @@ if ( ! class_exists( 'WPFMMSQ_Attribute_Item_Metaboxes' ) ) :
 			if ( ! empty( $posted_term_meta ) ) {
 
 				$t_id      = $term_id;
-				$term_meta = get_option( "wpfmmsq_taxonomy_product_attribute_item_$t_id" );
+				$term_meta = get_option( "wpfmmsq_taxonomy_product_attribute_item_$t_id", array() );
 				$cat_keys  = array_keys( $posted_term_meta );
 				foreach ( $cat_keys as $key ) {
 					if ( isset( $posted_term_meta[ $key ] ) ) {

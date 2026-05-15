@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Functions - Core
  *
- * @version 5.3.4
+ * @version 5.3.8
  * @since   1.6.3
  * @author  WPFactory
  */
@@ -142,5 +142,23 @@ if ( ! function_exists( 'wpfmmsq_enqueue_script' ) ) {
 		}
 
 		wp_enqueue_script( $handle, $src, $deps, $ver, $args );
+	}
+}
+
+if ( ! function_exists( 'wpfmmsq_get_term_meta_value' ) ) {
+	/**
+	 * Get a term meta array value safely.
+	 *
+	 * @version 5.3.8
+	 * @since   5.3.8
+	 *
+	 * @param   array   $term_meta  Term meta array.
+	 * @param   string  $key        Meta key.
+	 * @param   string  $default    Fallback value.
+	 *
+	 * @return string
+	 */
+	function wpfmmsq_get_term_meta_value( $term_meta, $key, $default = '' ) {
+		return ( is_array( $term_meta ) && isset( $term_meta[ $key ] ) ? (string) $term_meta[ $key ] : $default );
 	}
 }

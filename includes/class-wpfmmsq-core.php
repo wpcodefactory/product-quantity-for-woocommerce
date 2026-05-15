@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.3.4
+ * @version 5.3.8
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -1673,7 +1673,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_term_price_unit.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   4.5.20
 		 */
 		function get_term_price_unit( $product_id ) {
@@ -1684,7 +1684,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			} else if ( ! empty( $terms ) ) {
 				foreach ( $terms as $term ) {
 					$t_id      = $term->term_id;
-					$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$t_id" );
+					$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$t_id", array() );
 					if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 						if ( isset( $term_meta['alg_wc_pq_category_price_unit'] ) && ! empty( $term_meta['alg_wc_pq_category_price_unit'] ) ) {
 							return $term_meta['alg_wc_pq_category_price_unit'];
@@ -2220,7 +2220,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * validate_on_add_to_cart.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   1.4.0
 		 * @todo    [dev] (maybe) separate messages for min/max (i.e. different from "cart" messages)?
 		 */
@@ -2277,7 +2277,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					if ( isset( $term_list ) && count( $term_list ) > 0 ) {
 						foreach ( $term_list as $term ) {
 							$t_id      = $term;
-							$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$t_id" );
+							$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$t_id", array() );
 							if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 								$term_qty             = ( isset( $cartitem_by_category[ $term ] ) ? (int) $cartitem_by_category[ $term ] + $quantity : $quantity );
 								$alg_wc_pq_min_or_max = 'alg_wc_pq_' . $min_or_max;
@@ -2941,7 +2941,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * get_category_unit_label.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   1.6.1
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
 		 */
@@ -2950,7 +2950,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$term_list = wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'ids' ) );
 			if ( isset( $term_list ) && count( $term_list ) > 0 ) {
 				foreach ( $term_list as $term ) {
-					$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$term" );
+					$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$term", array() );
 					if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 						$singular_meta = 'alg_wc_pq_category_unit_singular';
 						$plural_meta   = 'alg_wc_pq_category_unit_plural';
@@ -4119,7 +4119,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_min_max.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   1.0.0
 		 */
 		function check_min_max( $min_or_max, $cart_item_quantities, $cart_total_quantity, $_is_cart, $_return ) {
@@ -4137,7 +4137,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$cartitem_by_category = $this->get_cartitem_by_category();
 				if ( isset( $cartitem_by_category ) && ! empty( $cartitem_by_category ) && count( $cartitem_by_category ) > 0 ) {
 					foreach ( $cartitem_by_category as $category_id => $count ) {
-						$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$category_id" );
+						$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$category_id", array() );
 						if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 							$alg_wc_pq_min_or_max = 'alg_wc_pq_' . $min_or_max;
 							$cat_quantity         = ( isset( $term_meta[ $alg_wc_pq_min_or_max ] ) ) ? (int) $term_meta[ $alg_wc_pq_min_or_max ] : 0;
@@ -4569,7 +4569,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * check_exact_qty.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.8
 		 * @since   1.5.0
 		 */
 		function check_exact_qty( $allowed_or_disallowed, $cart_item_quantities, $_is_cart, $_return ) {
@@ -4579,7 +4579,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$cartitem_by_category = $this->get_cartitem_by_category();
 				if ( isset( $cartitem_by_category ) && ! empty( $cartitem_by_category ) && count( $cartitem_by_category ) > 0 ) {
 					foreach ( $cartitem_by_category as $category_id => $count ) {
-						$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$category_id" );
+						$term_meta = get_option( "wpfmmsq_taxonomy_product_cat_$category_id", array() );
 						if ( ! empty( $term_meta ) && is_array( $term_meta ) ) {
 							$alg_wc_pq_allowed_or_disallowed = 'alg_wc_pq_exact_qty_' . $allowed_or_disallowed;
 							$cat_quantity                    = $term_meta[ $alg_wc_pq_allowed_or_disallowed ];
