@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Pro Class
  *
- * @version 5.3.4
+ * @version 5.3.9
  * @since   1.8.0
  *
  * @author  WPFactory
@@ -19,7 +19,7 @@ if ( ! class_exists( 'WPFMMSQ_Free' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.8.0
 		 *
 		 * @todo    [dev] maybe move here: `require_once( 'includes/settings/class-wpfmmsq-metaboxes.php' );`
@@ -58,29 +58,12 @@ if ( ! class_exists( 'WPFMMSQ_Free' ) ) :
 		/**
 		 * quantity_step_per_product_value.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.8.0
 		 */
 		function quantity_step_per_product_value( $value, $product_id, $from_shortcode = false ) {
 			$product = wc_get_product( $product_id );
-			if ( 'yes' == get_post_meta( $product_id, '_' . 'wpfmmsq_min_allow_selling_below_stock', true ) ) {
-				$stock = $product->get_stock_quantity();
-				$min   = get_post_meta( $product_id, '_' . 'wpfmmsq_min', true );
-				if ( $product->managing_stock() && $stock < $min ) {
-					return 1;
-				}
-			}
 			$step = get_post_meta( $product_id, '_' . 'wpfmmsq_step', true );
-			if ( 'yes' === get_option( 'wpfmmsq_step_per_item_quantity_per_product_less2x', 'no' ) && ! $from_shortcode ) {
-				if ( $step > 0 ) {
-					$step       = floatval( $step );
-					$doublestep = $step * 2;
-					$stock      = $product->get_stock_quantity();
-					if ( ! empty( $stock ) && $stock < $doublestep ) {
-						$step = $stock - $step;
-					}
-				}
-			}
 
 			if ( empty( $step ) ) {
 				return 0;
@@ -92,21 +75,10 @@ if ( ! class_exists( 'WPFMMSQ_Free' ) ) :
 		/**
 		 * per_item_quantity_per_product_value.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.8.0
 		 */
 		function per_item_quantity_per_product_value( $value, $product_id, $min_or_max ) {
-			if ( $min_or_max == 'min' ) {
-				if ( 'yes' == get_post_meta( $product_id, '_' . 'wpfmmsq_min_allow_selling_below_stock', true ) ) {
-					$product = wc_get_product( $product_id );
-					$stock   = $product->get_stock_quantity();
-					$min     = get_post_meta( $product_id, '_' . 'wpfmmsq_min', true );
-					if ( $product->managing_stock() && $stock <= $min ) {
-						return (float) $stock;
-					}
-				}
-			}
-
 			return (float) get_post_meta( $product_id, '_' . 'wpfmmsq_' . $min_or_max, true );
 		}
 

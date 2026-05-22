@@ -24,16 +24,12 @@ if ( ! class_exists( 'WPFMMSQ_Quantity_Info' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.7.0
 		 */
 		function __construct() {
 
 			if ( ! isset( $_GET['et_fb'] ) && ! isset( $_GET['et_bfb'] ) ) {
-
-				if ( ! empty( get_option( 'wpfmmsq_exact_cart_total_quantity', 0 ) ) && 'yes' === get_option( 'wpfmmsq_exact_cart_total_quantity_enabled', 'no' ) ) {
-					add_action( 'woocommerce_check_cart_items', array( $this, 'set_exact_qty_for_cart' ) );
-				}
 
 				// Quantity info on single product page
 				if ( 'yes' === get_option( 'wpfmmsq_qty_info_on_single_product', 'no' ) || 'yes' === get_option( 'wpfmmsq_qty_info_on_single_product_custom_hook', 'no' ) ) {
@@ -59,45 +55,6 @@ if ( ! class_exists( 'WPFMMSQ_Quantity_Info' ) ) :
 				                                  '[wpfmmsq_max_product_qty before="Maximum quantity is <strong>" after="</strong><br>"]' .
 				                                  '[wpfmmsq_product_qty_step before="Step is <strong>" after="</strong><br>"]' .
 				                                  '</p>';
-			}
-		}
-
-		/**
-		 * Enforce exact cart quantity on Cart and Checkout pages.
-		 *
-		 * @version 5.3.4
-		 * @since   1.7.0
-		 */
-		function set_exact_qty_for_cart() {
-			// Only run in the Cart or Checkout pages
-			if ( is_cart() || is_checkout() ) {
-				global $woocommerce;
-
-				$alg_wc_pq_exact_cart_total_quantity = get_option( 'wpfmmsq_exact_cart_total_quantity', '' );
-				$alg_wc_pq_exact_cart_total_message  = get_option( 'wpfmmsq_exact_cart_total_message', 'Allowed order quantity is %min_cart_total_quantity%. Your current cart quantity is %cart_total_quantity%.' );
-
-				// Set the minimum number of products before checking out
-				$fixed_quantities = explode( ',', $alg_wc_pq_exact_cart_total_quantity );
-
-				// Get the Cart's total number of products
-				$cart_num_products = WC()->cart->cart_contents_count;
-				$cart_num_products = array_sum( wpfmmsq()->core->get_cart_item_quantities() );
-
-				if ( $cart_num_products > 0 && ! in_array( $cart_num_products, $fixed_quantities ) ) {
-					// Display our error message
-					wc_add_notice( str_replace( array(
-						'%min_cart_total_quantity%',
-						'%cart_total_quantity%'
-					), array(
-						$alg_wc_pq_exact_cart_total_quantity,
-						$cart_num_products
-					), $alg_wc_pq_exact_cart_total_message ),
-						'error' );
-
-					if ( is_checkout() && 'yes' === get_option( 'wpfmmsq_stop_from_seeing_checkout', 'no' ) ) {
-						wp_safe_redirect( wc_get_cart_url() );
-					}
-				}
 			}
 		}
 

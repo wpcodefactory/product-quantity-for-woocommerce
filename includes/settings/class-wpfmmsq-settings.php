@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Settings
  *
- * @version 5.3.4
+ * @version 5.3.9
  * @since   1.0.0
  *
  * @author  WPFactory
@@ -162,7 +162,7 @@ if ( ! class_exists( 'WPFMMSQ_Settings' ) ) :
 		/**
 		 * maybe_reset_settings.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.0.0
 		 */
 		function maybe_reset_settings() {
@@ -234,46 +234,6 @@ if ( ! class_exists( 'WPFMMSQ_Settings' ) ) :
 						}
 					}
 
-					if ( isset( $value['id'] ) && 'alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save' == $value['id'] ) {
-						$alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] ) ? sanitize_text_field( wp_unslash( $_POST['alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save'] ) ) : null );
-
-
-						$alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta = ( isset( $_POST['alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta'] ) ? sanitize_text_field( wp_unslash( $_POST['alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta'] ) ) : null );
-
-
-						if ( 'yes' == $alg_wc_pq_min_per_item_quantity_per_product_run_save_below_stock_meta ) {
-
-							if ( $alg_wc_pq_min_per_item_quantity_per_product_allow_selling_below_stock_save ) {
-								$optionval = 'yes';
-							} else {
-								$optionval = 'no';
-							}
-
-							$block_size = 512;
-							$offset     = 0;
-
-							while ( true ) {
-								$args = array(
-									'post_type'      => 'product',
-									'post_status'    => 'publish',
-									'posts_per_page' => $block_size,
-									'fields'         => 'ids',
-									'offset'         => $offset,
-								);
-								$loop = new WP_Query( $args );
-								if ( $loop->have_posts() ):
-									while ( $loop->have_posts() ): $loop->the_post();
-										$id = get_the_ID();
-										update_post_meta( $id, '_wpfmmsq_min_allow_selling_below_stock', $optionval );
-									endwhile;
-								endif;
-								wp_reset_postdata();
-								$offset += $block_size;
-							}
-
-						}
-
-					}
 				}
 			}
 		}
@@ -332,6 +292,8 @@ if ( ! class_exists( 'WPFMMSQ_Settings' ) ) :
 		 */
 		function save() {
 			parent::save();
+			global $current_section;
+			do_action( 'wpfmmsq_settings_after_save', $current_section );
 			$this->maybe_reset_settings();
 		}
 

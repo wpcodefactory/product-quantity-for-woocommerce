@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Migration class.
  *
- * @version 5.3.6
+ * @version 5.3.9
  * @since   5.3.4
  * @package WPFMMSQ
  */
@@ -19,12 +19,12 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 		 * Bump this when adding new migrations. The stored option
 		 * will be compared against this to determine if migration should run.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   5.3.4
 		 *
 		 * @var string
 		 */
-		private static $version = '5.3.4';
+		private static $version = '5.3.9';
 
 		/**
 		 * Get migration version.
@@ -257,6 +257,33 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 		);
 
 		/**
+		 * Legacy term meta keys mapped to new term meta keys.
+		 *
+		 * @version 5.3.9
+		 * @since   5.3.9
+		 *
+		 * @var array<string,string>
+		 */
+		private static $term_meta_key_map = array(
+			'alg_wc_pq_min'                                  => 'wpfmmsq_min',
+			'alg_wc_pq_max'                                  => 'wpfmmsq_max',
+			'alg_wc_pq_step'                                 => 'wpfmmsq_step',
+			'alg_wc_pq_step_all_product'                     => 'wpfmmsq_step_all_product',
+			'alg_wc_pq_default'                              => 'wpfmmsq_default',
+			'alg_wc_pq_min_all_product'                      => 'wpfmmsq_min_all_product',
+			'alg_wc_pq_max_all_product'                      => 'wpfmmsq_max_all_product',
+			'alg_wc_pq_exact_qty_allowed'                    => 'wpfmmsq_exact_qty_allowed',
+			'alg_wc_pq_exact_qty_disallowed'                 => 'wpfmmsq_exact_qty_disallowed',
+			'alg_wc_pq_exact_qty_allowed_all_product'        => 'wpfmmsq_exact_qty_allowed_all_product',
+			'alg_wc_pq_exact_qty_disallowed_all_product'     => 'wpfmmsq_exact_qty_disallowed_all_product',
+			'alg_wc_pq_category_unit_singular'               => 'wpfmmsq_category_unit_singular',
+			'alg_wc_pq_category_unit_plural'                 => 'wpfmmsq_category_unit_plural',
+			'alg_wc_pq_price_by_qty_attribute_unit_singular' => 'wpfmmsq_price_by_qty_attribute_unit_singular',
+			'alg_wc_pq_price_by_qty_attribute_unit_plural'   => 'wpfmmsq_price_by_qty_attribute_unit_plural',
+			'alg_wc_pq_category_price_unit'                  => 'wpfmmsq_category_price_unit',
+		);
+
+		/**
 		 * Get migration version.
 		 *
 		 * @version 5.3.6
@@ -384,7 +411,7 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 		/**
 		 * Migrate term option buckets.
 		 *
-		 * @version 5.3.6
+		 * @version 5.3.9
 		 * @since   5.3.4
 		 */
 		private static function migrate_term_metas() {
@@ -412,6 +439,36 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 			// Delete old term options after migration
 			foreach ( $to_delete as $old_key ) {
 				delete_option( $old_key );
+			}
+
+			// Migrate legacy keys inside term meta option buckets.
+			foreach ( self::get_term_option_prefix_map() as $new_prefix ) {
+				$results = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE %s",
+						$new_prefix . '%'
+					)
+				);
+
+				foreach ( $results as $row ) {
+					$term_meta = maybe_unserialize( $row->option_value );
+					if ( ! is_array( $term_meta ) ) {
+						continue;
+					}
+
+					$updated = false;
+					foreach ( self::get_term_meta_key_mapping() as $old_meta_key => $new_meta_key ) {
+						if ( isset( $term_meta[ $old_meta_key ] ) && ! isset( $term_meta[ $new_meta_key ] ) ) {
+							$term_meta[ $new_meta_key ] = $term_meta[ $old_meta_key ];
+							unset( $term_meta[ $old_meta_key ] );
+							$updated = true;
+						}
+					}
+
+					if ( $updated ) {
+						update_option( $row->option_name, $term_meta );
+					}
+				}
 			}
 		}
 
@@ -461,6 +518,18 @@ if ( ! class_exists( 'WPFMMSQ_Migration' ) ) :
 		 */
 		private static function get_term_option_prefix_map() {
 			return self::$term_option_prefix_map;
+		}
+
+		/**
+		 * Legacy-to-new term meta key mapping.
+		 *
+		 * @version 5.3.9
+		 * @since   5.3.8
+		 *
+		 * @return array<string,string>
+		 */
+		private static function get_term_meta_key_mapping() {
+			return self::$term_meta_key_map;
 		}
 
 	}
