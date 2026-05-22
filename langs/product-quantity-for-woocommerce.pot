@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: product-quantity-for-woocommerce 5.3.8\n"
+"Project-Id-Version: product-quantity-for-woocommerce 5.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-quantity-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-15T22:23:38+02:00\n"
+"POT-Creation-Date: 2026-05-22T23:36:38+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: product-quantity-for-woocommerce\n"
@@ -67,60 +67,42 @@ msgstr ""
 msgid "%qty% x %product_title% has been added to your cart."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:1306
+#: includes/class-wpfmmsq-core.php:1220
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:1311
+#: includes/class-wpfmmsq-core.php:1225
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-wpfmmsq-core.php:1312
+#: includes/class-wpfmmsq-core.php:1226
 msgid "View cart"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2210
-#: includes/class-wpfmmsq-core.php:2233
+#: includes/class-wpfmmsq-core.php:1872
+#: includes/class-wpfmmsq-core.php:1895
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2290
-#: includes/class-wpfmmsq-core.php:4149
-msgid "Maximum allowed quantity for category %1$s is %2$s. Your current quantity for this category is %3$s."
-msgstr ""
-
-#: includes/class-wpfmmsq-core.php:3107
+#: includes/class-wpfmmsq-core.php:2732
 msgid "unit"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3108
+#: includes/class-wpfmmsq-core.php:2733
 msgid "units"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3260
-#: includes/class-wpfmmsq-core.php:3387
-#: includes/class-wpfmmsq-core.php:3502
+#: includes/class-wpfmmsq-core.php:3119
+#: includes/class-wpfmmsq-core.php:3122
+#: includes/settings/class-wpfmmsq-settings-price-by-qty.php:132
 msgid "%price% for %qty% %unit%."
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:4159
-msgid "Minimum allowed quantity for category %1$s is %2$s. Your current quantity is %3$s."
-msgstr ""
-
-#: includes/class-wpfmmsq-core.php:4229
-#: includes/class-wpfmmsq-core.php:4254
-msgid "Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s."
-msgstr ""
-
-#: includes/class-wpfmmsq-core.php:4595
-msgid "Allowed quantity for category %1$s is %2$s. Your current quantity is %3$s"
-msgstr ""
-
-#: includes/class-wpfmmsq-core.php:4663
-msgid "Allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute item is %3$s"
+#: includes/class-wpfmmsq-core.php:3121
+msgid "%price% for %qty% pcs."
 msgstr ""
 
 #: includes/class-wpfmmsq-messenger.php:50
@@ -134,19 +116,19 @@ msgid "Maximum allowed order quantity is %max_cart_total_quantity%. Your current
 msgstr ""
 
 #: includes/class-wpfmmsq-messenger.php:66
-#: includes/settings/class-wpfmmsq-settings-min.php:138
+#: includes/settings/class-wpfmmsq-settings-min.php:129
 msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current order quantity is %cart_total_quantity%."
 msgstr ""
 
 #: includes/class-wpfmmsq-messenger.php:76
-#: includes/class-wpfmmsq-scripts.php:385
+#: includes/class-wpfmmsq-scripts.php:353
 #: includes/settings/class-wpfmmsq-settings-max.php:124
 msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
 
 #: includes/class-wpfmmsq-messenger.php:86
-#: includes/class-wpfmmsq-scripts.php:405
-#: includes/settings/class-wpfmmsq-settings-min.php:175
+#: includes/class-wpfmmsq-scripts.php:373
+#: includes/settings/class-wpfmmsq-settings-min.php:166
 msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
 
@@ -165,257 +147,297 @@ msgstr ""
 msgid "Disallowed quantity for %product_title% is %disallowed_quantity%. Your current quantity is %quantity%."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:97
+#: includes/pro/class-wpfmmsq-pro.php:338
+msgid "Minimum allowed quantity for category %1$s is %2$s. You need to add at least %3$s more."
+msgstr ""
+
+#: includes/pro/class-wpfmmsq-pro.php:347
+#: includes/pro/class-wpfmmsq-pro.php:398
+msgid "Maximum allowed quantity for category %1$s is %2$s. Your current quantity for this category is %3$s."
+msgstr ""
+
+#: includes/pro/class-wpfmmsq-pro.php:411
+msgid "Minimum allowed quantity for category %1$s is %2$s. Your current quantity is %3$s."
+msgstr ""
+
+#: includes/pro/class-wpfmmsq-pro.php:446
+#: includes/pro/class-wpfmmsq-pro.php:462
+msgid "Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s."
+msgstr ""
+
+#: includes/pro/class-wpfmmsq-pro.php:526
+msgid "Allowed quantity for category %1$s is %2$s. Your current quantity is %3$s"
+msgstr ""
+
+#: includes/pro/class-wpfmmsq-pro.php:567
+msgid "Allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute item is %3$s"
+msgstr ""
+
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:97
 msgid "Minimum quantity (grouped for this attribute item)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:101
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:101
 msgid "Specify a number of minimum allowed quantity for this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:106
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:106
 msgid "Minimum quantity for all product (apply to all products in this attribute item)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:110
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:110
 msgid "Specify a number of minimum allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:117
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:117
 msgid "Maximum quantity (grouped for this attribute item)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:121
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:121
 msgid "Specify a number of maximum allowed quantity for this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:126
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:126
 msgid "Maximum quantity for all product (apply to all products in this attribute item)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:130
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:130
 msgid "Specify a number of maximum allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:138
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:138
 msgid "Step quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:142
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:142
 msgid "Specify a number of step quantity for this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:159
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:159
 msgid "Exact quantity allowed (grouped for this attribute item)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:163
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:163
 msgid "Specify numbers of exact allowed quantity for this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:169
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:169
 msgid "Exact quantity allowed for all product (apply to all products in this attribute item)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:173
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:173
 msgid "Specify numbers of exact allowed quantity for all product in this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:181
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:247
-#: includes/settings/class-wpfmmsq-metaboxes.php:712
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:181
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:247
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:54
 msgid "Unit label template: Singular"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:185
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:185
 msgid "Specify a singular string for this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:190
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:256
-#: includes/settings/class-wpfmmsq-metaboxes.php:723
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:190
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:256
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:66
 msgid "Unit label template: Plural"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-attribute-item-metaboxes.php:194
+#: includes/pro/settings/class-wpfmmsq-pro-attribute-item-metaboxes.php:194
 msgid "Specify a plural string for this attribute item, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:76
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:151
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:76
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:151
 msgid "Minimum quantity (grouped for this category)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:76
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:82
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:89
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:95
-#: includes/settings/class-wpfmmsq-metaboxes.php:530
-#: includes/settings/class-wpfmmsq-metaboxes.php:555
-#: includes/settings/class-wpfmmsq-metaboxes.php:643
-#: includes/settings/class-wpfmmsq-metaboxes.php:745
-#: includes/settings/class-wpfmmsq-metaboxes.php:761
-#: includes/settings/class-wpfmmsq-metaboxes.php:777
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:76
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:82
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:89
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:95
+#: includes/settings/class-wpfmmsq-metaboxes.php:544
+#: includes/settings/class-wpfmmsq-metaboxes.php:569
+#: includes/settings/class-wpfmmsq-metaboxes.php:657
+#: includes/settings/class-wpfmmsq-metaboxes.php:732
+#: includes/settings/class-wpfmmsq-metaboxes.php:748
+#: includes/settings/class-wpfmmsq-metaboxes.php:764
 msgid "Set 0 to use global settings. Set -1 to disable."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:78
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:84
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:155
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:78
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:84
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:155
 msgid "Specify a number of minimum allowed quantity for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:82
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:161
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:82
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:161
 msgid "Minimum quantity for all product (apply to all products in this category)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:89
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:172
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:89
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:172
 msgid "Maximum quantity (grouped for this category)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:91
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:97
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:176
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:91
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:97
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:176
 msgid "Specify a number of maximum allowed quantity for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:95
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:182
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:95
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:182
 msgid "Maximum quantity for all product (apply to all products in this category)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:102
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:193
-#: includes/settings/class-wpfmmsq-metaboxes.php:572
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:102
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:193
+#: includes/settings/class-wpfmmsq-metaboxes.php:586
 #: includes/settings/class-wpfmmsq-settings-advanced.php:104
 #: includes/settings/class-wpfmmsq-settings-advanced.php:117
 #: includes/settings/class-wpfmmsq-settings-step.php:56
 msgid "Quantity step"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:102
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:110
-#: includes/settings/class-wpfmmsq-metaboxes.php:578
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:102
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:110
+#: includes/settings/class-wpfmmsq-metaboxes.php:592
 msgid "Set 0 to use global settings."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:110
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:205
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:110
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:205
 msgid "Quantity default"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:117
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:216
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:117
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:216
 msgid "Exact quantity allowed (grouped for this category)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:117
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:123
-#: includes/settings/class-wpfmmsq-metaboxes.php:600
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:117
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:123
+#: includes/settings/class-wpfmmsq-metaboxes.php:614
 #: includes/settings/class-wpfmmsq-settings-fixed.php:65
 msgid "Allowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:119
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:125
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:220
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:119
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:125
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:220
 msgid "Specify numbers of exact allowed quantity for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:123
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:226
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:123
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:226
 msgid "Exact quantity allowed for all product (apply to all products in this category)"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:165
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:165
 msgid "Specify a number of minimum allowed quantity for all product in this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:186
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:186
 msgid "Specify a number of maximum allowed quantity for all product in this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:197
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:197
 msgid "Specify a number of step quantity for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:209
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:209
 msgid "Specify a number of default quantity for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:230
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:230
 msgid "Specify numbers of exact allowed quantity for all product in this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:251
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:251
 msgid "Specify a singular string for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:260
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:260
 msgid "Specify a plural string for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:268
-#: includes/settings/class-wpfmmsq-metaboxes.php:661
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:268
+#: includes/settings/class-wpfmmsq-metaboxes.php:675
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:37
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:55
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:105
 msgid "Price Unit"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-category-metaboxes.php:276
+#: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:276
 msgid "Specify a string for this category, this is controlled by Product Quantity plugin"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:125
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:47
+#: includes/settings/class-wpfmmsq-metaboxes.php:700
+#: includes/settings/class-wpfmmsq-metaboxes.php:711
+#: includes/settings/class-wpfmmsq-metaboxes.php:728
+#: includes/settings/class-wpfmmsq-metaboxes.php:744
+#: includes/settings/class-wpfmmsq-metaboxes.php:760
+msgid "All variations"
+msgstr ""
+
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:58
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:70
+msgid "Unit label template, e.g.: %s."
+msgstr ""
+
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:59
+#: includes/pro/settings/class-wpfmmsq-pro-metaboxes.php:71
+#: includes/settings/class-wpfmmsq-metaboxes.php:615
+#: includes/settings/class-wpfmmsq-metaboxes.php:639
+#: includes/settings/class-wpfmmsq-metaboxes.php:703
+#: includes/settings/class-wpfmmsq-metaboxes.php:714
+msgid "Set blank to use global settings."
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-metaboxes.php:129
 #: includes/settings/class-wpfmmsq-settings.php:25
 msgid "Product Quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:488
+#: includes/settings/class-wpfmmsq-metaboxes.php:502
 msgid "Main variable product"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:508
-#: includes/settings/class-wpfmmsq-metaboxes.php:513
+#: includes/settings/class-wpfmmsq-metaboxes.php:522
+#: includes/settings/class-wpfmmsq-metaboxes.php:527
 msgid "Allow selling below this number if no stock is available to meet this number"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:524
-#: includes/settings/class-wpfmmsq-settings-min.php:65
+#: includes/settings/class-wpfmmsq-metaboxes.php:538
+#: includes/settings/class-wpfmmsq-settings-min.php:56
 msgid "Minimum quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:549
+#: includes/settings/class-wpfmmsq-metaboxes.php:563
 #: includes/settings/class-wpfmmsq-settings-max.php:56
 msgid "Maximum quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:595
+#: includes/settings/class-wpfmmsq-metaboxes.php:609
 msgid "Exact quantity allowed"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:601
-#: includes/settings/class-wpfmmsq-metaboxes.php:625
-#: includes/settings/class-wpfmmsq-metaboxes.php:689
-#: includes/settings/class-wpfmmsq-metaboxes.php:700
-#: includes/settings/class-wpfmmsq-metaboxes.php:716
-#: includes/settings/class-wpfmmsq-metaboxes.php:727
-msgid "Set blank to use global settings."
-msgstr ""
-
-#: includes/settings/class-wpfmmsq-metaboxes.php:619
+#: includes/settings/class-wpfmmsq-metaboxes.php:633
 msgid "Exact quantity disallowed"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:624
+#: includes/settings/class-wpfmmsq-metaboxes.php:638
 #: includes/settings/class-wpfmmsq-settings-fixed.php:177
 msgid "Disallowed quantities as comma separated list, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:637
+#: includes/settings/class-wpfmmsq-metaboxes.php:651
 #: includes/settings/class-wpfmmsq-settings-default.php:56
 #: includes/settings/class-wpfmmsq-settings-default.php:135
 #: includes/settings/class-wpfmmsq-settings-general.php:262
@@ -423,47 +445,32 @@ msgstr ""
 msgid "Default quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:667
+#: includes/settings/class-wpfmmsq-metaboxes.php:681
 msgid "Any string value."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:685
+#: includes/settings/class-wpfmmsq-metaboxes.php:699
 msgid "Dropdown label template: Singular"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:686
-#: includes/settings/class-wpfmmsq-metaboxes.php:697
+#: includes/settings/class-wpfmmsq-metaboxes.php:702
 #: includes/settings/class-wpfmmsq-metaboxes.php:713
-#: includes/settings/class-wpfmmsq-metaboxes.php:724
-#: includes/settings/class-wpfmmsq-metaboxes.php:741
-#: includes/settings/class-wpfmmsq-metaboxes.php:757
-#: includes/settings/class-wpfmmsq-metaboxes.php:773
-msgid "All variations"
-msgstr ""
-
-#: includes/settings/class-wpfmmsq-metaboxes.php:688
-#: includes/settings/class-wpfmmsq-metaboxes.php:699
 msgid "Dropdown label template, e.g.: %s."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:696
+#: includes/settings/class-wpfmmsq-metaboxes.php:710
 msgid "Dropdown label template: Plural"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:715
-#: includes/settings/class-wpfmmsq-metaboxes.php:726
-msgid "Unit label template, e.g.: %s."
-msgstr ""
-
-#: includes/settings/class-wpfmmsq-metaboxes.php:740
+#: includes/settings/class-wpfmmsq-metaboxes.php:727
 msgid "Minimum quantity for all variations"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:756
+#: includes/settings/class-wpfmmsq-metaboxes.php:743
 msgid "Maximum quantity for all variations"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-metaboxes.php:772
+#: includes/settings/class-wpfmmsq-metaboxes.php:759
 msgid "Exact quantity allowed for all variations"
 msgstr ""
 
@@ -511,12 +518,9 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-max.php:113
 #: includes/settings/class-wpfmmsq-settings-max.php:141
 #: includes/settings/class-wpfmmsq-settings-max.php:171
-#: includes/settings/class-wpfmmsq-settings-min.php:164
-#: includes/settings/class-wpfmmsq-settings-min.php:183
-#: includes/settings/class-wpfmmsq-settings-min.php:194
-#: includes/settings/class-wpfmmsq-settings-min.php:206
-#: includes/settings/class-wpfmmsq-settings-min.php:227
-#: includes/settings/class-wpfmmsq-settings-min.php:258
+#: includes/settings/class-wpfmmsq-settings-min.php:155
+#: includes/settings/class-wpfmmsq-settings-min.php:222
+#: includes/settings/class-wpfmmsq-settings-min.php:253
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:63
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:70
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:81
@@ -792,7 +796,7 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-fixed.php:64
 #: includes/settings/class-wpfmmsq-settings-fixed.php:176
 #: includes/settings/class-wpfmmsq-settings-max.php:103
-#: includes/settings/class-wpfmmsq-settings-min.php:154
+#: includes/settings/class-wpfmmsq-settings-min.php:145
 #: includes/settings/class-wpfmmsq-settings-step.php:102
 msgid "All products"
 msgstr ""
@@ -805,7 +809,7 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-fixed.php:73
 #: includes/settings/class-wpfmmsq-settings-fixed.php:185
 #: includes/settings/class-wpfmmsq-settings-max.php:112
-#: includes/settings/class-wpfmmsq-settings-min.php:163
+#: includes/settings/class-wpfmmsq-settings-min.php:154
 #: includes/settings/class-wpfmmsq-settings-step.php:111
 msgid "Per product"
 msgstr ""
@@ -814,7 +818,7 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-fixed.php:75
 #: includes/settings/class-wpfmmsq-settings-fixed.php:187
 #: includes/settings/class-wpfmmsq-settings-max.php:114
-#: includes/settings/class-wpfmmsq-settings-min.php:165
+#: includes/settings/class-wpfmmsq-settings-min.php:156
 #: includes/settings/class-wpfmmsq-settings-step.php:113
 msgid "This will add meta box to each product's edit page."
 msgstr ""
@@ -829,10 +833,10 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-max.php:120
 #: includes/settings/class-wpfmmsq-settings-max.php:150
 #: includes/settings/class-wpfmmsq-settings-max.php:190
-#: includes/settings/class-wpfmmsq-settings-min.php:134
-#: includes/settings/class-wpfmmsq-settings-min.php:171
-#: includes/settings/class-wpfmmsq-settings-min.php:237
-#: includes/settings/class-wpfmmsq-settings-min.php:277
+#: includes/settings/class-wpfmmsq-settings-min.php:125
+#: includes/settings/class-wpfmmsq-settings-min.php:162
+#: includes/settings/class-wpfmmsq-settings-min.php:232
+#: includes/settings/class-wpfmmsq-settings-min.php:272
 #: includes/settings/class-wpfmmsq-settings-step.php:82
 #: includes/settings/class-wpfmmsq-settings-step.php:119
 #: includes/settings/class-wpfmmsq-settings-step.php:205
@@ -858,21 +862,21 @@ msgstr ""
 #: includes/settings/class-wpfmmsq-settings-default.php:113
 #: includes/settings/class-wpfmmsq-settings-fixed.php:94
 #: includes/settings/class-wpfmmsq-settings-max.php:140
-#: includes/settings/class-wpfmmsq-settings-min.php:226
+#: includes/settings/class-wpfmmsq-settings-min.php:221
 #: includes/settings/class-wpfmmsq-settings-step.php:163
 msgid "Per Category"
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-default.php:115
 #: includes/settings/class-wpfmmsq-settings-max.php:142
-#: includes/settings/class-wpfmmsq-settings-min.php:228
+#: includes/settings/class-wpfmmsq-settings-min.php:223
 #: includes/settings/class-wpfmmsq-settings-step.php:165
 msgid "This will add meta box to each category edit page."
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-default.php:128
 #: includes/settings/class-wpfmmsq-settings-max.php:204
-#: includes/settings/class-wpfmmsq-settings-min.php:291
+#: includes/settings/class-wpfmmsq-settings-min.php:286
 msgid "Useful information"
 msgstr ""
 
@@ -890,7 +894,7 @@ msgid "You can have a default quantity different from the minimum quantity."
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-default.php:138
-#: includes/settings/class-wpfmmsq-settings-min.php:296
+#: includes/settings/class-wpfmmsq-settings-min.php:291
 msgid "If the default quantity is lower than minimum quantity, the initial quantity will be set to minimum."
 msgstr ""
 
@@ -1085,7 +1089,7 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-fixed.php:116
 #: includes/settings/class-wpfmmsq-settings-max.php:170
-#: includes/settings/class-wpfmmsq-settings-min.php:257
+#: includes/settings/class-wpfmmsq-settings-min.php:252
 #: includes/settings/class-wpfmmsq-settings-step.php:185
 msgid "Per Attribute"
 msgstr ""
@@ -1096,7 +1100,7 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-fixed.php:127
 #: includes/settings/class-wpfmmsq-settings-max.php:181
-#: includes/settings/class-wpfmmsq-settings-min.php:268
+#: includes/settings/class-wpfmmsq-settings-min.php:263
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:102
 #: includes/settings/class-wpfmmsq-settings-step.php:196
 msgid "Product Attributes"
@@ -1104,7 +1108,7 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-fixed.php:128
 #: includes/settings/class-wpfmmsq-settings-max.php:182
-#: includes/settings/class-wpfmmsq-settings-min.php:269
+#: includes/settings/class-wpfmmsq-settings-min.php:264
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:103
 #: includes/settings/class-wpfmmsq-settings-step.php:197
 msgid "Leave blank to use all"
@@ -1144,7 +1148,7 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-fixed.php:224
 #: includes/settings/class-wpfmmsq-settings-max.php:74
-#: includes/settings/class-wpfmmsq-settings-min.php:125
+#: includes/settings/class-wpfmmsq-settings-min.php:116
 #: includes/settings/class-wpfmmsq-settings-step.php:73
 msgid "Cart total quantity"
 msgstr ""
@@ -1536,13 +1540,13 @@ msgid "Per Attribute Maximum Quantity Options"
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-max.php:166
-#: includes/settings/class-wpfmmsq-settings-min.php:253
+#: includes/settings/class-wpfmmsq-settings-min.php:248
 #: includes/settings/class-wpfmmsq-settings-step.php:181
 msgid "This option works the exact same way as category, you also get the option to enable it per attributes that are selected in the field below instead of enabling it to all attributes at once."
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-max.php:172
-#: includes/settings/class-wpfmmsq-settings-min.php:259
+#: includes/settings/class-wpfmmsq-settings-min.php:254
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:93
 #: includes/settings/class-wpfmmsq-settings-step.php:187
 msgid "This will add meta box to each attribute edit page."
@@ -1568,151 +1572,163 @@ msgstr ""
 msgid "Minimum Quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:52
-msgid "Enable to all simple products, disable to remove at once"
-msgstr ""
-
-#: includes/settings/class-wpfmmsq-settings-min.php:53
-msgid "Allow all product"
-msgstr ""
-
-#: includes/settings/class-wpfmmsq-settings-min.php:59
+#: includes/settings/class-wpfmmsq-settings-min.php:50
 msgid "Minimum Quantity Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:61
+#: includes/settings/class-wpfmmsq-settings-min.php:52
 msgid "Manage the minimum quantity for products."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:66
+#: includes/settings/class-wpfmmsq-settings-min.php:57
 msgid "Enable Minimum quantity section"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:72
+#: includes/settings/class-wpfmmsq-settings-min.php:63
 msgid "Add to cart button"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:73
+#: includes/settings/class-wpfmmsq-settings-min.php:64
 msgid "Hide \"Add To Cart\" button when stock < min quantity"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:86
+#: includes/settings/class-wpfmmsq-settings-min.php:77
 msgid "Hide quantity input"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:87
+#: includes/settings/class-wpfmmsq-settings-min.php:78
 msgid "Hide quantity input if stock quantity matches minimum."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:92
+#: includes/settings/class-wpfmmsq-settings-min.php:83
 msgid "Product page"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:93
+#: includes/settings/class-wpfmmsq-settings-min.php:84
 msgid "Hide quantity input on product page"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:99
+#: includes/settings/class-wpfmmsq-settings-min.php:90
 msgid "Cart"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:100
+#: includes/settings/class-wpfmmsq-settings-min.php:91
 msgid "Hide quantity input on cart"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:106
+#: includes/settings/class-wpfmmsq-settings-min.php:97
 msgid "Loop"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:107
+#: includes/settings/class-wpfmmsq-settings-min.php:98
 msgid "Hide quantity input on loop"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:108
+#: includes/settings/class-wpfmmsq-settings-min.php:99
 msgid "Loop considers shop, category and tag pages."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:118
+#: includes/settings/class-wpfmmsq-settings-min.php:109
 msgid "Cart Total Minimum Quantity Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:120
+#: includes/settings/class-wpfmmsq-settings-min.php:111
 msgid ""
 "Specify minimum quantity on the cart level, <strong>regardless</strong> of number of products on it.\r\n"
 "\t\t\t\tThe Message field will allow you to customize the notification message on wrong quantities"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:126
+#: includes/settings/class-wpfmmsq-settings-min.php:117
 msgid "This will set minimum total cart quantity. Set to zero to disable."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:135
+#: includes/settings/class-wpfmmsq-settings-min.php:126
 msgid "Message to be displayed to customer when minimum cart total quantity is not reached."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:148
+#: includes/settings/class-wpfmmsq-settings-min.php:139
 msgid "Per Item Minimum Quantity Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:150
+#: includes/settings/class-wpfmmsq-settings-min.php:141
 msgid "This section allows you to specify a minimum quantity for all products in your store at once (not combined), tick \"Per Product\"  to define a quantity on product level (Pro Feature), a field will appear on the product page to set this."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:155
+#: includes/settings/class-wpfmmsq-settings-min.php:146
 msgid "This will set minimum per item quantity (for all products). Set to zero to disable."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:172
-#: includes/settings/class-wpfmmsq-settings-min.php:238
-#: includes/settings/class-wpfmmsq-settings-min.php:278
+#: includes/settings/class-wpfmmsq-settings-min.php:163
+#: includes/settings/class-wpfmmsq-settings-min.php:233
+#: includes/settings/class-wpfmmsq-settings-min.php:273
 msgid "Message to be displayed to customer when minimum per item quantity is not reached."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:182
-msgid "Allow selling below minimum quantity if stock < min."
+#: includes/settings/class-wpfmmsq-settings-min.php:178
+msgid "Selling below minimum"
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-min.php:180
+msgid "Control whether products can sell below the minimum quantity."
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-min.php:184
-msgid "This will add checkbox to product's edit page after min quantity box, useful when you are almost out of stock and want to sell the remaining quantity"
+msgid "Allow selling below minimum"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:193
-msgid "Allow all products"
+#: includes/settings/class-wpfmmsq-settings-min.php:185
+msgid "Allow selling below minimum quantity if stock < min"
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-min.php:186
+msgid "Adds a checkbox to product's edit page after min quantity box, useful when you are almost out of stock and want to sell the remaining quantity."
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-min.php:195
-msgid "Save all simple products."
+msgid "Apply to all products"
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-min.php:196
+msgid "After saving changes this option will be reset. Please keep in mind this is a bulk operation, so on large catalogs it may take a little while."
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-min.php:197
+msgid "Choose whether to enable or disable the flag for all published products, or leave it neutral to do nothing. Save changes to apply it."
+msgstr ""
+
+#: includes/settings/class-wpfmmsq-settings-min.php:204
+msgid "-"
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-min.php:205
-msgid "Run save \"below stock meta\""
+msgid "Enable all products"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:207
-msgid "On enable, this option will run save for all products, and please be conscious of the memory limit. This operation takes memory, and if the site has a lot of products, run it at your own risk."
+#: includes/settings/class-wpfmmsq-settings-min.php:206
+msgid "Disable all products"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:220
+#: includes/settings/class-wpfmmsq-settings-min.php:215
 msgid "Per Category Minimum Quantity Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:222
+#: includes/settings/class-wpfmmsq-settings-min.php:217
 msgid "Enabling this will create two new fields in all categories pages you have, one to set a minimum quantity for all products (instead of filling it one by one), and one for specifying a minimum quantity for all products <strong>combined</strong> in the cart."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:241
+#: includes/settings/class-wpfmmsq-settings-min.php:236
 msgid "Minimum allowed quantity for category %category_title% is %min_per_item_quantity%.  Your current quantity for this category is %item_quantity%."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:251
+#: includes/settings/class-wpfmmsq-settings-min.php:246
 msgid "Per Attribute Minimum Quantity Options"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:281
+#: includes/settings/class-wpfmmsq-settings-min.php:276
 msgid "Minimum allowed quantity for attribute %attribute_title% is %min_per_item_quantity%.  Your current quantity for this attribute is %item_quantity%."
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings-min.php:295
+#: includes/settings/class-wpfmmsq-settings-min.php:290
 msgid "The initial default quantity visible will be set to minimum."
 msgstr ""
 
@@ -1776,10 +1792,6 @@ msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:130
 msgid "(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)"
-msgstr ""
-
-#: includes/settings/class-wpfmmsq-settings-price-by-qty.php:132
-msgid "%price% for %qty% pcs."
 msgstr ""
 
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:138
@@ -2051,7 +2063,7 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: includes/settings/class-wpfmmsq-settings.php:289
+#: includes/settings/class-wpfmmsq-settings.php:249
 msgid "Your settings have been reset."
 msgstr ""
 
@@ -2059,22 +2071,22 @@ msgstr ""
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %1$s back to plugins. %2$s"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:311
+#: product-quantity-for-woocommerce-pro.php:286
 msgid "Settings"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:315
+#: product-quantity-for-woocommerce-pro.php:290
 msgid "Review Us"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:320
+#: product-quantity-for-woocommerce-pro.php:295
 msgid "Go Pro"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:367
+#: product-quantity-for-woocommerce-pro.php:342
 msgid "Quantity Manager"
 msgstr ""
 
-#: product-quantity-for-woocommerce-pro.php:368
+#: product-quantity-for-woocommerce-pro.php:343
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""

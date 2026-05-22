@@ -3,7 +3,7 @@
 Plugin Name: Min Max Step Quantity Limits Manager for WooCommerce
 Plugin URI: https://wpfactory.com/item/product-quantity-for-woocommerce/
 Description: Manage product quantity in WooCommerce, beautifully. Define a minimum / maximum / step quantity and more on WooCommerce products.
-Version: 5.3.9-dev
+Version: 5.4.0
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: product-quantity-for-woocommerce
@@ -99,7 +99,7 @@ if ( ! class_exists( 'WPFMMSQ' ) ) :
 		 * @since 1.0.0
 		 * @var   string
 		 */
-		public $version = '5.3.9-dev';
+		public $version = '5.4.0';
 
 		/**
 		 * core.
@@ -229,7 +229,7 @@ if ( ! class_exists( 'WPFMMSQ' ) ) :
 		/**
 		 * admin.
 		 *
-		 * @version 5.3.8
+		 * @version 5.3.9
 		 * @since   1.3.0
 		 */
 		function admin() {
@@ -246,7 +246,6 @@ if ( ! class_exists( 'WPFMMSQ' ) ) :
 			// Settings
 			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 			require_once( 'includes/settings/class-wpfmmsq-metaboxes.php' );
-			add_action( 'current_screen', array( $this, 'maybe_load_taxonomy_metaboxes' ) );
 			require_once( 'includes/settings/class-wpfmmsq-settings-section.php' );
 			$this->settings                 = array();
 			$this->settings['general']      = require_once( 'includes/settings/class-wpfmmsq-settings-general.php' );
@@ -268,30 +267,6 @@ if ( ! class_exists( 'WPFMMSQ' ) ) :
 				add_action( 'admin_init', array( $this, 'version_updated' ) );
 			}
 
-		}
-
-		/**
-		 * maybe_load_taxonomy_metaboxes.
-		 *
-		 * @version 5.3.8
-		 * @since   5.3.8
-		 *
-		 * @param 	WP_Screen $screen Current admin screen object.
-		 */
-		function maybe_load_taxonomy_metaboxes( $screen ) {
-			if ( ! isset( $screen->base ) || ! in_array( $screen->base, array( 'edit-tags', 'term' ), true ) ) {
-				return;
-			}
-
-			if ( isset( $screen->taxonomy ) && 'product_cat' === $screen->taxonomy ) {
-				require_once( 'includes/settings/class-wpfmmsq-category-metaboxes.php' );
-
-				return;
-			}
-
-			if ( isset( $screen->taxonomy ) && 0 === strpos( $screen->taxonomy, 'pa_' ) ) {
-				require_once( 'includes/settings/class-wpfmmsq-attribute-item-metaboxes.php' );
-			}
 		}
 
 		/**

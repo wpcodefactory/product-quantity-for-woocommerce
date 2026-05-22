@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Min Section Settings
  *
- * @version 5.3.4
+ * @version 5.3.9
  * @since   1.6.0
  *
  * @author  WPFactory
@@ -41,19 +41,10 @@ if ( ! class_exists( 'WPFMMSQ_Settings_Min' ) ) :
 		/**
 		 * get_settings.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.6.0
 		 */
 		function get_settings() {
-
-			$allow_all_product_button = '';
-			if ( 'yes' === get_option( 'wpfmmsq_min_per_item_quantity_per_product_allow_selling_below_stock', 'yes' ) ) {
-				$allow_all_product_button = '<br><a class="button" href="' . add_query_arg( 'wpfmmsq_all_below_stock', 'yes' ) . '" title="' .
-				                            __( 'Enable to all simple products, disable to remove at once', 'product-quantity-for-woocommerce' ) . '">' .
-				                            __( 'Allow all product', 'product-quantity-for-woocommerce' ) . '</a>';
-			}
-			$allow_all_product_button = '';
-
 			return array(
 				array(
 					'title' => __( 'Minimum Quantity Options', 'product-quantity-for-woocommerce' ),
@@ -178,43 +169,47 @@ if ( ! class_exists( 'WPFMMSQ_Settings_Min' ) ) :
 					'wpfmmsq_raw' => true,
 				),
 
+				
 				array(
-					'title'             => __( 'Allow selling below minimum quantity if stock < min.', 'product-quantity-for-woocommerce' ),
-					'desc'              => __( 'Enable', 'product-quantity-for-woocommerce' ),
-					'desc_tip'          => __( 'This will add checkbox to product\'s edit page after min quantity box, useful when you are almost out of stock and want to sell the remaining quantity', 'product-quantity-for-woocommerce' ) .
+					'type' => 'sectionend',
+					'id'   => 'wpfmmsq_min_cat_cart_total_quantity_options',
+				),
+                array(
+					'title' => __( 'Selling below minimum', 'product-quantity-for-woocommerce' ),
+					'type'  => 'title',
+					'desc'  => __( 'Control whether products can sell below the minimum quantity.', 'product-quantity-for-woocommerce' ),
+					'id'    => 'wpfmmsq_min_allow_selling_below_minimum_options',
+				),
+				array(
+					'title'             => __( 'Allow selling below minimum', 'product-quantity-for-woocommerce' ),
+					'desc'              => __( 'Allow selling below minimum quantity if stock < min', 'product-quantity-for-woocommerce' ),
+					'desc_tip'          => __( 'Adds a checkbox to product\'s edit page after min quantity box, useful when you are almost out of stock and want to sell the remaining quantity.', 'product-quantity-for-woocommerce' ) .
 					                       apply_filters( 'wpfmmsq_settings', '<br>' . sprintf( 'You will need %s to use per item quantity options.',
-							                       '<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ) . $allow_all_product_button,
+						                       '<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 					'id'                => 'wpfmmsq_min_per_item_quantity_per_product_allow_selling_below_stock',
 					'default'           => 'no',
 					'type'              => 'checkbox',
 					'custom_attributes' => apply_filters( 'wpfmmsq_settings', array( 'disabled' => 'disabled' ) ),
 				),
 				array(
-					'title'             => __( 'Allow all products', 'product-quantity-for-woocommerce' ),
-					'desc'              => __( 'Enable', 'product-quantity-for-woocommerce' ),
-					'desc_tip'          => __( 'Save all simple products.', 'product-quantity-for-woocommerce' ) .
+					'title'             => __( 'Apply to all products', 'product-quantity-for-woocommerce' ),
+					'desc'              => __( 'After saving changes this option will be reset. Please keep in mind this is a bulk operation, so on large catalogs it may take a little while.', 'product-quantity-for-woocommerce' ),
+					'desc_tip'          => __( 'Choose whether to enable or disable the flag for all published products, or leave it neutral to do nothing. Save changes to apply it.', 'product-quantity-for-woocommerce' ) .
 					                       apply_filters( 'wpfmmsq_settings', '<br>' . sprintf( 'You will need %s to use per item quantity options.',
 							                       '<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
 					'id'                => 'wpfmmsq_min_per_item_quantity_per_product_allow_selling_below_stock_save',
-					'default'           => 'no',
-					'type'              => 'checkbox',
-					'custom_attributes' => apply_filters( 'wpfmmsq_settings', array( 'disabled' => 'disabled' ) ),
-				),
-
-				array(
-					'title'             => __( 'Run save "below stock meta"', 'product-quantity-for-woocommerce' ),
-					'desc'              => __( 'Enable', 'product-quantity-for-woocommerce' ),
-					'desc_tip'          => __( 'On enable, this option will run save for all products, and please be conscious of the memory limit. This operation takes memory, and if the site has a lot of products, run it at your own risk.', 'product-quantity-for-woocommerce' ) .
-					                       apply_filters( 'wpfmmsq_settings', '<br>' . sprintf( 'You will need %s to use per item quantity options.',
-							                       '<a target="_blank" href="https://wpfactory.com/item/product-quantity-for-woocommerce/">' . 'Product Quantity for WooCommerce Pro' . '</a>' ) ),
-					'id'                => 'wpfmmsq_min_per_item_quantity_per_product_run_save_below_stock_meta',
-					'default'           => 'no',
-					'type'              => 'checkbox',
+					'default'           => '',
+					'type'              => 'select',
+					'options'           => array(
+						''   => __( '-', 'product-quantity-for-woocommerce' ),
+						'yes' => __( 'Enable all products', 'product-quantity-for-woocommerce' ),
+						'no'  => __( 'Disable all products', 'product-quantity-for-woocommerce' ),
+					),
 					'custom_attributes' => apply_filters( 'wpfmmsq_settings', array( 'disabled' => 'disabled' ) ),
 				),
 				array(
 					'type' => 'sectionend',
-					'id'   => 'wpfmmsq_min_cat_cart_total_quantity_options',
+					'id'   => 'wpfmmsq_min_allow_selling_below_minimum_options',
 				),
 				array(
 					'title' => __( 'Per Category Minimum Quantity Options', 'product-quantity-for-woocommerce' ),

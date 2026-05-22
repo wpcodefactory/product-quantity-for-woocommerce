@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 5.3.4
+ * @version 5.3.9
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -25,9 +25,9 @@ if ( ! class_exists( 'WPFMMSQ_Scripts' ) ) :
 		}
 
 		/**
-		 * enqueue_scripts.
+		 * Enqueue frontend scripts.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.0.0
 		 *
 		 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -181,38 +181,6 @@ if ( ! class_exists( 'WPFMMSQ_Scripts' ) ) :
 								'nonce'                   => wp_create_nonce( 'wpfmmsq_nonce' ),
 							)
 						);
-					}
-				} else {
-					if (
-						is_shop() ||
-						is_product_tag() ||
-						is_product_category() ||
-						is_front_page() ||
-						is_home()
-					) {
-						if (
-							'yes' === get_option( 'wpfmmsq_qty_price_by_qty_qty_archive_enabled', 'no' ) &&
-							'yes' === get_option( 'wpfmmsq_add_quantity_archive_enabled', 'no' )
-						) {
-							wpfmmsq_enqueue_script(
-								'wpfmmsq-price-by-qty',
-								trailingslashit( wpfmmsq()->plugin_url() ) . 'includes/js/wpfmmsq-price-by-qty.js',
-								array( 'jquery' ),
-								wpfmmsq()->version,
-								true
-							);
-							wp_localize_script(
-								'wpfmmsq-price-by-qty',
-								'wpfmmsq_price_by_qty_obj',
-								array(
-									'ajax_url'   => admin_url( 'admin-ajax.php' ),
-									'product_id' => 0,
-									'position'   => get_option( 'wpfmmsq_qty_price_by_qty_position', 'instead' ),
-									'ajax_async' => get_option( 'wpfmmsq_false_ajax_async', 'no' ),
-									'nonce'      => wp_create_nonce( 'wpfmmsq_nonce' ),
-								)
-							);
-						}
 					}
 				}
 			}

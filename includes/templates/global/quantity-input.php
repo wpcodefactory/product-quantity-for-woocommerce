@@ -137,20 +137,9 @@ if ( $max_value && $min_value === $max_value ) {
 				}
 			}
 
-			// Labels
-			$label_template_singular = '';
-			$label_template_plural   = '';
-			if ( $product && 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
-				$product_or_parent_id    = ( $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id() );
-				$label_template_singular = get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_singular', true );
-				$label_template_plural   = get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_plural', true );
-			}
-			if ( '' === $label_template_singular ) {
-				$label_template_singular = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_singular', '%qty%' ) );
-			}
-			if ( '' === $label_template_plural ) {
-				$label_template_plural = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_plural', '%qty%' ) );
-			}
+			$label_templates          = wpfmmsq()->core->get_dropdown_label_templates( $product, true );
+			$label_template_singular = $label_templates['singular'];
+			$label_template_plural   = $label_templates['plural'];
 
 			// Select options
 			foreach ( $values as $value ) {
@@ -221,20 +210,9 @@ if ( $max_value && $min_value === $max_value ) {
 
 			asort( $values );
 
-			// Labels
-			$label_template_singular = '';
-			$label_template_plural   = '';
-			if ( $product && 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ) {
-				$product_or_parent_id    = ( $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id() );
-				$label_template_singular = do_shortcode( get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_singular', true ) );
-				$label_template_plural   = do_shortcode( get_post_meta( $product_or_parent_id, '_wpfmmsq_qty_dropdown_label_template_plural', true ) );
-			}
-			if ( '' === $label_template_singular ) {
-				$label_template_singular = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_singular', '%qty%' ) );
-			}
-			if ( '' === $label_template_plural ) {
-				$label_template_plural = do_shortcode( get_option( 'wpfmmsq_qty_dropdown_label_template_plural', '%qty%' ) );
-			}
+			$label_templates          = wpfmmsq()->core->get_dropdown_label_templates( $product, true );
+			$label_template_singular = $label_templates['singular'];
+			$label_template_plural   = $label_templates['plural'];
 
 			if ( is_product() ) {
 				$default_quantity = wpfmmsq()->core->get_product_qty_default( $product->get_id(), 'no' );

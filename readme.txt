@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, ae
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 7.0
-Stable tag: 5.3.8
+Stable tag: 5.4.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -345,7 +345,16 @@ Once activated, access the plugin's settings by navigating to the â€œWPFactoryâ€
 
 == Changelog ==
 
+= 5.4.0 - 22/05/2026 =
+* Fix - Fixed version.
+
 = 5.3.9 - 22/05/2026 =
+* Fix - Min - Category - Fixed Minimum quantity for all product, and grouped.
+* Fix - Added more legacy keys to migration.
+* Fix - Min - Auto corrected quantity on cart page.
+* Fix - Code refactoring.
+* Fix - Fixed php warning on Quantity as dropdown feature.
+* Dev - Improved "Selling below minimum" options.
 * Tested up to: 7.0.
 
 = 5.3.8 - 15/05/2026 =

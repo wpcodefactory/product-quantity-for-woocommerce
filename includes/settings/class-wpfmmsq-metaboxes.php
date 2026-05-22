@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 5.3.5
+ * @version 5.3.9
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -32,10 +32,12 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.0.0
 		 */
 		function __construct() {
+			$dropdown_per_product_enabled = apply_filters( 'wpfmmsq_qty_dropdown_per_product_labels_enabled', 'no' );
+
 			if ( 'yes' === get_option( 'wpfmmsq_enabled', 'yes' ) ) {
 				$step_per_product_enabled = apply_filters( 'wpfmmsq_quantity_step_per_product', get_option( 'wpfmmsq_step_per_product_enabled', 'no' ) );
 				$this->is_section_enabled = array(
@@ -50,14 +52,16 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 					'exact_qty_disallowed'      => ( 'yes' === get_option( 'wpfmmsq_exact_qty_disallowed_section_enabled', 'no' ) &&
 					                                 'yes' === apply_filters( 'wpfmmsq_exact_qty_per_product', 'no', 'disallowed' ) ),
 					'dropdown'                  => ( 'yes' === get_option( 'wpfmmsq_qty_dropdown', 'no' ) &&
-					                                 'yes' === get_option( 'wpfmmsq_qty_dropdown_label_template_is_per_product', 'no' ) ),
-					'price_by_qty'              => ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_enabled', 'no' ) &&
-					                                 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_unit_input_enabled', 'no' ) ),
+					                                 'yes' === $dropdown_per_product_enabled ),
 					'default'                   => ( 'yes' === get_option( 'wpfmmsq_default_section_enabled', 'no' ) &&
 					                                 'yes' === apply_filters( 'wpfmmsq_per_item_default_qty_per_product', 'no', 'disallowed' ) ),
 					'price_unit'                => ( 'yes' === get_option( 'wpfmmsq_qty_price_unit_enabled', 'no' ) &&
 					                                 'yes' === get_option( 'wpfmmsq_qty_price_unit_product_enabled', 'no' ) ),
-					'allow_selling_below_stock' => ( 'yes' === get_option( 'wpfmmsq_min_per_item_quantity_per_product_allow_selling_below_stock', 'no' ) &&
+					'price_by_qty'              => ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_enabled', 'no' ) ||
+					                                 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_unit_input_enabled', 'no' ) ||
+					                                 'yes' === get_option( 'wpfmmsq_qty_price_by_cat_qty_unit_input_enabled', 'no' ) ||
+					                                 'yes' === get_option( 'wpfmmsq_qty_price_by_attribute_qty_unit_input_enabled', 'no' ) ),
+					'allow_selling_below_stock' => ( 'yes' === apply_filters( 'wpfmmsq_allow_selling_below_stock_enabled', 'no' ) &&
 					                                 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) && 'yes' === apply_filters( 'wpfmmsq_per_item_qty_per_product', 'no', 'min' ),
 				);
 				if (
@@ -67,9 +71,9 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 					$this->is_section_enabled['exact_qty_allowed'] ||
 					$this->is_section_enabled['exact_qty_disallowed'] ||
 					$this->is_section_enabled['dropdown'] ||
-					$this->is_section_enabled['price_by_qty'] ||
 					$this->is_section_enabled['default'] ||
-					$this->is_section_enabled['price_unit']
+					$this->is_section_enabled['price_unit'] ||
+					$this->is_section_enabled['price_by_qty']
 				) {
 					add_action( 'add_meta_boxes', array( $this, 'add_pq_metabox' ) );
 
@@ -133,7 +137,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 		/**
 		 * display_pq_metabox.
 		 *
-		 * @version 5.3.5
+		 * @version 5.3.9
 		 * @since   1.0.0
 		 * @todo    [dev] `placeholder` for textarea
 		 * @todo    [dev] `class` for all remaining types
@@ -166,6 +170,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 						$custom_attributes = '';
 						$the_post_id       = ( isset( $option['product_id'] ) ) ? $option['product_id'] : $current_post_id;
 						$the_meta_name     = ( isset( $option['meta_name'] ) ) ? $option['meta_name'] : '_' . $option['name'];
+						$checked           = '';
 
 						if ( get_post_meta( $the_post_id, $the_meta_name ) ) {
 							$option_value = get_post_meta( $the_post_id, $the_meta_name, true );
@@ -229,7 +234,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 								break;
 							case 'checkbox':
 								$field_html = '<input style="' . $css . '" class="' . $class . '" type="' . $option['type'] . '"' . $input_ending;
-								if ( $option['desc'] == '' && $option['meta_name'] == '_wpfmmsq_min_allow_selling_below_stock' ) {
+								if ( '_wpfmmsq_min_allow_selling_below_stock' === $the_meta_name ) {
 									$allow_sell_below_value = $option_value;
 									if ( $option_value == 'yes' ) {
 										$checked = 'checked';
@@ -240,7 +245,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 								if ( $option['desc'] != 'Main variable product' ) {
 									$field_html = '<input style="' . $css . '" class="' . $class . '" type="' . $option['type'] . '"' . $input_ending;
 									if ( $this->is_section_enabled['allow_selling_below_stock'] ) {
-										if ( $option['desc'] == '' && $option['meta_name'] == '_wpfmmsq_min' ) {
+										if ( '_wpfmmsq_min' === $the_meta_name ) {
 
 											if ( $allow_sell_below_value == 'yes' ) {
 												$checked = 'checked';
@@ -261,6 +266,15 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 										}
 										$maybe_tooltip = ( isset( $option['tooltip'] ) && '' != $option['tooltip'] ) ? wc_help_tip( "Add To All Min Variation", true ) : '';
 										$field_html    .= ' <input class="add_to_all_main" id="' . $option['name'] . '_to_all" name="' . $option['name'] . '_to_all" type="checkbox" ' . $checked5 . ' value="' . $option_value5 . '" /><b>Add To All</b>' . $maybe_tooltip;
+										if ( $this->is_section_enabled['allow_selling_below_stock'] ) {
+											if ( $allow_sell_below_value == 'yes' ) {
+												$checked = 'checked';
+											} else {
+												$checked = '';
+											}
+											$maybe_tooltip = wc_help_tip( "Allow selling below this number if no stock is available to meet this number.", true );
+											$field_html    .= '<input style="' . $css . '" class="' . $class . '" type="checkbox" ' . $checked . ' value="yes" id="wpfmmsq_min_allow_selling_below_stock_' . $the_post_id . '" name="wpfmmsq_min_allow_selling_below_stock_' . $the_post_id . '" /><b>Allow selling below this number.</b>' . $maybe_tooltip;
+										}
 									} else if ( strpos( $option['name'], 'wpfmmsq_max_' ) !== false ) {
 										$wpfmmsq_max_name = 'wpfmmsq_max_' . $the_post_id . '_to_all';
 										$option_value1    = get_post_meta( $the_post_id, $wpfmmsq_max_name, true );
@@ -316,24 +330,24 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 			$html .= '</table>';
 			$html .= '<input type="hidden" name="wpfmmsq_save_post" value="wpfmmsq_save_post">';
 			$wpfmmsq_allowed_html = array(
-			    'table'   => array('class' => true),
-			    'tr'      => array(),
-			    'th'      => array('colspan' => true, 'style' => true),
-			    'td'      => array('style' => true),
-			    'input'   => array(
-			        'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'style' => true, 'checked' => true, 'placeholder' => true, 'step' => true, 'min' => true, 'max' => true, 'multiple' => true, 'custom_attributes' => true
-			    ),
-			    'select'  => array('id' => true, 'name' => true, 'class' => true, 'style' => true, 'multiple' => true, 'custom_attributes' => true),
-			    'option'  => array('value' => true, 'selected' => true),
-			    'textarea'=> array('id' => true, 'name' => true, 'class' => true, 'style' => true, 'placeholder' => true),
-			    'b'       => array(),
-			    'em'      => array(),
-			    'span'    => array('class' => true, 'style' => true),
-			    'br'      => array(),
-			    'strong'  => array(),
-			    'small'   => array(),
-			    'a'       => array('href' => true, 'title' => true, 'class' => true, 'target' => true, 'rel' => true),
-			    'div'     => array('class' => true, 'style' => true),
+				'table'    => array( 'class' => true ),
+				'tr'       => array(),
+				'th'       => array( 'colspan' => true, 'style' => true ),
+				'td'       => array( 'style' => true ),
+				'input'    => array(
+					'type' => true, 'id' => true, 'name' => true, 'value' => true, 'class' => true, 'style' => true, 'checked' => true, 'placeholder' => true, 'step' => true, 'min' => true, 'max' => true, 'multiple' => true, 'custom_attributes' => true
+				),
+				'select'   => array( 'id' => true, 'name' => true, 'class' => true, 'style' => true, 'multiple' => true, 'custom_attributes' => true ),
+				'option'   => array( 'value' => true, 'selected' => true ),
+				'textarea' => array( 'id' => true, 'name' => true, 'class' => true, 'style' => true, 'placeholder' => true ),
+				'b'        => array(),
+				'em'       => array(),
+				'span'     => array( 'class' => true, 'style' => true, 'data-tip' => true, 'aria-label' => true ),
+				'br'       => array(),
+				'strong'   => array(),
+				'small'    => array(),
+				'a'        => array( 'href' => true, 'title' => true, 'class' => true, 'target' => true, 'rel' => true ),
+				'div'      => array( 'class' => true, 'style' => true ),
 			);
 			echo wp_kses( $html, $wpfmmsq_allowed_html );
 			do_action( 'wpfmmsq_after_meta_box_settings' );
@@ -461,7 +475,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 		/**
 		 * get_meta_box_options.
 		 *
-		 * @version 5.3.4
+		 * @version 5.3.9
 		 * @since   1.0.0
 		 * @todo    [dev] (maybe) add "Enable/Disable" option
 		 */
@@ -703,33 +717,6 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 				) );
 			}
 
-			if ( $this->is_section_enabled['price_by_qty'] ) {
-				$quantities = array_merge( $quantities, array(
-					array(
-						'name'        => 'wpfmmsq_qty_price_by_qty_unit_label_template_singular',
-						'default'     => '',
-						'type'        => 'text',
-						'title'       => __( 'Unit label template: Singular', 'product-quantity-for-woocommerce' ),
-						'desc'        => ( count( $products ) > 1 ? __( 'All variations', 'product-quantity-for-woocommerce' ) : '' ),
-						'is_var'      => $is_var,
-						'tooltip'     => sprintf( __( 'Unit label template, e.g.: %s.', 'product-quantity-for-woocommerce' ), '<em>piece</em>' ) . ' ' .
-						                 __( 'Set blank to use global settings.', 'product-quantity-for-woocommerce' ),
-						'placeholder' => get_option( 'wpfmmsq_qty_price_by_qty_unit_label_template_singular', 'piece' ),
-					),
-					array(
-						'name'        => 'wpfmmsq_qty_price_by_qty_unit_label_template_plural',
-						'default'     => '',
-						'type'        => 'text',
-						'title'       => __( 'Unit label template: Plural', 'product-quantity-for-woocommerce' ),
-						'desc'        => ( count( $products ) > 1 ? __( 'All variations', 'product-quantity-for-woocommerce' ) : '' ),
-						'is_var'      => $is_var,
-						'tooltip'     => sprintf( __( 'Unit label template, e.g.: %s.', 'product-quantity-for-woocommerce' ), '<em>pieces</em>' ) . ' ' .
-						                 __( 'Set blank to use global settings.', 'product-quantity-for-woocommerce' ),
-						'placeholder' => get_option( 'wpfmmsq_qty_price_by_qty_unit_label_template_plural', 'pieces' ),
-					),
-				) );
-			}
-
 			if ( $_product->is_type( 'variable' ) ) {
 				if ( $this->is_section_enabled['min'] ) {
 					$quantities = array_merge( $quantities, array(
@@ -780,7 +767,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 				}
 			}
 
-			return $quantities;
+			return apply_filters( 'wpfmmsq_product_metabox_options', $quantities, $products, $main_product_id );
 		}
 
 	}
