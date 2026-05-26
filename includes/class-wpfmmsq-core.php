@@ -3,7 +3,7 @@
  * Product Quantity for WooCommerce - Core Class
  *
  * @version 5.4.1
- * @version 5.4.1
+ * @version 5.4.2
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -537,7 +537,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * quantity_to_all.
 		 *
-		 * @version 5.3.4
+		 * @version 5.4.2
 		 */
 		function quantity_to_all() {
 			?>
@@ -636,88 +636,41 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			<script>
 				jQuery( document ).ready( function () {
 					var product_id = jQuery( '#post_ID' ).val();
-					var alg_wc_pq_min_name = 'alg_wc_pq_min_' + product_id + '_to_all';
-					var alg_wc_pq_min_to_all = jQuery( "input[type='checkbox'][name='main_product_min_quantity_to_all']" );
-					var alg_wc_pq_min = jQuery( "input[type='checkbox'][name='" + alg_wc_pq_min_name + "']" );
 
-					if ( alg_wc_pq_min_to_all.prop( 'checked' ) ) {
-						alg_wc_pq_min.prop( 'checked', true );
+					function sync_add_to_all_checkbox( current_prefix, legacy_prefix, hidden_checkbox_name ) {
+						var visible_checkbox_name = current_prefix + product_id + '_to_all';
+						var visible_checkbox = jQuery( "input[type='checkbox'][name='" + visible_checkbox_name + "']" );
+
+						// Backward compatibility for legacy field names.
+						if ( ! visible_checkbox.length && legacy_prefix ) {
+							visible_checkbox_name = legacy_prefix + product_id + '_to_all';
+							visible_checkbox = jQuery( "input[type='checkbox'][name='" + visible_checkbox_name + "']" );
+						}
+
+						var hidden_checkbox = jQuery( "input[type='checkbox'][name='" + hidden_checkbox_name + "']" );
+
+						if ( ! visible_checkbox.length || ! hidden_checkbox.length ) {
+							return;
+						}
+
+						var is_checked = visible_checkbox.prop( 'checked' );
+						hidden_checkbox.prop( 'checked', is_checked );
+						hidden_checkbox.val( is_checked ? 'yes' : 'no' );
+						visible_checkbox.val( is_checked ? 'yes' : 'no' );
+
+						visible_checkbox.on( 'change', function () {
+							var visible_is_checked = jQuery( this ).prop( 'checked' );
+							hidden_checkbox.prop( 'checked', visible_is_checked );
+							hidden_checkbox.val( visible_is_checked ? 'yes' : 'no' );
+							jQuery( this ).val( visible_is_checked ? 'yes' : 'no' );
+						} );
 					}
 
-					alg_wc_pq_min.on( 'change', function () {
-						alg_wc_pq_min_to_all.prop( 'checked', this.checked );
-						if ( this.checked ) {
-							alg_wc_pq_min_to_all.val( 'yes' );
-						} else {
-							alg_wc_pq_min_to_all.val( 'no' );
-						}
-					} );
-
-					var alg_wc_pq_max_name = 'alg_wc_pq_max_' + product_id + '_to_all';
-					var alg_wc_pq_max_to_all = jQuery( "input[type='checkbox'][name='main_product_max_quantity_to_all']" );
-					var alg_wc_pq_max = jQuery( "input[type='checkbox'][name='" + alg_wc_pq_max_name + "']" );
-
-					if ( alg_wc_pq_max_to_all.prop( 'checked' ) ) {
-						alg_wc_pq_max.prop( 'checked', true );
-					}
-
-					alg_wc_pq_max.on( 'change', function () {
-						alg_wc_pq_max_to_all.prop( 'checked', this.checked );
-						if ( this.checked ) {
-							alg_wc_pq_max_to_all.val( 'yes' );
-						} else {
-							alg_wc_pq_max_to_all.val( 'no' );
-						}
-					} );
-					var alg_wc_pq_step_name = 'alg_wc_pq_step_' + product_id + '_to_all';
-					var alg_wc_pq_step_to_all = jQuery( "input[type='checkbox'][name='main_product_step_quantity_to_all']" );
-					var alg_wc_pq_step = jQuery( "input[type='checkbox'][name='" + alg_wc_pq_step_name + "']" );
-
-					if ( alg_wc_pq_step_to_all.prop( 'checked' ) ) {
-						alg_wc_pq_step.prop( 'checked', true );
-					}
-
-					alg_wc_pq_step.on( 'change', function () {
-						alg_wc_pq_step_to_all.prop( 'checked', this.checked );
-						if ( this.checked ) {
-							alg_wc_pq_step_to_all.val( 'yes' );
-						} else {
-							alg_wc_pq_step_to_all.val( 'no' );
-						}
-					} );
-					var alg_wc_pq_default_name = 'alg_wc_pq_default_' + product_id + '_to_all';
-					var alg_wc_pq_default_to_all = jQuery( "input[type='checkbox'][name='main_product_default_quantity_to_all']" );
-					var alg_wc_pq_default = jQuery( "input[type='checkbox'][name='" + alg_wc_pq_default_name + "']" );
-
-					if ( alg_wc_pq_default_to_all.prop( 'checked' ) ) {
-						alg_wc_pq_default.prop( 'checked', true );
-					}
-
-					alg_wc_pq_default.on( 'change', function () {
-						alg_wc_pq_default_to_all.prop( 'checked', this.checked );
-						if ( this.checked ) {
-							alg_wc_pq_default_to_all.val( 'yes' );
-						} else {
-							alg_wc_pq_default_to_all.val( 'no' );
-						}
-					} );
-
-					var alg_wc_pq_exact_qty_allowed_name = 'alg_wc_pq_exact_qty_allowed_' + product_id + '_to_all';
-					var alg_wc_pq_exact_qty_allowed_to_all = jQuery( "input[type='checkbox'][name='main_product_exact_qty_allowed_quantity_to_all']" );
-					var alg_wc_pq_exact_qty_allowed = jQuery( "input[type='checkbox'][name='" + alg_wc_pq_exact_qty_allowed_name + "']" );
-
-					if ( alg_wc_pq_exact_qty_allowed_to_all.prop( 'checked' ) ) {
-						alg_wc_pq_exact_qty_allowed.prop( 'checked', true );
-					}
-
-					alg_wc_pq_exact_qty_allowed.on( 'change', function () {
-						alg_wc_pq_exact_qty_allowed_to_all.prop( 'checked', this.checked );
-						if ( this.checked ) {
-							alg_wc_pq_exact_qty_allowed_to_all.val( 'yes' );
-						} else {
-							alg_wc_pq_exact_qty_allowed_to_all.val( 'no' );
-						}
-					} );
+					sync_add_to_all_checkbox( 'wpfmmsq_min_', 'alg_wc_pq_min_', 'main_product_min_quantity_to_all' );
+					sync_add_to_all_checkbox( 'wpfmmsq_max_', 'alg_wc_pq_max_', 'main_product_max_quantity_to_all' );
+					sync_add_to_all_checkbox( 'wpfmmsq_step_', 'alg_wc_pq_step_', 'main_product_step_quantity_to_all' );
+					sync_add_to_all_checkbox( 'wpfmmsq_default_', 'alg_wc_pq_default_', 'main_product_default_quantity_to_all' );
+					sync_add_to_all_checkbox( 'wpfmmsq_exact_qty_allowed_', 'alg_wc_pq_exact_qty_allowed_', 'main_product_exact_qty_allowed_quantity_to_all' );
 
 				} );
 			</script>
