@@ -1,7 +1,7 @@
 /**
  * wpfmmsq-variable.js
  *
- * @version 5.3.2
+ * @version 5.4.1
  * @since   1.0.0
  */
 
@@ -256,13 +256,14 @@ jQuery( document ).ready( function () {
 /**
  * wpfmmsq_get_options_input
  *
- * @version 5.3.1
+ * @version 5.4.1
  * @since   4.6.6
  */
 function wpfmmsq_get_options_input( variation_id, quantity_input_var ) {
 	var data = {
 		'action': 'wpfmmsq_update_get_input_options',
-		'variation_id': variation_id
+		'variation_id': variation_id,
+		'nonce': wpfmmsq_quantities_options.nonce
 	};
 	jQuery.ajax( {
 		type: 'POST',
@@ -291,13 +292,14 @@ function wpfmmsq_get_options_input( variation_id, quantity_input_var ) {
 /**
  * wpfmmsq_get_dropdown_options
  *
- * @version 5.3.1
+ * @version 5.4.1
  * @since   4.6.6
  */
 function wpfmmsq_get_dropdown_options( variation_id, quantity_select_var ) {
 	var data = {
 		'action': 'wpfmmsq_update_get_dropdown_options',
-		'variation_id': variation_id
+		'variation_id': variation_id,
+		'nonce': wpfmmsq_quantities_options.nonce
 	};
 	jQuery.ajax( {
 		type: 'POST',

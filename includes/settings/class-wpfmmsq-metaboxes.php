@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Metaboxes
  *
- * @version 5.3.9
+ * @version 5.4.1
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -137,7 +137,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 		/**
 		 * display_pq_metabox.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.1
 		 * @since   1.0.0
 		 * @todo    [dev] `placeholder` for textarea
 		 * @todo    [dev] `class` for all remaining types
@@ -328,6 +328,7 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 				}
 			}
 			$html .= '</table>';
+			$html .= wp_nonce_field( 'wpfmmsq_save_pq_meta_box', 'wpfmmsq_pq_meta_box_nonce', true, false );
 			$html .= '<input type="hidden" name="wpfmmsq_save_post" value="wpfmmsq_save_post">';
 			$wpfmmsq_allowed_html = array(
 				'table'    => array( 'class' => true ),
@@ -354,13 +355,83 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 		}
 
 		/**
+		 * sanitize_meta_box_option_value.
+		 *
+		 * @version 5.4.1
+		 * @since   5.4.1
+		 *
+		 * @param array       $option Option config.
+		 * @param string|array $value Raw value.
+		 *
+		 * @return string|array
+		 */
+		function sanitize_meta_box_option_value( $option, $value ) {
+			$type = ( isset( $option['type'] ) ? $option['type'] : 'text' );
+
+			if ( 'checkbox' === $type ) {
+				return ( 'yes' === $value ? 'yes' : 'no' );
+			}
+
+			if ( 'number' === $type || 'price' === $type ) {
+				if ( '' === $value ) {
+					return '';
+				}
+
+				return wc_format_decimal( $value, false, true );
+			}
+
+			if ( 'select' === $type ) {
+				$allowed_options = ( isset( $option['options'] ) && is_array( $option['options'] ) ? array_keys( $option['options'] ) : array() );
+
+				if ( isset( $option['multiple'] ) ) {
+					$value = ( is_array( $value ) ? $value : array() );
+					$value = array_map( 'sanitize_text_field', $value );
+
+					return array_values( array_intersect( $value, $allowed_options ) );
+				}
+
+				$value = sanitize_text_field( (string) $value );
+
+				return ( in_array( $value, $allowed_options, true ) ? $value : ( isset( $option['default'] ) ? $option['default'] : '' ) );
+			}
+
+			if ( 'textarea' === $type ) {
+				return sanitize_textarea_field( (string) $value );
+			}
+
+			if ( 'text' === $type ) {
+				return sanitize_text_field( (string) $value );
+			}
+
+			return sanitize_text_field( (string) $value );
+		}
+
+		/**
 		 * save_pq_meta_box.
 		 *
-		 * @version 5.3.4
+		 * @version 5.4.1
 		 * @since   1.0.0
 		 */
 		function save_pq_meta_box( $post_id, $post, $update ) {
 			global $post;
+
+			if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+				return;
+			}
+
+			if ( ! isset( $_POST['wpfmmsq_pq_meta_box_nonce'] ) ) {
+				return;
+			}
+
+			$nonce = sanitize_text_field( wp_unslash( $_POST['wpfmmsq_pq_meta_box_nonce'] ) );
+			if ( ! wp_verify_nonce( $nonce, 'wpfmmsq_save_pq_meta_box' ) ) {
+				return;
+			}
+
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return;
+			}
+
 			$the_id = get_the_ID();
 			if ( $the_id != $post_id ) {
 				$pid = $post_id;
@@ -391,12 +462,8 @@ if ( ! class_exists( 'WPFMMSQ_Metaboxes' ) ) :
 				}
 				$is_enabled = ( isset( $option['enabled'] ) && 'no' === $option['enabled'] ) ? false : true;
 				if ( $is_enabled ) {
-					if ( 'checkbox' === $option['type'] ) {
-						$posted_checkbox_value = ( isset( $posted_data[ $option['name'] ] ) ? $posted_data[ $option['name'] ] : '' );
-						$option_value          = ( 'yes' === $posted_checkbox_value ? 'yes' : 'no' );
-					} else {
-						$option_value = ( isset( $posted_data[ $option['name'] ] ) ? $posted_data[ $option['name'] ] : $option['default'] );
-					}
+					$option_raw_value = ( isset( $posted_data[ $option['name'] ] ) ? $posted_data[ $option['name'] ] : $option['default'] );
+					$option_value     = $this->sanitize_meta_box_option_value( $option, $option_raw_value );
 					$_post_id   = ( isset( $option['product_id'] ) ? $option['product_id'] : $post_id );
 					$_meta_name = ( isset( $option['meta_name'] ) ? $option['meta_name'] : '_' . $option['name'] );
 

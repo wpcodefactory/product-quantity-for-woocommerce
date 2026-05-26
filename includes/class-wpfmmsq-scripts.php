@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 5.3.9
+ * @version 5.4.1
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WPFMMSQ_Scripts' ) ) :
 		/**
 		 * Enqueue frontend scripts.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.1
 		 * @since   1.0.0
 		 *
 		 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -67,6 +67,7 @@ if ( ! class_exists( 'WPFMMSQ_Scripts' ) ) :
 					),
 					'is_dropdown_enabled'    => get_option( 'wpfmmsq_qty_dropdown', 'no' ),
 					'wpfmmsq_is_catalog'     => 'no',
+					'nonce'                  => wp_create_nonce( 'wpfmmsq_nonce' ),
 				);
 
 				if ( is_product_category() || is_shop() ) {

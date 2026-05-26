@@ -2,8 +2,8 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.3.9
- * @version 5.3.9
+ * @version 5.4.1
+ * @version 5.4.1
  * @since   1.0.0
  * @author  WPFactory
  */
@@ -220,7 +220,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$this->excluded_pids = array_unique( array_merge( $this->excluded_pids, $excluded_pids ) );
 				}
 
-				// Core
+				// Core.
 				$this->messenger = require_once( 'class-wpfmmsq-messenger.php' );
 				if (
 					'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ||
@@ -238,7 +238,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					}
 				}
 
-				// Min/max
+				// Min/max.
 				if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) || 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_available_variation', array( $this, 'set_quantity_input_min_max_variation' ), PHP_INT_MAX, 3 );
 					if ( 'yes' === get_option( 'wpfmmsq_min_section_enabled', 'no' ) ) {
@@ -249,13 +249,13 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 						add_filter( 'woocommerce_quantity_input_max', array( $this, 'set_quantity_input_max' ), PHP_INT_MAX, 2 );
 						add_filter( 'woocommerce_store_api_product_quantity_maximum', array( $this, 'store_api_product_max_quantity' ), PHP_INT_MAX, 3 );
 					}
-					// Force on archives
+					// Force on archives.
 					if ( 'disabled' != ( $this->force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' ) ) ) {
 						add_filter( 'woocommerce_loop_add_to_cart_args', array( $this, 'force_qty_on_loop' ), PHP_INT_MAX, 2 );
 					}
 				}
 
-				// Step
+				// Step.
 				if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_quantity_input_step', array( $this, 'set_quantity_input_step' ), PHP_INT_MAX, 2 );
 
@@ -290,7 +290,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				// For cart & for `input_value`
 				add_filter( 'woocommerce_quantity_input_args', array( $this, 'set_quantity_input_args' ), PHP_INT_MAX - 100, 2 );
 
-				// Decimal qty
+				// Decimal qty.
 				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 					add_action( 'init', array( $this, 'float_stock_amount' ), PHP_INT_MAX );
 					add_action( 'save_post', array( $this, 'save_stock_status_overwrite_thresold' ), PHP_INT_MAX, 3 );
@@ -299,17 +299,17 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					add_action( 'woocommerce_variation_set_stock', array( $this, 'alg_wc_woocommerce_product_set_stock_action' ), PHP_INT_MAX, 1 );
 				}
 
-				// Sold individually
+				// Sold individually.
 				if ( 'yes' === get_option( 'wpfmmsq_all_sold_individually_enabled', 'no' ) ) {
 					add_filter( 'woocommerce_is_sold_individually', '__return_true', PHP_INT_MAX );
 				}
 
-				// Styling
+				// Styling.
 				if ( '' != get_option( 'wpfmmsq_qty_input_style', '' ) ) {
 					add_action( 'wp_head', array( $this, 'style_qty_input' ), PHP_INT_MAX );
 				}
 
-				// Hide "Update cart" button
+				// Hide "Update cart" button.
 				if ( 'yes' === get_option( 'wpfmmsq_qty_hide_update_cart', 'no' ) ) {
 					add_action( 'wp_head', array( $this, 'hide_update_cart_button' ), PHP_INT_MAX );
 				}
@@ -323,12 +323,15 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'not_validate_on_add_to_cart' ), PHP_INT_MAX, 4 );
 				}
 
-				// Qty rounding
-				if ( 'no' != ( $this->round_on_add_to_cart = get_option( 'wpfmmsq_round_on_add_to_cart', 'no' ) ) ) {
+				// Qty rounding.
+				$round_on_add_to_cart = get_option( 'wpfmmsq_round_on_add_to_cart', 'no' );
+				$allowed_round_funcs  = array( 'round', 'ceil', 'floor' );
+				if ( in_array( $round_on_add_to_cart, $allowed_round_funcs, true ) ) {
+					$this->round_on_add_to_cart = $round_on_add_to_cart;
 					add_filter( 'woocommerce_add_to_cart_quantity', array( $this, 'round_on_add_to_cart' ), PHP_INT_MAX, 2 );
 				}
 
-				// Dropdown
+				// Dropdown.
 				if ( 'yes' === get_option( 'wpfmmsq_qty_dropdown', 'no' ) ) {
 					add_filter( 'wc_get_template', array( $this, 'replace_quantity_input_template' ), PHP_INT_MAX, 5 );
 				} else {
@@ -337,18 +340,18 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					}
 				}
 
-				// Shortcodes
+				// Shortcodes.
 				require_once( 'class-wpfmmsq-shortcodes.php' );
 
-				// Quantity info
+				// Quantity info.
 				$this->qty_info = require_once( 'class-wpfmmsq-qty-info.php' );
 
-				// Admin columns
+				// Admin columns.
 				require_once( 'class-wpfmmsq-admin.php' );
 
 				$this->attribute_taxonomies = wpfmmsq_wc_get_attribute_taxonomies();
 
-				// Price by Qty
+				// Price by Qty.
 				if ( 'yes' === get_option( 'wpfmmsq_qty_price_by_qty_enabled', 'no' ) ) {
 
 					add_action(
@@ -372,7 +375,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 					$this->attr_taxonomies = $this->get_allowed_attribute_tax();
 				}
 
-				// Order item meta
+				// Order item meta.
 				if ( 'yes' === get_option( 'wpfmmsq_save_qty_in_order_item_meta', 'no' ) ) {
 					add_action( 'woocommerce_new_order_item', array( $this, 'add_qty_to_order_item_meta' ), PHP_INT_MAX, 3 );
 				}
@@ -406,7 +409,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 				$this->alg_wc_pq_force_on_loop = get_option( 'wpfmmsq_force_on_loop', 'disabled' );
 
-				// Get dropdown option
+				// Get dropdown option.
 				if ( 'yes' === get_option( 'wpfmmsq_qty_dropdown', 'no' ) ) {
 					add_action( 'wp_ajax_' . 'wpfmmsq_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
 					add_action( 'wp_ajax_nopriv_' . 'wpfmmsq_update_get_dropdown_options', array( $this, 'ajax_update_get_dropdown_options' ) );
@@ -1050,7 +1053,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_get_input_options.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.1
 		 * @since   1.6.1
 		 *
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
@@ -1060,6 +1063,8 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		 * @todo    [dev] (maybe) add optional "in progress" message (for slow servers)
 		 */
 		function ajax_update_get_input_options() {
+			$this->verify_ajax_nonce_request( 'wpfmmsq_nonce', 'nonce' );
+
 			$return       = array();
 			$variation_id = ( isset( $_REQUEST['variation_id'] ) ? absint( wp_unslash( $_REQUEST['variation_id'] ) ) : 0 );
 			if ( $variation_id <= 0 ) {
@@ -1156,7 +1161,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_get_dropdown_options.
 		 *
-		 * @version 5.3.4
+		 * @version 5.4.1
 		 * @since   1.6.1
 		 *
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
@@ -1166,6 +1171,8 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		 * @todo    [dev] (maybe) add optional "in progress" message (for slow servers)
 		 */
 		function ajax_update_get_dropdown_options() {
+			$this->verify_ajax_nonce_request( 'wpfmmsq_nonce', 'nonce' );
+
 			$variation_id = ( isset( $_REQUEST['variation_id'] ) ? absint( wp_unslash( $_REQUEST['variation_id'] ) ) : 0 );
 			if ( $variation_id <= 0 ) {
 				wp_die();
@@ -1549,14 +1556,21 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * round_on_add_to_cart.
 		 *
-		 * @version 5.3.4
+		 * @version 5.4.1
 		 * @since   1.6.2
 		 * @todo    [feature] (maybe) add `precision` option
 		 */
 		function round_on_add_to_cart( $quantity, $product_id ) {
-			$func = $this->round_on_add_to_cart;
-
-			return $func( $quantity );
+			switch ( $this->round_on_add_to_cart ) {
+				case 'round':
+					return round( $quantity );
+				case 'ceil':
+					return ceil( $quantity );
+				case 'floor':
+					return floor( $quantity );
+				default:
+					return $quantity;
+			}
 		}
 
 		/**
