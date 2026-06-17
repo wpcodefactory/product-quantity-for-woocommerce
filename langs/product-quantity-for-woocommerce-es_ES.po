@@ -284,6 +284,7 @@ msgid "Specify a plural string for this category, this is controlled by Product 
 msgstr "Especifique una cadena plural para esta categoría, esto está controlado por el complemento Cantidad de producto"
 
 #: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:268
+#: includes/settings/class-wpfmmsq-category-metaboxes.php:59
 #: includes/settings/class-wpfmmsq-metaboxes.php:742
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:37
 #: includes/settings/class-wpfmmsq-settings-price-unit.php:55
@@ -292,6 +293,7 @@ msgid "Price Unit"
 msgstr "Precio unitario"
 
 #: includes/pro/settings/class-wpfmmsq-pro-category-metaboxes.php:276
+#: includes/settings/class-wpfmmsq-category-metaboxes.php:66
 msgid "Specify a string for this category, this is controlled by Product Quantity plugin"
 msgstr "Especifique una cadena para esta categoría, esto está controlado por el complemento Cantidad de producto"
 
@@ -1996,25 +1998,25 @@ msgstr ""
 msgid "You need to deactivate Product Quantity Control for WooCommerce. <br/> %1$s back to plugins. %2$s"
 msgstr ""
 
-#: includes/pro/class-wpfmmsq-pro.php:347
-#: includes/pro/class-wpfmmsq-pro.php:398
+#: includes/pro/class-wpfmmsq-pro.php:346
+#: includes/pro/class-wpfmmsq-pro.php:397
 msgid "Maximum allowed quantity for category %1$s is %2$s. Your current quantity for this category is %3$s."
 msgstr ""
 
-#: includes/pro/class-wpfmmsq-pro.php:411
+#: includes/pro/class-wpfmmsq-pro.php:410
 msgid "Minimum allowed quantity for category %1$s is %2$s. Your current quantity is %3$s."
 msgstr ""
 
-#: includes/pro/class-wpfmmsq-pro.php:446
-#: includes/pro/class-wpfmmsq-pro.php:462
+#: includes/pro/class-wpfmmsq-pro.php:445
+#: includes/pro/class-wpfmmsq-pro.php:461
 msgid "Maximum allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute is %3$s."
 msgstr ""
 
-#: includes/pro/class-wpfmmsq-pro.php:526
+#: includes/pro/class-wpfmmsq-pro.php:525
 msgid "Allowed quantity for category %1$s is %2$s. Your current quantity is %3$s"
 msgstr ""
 
-#: includes/pro/class-wpfmmsq-pro.php:567
+#: includes/pro/class-wpfmmsq-pro.php:566
 msgid "Allowed quantity for attribute %1$s is %2$s. Your current quantity for this attribute item is %3$s"
 msgstr ""
 
@@ -2042,7 +2044,7 @@ msgstr ""
 msgid "Placeholders: %s, %s."
 msgstr ""
 
-#: includes/pro/class-wpfmmsq-pro.php:338
+#: includes/pro/class-wpfmmsq-pro.php:337
 msgid "Minimum allowed quantity for category %1$s is %2$s. You need to add at least %3$s more."
 msgstr ""
 

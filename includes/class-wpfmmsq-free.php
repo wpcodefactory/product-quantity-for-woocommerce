@@ -1,8 +1,8 @@
 <?php
 /**
- * Product Quantity for WooCommerce - Pro Class
+ * Product Quantity for WooCommerce - Free Class
  *
- * @version 5.3.9
+ * @version 5.4.3
  * @since   1.8.0
  *
  * @author  WPFactory
@@ -19,7 +19,7 @@ if ( ! class_exists( 'WPFMMSQ_Free' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.3
 		 * @since   1.8.0
 		 *
 		 * @todo    [dev] maybe move here: `require_once( 'includes/settings/class-wpfmmsq-metaboxes.php' );`
@@ -32,6 +32,13 @@ if ( ! class_exists( 'WPFMMSQ_Free' ) ) :
 
 			add_filter( 'wpfmmsq_per_item_qty_per_product', array( $this, 'per_item_quantity_per_product' ), 10, 2 );
 			add_filter( 'wpfmmsq_per_item_qty_per_product_value', array( $this, 'per_item_quantity_per_product_value' ), 10, 3 );
+
+			// Price unit toggles.
+			add_filter( 'wpfmmsq_qty_price_unit_category_enabled', array( $this, 'wpfmmsq_qty_price_unit_category_enabled' ) );
+
+			if ( is_admin() ) {
+				add_action( 'current_screen', array( $this, 'load_category_metaboxes' ) );
+			}
 
 		}
 
@@ -80,6 +87,34 @@ if ( ! class_exists( 'WPFMMSQ_Free' ) ) :
 		 */
 		function per_item_quantity_per_product_value( $value, $product_id, $min_or_max ) {
 			return (float) get_post_meta( $product_id, '_' . 'wpfmmsq_' . $min_or_max, true );
+		}
+
+		/**
+		 * wpfmmsq_qty_price_unit_category_enabled.
+		 *
+		 * @version 5.4.3
+		 * @since   5.4.3
+		 */
+		function wpfmmsq_qty_price_unit_category_enabled( $value ) {
+			return get_option( 'wpfmmsq_qty_price_unit_category_enabled', 'no' );
+		}
+
+		/**
+		 * load_category_metaboxes.
+		 *
+		 * @version 5.4.3
+		 * @since   5.4.3
+		 *
+		 * @param WP_Screen $screen Current admin screen object.
+		 */
+		function load_category_metaboxes( $screen ) {
+			if ( ! isset( $screen->base ) || ! in_array( $screen->base, array( 'edit-tags', 'term' ), true ) ) {
+				return;
+			}
+
+			if ( isset( $screen->taxonomy ) && 'product_cat' === $screen->taxonomy ) {
+				require_once dirname( __FILE__ ) . '/settings/class-wpfmmsq-category-metaboxes.php';
+			}
 		}
 
 	}

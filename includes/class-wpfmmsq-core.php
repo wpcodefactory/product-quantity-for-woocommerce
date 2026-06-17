@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.4.1
+ * @version 5.4.3
  * @version 5.4.2
  * @since   1.0.0
  * @author  WPFactory
@@ -1294,11 +1294,11 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			return $qty_display;
 		}
 
-		/**
-		 * Adjust product price HTML.
-		 *
-		 * @version 5.3.9
-		 * @since   4.5.20
+	/**
+	 * Adjust product price HTML.
+	 *
+	 * @version 5.4.3
+	 * @since   4.5.20
 		 */
 		function pq_change_product_price_unit( $price, $product ) {
 
@@ -1348,28 +1348,28 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 
 
-			if ( $this->alg_wc_pq_qty_price_unit_enabled === 'yes' ) {
+		if ( $this->alg_wc_pq_qty_price_unit_enabled === 'yes' ) {
 
-				if ( $this->is_show_unit() ) {
-					$unit = get_option( 'wpfmmsq_qty_price_unit', '' );
-					if ( ! empty( $product ) && $product->get_id() > 0 && ! empty( $price ) && ! is_admin() ) {
+			if ( $this->is_show_unit() ) {
+				$unit = get_option( 'wpfmmsq_qty_price_unit', '' );
+				if ( ! empty( $product ) && $product->get_id() > 0 && ! empty( $price ) && ! is_admin() ) {
+					$product_id = $product->get_id();
+					if ( $productType == 'variation' ) {
 						$product_id = $product->get_id();
-						if ( $productType == 'variation' ) {
-							$product_id = $product->get_id();
-						}
-						if ( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes' ) {
-							$product_unit = $this->get_term_price_unit( $product_id );
-							$unit         = ( ! empty( $product_unit ) ? $product_unit : $unit );
-						}
+					}
+					if ( $this->enabled_priceunit_category == 'yes' || $this->enabled_priceunit_product == 'yes' ) {
+						$product_unit = $this->get_term_price_unit( $product_id );
+						$unit         = ( ! empty( $product_unit ) ? $product_unit : $unit );
+					}
 
-						if ( ! empty( $unit ) ) {
-							if ( ! strpos( $price, $unit ) ) {
-								$price .= ' <span class="alg_pq_wc_price_unit">' . wp_kses_post( do_shortcode( $unit ) ) . '</span>';
-							}
+					if ( ! empty( $unit ) ) {
+						if ( false === strpos( $price, 'alg_pq_wc_price_unit' ) ) {
+							$price .= ' <span class="alg_pq_wc_price_unit">' . wp_kses_post( do_shortcode( $unit ) ) . '</span>';
 						}
 					}
 				}
 			}
+		}
 
 
 			return $price;
