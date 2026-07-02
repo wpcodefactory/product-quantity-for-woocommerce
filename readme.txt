@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, ae
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 7.0
-Stable tag: 5.4.3
+Stable tag: 5.4.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,10 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 5.4.4 - 02/07/2026 =
+* Fix - Quantity Dropdown - Fixed dropdown on variable products.
+* WC tested up to: 10.9.
 
 = 5.4.3 - 17/06/2026 =
 * Fix - Price Unit - Move "Allow price unit on category level" to free version.

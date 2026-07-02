@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.4.3
+ * @version 5.4.4
  * @version 5.4.2
  * @since   1.0.0
  * @author  WPFactory
@@ -1114,7 +1114,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_get_dropdown_options.
 		 *
-		 * @version 5.4.1
+		 * @version 5.4.4
 		 * @since   1.6.1
 		 *
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
@@ -1162,7 +1162,13 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			$return = ob_get_contents();
 			ob_end_clean();
-			echo wp_kses_post( $return );
+			$allowed_html = wp_kses_allowed_html( 'post' );
+			$allowed_html['option'] = array(
+				'value'    => true,
+				'selected' => true,
+				'class'    => true,
+			);
+			echo wp_kses( $return, $allowed_html );
 			die();
 		}
 
