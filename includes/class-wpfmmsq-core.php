@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.4.4
+ * @version 5.4.5
  * @version 5.4.2
  * @since   1.0.0
  * @author  WPFactory
@@ -3355,15 +3355,19 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_or_max.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.5
 		 * @since   1.6.0
 		 * @todo    [dev] (important) rename this (and probably some other `set_...()` functions)
 		 */
 		function set_quantity_input_min_or_max( $qty, $_product, $min_or_max ) {
-			$value = $this->get_product_qty_min_max( $this->get_product_id( $_product ), $qty, $min_or_max );
+			$product_id = $this->get_product_id( $_product );
+			$value      = $this->get_product_qty_min_max( $product_id, $qty, $min_or_max );
 
-			if ( 'min' === $min_or_max && is_product() && isset( WC()->cart ) ) {
-				$product_id           = $this->get_product_id( $_product );
+			// Add-to-cart step validation always checks the submitted quantity against the raw min, so the
+			// min shown/used on the input must stay the raw min whenever a step is configured, cart or no cart.
+			$product_qty_step = $this->get_product_qty_step( $product_id );
+
+			if ( 'min' === $min_or_max && is_product() && isset( WC()->cart ) && $product_qty_step <= 0 ) {
 				$cart_item_quantities = $this->get_cart_item_quantities();
 				$product_qty_in_cart  = ( isset( $cart_item_quantities[ $product_id ] ) ? (float) $cart_item_quantities[ $product_id ] : 0 );
 
