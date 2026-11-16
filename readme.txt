@@ -3,7 +3,7 @@ Contributors: wpcodefactory, omardabbas, karzin, anbinder, kousikmukherjeeli, ae
 Tags: minimum quantity, maximum quantity, dropdown, quantity, decimal quantity
 Requires at least: 6.1
 Tested up to: 7.1
-Stable tag: 5.4.5
+Stable tag: 5.4.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,16 @@ ___
 Once activated, access the plugin's settings by navigating to the “WPFactory” menu and look for the relevant tab.
 
 == Changelog ==
+
+= 5.4.6 - 16/11/2026 =
+* Fix - Decimal Quantities - Fixed decimal quantities (e.g. "3.5") not being possible to enter on mobile devices (iPhone/Android), where only whole numbers could be typed.
+* Fix - Decimal Quantities - Fixed quantity input value being overwritten while it was being typed (e.g. "3." while typing "3.5"), so the decimal separator was lost.
+* Fix - Decimal Quantities - Quantity input now uses the decimal input mode on mobile devices, so the keyboard displays the decimal separator, even when the attribute comes from a custom quantity input template.
+* Fix - Min Quantity - Fixed quantity input allowing customers to select quantities above available stock when stock matched the minimum quantity (simple and variable products).
+* Fix - Min Quantity - Fixed "Hide quantity input if stock quantity matches minimum" options.
+* Dev - Upgraded wpfactory/wpfactory-admin-menu (v1.0.8 => v1.1.4).
+* Dev - Upgraded wpfactory/wpfactory-cross-selling (v1.0.9 => v1.1.7).
+* WC tested up to: 11.3.
 
 = 5.4.5 - 17/09/2026 =
 * Fix - General - Disabled archive quantity inputs when the plugin is disabled.

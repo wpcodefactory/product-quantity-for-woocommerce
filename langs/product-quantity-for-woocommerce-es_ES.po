@@ -28,23 +28,23 @@ msgstr "Cantidad Máxima"
 msgid "Qty Step"
 msgstr "Paso de cantidad"
 
-#: includes/class-wpfmmsq-core.php:1186
+#: includes/class-wpfmmsq-core.php:1222
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr "&ldquo;%s&rdquo;"
 
-#: includes/class-wpfmmsq-core.php:1191
+#: includes/class-wpfmmsq-core.php:1227
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] "%s se han añadido al carrito."
 msgstr[1] "%s se han añadido al carrito."
 
-#: includes/class-wpfmmsq-core.php:1192
+#: includes/class-wpfmmsq-core.php:1228
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-wpfmmsq-core.php:3092
-#: includes/class-wpfmmsq-core.php:3095
+#: includes/class-wpfmmsq-core.php:3185
+#: includes/class-wpfmmsq-core.php:3188
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:132
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
@@ -65,13 +65,13 @@ msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current
 msgstr "La cantidad mínima de pedido permitida es %min_cart_total_quantity%. La cantidad de su pedido actual es %cart_total_quantity%."
 
 #: includes/class-wpfmmsq-messenger.php:76
-#: includes/class-wpfmmsq-scripts.php:354
+#: includes/class-wpfmmsq-scripts.php:357
 #: includes/settings/class-wpfmmsq-settings-max.php:124
 msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr "La cantidad máxima permitida para %product_title% es %max_per_item_quantity%. La cantidad actual del artículo es %item_quantity%."
 
 #: includes/class-wpfmmsq-messenger.php:86
-#: includes/class-wpfmmsq-scripts.php:374
+#: includes/class-wpfmmsq-scripts.php:377
 #: includes/settings/class-wpfmmsq-settings-min.php:166
 msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr "La cantidad mínima permitida para %product_title% es %min_per_item_quantity%. La cantidad actual del artículo es %item_quantity%."
@@ -1323,7 +1323,7 @@ msgstr "Marcadores de posición: %s. %s"
 msgid "(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)"
 msgstr "(El marcador de posición %unit% se leerá desde 3 lugares, con el nivel de prioridad definido: primero, leerá si una unidad está definida en el nivel de producto, si no está definida, luego verificará si está definida en el nivel de categoría, si no está definida, se leerá desde el nivel global definido en esta página. Si su tienda usa la misma unidad para todos los productos, puede usar la unidad aquí en el campo sin ningún marcador de posición)"
 
-#: includes/class-wpfmmsq-core.php:3094
+#: includes/class-wpfmmsq-core.php:3187
 msgid "%price% for %qty% pcs."
 msgstr "%price% para %qty% uds."
 
@@ -1565,8 +1565,8 @@ msgstr "Administre la cantidad de productos en WooCommerce, maravillosamente. De
 msgid "WPFactory"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:1845
-#: includes/class-wpfmmsq-core.php:1868
+#: includes/class-wpfmmsq-core.php:1881
+#: includes/class-wpfmmsq-core.php:1904
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
@@ -1893,11 +1893,11 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2705
+#: includes/class-wpfmmsq-core.php:2798
 msgid "unit"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2706
+#: includes/class-wpfmmsq-core.php:2799
 msgid "units"
 msgstr ""
 

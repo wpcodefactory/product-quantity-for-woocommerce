@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Scripts Class
  *
- * @version 5.4.1
+ * @version 5.4.6
  * @since   1.7.0
  *
  * @author  WPFactory
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WPFMMSQ_Scripts' ) ) :
 		/**
 		 * Enqueue frontend scripts.
 		 *
-		 * @version 5.4.1
+		 * @version 5.4.6
 		 * @since   1.0.0
 		 *
 		 * @todo    [dev] (maybe) Price by qty: add `prepend` and `append` positions
@@ -106,6 +106,9 @@ if ( ! class_exists( 'WPFMMSQ_Scripts' ) ) :
 								$default   = wpfmmsq()->core->get_product_qty_default(
 									$variation['variation_id'], 1
 								);
+								if ( (float) $min_qty > 0 && (float) $max_qty > 0 && (float) $max_qty === (float) $min_qty ) {
+									$default = $min_qty;
+								}
 								$exact_qty = wpfmmsq()->core->get_product_exact_qty(
 									$product_id,
 									'allowed',

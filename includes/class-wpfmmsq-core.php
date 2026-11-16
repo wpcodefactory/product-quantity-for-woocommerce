@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.4.5
+ * @version 5.4.6
  * @version 5.4.2
  * @since   1.0.0
  * @author  WPFactory
@@ -293,6 +293,8 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				// Decimal qty.
 				if ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) ) {
 					add_action( 'init', array( $this, 'float_stock_amount' ), PHP_INT_MAX );
+					add_filter( 'woocommerce_quantity_input_inputmode', array( $this, 'set_quantity_input_inputmode' ), PHP_INT_MAX );
+					add_filter( 'woocommerce_quantity_input_pattern', array( $this, 'set_quantity_input_pattern' ), PHP_INT_MAX );
 					add_action( 'save_post', array( $this, 'save_stock_status_overwrite_thresold' ), PHP_INT_MAX, 3 );
 					add_action( 'woocommerce_save_product_variation', array( $this, 'save_variation_stock_status_overwrite_thresold' ), PHP_INT_MAX, 2 );
 					add_action( 'woocommerce_product_set_stock', array( $this, 'alg_wc_woocommerce_product_set_stock_action' ), PHP_INT_MAX, 1 );
@@ -480,11 +482,26 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * pq_select_footer_scripts.
 		 *
-		 * @version 5.3.4
+		 * @version 5.4.6
 		 */
 		function pq_select_footer_scripts() {
+			$is_decimal_quantities_enabled = ( 'yes' === get_option( 'wpfmmsq_decimal_quantities_enabled', 'no' ) );
 			?>
 			<script>
+<?php if ( $is_decimal_quantities_enabled ) : ?>
+				/**
+				 * Makes sure the decimal separator is available on mobile keyboards, even when the quantity input
+				 * attributes came from a custom template (e.g. a theme overriding the WooCommerce template).
+				 */
+				jQuery( function ( $ ) {
+					var set_decimal_inputmode = function () {
+						$( this ).attr( 'inputmode', 'decimal' ).removeAttr( 'pattern' );
+					};
+
+					$( '[name="quantity"], input.qty' ).each( set_decimal_inputmode );
+					$( document ).on( 'focusin', '[name="quantity"], input.qty', set_decimal_inputmode );
+				} );
+<?php endif; ?>
 				jQuery( document ).ready( function () {
 					var qty_select = jQuery( "select.qty" );
 					if ( qty_select.length > 0 ) {
@@ -511,14 +528,19 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				} );
 
 				jQuery( '[name="quantity"]' ).not( ".disable_price_by_qty" ).on( 'change', function ( e ) {
-					var current_val = parseFloat( jQuery( this ).val() );
-					if ( Number.isInteger( current_val ) === false ) {
-						current_val = current_val.toFixed( 4 );
-						current_val = parseFloat( current_val );
-						jQuery( this ).val( current_val );
-					} else {
-						current_val = parseInt( current_val );
-						jQuery( this ).val( current_val );
+					var raw_val = String( jQuery( this ).val() ).trim();
+					var current_val = parseFloat( raw_val );
+
+					// Skip incomplete values (e.g. "3." while "3.5" is being typed), so the decimal separator is kept.
+					if ( '' === raw_val || isNaN( current_val ) || /[.,]$/.test( raw_val ) ) {
+						return;
+					}
+
+					var formatted_val = ( Number.isInteger( current_val ) === false ?
+						String( parseFloat( current_val.toFixed( 4 ) ) ) : String( parseInt( current_val ) ) );
+
+					if ( formatted_val !== raw_val ) {
+						jQuery( this ).val( formatted_val );
 					}
 				} );
 
@@ -1006,7 +1028,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * ajax_update_get_input_options.
 		 *
-		 * @version 5.4.1
+		 * @version 5.4.6
 		 * @since   1.6.1
 		 *
 		 * @todo    [dev] non-simple products (i.e. variable, grouped etc.)
@@ -1080,6 +1102,15 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			$max  = ( $attr_max > 0 ? $attr_max : $max );
 			$step = ( $attr_step > 0 ? $attr_step : $step );
 
+			// Never allow selecting more than what's in stock.
+			$_variation = wc_get_product( $variation_id );
+			if ( $_variation && $_variation->managing_stock() && ! $_variation->backorders_allowed() ) {
+				$stock_quantity = $_variation->get_stock_quantity();
+				if ( is_numeric( $stock_quantity ) && ( $max <= 0 || (float) $max > (float) $stock_quantity ) ) {
+					$max = (float) $stock_quantity;
+				}
+			}
+
 			if ( 'reset_to_lowest_fixed' === get_option( 'wpfmmsq_variation_change', 'do_nothing' ) ) {
 				$exact_qty  = $this->get_product_exact_qty( $product_id, 'allowed', '', $variation_id );
 				$lowest_qty = 0;
@@ -1096,12 +1127,17 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$default = $min;
 			}
 
-			if ( $max <= $min ) {
+			if ( (float) $max < (float) $min ) {
 				$max = '';
 			}
 
 			if ( 'disabled' === get_option( 'wpfmmsq_force_on_single', 'disabled' ) ) {
 				$default = '';
+			}
+
+			// When min and max are equal the input is locked to that single quantity.
+			if ( (float) $min > 0 && '' !== $max && (float) $max === (float) $min ) {
+				$default = $min;
 			}
 
 			$return['min']     = $min;
@@ -2033,6 +2069,40 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		}
 
 		/**
+		 * set_quantity_input_inputmode.
+		 *
+		 * Forces a decimal capable keyboard on mobile devices. Otherwise, mobile browsers may show a numeric
+		 * keyboard without the decimal separator, so customers can't type decimal quantities (e.g. "3.5").
+		 *
+		 * @version 5.4.6
+		 * @since   5.4.6
+		 *
+		 * @param string $inputmode Input mode attribute value.
+		 *
+		 * @return string
+		 */
+		function set_quantity_input_inputmode( $inputmode ) {
+			return apply_filters( 'wpfmmsq_quantity_input_inputmode', 'decimal', $inputmode, $this );
+		}
+
+		/**
+		 * set_quantity_input_pattern.
+		 *
+		 * Removes the integer only pattern, as mobile browsers use it to decide whether the decimal separator
+		 * should be available on the keyboard.
+		 *
+		 * @version 5.4.6
+		 * @since   5.4.6
+		 *
+		 * @param string $pattern Pattern attribute value.
+		 *
+		 * @return string
+		 */
+		function set_quantity_input_pattern( $pattern ) {
+			return apply_filters( 'wpfmmsq_quantity_input_pattern', '', $pattern, $this );
+		}
+
+		/**
 		 * wpfmmsq_floatval.
 		 *
 		 * @version 5.3.4
@@ -2184,7 +2254,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.6
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2204,13 +2274,18 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 				$args['min_value'] = $this->set_quantity_input_min( $args['min_value'], $product );
 				if (
 					$product->managing_stock() &&
-					$product->get_stock_quantity() === $args['min_value']
+					(float) $product->get_stock_quantity() === (float) $args['min_value']
 				) {
-					if (
-						( 'no' === get_option( 'wpfmmsq_min_hide_qty_input_on_product_page_if_stock_matches_min', 'yes' ) && is_product() ) ||
-						( 'no' === get_option( 'wpfmmsq_min_hide_qty_input_on_cart_if_stock_matches_min', 'yes' ) && is_cart() ) ||
-						( 'no' === get_option( 'wpfmmsq_min_hide_qty_input_on_loop_if_stock_matches_min', 'yes' ) && ( is_shop() || is_product_tag() || is_product_category() ) )
-					) {
+					$hide_qty_input = (
+						( 'yes' === get_option( 'wpfmmsq_min_hide_qty_input_on_product_page_if_stock_matches_min', 'yes' ) && is_product() ) ||
+						( 'yes' === get_option( 'wpfmmsq_min_hide_qty_input_on_cart_if_stock_matches_min', 'yes' ) && is_cart() ) ||
+						( 'yes' === get_option( 'wpfmmsq_min_hide_qty_input_on_loop_if_stock_matches_min', 'yes' ) && ( is_shop() || is_product_tag() || is_product_category() ) )
+					);
+					if ( $hide_qty_input ) {
+						// Stock matches the minimum, so the input can only submit the minimum quantity.
+						if ( ! is_cart() ) {
+							$args['input_value'] = $args['min_value'];
+						}
 						$args['min_value'] = 0;
 						$args['readonly']  = true;
 					}
@@ -2220,6 +2295,24 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			}
 			if ( 'yes' === get_option( 'wpfmmsq_max_section_enabled', 'no' ) ) {
 				$args['max_value'] = $this->set_quantity_input_max( $args['max_value'], $product );
+			} else {
+				// Cap the max at the remaining stock when the max section is disabled, so customers can't pick more than what's available.
+				if ( is_product() && $product->managing_stock() && ! $product->backorders_allowed() ) {
+					$stock_quantity = $product->get_stock_quantity();
+					if ( is_numeric( $stock_quantity ) && $stock_quantity > 0 ) {
+						$product_qty_in_cart = 0;
+						if ( isset( WC()->cart ) ) {
+							$cart_item_quantities = $this->get_cart_item_quantities();
+							$product_qty_in_cart  = ( isset( $cart_item_quantities[ $product->get_id() ] ) ? (float) $cart_item_quantities[ $product->get_id() ] : 0 );
+						}
+						$remaining_stock = (float) $stock_quantity - $product_qty_in_cart;
+						if ( $remaining_stock < 0 ) {
+							$remaining_stock = 0;
+						}
+						$max_value         = ( isset( $args['max_value'] ) && $args['max_value'] > 0 ? (float) $args['max_value'] : $remaining_stock );
+						$args['max_value'] = (float) min( $max_value, $remaining_stock );
+					}
+				}
 			}
 			if ( 'yes' === get_option( 'wpfmmsq_step_section_enabled', 'no' ) ) {
 				$args['step'] = $this->set_quantity_input_step( $args['step'], $product );
@@ -2227,7 +2320,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 			if ( is_product() && isset( $args['min_value'], $args['max_value'] ) ) {
 				if ( '' !== $args['min_value'] && '' !== $args['max_value'] && (float) $args['max_value'] === (float) $args['min_value'] ) {
-					$args['max_value'] = '';
+					$args['input_value'] = $args['min_value'];
 				}
 			}
 
@@ -3311,7 +3404,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_min_max_variation.
 		 *
-		 * @version 5.3.9
+		 * @version 5.4.6
 		 * @since   1.0.0
 		 */
 		function set_quantity_input_min_max_variation( $args, $_product, $_variation ) {
@@ -3326,6 +3419,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 
 			if ( ! $skip_max_cap && - 1 != $_max && $args['max_qty'] > $_max ) {
 				$args['max_qty'] = $_max;
+			}
+
+			// Never allow selecting more than what's in stock.
+			if ( ! $skip_max_cap && $_variation && $_variation->managing_stock() && ! $_variation->backorders_allowed() ) {
+				$stock_quantity = $_variation->get_stock_quantity();
+				if ( is_numeric( $stock_quantity ) && ( $args['max_qty'] <= 0 || (float) $args['max_qty'] > (float) $stock_quantity ) ) {
+					$args['max_qty'] = (float) $stock_quantity;
+				}
 			}
 
 			if ( $args['min_qty'] < 0 ) {

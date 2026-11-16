@@ -28,7 +28,7 @@ msgstr ""
 msgid "Qty Step"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3094
+#: includes/class-wpfmmsq-core.php:3187
 msgid "%price% for %qty% pcs."
 msgstr ""
 
@@ -48,13 +48,13 @@ msgid "Minimum allowed order quantity is %min_cart_total_quantity%. Your current
 msgstr ""
 
 #: includes/class-wpfmmsq-messenger.php:76
-#: includes/class-wpfmmsq-scripts.php:354
+#: includes/class-wpfmmsq-scripts.php:357
 #: includes/settings/class-wpfmmsq-settings-max.php:124
 msgid "Maximum allowed quantity for %product_title% is %max_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
 
 #: includes/class-wpfmmsq-messenger.php:86
-#: includes/class-wpfmmsq-scripts.php:374
+#: includes/class-wpfmmsq-scripts.php:377
 #: includes/settings/class-wpfmmsq-settings-min.php:166
 msgid "Minimum allowed quantity for %product_title% is %min_per_item_quantity%. Your current item quantity is %item_quantity%."
 msgstr ""
@@ -858,28 +858,28 @@ msgstr ""
 msgid "WPFactory"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:1186
+#: includes/class-wpfmmsq-core.php:1222
 msgctxt "Item name in quotes"
 msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:1191
+#: includes/class-wpfmmsq-core.php:1227
 msgid "%s have been added to cart."
 msgid_plural "%s have been added to cart."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-wpfmmsq-core.php:1192
+#: includes/class-wpfmmsq-core.php:1228
 msgid "View cart"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:1845
-#: includes/class-wpfmmsq-core.php:1868
+#: includes/class-wpfmmsq-core.php:1881
+#: includes/class-wpfmmsq-core.php:1904
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3092
-#: includes/class-wpfmmsq-core.php:3095
+#: includes/class-wpfmmsq-core.php:3185
+#: includes/class-wpfmmsq-core.php:3188
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:132
 msgid "%price% for %qty% %unit%."
 msgstr ""
@@ -1902,11 +1902,11 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2705
+#: includes/class-wpfmmsq-core.php:2798
 msgid "unit"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2706
+#: includes/class-wpfmmsq-core.php:2799
 msgid "units"
 msgstr ""
 

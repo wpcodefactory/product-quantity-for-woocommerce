@@ -1,12 +1,26 @@
 /**
  * wpfmmsq-quantity-steps.js
  *
- * @version 5.3.8
+ * @version 5.4.6
  * @since   4.6.10
  * @todo    Step Quanity > Allow adding all quantity in stock (skip step restriction)
  */
 
 jQuery( document ).ready( function () {
+
+	/**
+	 * is_quantity_input_mid_edit.
+	 *
+	 * Checks if the customer is still editing the quantity input. Browsers keep intermediate values
+	 * (e.g. "3." while "3.5" is being typed) out of the input value, so writing the normalized value
+	 * back to the input would remove the decimal separator and prevent decimal quantities.
+	 *
+	 * @version 5.4.6
+	 * @since   5.4.6
+	 */
+	function is_quantity_input_mid_edit( input ) {
+		return ( document.activeElement === input && '' !== String( input.value ).trim() );
+	}
 
 	function enforce_non_empty_quantity_value( input ) {
 		if ( !input ) {
@@ -23,6 +37,12 @@ jQuery( document ).ready( function () {
 		const max = parseNumeric( input.max );
 
 		if ( null !== current ) {
+			input.dataset.algWcPqLastValid = current;
+
+			if ( is_quantity_input_mid_edit( input ) ) {
+				return;
+			}
+
 			if ( null !== min && current < min ) {
 				current = min;
 			}
@@ -32,7 +52,6 @@ jQuery( document ).ready( function () {
 			}
 
 			input.value = current;
-			input.dataset.algWcPqLastValid = current;
 			return;
 		}
 
@@ -122,6 +141,10 @@ jQuery( document ).ready( function () {
 		};
 
 		const normalizeEmptyValue = ( targetInput ) => {
+			if ( is_quantity_input_mid_edit( targetInput ) ) {
+				return;
+			}
+
 			const minValue = getNumericValue( targetInput.min !== '' ? targetInput.min : originalMin );
 			const maxValue = getNumericValue( targetInput.max !== '' ? targetInput.max : originalMax );
 			let currentValue = getNumericValue( targetInput.value );
