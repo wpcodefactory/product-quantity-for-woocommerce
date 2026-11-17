@@ -2,7 +2,7 @@
 /**
  * Product Quantity for WooCommerce - Core Class
  *
- * @version 5.4.6
+ * @version 5.4.7
  * @version 5.4.2
  * @since   1.0.0
  * @author  WPFactory
@@ -2254,7 +2254,7 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 		/**
 		 * set_quantity_input_args.
 		 *
-		 * @version 5.4.6
+		 * @version 5.4.7
 		 * @since   1.2.0
 		 * @todo    [dev] re-check do we really need to set `step` here?
 		 */
@@ -2321,6 +2321,14 @@ if ( ! class_exists( 'WPFMMSQ_Core' ) ) :
 			if ( is_product() && isset( $args['min_value'], $args['max_value'] ) ) {
 				if ( '' !== $args['min_value'] && '' !== $args['max_value'] && (float) $args['max_value'] === (float) $args['min_value'] ) {
 					$args['input_value'] = $args['min_value'];
+				}
+			}
+
+			if ( is_cart() && isset( $args['min_value'], $args['max_value'] ) ) {
+				if ( '' !== $args['min_value'] && '' !== $args['max_value'] && (float) $args['max_value'] === (float) $args['min_value'] ) {
+					// Keep the quantity visible on the cart instead of rendering a hidden input.
+					$args['min_value'] = 0;
+					$args['readonly']  = true;
 				}
 			}
 

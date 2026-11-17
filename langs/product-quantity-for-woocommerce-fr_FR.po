@@ -28,7 +28,7 @@ msgstr ""
 msgid "Qty Step"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3187
+#: includes/class-wpfmmsq-core.php:3195
 msgid "%price% for %qty% pcs."
 msgstr ""
 
@@ -878,8 +878,8 @@ msgstr ""
 msgid "Please choose the quantity of item add to cart. It should be more than zero"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:3185
-#: includes/class-wpfmmsq-core.php:3188
+#: includes/class-wpfmmsq-core.php:3193
+#: includes/class-wpfmmsq-core.php:3196
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:132
 msgid "%price% for %qty% %unit%."
 msgstr ""
@@ -1902,11 +1902,11 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2798
+#: includes/class-wpfmmsq-core.php:2806
 msgid "unit"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2799
+#: includes/class-wpfmmsq-core.php:2807
 msgid "units"
 msgstr ""
 

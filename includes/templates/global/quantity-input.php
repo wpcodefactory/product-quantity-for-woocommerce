@@ -2,7 +2,7 @@
 /**
  * Product quantity inputs // Drop down by WPFactory
  *
- * @version 5.4.6
+ * @version 5.4.7
  * @since   1.6.0
  *
  * @todo    [dev] (important) re-check new template in WC 3.6
@@ -76,13 +76,34 @@ $alg_wc_max = wpfmmsq()->core->set_quantity_input_max( 0, $product );
 $max_purchase_quantity = $product->get_max_purchase_quantity();
 
 if ( ( $max_value && $min_value === $max_value ) || $readonly ) {
-	$hidden_qty_value = ( $readonly && '' !== $input_value ? $input_value : $min_value );
-	?>
-	<div class="quantity hidden">
-		<input type="hidden" id="<?php echo esc_attr( $input_id ); ?>" class="qty <?php echo esc_attr( $disable_price_by_qty ); ?>"
-		       name="<?php echo esc_attr( $input_name ); ?>" value="<?php echo esc_attr( $hidden_qty_value ); ?>"/>
-	</div>
-	<?php
+	if ( is_cart() ) {
+		// The quantity must remain visible on the cart, so render it as a readonly value.
+		$hidden_qty_value = ( '' !== $input_value ? $input_value : $min_value );
+		?>
+		<div class="quantity">
+			<label class="screen-reader-text"
+			       for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></label>
+			<input
+				type="text"
+				readonly="readonly"
+				id="<?php echo esc_attr( $input_id ); ?>"
+				class="qty <?php echo esc_attr( $disable_price_by_qty ); ?>"
+				name="<?php echo esc_attr( $input_name ); ?>"
+				value="<?php echo esc_attr( $hidden_qty_value ); ?>"
+				title="<?php echo esc_attr_x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ); ?>"
+				size="4"
+			/>
+		</div>
+		<?php
+	} else {
+		$hidden_qty_value = ( $readonly && '' !== $input_value ? $input_value : $min_value );
+		?>
+		<div class="quantity hidden">
+			<input type="hidden" id="<?php echo esc_attr( $input_id ); ?>" class="qty <?php echo esc_attr( $disable_price_by_qty ); ?>"
+			       name="<?php echo esc_attr( $input_name ); ?>" value="<?php echo esc_attr( $hidden_qty_value ); ?>"/>
+		</div>
+		<?php
+	}
 } elseif ( ( ( ! empty( $alg_wc_max ) || 0 != ( $max_value_fallback = get_option( 'wpfmmsq_qty_dropdown_max_value_fallback', 0 ) ) ) && ! empty( $step ) && ! $is_dropdown_disable ) || ( ( $productType == 'variable' || $productType == 'variation' ) && ( $variation_max > 0 || ! empty( $variation_exact ) ) && ! $is_dropdown_disable ) ) { // dropdown
 	if ( empty( $max_value ) ) {
 		$max_value = $max_value_fallback;

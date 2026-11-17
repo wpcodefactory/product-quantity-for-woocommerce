@@ -43,8 +43,8 @@ msgstr[1] "%s se han añadido al carrito."
 msgid "View cart"
 msgstr "Ver carrito"
 
-#: includes/class-wpfmmsq-core.php:3185
-#: includes/class-wpfmmsq-core.php:3188
+#: includes/class-wpfmmsq-core.php:3193
+#: includes/class-wpfmmsq-core.php:3196
 #: includes/settings/class-wpfmmsq-settings-price-by-qty.php:132
 msgid "%price% for %qty% %unit%."
 msgstr "%price% para %qty% %unit%."
@@ -1323,7 +1323,7 @@ msgstr "Marcadores de posición: %s. %s"
 msgid "(The %unit% placeholder will read from 3 places, with priority-level defined: First, it will read if a unit is defined on Product Level, if not defined, then it will check if defined on Category Level, if not defined, it will read from Global level defined on this page. If your store is using the same unit for all products, you can use the unit here in the field without any placeholder)"
 msgstr "(El marcador de posición %unit% se leerá desde 3 lugares, con el nivel de prioridad definido: primero, leerá si una unidad está definida en el nivel de producto, si no está definida, luego verificará si está definida en el nivel de categoría, si no está definida, se leerá desde el nivel global definido en esta página. Si su tienda usa la misma unidad para todos los productos, puede usar la unidad aquí en el campo sin ningún marcador de posición)"
 
-#: includes/class-wpfmmsq-core.php:3187
+#: includes/class-wpfmmsq-core.php:3195
 msgid "%price% for %qty% pcs."
 msgstr "%price% para %qty% uds."
 
@@ -1893,11 +1893,11 @@ msgstr ""
 msgid "Min Max Step Quantity Limits Manager"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2798
+#: includes/class-wpfmmsq-core.php:2806
 msgid "unit"
 msgstr ""
 
-#: includes/class-wpfmmsq-core.php:2799
+#: includes/class-wpfmmsq-core.php:2807
 msgid "units"
 msgstr ""
 
